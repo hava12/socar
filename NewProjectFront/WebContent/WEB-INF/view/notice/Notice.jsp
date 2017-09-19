@@ -90,13 +90,13 @@ $(function(){
 			<div class="box lnb">
 				<!-- lnb -->
 <ul class="lnb">
-<li><a href="/notice" title="공지사항" class="lnb1">공지사항</a></li>
-<li><a href="/faq" title="자주묻는 질문" class="lnb2">자주묻는 질문</a></li>
+<li><a href="<c:url value='/Notice/Notice.do'/>" title="공지사항" class="lnb1">공지사항</a></li>
+<li><a href="<c:url value='/Notice/Faq.do'/>" title="자주묻는 질문" class="lnb2">자주묻는 질문</a></li>
 
 	<!--<li><a href="javascript:alert('로그인이 필요합니다.');" title="1:1 문의하기" class="lnb3">1:1 문의하기</a></li>-->
 	<li><a href="#" title="1:1 문의하기" class="lnb3 require_login" data-href="/inquiry">1:1 문의하기</a></li>
-
-<li><a href="/voc" title="고객의견 반영절차" class="lnb4">고객의견 반영절차</a></li>
+<!-- <c:url value='/Notice/Inquiry.do'/> -->
+<li><a href="<c:url value='/Notice/Voc.do'/>" title="고객의견 반영절차" class="lnb4">고객의견 반영절차</a></li>
 </ul>
 <!-- //lnb -->
 				<div class="section">
@@ -126,67 +126,18 @@ $(function(){
 						</tr>
 						</thead>
 						<tbody>
-							
-								<tr>
-									<td>873</td>
-									<td class="subj"><a href="/notice/873">[매너평가] GOOD & BAD 매너 쏘친 9월 1주차 현황 공개</a></td>
-									<td>2017.09.12</td>
-								</tr>
-							
-								<tr>
-									<td>872</td>
-									<td class="subj"><a href="/notice/872">[이벤트] 매너쏘카를 부탁해 런칭 기념, #매너쏘카 서약 이벤트(~9/26)</a></td>
-									<td>2017.09.11</td>
-								</tr>
-							
-								<tr>
-									<td>871</td>
-									<td class="subj"><a href="/notice/871">[공지] 세상편한 쏘카부름을 '공짜' 로 이용하는 방법 (9/11~)</a></td>
-									<td>2017.09.11</td>
-								</tr>
-							
-								<tr>
-									<td>869</td>
-									<td class="subj"><a href="/notice/869">[이벤트] 금요일 칼퇴 후 떠나는 여행! 쏘카가 쏜다!(~9/17)</a></td>
-									<td>2017.09.06</td>
-								</tr>
-							
-								<tr>
-									<td>868</td>
-									<td class="subj"><a href="/notice/868">[서비스안내] 쏘카부름 수원, 성남, 고양 지역 오픈</a></td>
-									<td>2017.09.06</td>
-								</tr>
-							
-								<tr>
-									<td>867</td>
-									<td class="subj"><a href="/notice/867">[매너평가] GOOD & BAD 매너 쏘친 8월 5주차 현황 공개</a></td>
-									<td>2017.09.05</td>
-								</tr>
-							
-								<tr>
-									<td>866</td>
-									<td class="subj"><a href="/notice/866">[공지] 부산 편도허브존 안내(롯데백화점 센텀점)</a></td>
-									<td>2017.09.01</td>
-								</tr>
-							
-								<tr>
-									<td>865</td>
-									<td class="subj"><a href="/notice/865">[이벤트] 평일 친구와 아울렛 가면 혜택이 더블!(~9/29)</a></td>
-									<td>2017.08.31</td>
-								</tr>
-							
-								<tr>
-									<td>864</td>
-									<td class="subj"><a href="/notice/864">[이벤트] 8월 쏘스타 선물 <맥북프로 2017> 당첨자 발표!</a></td>
-									<td>2017.08.30</td>
-								</tr>
-							
-								<tr>
-									<td>863</td>
-									<td class="subj"><a href="/notice/863">[이벤트] 9월 쏘스타 선물 <스팅어 80% 할인쿠폰></a></td>
-									<td>2017.08.30</td>
-								</tr>
-							
+							<c:if test="${empty list}" var="havenot">
+								<tr><td colspan="3"> 등록된 글이 없습니다  </td></tr>
+							</c:if>
+							<c:if test="${not havenot}">
+								<c:forEach items="${list}" var="item">
+									<tr>
+										<td>${item.not_no}</td>
+										<td class="subj"><a href="/notice/873">${item.not_title}</a></td>
+										<td>${item.postdate}</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 						</tbody>
 						</table>
 					

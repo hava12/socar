@@ -20,7 +20,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="대한민국 1등 카셰어링 쏘카">
 		<meta property="og:description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료">
-		<meta property="og:image" content="https://www.socar.kr/template/asset/images/pc_m_web_meta_tag.jpg">
+		<meta property="og:image" content="${pageContext.request.contextPath}/template/image/pc_m_web_meta_tag.jpg">
 		<meta property="og:url" content="https://www.socar.kr/">
 
 		<!-- 유투브 랜딩 연결 -->
@@ -30,7 +30,7 @@
 
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="icon">
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="shortcut icon">
-		<link href='${pageContext.request.contextPath}/template/image/header_logo.png?v=20170428' rel="image_src" />
+		<link href='${pageContext.request.contextPath}/template/image/header_logo.png' rel="image_src" />
 
 		<!-- 2016/07/15 수정
 		<title>카셰어링 쏘카 - So Smart, SOCAR</title>
@@ -44,11 +44,11 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505264660"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505264660"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505264660"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505264660"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505264660"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -59,206 +59,38 @@
 		ga('send', 'pageview');
 		</script>
 
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/customer.css?v=20170731' />
-<style type="text/css">
-.btn_submit {
-	background-image: url('${pageContext.request.contextPath}/template/image/btn_confirm.gif');
-	background-position:  0px 0px;
-	background-repeat: no-repeat;
-	border: none;
-	width: 60px;
-	height: 33px;
-}
-</style>
-<script type="text/javascript">
-var preset ;
-function is_email(a){return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(a);}
+<%-- <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/customer.css' /> --%>
+<link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/customer.css?v=20170731' />
 
-$(function(){
-	preset = {
-		F: {
-			title : '탈퇴를 요청합니다.',
-			contents : "탈퇴 사유를 남겨주시기 바랍니다!\n여러분의 피드백을 통해 더욱 개선된 서비스로 찾아뵙도록 하겠습니다."
-		}
 
-	};
-
-	$('#email_select').change(function(){
-		var val = $(this).val();
-		if(val == 'null'){
-			val = "";
-		}
-		$('#email2').val(val);
-		return false;
-	});
-
-	$('form').submit(function() {
-			$('#contents').click();
-/*
-        var email = $('#email1').val() + '@' + $('#email2').val();
-        $('#email').val(email);
-
-        if(!is_email($('#email').val())){
-            alert('이메일 형식이 잘못되었습니다.');
-            return false;
-        }
-*/
-		if($('#title').val() == ''){
-			alert('제목을 입력해주세요.');
-						$('#title').focus();
-			return false;
-		}
-		if($('#contents').val() == ''){
-			alert('내용을 입력해주세요.');
-			$('#contents').focus();
-			return false;
-		}
-		alert('문의가 접수되었습니다.');
-	});
-
-	if(location.hash) {
-		c_code = location.hash.substr(1);
-		$("#category").val(c_code);
-		if(preset[c_code]) {
-			$('#title').val(preset[c_code].title);
-			$('#contents').val(preset[c_code].contents);
-		}
-/*
-		if(c_code == 'G'){
-			alert("우리집 주차장을 쏘카존으로 신청해 주세요!\n(우리집 말고 일반주차장 쏘카존신청은 '쏘카존 신청하기'에서!)");
-		}
-*/
-	}
-	$('#contents').bind('click focus',function(){
-		if(!$(this).data('cleared') && $("#category").val() != "G"){
-			$(this).data('cleared',true);
-			$('#contents').val('');
-		}
-	});
-
-	$("#category").change(function(){
-		var c_code = $(this).val();
-		if(preset[c_code]) {
-			$('#title').val(preset[c_code].title);
-			$('#contents').val(preset[c_code].contents);
-		}
-		else{
-			$('#title').val('');
-			$('#contents').val('');
-		}
-/*
-		if(c_code == 'G'){
-			alert("우리집 주차장을 쏘카존으로 신청해 주세요!\n(우리집 말고 일반주차장 쏘카존신청은 '쏘카존 신청하기'에서!)");
-		}
-*/
-		return false;
-	});
-})
-</script>
 </head>
 
-<body id="customer" class="inquiry">
+<body id="customer" class="voc">
 <div id="wrap">
-		<jsp:include page="/template/Header.jsp"/>
+  	<jsp:include page="/template/Header.jsp"/>
 
-	<div id="container">
-		<div id="content">
-			<h2><img src='${pageContext.request.contextPath}/template/image/h2.gif' alt="고객센터 쏘카에 대한 궁금증 해결을 도와드립니다." /></h2>
+  <div id="container">
+    <div id="content">
+      <h2><img src='${pageContext.request.contextPath}/template/image/h2.gif' alt="고객센터 쏘카에 대한 궁금증 해결을 도와드립니다." /></h2>
 			<p class="callCenter"><img src='${pageContext.request.contextPath}/template/image/btn_callcenter_150225.gif' alt="1661-3315 콜센터 안내" /></p>
 			<div class="box lnb">
-				<!-- lnb -->
+        <!-- lnb -->
 <ul class="lnb">
 <li><a href="<c:url value='/Notice/Notice.do'/>" title="공지사항" class="lnb1">공지사항</a></li>
 <li><a href="<c:url value='/Notice/Faq.do'/>" title="자주묻는 질문" class="lnb2">자주묻는 질문</a></li>
 
-	<li><a href="#" title="1:1 문의하기" class="lnb3">1:1 문의하기</a></li>
-<!-- <c:url value='/Notice/Inquiry.do'/> -->
+	<li><a href="<c:url value='/Notice/Inquiry.do'/>" title="1:1 문의하기" class="lnb3">1:1 문의하기</a></li>
+
 <li><a href="<c:url value='/Notice/Voc.do'/>" title="고객의견 반영절차" class="lnb4">고객의견 반영절차</a></li>
 </ul>
 <!-- //lnb -->
-				<div class="section">
-					<h3><img src='${pageContext.request.contextPath}/template/image/h3_inquiry.gif' alt="1:1 문의하기" /></h3>
-					<form name="inquiry" method="post" action="https://api.socar.kr/cs/counsel" accept-charset="utf-8" enctype="multipart/form-data">
-						<fieldset>
-						<input type="hidden" name="auth_token" value="8253898f5c54f177f2157eb70e488c3ac425c8eamipkc" />
-						<input type="hidden" name="return_url" value="https://www.socar.kr/inquiry" />
-						<input type="hidden" name="channel" value="www" />
-							<table cellspacing="0" class="rows">
-<!--
-							<tr>
-								<th><img src='${pageContext.request.contextPath}/template/image/inquiry_txt1.gif' alt="이메일" /></th>
-								<td>
-                                    <input id="email1" type="text" class="input" value="" style="width:118px" /> @
-                                    <input id="email2" type="text" class="input" value="" style="width:118px" />
-                                    <input id="email" type="hidden" name="email" value="" />
-                                    <input type="hidden" name="category" value="일반" />
-
-                                    <select id="email_select">
-                                        <option selected="selected" value="null">직접입력</option>
-                                        <option value="nate.com">nate.com</option>
-                                        <option value="empas.com">empas.com</option>
-                                        <option value="lycos.co.kr">lycos.co.kr</option>
-                                        <option value="netsgo.com">netsgo.com</option>
-                                        <option value="chol.com">chol.com</option>
-                                        <option value="dreamwiz.com">dreamwiz.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="hanafos.com">hanafos.com</option>
-                                        <option value="hanmail.net">hanmail.net</option>
-                                        <option value="hanmir.com">hanmir.com</option>
-                                        <option value="hitel.net">hitel.net</option>
-                                        <option value="hotmail.com">hotmail.com</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="netian.com">netian.com</option>
-                                        <option value="paran.com">paran.com</option>
-                                    </select>
-								</td>
-							</tr>
--->
-							<tr>
-								<th><img src='${pageContext.request.contextPath}/template/image/inquiry_txt2.gif' alt="문의분류" /></th>
-								<td>
-									<select style="width:165px" name='category' id='category'>
-										<option value='A'>예약/결제문의</option>
-										<option value='B'>가입문의</option>
-										<option value='C'>차량이용/사고</option>
-										<option value='D'>불편접수/건의</option>
-										<option value='E'>프로모션/쿠폰</option>
-										<option value='H'>법인/단체</option>
-										<option value='F'>탈퇴</option>
-										<option value='I'>쏘파라치</option>
-										<option value='Q'>핸들주차비 환급요청</option>
-										<option value='G'>기타</option>
-										
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th><img src='${pageContext.request.contextPath}/template/image/inquiry_txt3.gif' alt="제목 / 내용" /></th>
-								<td>
-									<input id="title" type="text" name="title" class="input" value="" style="width:400px" />
-									<textarea id="contents" cols="" name="contents" rows="15" class="textarea" style="width:585px"></textarea>
-								</td>
-							</tr>
-							<tr>
-								<th><img src='${pageContext.request.contextPath}/template/image/inquiry_txt4.gif' alt="파일첨부" /></th>
-								<td>
-									<input type="file" class="input" name="userfile" value="" />
-									<span class="tip ml10">이미지 파일은 jpg, png, gif 만 첨부가능합니다.</span>
-								</td>
-							</tr>
-							</table>
-							<p class="centerBtn">
-								<!-- <input type="image" name="submit" value="submit" src='${pageContext.request.contextPath}/template/image/btn_confirm.gif' alt="확인" /> -->
-								<input type="submit" value="" class="btn_submit" />
-								<!-- <a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_cancel.gif' alt="취소" /></a> -->
-							</p>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-		
+        <div class="section">
+          <h3><img src='${pageContext.request.contextPath}/template/image/voc_title.png' alt="고객의견 반영절차"/></h3>
+          <img src='${pageContext.request.contextPath}/template/image/voc_contents.png'  alt="고객의견 반영절차" />
+        </div>
+      </div>
+    </div>
+    
 <style type="text/css">
 
 /* aside */
@@ -282,33 +114,104 @@ div.aside ul :first-child a{border-top:1px solid #BBB;}
 div.aside ul :last-child a{border-bottom:1px solid #BBB;}  
 </style>
 <!-- quick -->
+<div class="aside">
+	<ul>
+		<li>
+			<a href="#" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
+		</li>
+		
+		
+		
+		<li>
+			<a href="#" class="quick2" title="주행요금 계산하기">주행요금 계산하기</a>
+		</li>
+		<li>
+			<a href="#" class="quick3" title="쏘카존 신청하기">쏘카존 신청하기</a>
+		</li>
 
-	<jsp:include page="/template/Quick.jsp"/>
+	</ul>
+</div>
+
+<style type="text/css">
+	.aside_more {
+		position: fixed;
+		top: 111px;
+		right: 51px;
+		z-index: 10000;
+	}
+</style>
+
+<div class="aside_more"><img src='${pageContext.request.contextPath}/template/image/banner_more.png' alt="더보기" />
+</div>
 
 <!-- //quick -->
 	</div>
-
 <!-- footer -->
-		<jsp:include page="/template/Footer.jsp"/>
+<div id="footer">
+  <div class="gr">
+    <ul class="footer-menu">
+      <li><a href=https://www.socar.kr/about class="menu1" title="회사소개">회사소개</a></li>
+      <li><a href="https://goo.gl/Aqsjr5" title="채용안내" target="_blank" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_recruit_new.png' alt="채용안내"></a></li>
+      <li><a href="https://www.dropbox.com/sh/qiypdh3xl3mmktf/AAAlXsdhOZUY3HTPcvcwPXfCa?dl=0" target="_blank" class="menu2" title="보도자료">보도자료</a></li>
+<!-- 2015.07.29 -->
+      <li><a href=https://www.socar.kr/terms title="회원이용약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_member_n.png' alt="회원이용약관" /></a></li>
+      <li><a href=https://www.socar.kr/privacy class="menu5" title="개인정보처리방침">개인정보처리방침</a></li>
+      <li><a href=https://www.socar.kr/rent_terms title="자동차대여약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_rental_n2.png' alt="자동차대여약관" /></a></li>
+      <li><a href=https://www.socar.kr/gis_terms title="위치기반서비스 이용약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_location_n.png' alt="위치기반서비스 이용약관" /></a></li>
 
+<!--// 2015.07.29 -->
+    </ul>
+    <address>
+			<img src='${pageContext.request.contextPath}/template/image/footer_address.png' alt="(주) 쏘카 통신판매업 신고 : 제 2011-제주조천-0021호, 정보보호 담당자 : 김명훈, 사업자등록번호 : 616-81-90529  대표자 : 이재용
+Tel : 1661-3315, Fax : 02-6969-9333, 주소 : 제주특별자치도 제주시 도령로 129, 5층 (연동, 드림플라자) 63126" />
+		</address>
+    <p class="copyright"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/footer_copyright_n2.png' alt="Copyright © 2013 SOCAR  All rights reserved." /></p>
+    <div class="ccm"><a href="/impact"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/ccm.png' /></a></div>
+    <div class="eco"><a href="/impact"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/eco.png' /></a></div>
+    <div class="bcorp"><a href="/impact"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/bcorp.jpg' /></a></div>
+    <div class="csa"><a href="http://carsharing.org/" target="_blank"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/csa.png' /></a></div>
+  </div>
+
+  <ul class="sns">
+  	<li><a href="https://www.facebook.com/socarsharing" target="_blank" class="sns1" title="SOCAR Facebook">SOCAR Facebook</a></li>
+  	<li><a href="http://talk.socar.kr" target="_blank" class="sns3" title="SOCAR Blog">SOCAR Blog</a></li>
+  	<li><a href="mailto:info@socar.kr" class="sns4" title="info@socar.kr">E-mail</a></li>
+  </ul>
+</div>
 <!-- //footer -->
 
 	<div class="mwLayer">
 		<div class="bg"></div>
 		<div id="mwCont">
-			<!-- callCenter -->
-			<div class="call mwCont">
-				<div><img src='${pageContext.request.contextPath}/template/image/callcenter_img_20160516.gif' alt="콜센터 - 문의사항이 있거나 차량 운행 중 도움이 필요한 때 쏘카 전문 상담원이 빠르고 친절하게 도와드립니다. 예약및 이용중 차량안내 - 일반상담 1661-3315, 긴급상담 1661-4977 이고 일반상담의 경우 차량 고장 및 이용관련 문의, 예약관련 문의를 받고 긴급상담의 경우 사고접수 및 처리사항 확인 하실 수 있습니다. 기타 궁굼한점은 1:1문의나 카카오톡 상담을 이용해주세요." /></div>
-        <a href="https://m.socar.kr/chat" class="click-btn"></a>
-				<p class="centerBtn">
-					<a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/btn_close.gif' alt="닫기" /></a>
-				</p>
-			</div>
-			<!-- //callCenter -->
-
-
 <!-- login -->
-<jsp:include page="/template/Login.jsp" />
+<div class="login mwCont">
+	<form name="login" method="post" action="https://www.socar.kr/user/login">
+		<input id="redirect" name="redirect" type="hidden" value=""/>
+		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
+		<fieldset>
+			<dl>
+				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/id.png' /></dt>
+				<dd><input type="text" class="input" name="email" /></dd>
+				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/pw.png' /></dt>
+				<dd><input type="password" class="input" name="password" /></dd>
+			</dl>
+			<input type="image" src='${pageContext.request.contextPath}/template/image/btn_login.png' class="submit" id="login_btn" />
+
+		</fieldset>
+	</form>
+
+	<ul>
+		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/join.png' alt="회원가입" /></a></li>
+		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
+	</ul>
+
+	<!-- SNS 로그인 -->
+	<div class="box_sns">
+		<a href="#" id="fb_login" class="left"><img src='${pageContext.request.contextPath}/template/image/fb3_n.png' alt="페이스북" /></a>
+		<a href="#" id="naver_login" class="center"><img src='${pageContext.request.contextPath}/template/image/nv3_n.png' alt="네이버" /></a>
+		<a href="#" id="kakao_login" class="right"><img src='${pageContext.request.contextPath}/template/image/cco3.png' alt="카카오톡" /></a>
+	</div>
+</div>
 <!-- //login -->
 
 <!-- finding id -->
@@ -398,7 +301,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
                             <input type="image" src='${pageContext.request.contextPath}/template/image/btn_calculate.gif' class="submit" alt="계산" />
                         </div>
                         <p class="oilTxt">
-                            <img src='${pageContext.request.contextPath}/template/image/oil_txt4.gif' alt="차종과 거리를 선택해주세요" />
+                            <img src='${pageContext.request.contextPath}/template/image/finding_txt4.gif' alt="차종과 거리를 선택해주세요" />
                         </p>
                         <p class="oilResult">
                             <img src='${pageContext.request.contextPath}/template/image/oil_txt15_n.gif' alt="예상 주행요금은" />
@@ -422,7 +325,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 
                     <dl>
                     <dt><img src='${pageContext.request.contextPath}/template/image/oil_txt11.gif' alt="지도서비스" /></dt>
-                    <dd><a href="http://map.daum.net/?target=car" target="_blank"><img src='${pageContext.request.contextPath}/template/image/oil_txt12.gif' alt="다음" /></a></dd>
+                    <dd><a href="http://map.daum.net/?target=car" target="_blank"><img src='${pageContext.request.contextPath}/template/asset/images/common/oil_txt12.gif' alt="다음" /></a></dd>
                     <dd><a href="http://map.naver.com/index.nhn?menu=route" target="_blank"><img src='${pageContext.request.contextPath}/template/image/oil_txt13.gif' alt="네이버" /></a></dd>
                     </dl>
                 </div>
@@ -1661,7 +1564,7 @@ var init_askzone = function(json) {
 		'<p class="txt">' + r.contents + '</p>' +
 		'<p class="date">' + r.created_at +
 			'<a href="#" style="margin-left: 5px;" class="deleteBtn">' +
-				'<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제" />' +
+				'<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제" />' +
 			'</a>' +
 		'</p>' +
 
@@ -1669,8 +1572,8 @@ var init_askzone = function(json) {
 			'비밀번호' +
 			'<input type="text" class="input" />' +
 			'<em style="display:none;">' + r.id + '</em>' +
-			'<input type="image" class="deleteOk" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인" />' +
-			'<input type="image" class="deleteCancel" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소" /> ' +
+			'<input type="image" class="deleteOk" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인" />' +
+			'<input type="image" class="deleteCancel" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소" /> ' +
 		'</div>' +
 
 		'<ul>' +
@@ -1824,12 +1727,12 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js?1505264660" charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js?1505264660" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js" charset="utf-8"></script>
 
-			<a href="#" class="close">닫기</a>
-		</div>
-	</div>
+      <a href="#" class="close">닫기</a>
+    </div>
+  </div>
 </div>
 </body>
 </html>

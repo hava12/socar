@@ -8,18 +8,18 @@
 		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
 		<fieldset>
 			<dl>
-				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/new/id.png' /></dt>
+				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/id.png' /></dt>
 				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/new/pw.png' /></dt>
+				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/pw.png' /></dt>
 				<dd><input type="password" class="input" name="password" /></dd>
 			</dl>
-			<input type="image" src='${pageContext.request.contextPath}/template/image/new/btn_login.png' class="submit" id="login_btn" />
+			<input type="image" src='${pageContext.request.contextPath}/template/image/btn_login.png' class="submit" id="login_btn" />
 
 		</fieldset>
 	</form>
 
 	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/new/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/new/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
+		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/join.png' alt="회원가입" /></a></li>
+		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
 	</ul>
 </div>
