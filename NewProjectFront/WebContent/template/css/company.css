@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* index */
+#content{padding-bottom:50px;}
+.index{padding:0 0 0 9px; height:234px;}
+.index h2{margin:0 0 32px 3px !important;}
+.index .txt1{height:96px;}
+.index .txt2{margin-left:2px;}
+.box{padding:36px 39px 39px 39px; *zoom:1;}
+.box:after{content:""; display:block; clear:both;}
+
+/* snb */
+.snb{float:left; width:122px;}
+.snb .menu{margin-bottom:30px;}
+.snb .menu li a{display:block; width:100%; height:36px; text-indent:-9999em; overflow:hidden; background:url('/template/asset/images/company/menu_v2.gif') no-repeat;}
+.snb .menu li a.menu1{background-position:0 12px;}
+.snb .menu li a.menu2{background-position:0 -24px;}
+.snb .menu li a.menu3{background-position:0 -60px;}
+.snb .menu li.on a.menu1{background-position:-140px 12px;}
+.snb .menu li.on a.menu2{background-position:-140px -24px;}
+.snb .menu li.on a.menu3{background-position:-140px -60px;}
+.snb .banner{border-bottom:1px solid #dedede;}
+
+/* socar1 */
+.content{display:none; float:right; padding-top:12px; width:714px;}
+#company1{display:block;}
+#company1 h3 {height:40px;}
+#company1 h4 {padding-top:47px;}
+#company1 .txt {height:42px;}
+#company1 .box_program {display:block;width:100%;padding-bottom:50px;border-bottom:1px solid #ededed;}
+#company1 .box_program .list_program {display:block;overflow:hidden;width:100%;padding-top:39px;}
+#company1 .box_program .list_program li {float:left;width:337px;}
+#company1 .box_program .list_program .r {float:right}
+#company1 .box_program .list_program ul {display:block;padding:6px 0 13px;}
+#company1 .box_program .list_program ul li {float:none;padding:0 0 0 13px;background:url('/template/asset/images/common/bullet.png') no-repeat 0 7px;line-height:18px;}
+#company1 .list_opt {display:block;padding:30px 0px 20px 0px;}
+#company1 .list_opt p {line-height:18px;}
+#company1 .list_opt .num1,
+#company1 .list_opt .num2,
+#company1 .list_opt .num3,
+#company1 .list_opt .num4 {padding:28px 0 28px 85px;}
+#company1 .list_opt .num5 {padding:5px 0 28px 85px;}
+#company1 .list_opt .num1 {background:url('//web-assets.socar.kr/template/asset/images/company/company_contbg1.png') no-repeat;}
+#company1 .list_opt .num2 {background:url('//web-assets.socar.kr/template/asset/images/company/company_contbg2_n.png') no-repeat;}
+#company1 .list_opt .num3 {background:url('//web-assets.socar.kr/template/asset/images/company/company_contbg3.png') no-repeat;}
+#company1 .list_opt .num4 {background:url('//web-assets.socar.kr/template/asset/images/company/company_contbg4.png') no-repeat;}
+#company1 .list_opt .num5 {background:url('//web-assets.socar.kr/template/asset/images/company/company_contbg5.png') no-repeat;}
+#company1 .list_opt ul {padding:5px 2px 0px;}
+#company1 .list_opt ul li {padding:0 0 0 13px;background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 7px;line-height:18px;}
+#company1 .box_img {padding-bottom:39px;}
+
+#company2 {display:none;}
+#company2 h3 {height:40px;}
+#company2 .txt {height:42px;}
+#company2 .list_pro {display:block;overflow:hidden;width:100%; margin-top: 20px;}
+#company2 .list_pro li {float:left;width:337px;}
+#company2 .list_pro .r {float:right;}
+#company2 .list_pro .tit {display:block;padding-bottom:18px;}
+#company2 .list_pro .list {display:block;width:337px;}
+#company2 .list_pro .list li {float:none;padding-bottom:34px;background:url('//web-assets.socar.kr/template/asset/images/company/bg_arr.gif') left bottom no-repeat}
+#company2 .list_pro .list .lst {background:none;}
+#company2 .list_pro .list strong {color:#1ba4e7;letter-spacing:-1px;}
+#company2 .list_pro .list p {padding-top:7px;line-height:18px;letter-spacing:-1px;}
+#company2 .bg_top,
+#company2 .bg_btm,
+#company2 .bg_mid {display:block;overflow:hidden;background:url('//web-assets.socar.kr/template/asset/images/company/bg_rdus.gif') no-repeat;}
+#company2 .bg_top {padding-top:19px;background-position:left top;}
+#company2 .bg_btm {padding-bottom:21px;background-position:left bottom}
+#company2 .bg_mid {padding:0 17px;background-position:0 -10px;}
+#company2 .list_dot {padding:14px 0 43px;}
+#company2 .list_dot li {padding:1px 0 1px 14px;background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 7px;line-height:18px;letter-spacing:-1px;}
+
+#company3 {display:none;position:relative;}
+#company3 h3 {height:40px;}
+#company3 .btn_allqna {position:absolute;top:18px;right:3px;font-size:12px;line-height:18px;color:#666;text-decoration:underline;}
+#company3 .list_qna {display:block;overflow:hidden;width:100%;}
+#company3 .list_qna li {margin-top:21px;}
+#company3 .list_qna .question {display:block;height:49px;padding-left:63px;background:url('//web-assets.socar.kr/template/asset/images/company/bg_q.png') 0 -50px no-repeat;font-weight:bold;font-size:14px;line-height:49px;letter-spacing:-1px;color:#000;}
+#company3 .list_qna .on .question {background-position:0 0;}
+#company3 .list_qna .anwser {display:none;padding:16px 0 0 62px;background:url('//web-assets.socar.kr/template/asset/images/company/bg_a.png') no-repeat;font-size:12px;line-height:22px;color:#666;}
+#company3 .list_qna .on .anwser {display:block;}
+#company3 .box_more {padding-top:49px;}
+#company3 .box_more img {vertical-align:top}
+#company3 .qna_more {display:block;overflow:hidden;widht:100%;padding:20px 0;font-size:0;line-height:0;}

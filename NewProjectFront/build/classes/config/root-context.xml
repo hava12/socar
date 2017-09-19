@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+		<bean id="datasourceByJNDI" class="org.springframework.jndi.JndiObjectFactoryBean">
+				<!-- 
+		        value속성:server.xml이나 context.xml의 <Context>태그 안의
+		        <ResourceLink global="" name="" type="">태그의
+		        name속성에 지정한 이름
+		         -->  
+				<property name="jndiName" value="jdbc/socar"/>
+				<!-- 
+		     	아래 속성(resourceRef)을 사용하지 않은 경우
+		         (디폴트 false)
+		             위의 jndiName속성의 값으로
+		             해당 WAS서버의 루트 디렉토리까지 적어줘야 한다
+		             예]java:/comp/env/jdbc/spring  
+		     	-->  
+				<property name="resourceRef">
+					<value>true</value>
+				</property>
+		</bean>
+
+
+
+
+
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		     	<!-- 데이타소스:데이타베이스 연결정보 -->
+		     	<property name="dataSource" ref="datasourceByJNDI"/>
+				<!-- 환경설정 파일 위치 설정 -->
+				<property name="configLocation" value="classpath:mybatis/Configuration.xml"/>
+		     </bean>
+		     <!-- 2]SqlSessionTemplate -->
+		     <bean id="template"  class="org.mybatis.spring.SqlSessionTemplate">
+		     	<constructor-arg ref="sqlSessionFactory"/>
+		     </bean>
+		
+		</beans>

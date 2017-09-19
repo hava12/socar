@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+#content{padding:24px 0 30px;}
+#content .box{padding:54px 59px; border-top:1px solid #d8d8d8;}
+#content .box h2{margin:0; height:42px;}
+
+/* rule */
+.rule{padding-top:15px; border-top:2px solid #4f555e;}
+.rule h3{padding-top:30px; line-height:24px; font-size:16px; font-weight:bold; color:#444; margin-bottom:10px; letter-spacing: -0.5px;}
+.rule strong{display:block; padding-top:6px; line-height:24px; color:#444;}
+.rule p{line-height:20px; margin-bottom:10px;}
+.rule .pd15{padding-left:15px; line-height:20px; margin-bottom:10px;}
+.rule .pd30{padding-left:30px; line-height:20px; margin-bottom:10px;}
+.rule .pd45{padding-left:45px; line-height:20px; margin-bottom:10px;}
+.rule .pd60{padding-left:60px; line-height:20px; margin-bottom:10px;}
+.rule .pd75{padding-left:75px; line-height:20px; margin-bottom:10px;}
+.rule .pd90{padding-left:90px; line-height:20px; margin-bottom:10px;}
+.rule .cols thead th{border:1px solid #ededed;}
+.rule .cols tbody td{padding-left:10px; text-align:left; vertical-align:middle; border:1px solid #ededed;}
+.rule .cols tbody td.txt-center{padding-left:0px; text-align:center;}
+.rule .cols .first{border-left:none;}
+.rule ul {list-style-type:decimal;}
+.rule ul li {line-height:20px; margin-left:15px; margin-bottom:4px;}
+.rule ol {list-style-type:disc;}
+.rule ol li {line-height:20px; margin-left:15px;}
+.rule .simple_cols {margin-top:5px;width:100%;}
+.rule .simple_cols td {padding:2px;line-height:18px;}
+.rule .simple_cols .gray {color:#afafaf;}
+.rule a {text-decoration:underline;color:#2db2f2;font-weight:bold;}
+.rule strong.title-red {color:#F75F50}
+
+/* sitemap */
+.sitemap h2{border-bottom:2px solid #4f555e;}
+.sitemap .group{*zoom:1;;}
+.sitemap .group:after{content:""; clear:both; display:block;}
+.sitemap .unit{float:left; display:inline; margin:50px 0 0 28px; width:120px; height:175px;}
+.sitemap .unit h3{height:26px; border-bottom:1px solid #e8e8e8;}
+.sitemap .unit li{background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x left bottom;}
+.sitemap .unit li a{display:block; height:32px; text-indent:-9999em; overflow:hidden;}
+.sitemap .unit.gnb1 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt9.gif') no-repeat;}
+.sitemap .unit.gnb2 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt10.gif') no-repeat;}
+.sitemap .unit.gnb3 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt11.gif') no-repeat;}
+.sitemap .unit.gnb4 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt12.gif') no-repeat;}
+.sitemap .unit.gnb5 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt13.gif') no-repeat;}
+.sitemap .unit.gnb6 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt14.gif') no-repeat;}
+.sitemap .unit.gnb7 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt15.gif') no-repeat;}
+.sitemap .unit.gnb8 li a{background:url('//web-assets.socar.kr/template/asset/images/common/sitemap_txt16.gif') no-repeat;}
+.sitemap .unit.first{margin-left:0;}
+.sitemap .unit li a.snb1{background-position:0 10px;}
+.sitemap .unit li a.snb2{background-position:0 -22px;}
+.sitemap .unit li a.snb3{background-position:0 -54px;}
+.sitemap .unit li a.snb4{background-position:0 -86px;}
+
+/* socar */
+.socar h2{margin-bottom:50px !important; border-bottom:2px solid #4f555e;}
+.socar .group{position:relative; margin-bottom:70px; padding-left:170px;}
+.socar .group h3{position:absolute; top:15px; left:0;}
+.socar .group .txt1{padding:15px 0 0 292px; height:143px; background:url('//web-assets.socar.kr/template/asset/images/common/socar_bg_150605.png') no-repeat 21px 0;}
+.socar .group table{width:100%; border-top:2px solid #d3d3d3;}
+.socar .group table th{padding:15px 0 15px 15px; width:125px; text-align:left; vertical-align:top; border-bottom:1px solid #ededed; background:#fbfbfb;}
+.socar .group table td{padding:9px 0; border-bottom:1px solid #ededed;}
+.socar .group table td li{position:relative; padding:4px 0 4px 55px; color:#333; line-height:17px;}
+.socar .group table td li span{position:absolute; top:4px; left:0; width:55px; text-align:center; color:#bbb; font-weight:bold; line-height:17px;}
+.socar .group .thumb{position:relative; margin-left:-3px;}
+.socar .group .txt2{margin:13px 0 38px; text-align:center; line-height:20px;}
+.socar .group .recuit{position:relative; padding:28px 0 0 93px; width:599px; height:65px; background:url('//web-assets.socar.kr/template/asset/images/common/socar_recruit_bg.gif') no-repeat left top;}
+.socar .group .recuit h4{height:24px;}
+.socar .group .recuit .btn{position:absolute; top:31px; right:23px;}

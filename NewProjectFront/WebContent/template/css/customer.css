@@ -1,0 +1,80 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* lnb */
+ul.lnb li a{background:url('//web-assets.socar.kr/template/asset/images/customer/lnb.png?v=20160809') no-repeat;}
+ul.lnb li a.lnb1{background-position:0 0;}
+ul.lnb li a.lnb2{background-position:0 -106px;}
+ul.lnb li a.lnb3{background-position:0 -212px;}
+ul.lnb li a.lnb4{background-position:0 -318px;}
+
+/* notice */
+.notice ul.lnb li a.lnb1{background-position:-120px 0;}
+.notice .notice-search{position:absolute; top:54px; right:60px;}
+.notice .notice-search input{vertical-align:top;}
+.notice .notice-search input.input{width:155px; height:24px; line-height:24px;}
+.notice .banner{margin-top:50px; *zoom:1;}
+.notice .banner:after{content:""; display:block; clear:both;}
+.notice .banner li{float:left; display:inline; margin-left:7px;}
+.notice .banner li.first{margin:0;}
+
+/* call center */
+#customer .callCenter{position:absolute; top:57px; right:0; cursor:pointer;}
+.mwLayer .callLy{margin:-280px 0 0 -229px; padding:34px 30px 0; width:398px; height:634px;}
+.mwLayer .callLy h3{height:53px;}
+.mwLayer .callLy h4{margin-top:42px; height:24px; border-bottom:2px solid #4f555e;}
+.mwLayer .callLy h5{padding-top:20px; height:32px;}
+.mwLayer .callLy h5.line{margin-top:8px; padding-top:21px; background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x left top;}
+.mwLayer .callLy li{height:22px;}
+.mwLayer .callLy .group{margin-bottom:18px; padding-bottom:20px; border-bottom:1px solid #d3d3d3;}
+.mwLayer .callLy .call .centerBtn{text-align:center;}
+.mwLayer .callLy .call .close{display:inline; position:relative; top:0; right:0; width:auto; height:auto; text-indent:0; background:none;}
+
+/* faq */
+.faq ul.lnb li a.lnb2{background-position:-120px -106px;}
+.faq .search-box select{width:135px;}
+.faq .search-box .input{width:215px;}
+.faq .tab{margin:27px 0; height:36px; background:url('//web-assets.socar.kr/template/asset/images/customer/faq_tab_bg.gif') repeat-x left top;}
+.faq .tab ul{*zoom:1;}
+.faq .tab ul:after{content:""; clear:both; display:block;}
+.faq .tab li{float:left; margin-right:-1px; border:1px solid #d3d3d3; border-bottom:none;}
+/* 2015-02-04 FAQ 메뉴 변경 START*/
+.faq .tab li a{display:block; padding:0 18px; height:34px; text-indent:-9999em; overflow:hidden; background-image:url('//web-assets.socar.kr/template/asset/images/customer/faq_tab_v2.gif'); background-repeat:no-repeat; background-color:#fbfbfb;}
+.faq .tab li a.tab1{width:70px; background-position:18px 11px;}
+.faq .tab li a.tab2{width:75px; background-position:-82px 11px;}
+.faq .tab li a.tab3{width:44px; background-position:-182px 11px;}
+.faq .tab li a.tab4{width:76px; background-position:-282px 11px;}
+.faq .tab li a.tab5{width:76px; background-position:-382px 11px;}
+.faq .tab li a.tab6{width:53px; background-position:-482px 11px;}
+.faq .tab li a.tab7{width:26px; background-position:-581px 11px;}
+.faq .tab li a.tab8{width:26px; background-position:-681px 11px;}
+.faq .tab li.on{position:relative; border-color:#4f555e; z-index:1;}
+.faq .tab li.on a{border-bottom:1px solid #fff; background-color:#fff;}
+.faq .tab li.on a.tab1{background-position:18px -39px;}
+.faq .tab li.on a.tab2{background-position:-82px -39px;}
+.faq .tab li.on a.tab3{background-position:-182px -39px;}
+.faq .tab li.on a.tab4{background-position:-282px -39px;}
+.faq .tab li.on a.tab5{background-position:-382px -39px;}
+.faq .tab li.on a.tab6{background-position:-482px -39px;}
+.faq .tab li.on a.tab7{background-position:-581px -39px;}
+.faq .tab li.on a.tab8{background-position:-681px -39px;}
+/* 2015-02-04 FAQ 메뉴 변경 END*/
+.faq .count{padding-left:12px; height:34px; line-height:34px;}
+.faq .count strong{color:#0e99dc;}
+.faq .faq-list{border-bottom:1px solid #d3d3d3;}
+.faq .faq-list span{position:absolute; top:14px; left:22px; display:block; width:13px; height:15px; text-indent:-9999em; overflow:hidden;}
+.faq .faq-list dt{position:relative; padding:15px 0 15px 55px; cursor:pointer; border-top:1px solid #e1e1e1;}
+.faq .faq-list dt span{background:url('//web-assets.socar.kr/template/asset/images/customer/ico_faq.gif') no-repeat 0 -100px;}
+.faq .faq-list dt.active{color:#1ba4e7; font-weight:bold;}
+.faq .faq-list dt.active span{background-position:0 0;}
+.faq .faq-list dd{display:none; padding:14px 20px 14px 55px; line-height:18px; background:#fbfbfb url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x 0 0;}
+
+/* inquiry */
+.inquiry ul.lnb li a.lnb3{background-position:-120px -212px;}
+.inquiry .textarea{margin-top:7px;}
+.inquiry .rows{margin-bottom:20px;}
+
+/* voc */
+.voc ul.lnb li a.lnb4{background-position:-120px -318px;}

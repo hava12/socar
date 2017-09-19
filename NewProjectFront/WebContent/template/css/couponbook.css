@@ -1,0 +1,118 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+#couponbook #content {padding-top:24px;}
+#content .couponbook {width:984px;margin:0 auto 0;padding-top:44px}
+#content .couponbook h2 {margin:0;padding-bottom:0;}
+#content .couponbook h3 {float:left;margin:0 0 0 -4px;}
+#content .couponbook .box_tit {display:block;width:100%;zoom:1;margin:33px 0 0 2px;}
+#content .couponbook .box_tit .right {float:right;}
+#content .couponbook .box_tit:after {display:block;overflow:hidden;width:100%;height:0;content:' ';clear:both;}
+#content .couponbook .box_line {padding-top:39px;border-top:1px dashed #e3e3e3;margin-top:0;}
+
+.couponbook_event {display:block;position:relative;width:868px;height:292px;padding:59px 58px 0;margin:0 auto;background:url('/template/asset/images/couponbook/so_lucky_deal_couponbook_cover_140827.png') 0 0 no-repeat;border:1px solid #d6d6d6;}
+.couponbook_event .flag {position:absolute;top:-2px;right:59px;}
+.couponbook_event .tit {padding-top:16px;}
+.couponbook_event .cont {padding:27px 3px 10px;}
+.couponbook_event .cont dl {display:block;overflow:hidden;width:100%;padding:1px 0;font:normal 12px/18px dotum;color:#666;}
+.couponbook_event .cont dl dt {float:left;font-size:11px;line-height:18px;color:#999;letter-spacing:-1px;}
+.couponbook_event .cont dl dd {float:left;padding-left:12px;font-size:12px;line-height:18px;}
+.couponbook_event .cont dl dd a {font-size:11px;color:#1ba8ed;text-decoration:underline;letter-spacing:-1px;}
+.couponbook_event .btn {display:block;overflow:hidden;width:100%}
+.couponbook_event .btn a {float:left;margin-right:6px;}
+.couponbook_event .count {position:absolute;bottom:43px;right:59px;font-size:12px;line-height:32px;color:#666;letter-spacing:-1px;text-align:right;}
+.couponbook_event .count strong {font-weight:bold;font-size:28px;color:#1ba8ed;font-family:Arial;}
+
+.couponbook_cont {background-color:#f8f8f8;}/*864*/
+.list_couponbook {display:block;overflow:hidden;width:1008px;padding:24px 0 19px;margin-left:-24px;}
+.list_couponbook li {background: #fff; box-sizing: border-box; position:relative;float:left;width:312px;height:320px;margin:0 0 24px 24px;border:1px solid #dedede;}
+.list_couponbook li.wait {background:url('/template/asset/images/couponbook/img_coupon_done.png') #f4f5f6 no-repeat; background-size: 104px 104px; background-position: center 90px;font-size: 18px; color:#a9adb1; text-align: center; padding-top: 200px}
+.list_couponbook .flag {position:absolute;top:-1px;left:-1px;}
+.list_couponbook .end_layer {display:none;position:absolute;top:-1px;left:-1px;border:1px solid #dedede;background:rgba(255,255,255,0.8);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#9cffffff,endColorstr=#9cffffff);width:312px;height:167px;}
+.list_couponbook .end_layer .txt {width:219px;height:31px;margin:68px auto 0;border:2px solid #000;font-weight:bold;font-size:12px;line-height:31px;color:#000;text-align:center;letter-spacing:-1px;}
+.list_couponbook .close .end_layer {display:block;}
+.list_couponbook .close .end_layer .txt {width:219px;height:31px;margin:68px auto 0;border:2px solid #000;font-weight:bold;font-size:12px;line-height:31px;color:#000;text-align:center;letter-spacing:-1px;}
+.list_couponbook .none {background:url('/template/asset/images/couponbook/couponbook_bg.png') 0 0 no-repeat;}
+.list_couponbook .thumb {text-align: center; padding: 16px 0 0;}
+.list_couponbook .thumb img {vertical-align:top;}
+.list_couponbook .cont {padding:0 16px 24px;background-color:#fff;}
+.list_couponbook .cont img {vertical-align:top;}
+.list_couponbook .cont .opt {margin-top:20px;}
+.list_couponbook .cont .tit_cont .txt {padding-top:3px;font-size:12px;line-height:18px;color:#2eb1f1;letter-spacing:-1px;}
+.list_couponbook .cont .tit_cont .txt strong {color:#2eb1f1;}
+.list_couponbook .cont .tit_cont .tit {text-align: center; padding: 0 0 16px;font-size:24px;line-height:24px;color:#333333;overflow: hidden;height: 24px; text-overflow: ellipsis; white-space: nowrap;}
+.list_couponbook .cont .box_listcont {height:90px;padding-bottom:3px;margin-top: 16px;}
+.list_couponbook .list_cont {display:block;overflow:hidden;width:100%;}
+.list_couponbook .list_cont dt {float:left;width:55px;padding:1px 0;color:#999;font-size:12px;line-height:1.5;letter-spacing:-1px;}
+.list_couponbook .list_cont dd {float:left;width:222px;padding:1px 0;color:#666;font-size:12px;line-height:1.5;}
+.list_couponbook .list_cont dd.period{white-space:nowrap;}
+.list_couponbook .list_cont dd.count{position: relative;}
+.list_couponbook .list_cont dd.count strong{color: #19c8ff}
+.list_couponbook .list_cont dd a.btn_moreview {position: absolute; top: 3px; right: 0; display: block; font-size:12px;color:#00d2ff;text-decoration:underline;}
+.list_couponbook .box_bottom .num {position:absolute;top:13px;right:24px;width:100px;line-height:24px;color:#666;letter-spacing:-1px;text-align:right}
+.list_couponbook .box_bottom .num strong {color:#1ba8ed;letter-spacing:0;}
+.list_couponbook .box_bottom .btn a {position: absolute; left: 0; right: 0; bottom: 0; display:block; font-size:16px;line-height:48px;color:#fff;text-align:center; background: #00d2ff}
+.list_couponbook .box_bottom .btn a.close {background: #a9adb1}
+.list_couponbook .close .box_bottom .btn a {color:#666;background-position:0 -40px;}
+.couponbook .more_layer {display:none;position:absolute;top: 0;left: 0; right: 0; bottom: 0; padding:27px 23px;z-index:10;background:#fff;box-sizing: border-box; color: #666}
+.couponbook .more_layer .tit_more {font-weight:bold;font-size:12px;line-height:18px;color:#1eb0f8;letter-spacing:-1px;}
+.couponbook .more_layer dl {display:block;overflow:hidden;width:100%;margin-bottom:16px !important;}
+.couponbook .more_layer dl dt {display:block;width:100%;height:auto;font-size:12px;line-height:18px;}
+.couponbook .more_layer dl dd {display:block;width:100%;height:auto;font-size:12px;line-height:18px;}
+.couponbook .more_layer .close {display:block;overflow:hidden;position:absolute;top:8px;right:8px;width:21px;height:21px;text-indent:-9999px;background:url('/template/asset/images/couponbook/btn_close.png?v=2'); background-size: 21px 21px;margin:0;padding:0;}
+.couponbook .more_layer .mCSB_scrollTools .mCSB_draggerRail { background: #fff }
+.couponbook .more_layer .mCSB_scrollTools .mCSB_dragger_bar { background: #00d2ff }
+
+.couponbook .descript_wrapper {padding: 32px 0; border: 1px solid #dfdfdf; margin: 32px 0 64px; background: #fff}
+.couponbook .descript_wrapper .img_wrapper.web {width: 420px; display: inline-block; margin: 0 34px; text-align: center;}
+.couponbook .descript_wrapper .img_wrapper.web img {margin-bottom: 16px;}
+.couponbook .descript_wrapper .img_wrapper.web a {padding: 12px; line-height: 36px; background: #00d2ff; color: #fafafa; font-size: 12px; }
+.couponbook .descript_wrapper .img_wrapper.mobile {width: 252px; display: inline-block; margin: 0 118px; text-align: center;}
+.couponbook .descript_wrapper ul.notice { padding: 0 24px; }
+.couponbook .descript_wrapper ul.notice li{ line-height: 18px; font-size: 12px;}
+.b_list {display:block;overflow:hidden;height:251px;margin:8px 0 60px;border:1px solid #dfdfdf;background-color:#fff;}
+.b_list li {float:left;position:relative;height:251px;border-left:1px dashed #dfdfdf;}
+.b_list .fst {border:0 none;}
+.b_list .tit {padding:2px 0 0 24px;font-weight:bold;font-size:12px;line-height:18px;color:#222;letter-spacing:-1px}
+.b_list .txt {overflow:hidden;height:38px;padding:8px 18px 0 24px;}
+.b_list .txt p {font-size:11px;line-height:16px;color:#999;letter-spacing:-1px;}
+.b_list .txt .btn {position:absolute;top:132px;right:27px;}
+.b_list .txt .btn a {font-size:11px;line-height:24px;color:#bbb;padding-right:5px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/blet01.png') right -2px no-repeat;text-decoration:underline;letter-spacing:-1px;}
+.b_list .more {padding:9px 24px 0;font-weight:bold;font-size:12px;line-height:16px;color:#1ba8ed;letter-spacing:-1px;}
+.box_coupon_opt {position:relative;display:block;border:1px solid #d6d6d6;;background-color:#fff;}
+.box_coupon_opt .btn_01 {display:block;overflow:hidden;position:absolute;top:180px;left:59px;width:87px;height:14px;text-indent:-9999px;background-color:#fff;opacity:0;filter:alpha(opacity=0);}
+.box_coupon_opt .btn_02 {display:block;overflow:hidden;position:absolute;top:180px;left:511px;width:87px;height:14px;text-indent:-9999px;background-color:#fff;opacity:0;filter:alpha(opacity=0);}
+.box_coupon_opt .box_opt {padding:15px 59px 59px;}
+#content .box_coupon_opt .box_opt h3 {margin-left:0;}
+.box_coupon_opt .box_opt_list {margin-top:15px;}
+.box_coupon_opt .box_opt_list .top {width:100%;height:21px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/box_top.png') 0 0 no-repeat;}
+.box_coupon_opt .box_opt_list .body {padding:0 17px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/box_bg.png') 0 0 repeat-y;}
+.box_coupon_opt .box_opt_list .body li {padding-left:22px;font-size:12px;line-height:20px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/box_blet.png') 5px 9px no-repeat;color;#666;}
+.box_coupon_opt .box_opt_list .bottom {width:100%;height:20px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/box_bottom.png') 0 0 no-repeat;}
+
+
+.list_basic {display:block;overflow:hidden;width:996px;padding-bottom:60px;}
+.list_basic li {float:left;position:relative;width:235px;height:306px;margin:12px 12px 0 0;border:1px solid #dedede;background:url('//web-assets.socar.kr/template/asset/images/couponbook/img_basic_coupon_done.gif') 0 0 no-repeat #fff;}
+.list_basic .thumb {display:block;overflow:hidden;width:100%;height:145px;}
+.list_basic .cont {display:block;overflow:hidden;padding:0 19px;height:112px;background:#fff;}
+.list_basic .cont .more {font-size:12px;line-height:16px;color:#2eb1f1;}
+.list_basic .cont .tit {padding-top:3px;font-weight:bold;font-size:12px;line-height:18px;color:#333;letter-spacing:-1px;}
+.list_basic .cont .txt {padding-top:8px;font-size:12px;line-height:18px;color:#888;}
+.list_basic .cont a.btn_moreview {font-size:11px;color:#699db7;padding-right:5px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/blet.gif') right 3px no-repeat;text-decoration:underline;letter-spacing:-1px;}
+.list_basic .btm {display:block;overflow:hidden;width:100%;height:48px;border-top:1px solid #f0f0f0;background-color:#fff;}
+.list_basic .btm span {float:left;margin:15px 0 0 18px;font-size:12px;line-height:18px;color:#666;}
+.list_basic .btm span strong {color:#1ba8ed;}
+.list_basic .btm a {float:right;margin:10px 11px 0 0;overflow:hidden;width:68px;height:27px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/bg_basic_down.gif') 0 0 no-repeat;font-size:12px;line-height:27px;color:#333;letter-spacing:-1px;text-align:center;}
+
+
+/* 2014.06.09 얼리쏘친 이벤트 레이어 */
+/*.socar_event_layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:10000;}
+.socar_event_layer.open {display:block;}
+.socar_event_layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.7;-moz-opacity:.7;filter:alpha(opacity=70);}
+.socar_event_layer .socar_event_layer_area {overflow:hidden;position:absolute; left:50%; top:50%;z-index:101;}
+.socar_event_layer .socar_event_layer_area img {vertical-align:top}
+.socar_event_layer .bx_check {display:block;height:33px;background-color:transparent;text-align:right;font-size:0;line-height:0;}
+.socar_event_layer .bx_check input {display:inline-block;height:20px;margin:6px 0 0 13px;font-size:12px;line-height:20px;font-weight:bold;color:#999;overflow:hidden;letter-spacing:-1px;margin-right:8px;vertical-align:top}
+.socar_event_layer .bx_check label {display:inline-block;height:20px;margin:6px 0 0 2px;font-size:12px;line-height:20px;font-weight:bold;color:#999;overflow:hidden;letter-spacing:-1px;margin-right:8px;}*/

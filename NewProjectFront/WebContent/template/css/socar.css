@@ -1,0 +1,117 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* index */
+#content{padding-bottom:50px;}
+.index{padding:0 0 0 9px; height:234px;}
+.index h2{margin:0 0 32px 3px !important;}
+.index .txt1{height:96px;}
+.index .txt2{margin-left:2px;}
+.box{padding:36px 39px 39px 39px; *zoom:1;}
+.box:after{content:""; display:block; clear:both;}
+
+/* snb */
+.snb{float:left; width:122px;}
+.snb .menu{margin-bottom:30px;}
+.snb .menu li a{display:block; width:100px; height:36px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/socar/guide_menu.gif') no-repeat;}
+.snb .menu li a.menu1{background-position:0 -24px;}
+.snb .menu li a.menu2{background-position:0 -60px;}
+.snb .menu li a.menu3{background-position:0 -96px;}
+.snb .menu li a.menu4{background-position:0 12px;}
+.snb .menu li a.menu5{background-position:0 -132px;}
+.snb .menu li.on a.menu1{background-position:-110px -24px;}
+.snb .menu li.on a.menu2{background-position:-110px -60px;}
+.snb .menu li.on a.menu3{background-position:-110px -96px;}
+.snb .menu li.on a.menu4{background-position:-110px 12px;}
+.snb .menu li.on a.menu5{background-position:-110px -132px;}
+.snb .banner{border-bottom:1px solid #dedede;}
+
+/* socar1 */
+.content{display:none; float:right; padding-top:12px; width:714px;}
+#socar1{display:block;}
+#socar1 h3{height:45px;}
+#socar1 .txt{height:55px;}
+#socar1 ul{padding:20px 0; border-top:1px solid #ededed; border-bottom:1px solid #ededed;}
+#socar1 li{padding:15px 0 15px 170px; height:100px; background:url('//web-assets.socar.kr/template/asset/images/socar/user_guide.jpg') no-repeat;}
+#socar1 li.rule1{background-position:0 15px;}
+#socar1 li.rule2{background-position:0 -115px;}
+#socar1 li.rule3{background-position:0 -245px;}
+#socar1 li.rule4{background-position:0 -375px;}
+#socar1 li.rule5{background-position:0 -505px;}
+#socar1 li h4{padding-top:2px; height:25px;}
+#socar1 li p{margin-bottom:5px; line-height:18px;}
+
+/* socar2 */
+#socar2 h3{height:57px;}
+#socar2 li{padding:18px 0 18px 85px; height:62px; background:url('//web-assets.socar.kr/template/asset/images/socar/bg2.png') no-repeat;}
+#socar2 li.rule1{background-position:0 18px;}
+#socar2 li.rule2{background-position:0 -79px;}
+#socar2 li.rule3{background-position:0 -177px;}
+#socar2 li.rule4{background-position:0 -275px;}
+#socar2 li.rule5{background-position:0 -376px;}
+#socar2 li.rule6{background-position:0 -470px;}
+#socar2 li h4{margin:0 !important; padding-top:4px; height:22px;}
+#socar2 li p{line-height:18px;}
+#socar2 .cols{margin-top:20px;}
+#socar2 .cols thead th{border-left:1px solid #ededed;}
+#socar2 .cols tbody td{padding-left:10px; text-align:left; vertical-align:middle; border-left:1px solid #ededed;}
+#socar2 .cols .first{border-left:none;}
+#socar2 h4{margin-top:55px;}
+
+/* socar3 */
+#socar3{background:url('//web-assets.socar.kr/template/asset/images/socar/mobile-usage-guide.png') no-repeat 417px 0;}
+#socar3 h3{height:45px;}
+#socar3 .txt{height:90px;}
+#socar3 .install{height:232px;}
+#socar3 .install h4{height:27px;}
+#socar3 .install .tab{padding-left:1px; width:319px; background:url('//web-assets.socar.kr/template/asset/images/socar/tab_bg.gif') repeat-x left top; *zoom:1;}
+#socar3 .install .tab:after{content:""; display:block; clear:both;}
+#socar3 .install .tab li{float:left;}
+#socar3 .install .tab li a{display:block; margin-left:-1px; padding-top:8px; width:88px; height:19px; text-align:center; border:1px solid #d3d3d3; background:#f8f8f8;}
+#socar3 .install .tab li.on a{border-bottom-color:#fff; background:#fff;}
+#socar3 .install .inst{display:none; margin-top:18px;}
+#socar3 .install #install1{display:block;}
+#socar3 .function h4{height:38px; border-bottom:2px solid #d3d3d3;}
+#socar3 .function ul{*zoom:1;}
+#socar3 .function ul:after{content:""; display:block; clear:both;}
+#socar3 .function li{float:left; padding:40px 0; width:50%; border-bottom:1px solid #ededed;}
+#socar3 .function li h5{height:27px;}
+#socar3 .function li .txt{height:56px; line-height:17px;}
+
+/* socar4 */
+#socar4 h3{height:65px;}
+#socar4 .txt1{height:31px;}
+#socar4 .txt2{height:120px;}
+#socar4 .gallery{position:relative;}
+#socar4 .gallery .list{position:relative; margin-top:23px; height:110px; overflow:hidden; *zoom:1;}
+#socar4 .gallery .list ul{position:absolute; top:0; left:0; width:10000px; *zoom:1;}
+#socar4 .gallery .list ul:after{content:""; display:block; clear:both;}
+#socar4 .gallery .list li{float:left; margin-right:2px;}
+#socar4 .gallery .prev{display:none; position:absolute; top:107px; left:-19px;}
+#socar4 .gallery .next{display:none; position:absolute; top:107px; right:-19px;}
+#socar4 .gallery .txt{margin-top:20px; *zoom:1;}
+#socar4 .gallery .txt:after{content:""; display:block; clear:both;}
+#socar4 .gallery .txt li{float:left; padding-left:12px; width:345px; line-height:22px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 8px;}
+#socar4 .qna{margin-top:47px; padding-top:50px; border-top:1px solid #ededed;}
+#socar4 .qna h4{height:48px;}
+#socar4 .qna p{height:29px;}
+#socar4 .qna p a {vertical-align:top;font-size:11px;line-height:16px;color:#1ba4e7;letter-spacing:-1px;text-decoration:underline;margin-left:10px;}
+#socar4 .qna ul{*zoom:1;}
+#socar4 .qna ul:after{content:""; display:block; clear:both;}
+#socar4 .qna li{position:relative; float:left; display:inline; margin:0 0 20px 20px; width:347px; height:164px; background:url('//web-assets.socar.kr/template/asset/images/socar/member_bg2.gif') no-repeat left bottom;}
+#socar4 .qna li.first{margin-left:0;}
+#socar4 .qna li h5{padding:22px 0 0 120px; height:16px;font-size:13px;line-height:16px;color:#333;font-weight:normal;}
+#socar4 .qna li .s_tit {padding:9px 0 3px 120px;height:16px;font-size:13px;line-height:16px;color:#333;font-weight:normal;}
+#socar4 .qna li .thumb{position:absolute; top:20px; left:20px;}
+#socar4 .qna li .txt{height:auto;margin-left:120px;line-height:18px;color:#666;padding-right:10px;}
+#socar4 .qna li .more{position:absolute; top:135px; right:15px;}
+#socar4 .qna li .more a{display:block; padding-right:8px; font-size:11px; color:#999; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_show.png') no-repeat right 2px;}
+
+
+#socar5 h3{height:45px;}
+
+/* /guide > 쏘카 이용방법 */
+.video-wrapper {position: relative; margin-bottom: 20px; padding-bottom: 56.25%; /* 16:9 */ height: 0;}
+.how-to-use-video {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}

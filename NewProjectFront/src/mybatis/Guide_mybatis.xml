@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="mybatis.Guide_mybatis">
+
+	<resultMap id="Car_ModelDtoResult" type="Car_ModelDto">
+	    <result property="car_type_code" column="car_type_code"/>
+	    <result property="car_type" column="car_type"/>
+	    <result property="car_insurance_one_hour" column="car_insurance_one_hour"/>
+	    <result property="car_insurance_one_day" column="car_insurance_one_day"/>
+	    <result property="car_insurance_two_hour" column="car_insurance_two_hour"/>
+	    <result property="car_insurance_two_day" column="car_insurance_two_day"/>
+ 	</resultMap>
+
+ 	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
+           식별자로 사용 -->
+ 	<select id="selectCar_ModelList" resultMap="Car_ModelDtoResult">
+		SELECT * FROM CAR_MODEL	
+	</select>
+	
+	
+</mapper>

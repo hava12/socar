@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* rental */
+#rental .index{padding:0 0 0 8px; height:234px;}
+#rental .index h2{margin:0 0 32px 3px !important;}
+#rental .index .txt1{height:96px;}
+#rental .index .txt2{margin-left:2px;}
+#rental .box{padding-top:56px;}
+#rental .box .group{position:relative; padding:0 39px 75px 229px;}
+#rental .box .group h3{position:absolute; top:0; left:39px;}
+#rental .box .group p{height:52px;}
+#rental .box .group ul{margin-top: 10px;}
+#rental .box .group li{padding: 1px 0 1px 8px;line-height:18px;background: url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 10px;}
+#rental .box .group li a{font-size:11px; text-decoration:underline;}
+table.cols thead th{color:#333;border-left:1px solid #ededed;border-right: 1px solid #ededed;}
+table.cols tbody th{color:#333;border-top:none;border-bottom:1px solid #ededed;background:#fbfbfb;}
+table.cols tbody td{padding:10px 0;text-align:center;color:#333;border-left:1px solid #ededed;border-bottom:1px solid #ededed;border-right: 1px solid #ededed;}
+table.cols .first{border-left:none;}
+table.cols strong{color:#333;}
+table.cols strike{color:#333;}
+table.cols em{color:#f63325; font-weight:bold;}
+table.cols em.down{font-weight:normal;}
+table.rows th{padding:16px 0;width:140px;text-align:left;vertical-align:top;border-bottom:1px solid #ededed;border-right: 1px solid #ededed;border-left: 1px solid #ededed;}
+table.rows td{padding:10px 0 10px 14px;color:#333;line-height:18px;border-bottom:1px solid #ededed;border-right: 1px solid #ededed;}
+
+.strong {background:#f1fafe}
+table.cols tbody .first {border-left: 1px solid #ededed;}
+table.cols tbody .tal {/* text-align:left; *//* padding-left:10px; */}

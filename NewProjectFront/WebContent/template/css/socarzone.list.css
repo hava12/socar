@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* tab */
+.list ul.tab{border-bottom:2px solid #4f555e; *zoom:1;}
+.list ul.tab:after{content:""; display:block; clear:both;}
+.list ul.tab li{float:left; margin-right:23px;}
+.list ul.tab li a{display:inline-block; padding-right:10px; height:40px; line-height:40px; font-weight:bold; color:#666; background:url('/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
+.list ul.tab li a em{color:#666; font-weight:normal;}
+.list ul.tab li.on a{color:#1ba4e7; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab_blue.gif') no-repeat right center;}
+.list ul.tab li.on a em{color:#1ba4e7;}
+
+/* list */
+.list{margin:35px 0; border-bottom:1px solid #d3d3d3;}
+.list .group{padding-bottom:16px; border-bottom:1px solid #ededed; *zoom:1;}
+.list .group:after{content:""; clear:both; display:block;}
+.list .group h4{float:left; padding-top:16px; width:109px; color:#333;}
+.list .group ul{float:right; padding-top:16px; width:875px;}
+.list .group ul li{float:left; width:175px;}
+.list .group ul li a{display:block; height:20px; line-height:20px; color:#333;overflow:hidden;}
+.list .group ul li.active a{font-weight:bold; color:#1ba4e7;}

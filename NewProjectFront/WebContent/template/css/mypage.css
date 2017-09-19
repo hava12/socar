@@ -1,0 +1,272 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* lnb */
+ul.lnb li a{background:url('//web-assets.socar.kr/template/asset/images/mypage/lnb.gif') no-repeat;}
+ul.lnb li a span{position:absolute; top:68px; left:73px; text-indent:0; color:#0e99dc; font-family:tahoma; font-size:13px; line-height:17px; font-weight:bold;}
+ul.lnb li a.lnb1{background-position:0 0;}
+ul.lnb li a.lnb2{background-position:0 -106px;}
+ul.lnb li a.lnb3{position:relative; background-position:0 -212px;}
+ul.lnb li a.lnb4{position:relative; background-position:0 -318px;}
+ul.lnb li a.lnb5{background-position:0 -424px;}
+
+/* info */
+#mypage .centerBtn{margin-top:20px;}
+#mypage div.lnb .section{padding-top:8px;}
+#mypage div.lnb .join_bn {display:none;}
+#mypage div.lnb .wrap_join_bn {position:relative;padding-top:56px;}/* 간편회원가입 배너로 인한 수치 수정 기존값 8px // position:relative; 삽입 */
+#mypage div.lnb .wrap_join_bn .join_bn {display:block;position:absolute;top:0;left:0;}
+#mypage div.lnb .section .group{margin-top:50px;}
+#mypage .btnS{margin-left:3px;}
+#mypage .rows td{line-height:24px;}
+#mypage .rows .more_txt {display:inline-block;padding-left:20px;vertical-align:top;color:#ff0000;line-height:24px;}
+#mypage .cols td{padding:12px 0; vertical-align:top; line-height:18px;}
+#mypage .cols td strong{color:#222;}
+#mypage .cols td.not_approved{color:#11b2ea;}
+#mypage .gbx{margin-bottom:20px; padding:14px 0 14px 19px; border:1px solid #ededed; background:#fbfbfb;}
+#mypage .gbx li{padding-left:15px; line-height:20px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 8px; line-height: 1.5;}
+#mypage .gbx li a{font-size:11px; text-decoration:underline;}
+#mypage .gbx li.tip{padding-left:15px; line-height:20px; background:0 8px;}
+#mypage .gbx li.tip em{color:#ea4911;}
+#mypage .tbl_sns th {padding:10px 0;}
+#mypage .tbl_sns .ico_d {vertical-align:top}
+#mypage .tbl_sns .btnS {margin-left:0;}
+
+
+.info ul.lnb li a.lnb1{background-position:-120px 0;}
+.info .cols tbody td{vertical-align:middle !important;}
+.info .cols .name{padding-left:15px !important; width:160px; text-align:left;}
+.info .cols .mail{width:230px; text-align:left;}
+.info .cols .status{color:#0e99dc;}
+.info .cols .btn{width:95px;}
+.info .cols .btn a{font-size:11px;}
+.info .cols .ok .status{color:#666;}
+.info ul.tip li{padding-left:16px; color:#999; line-height:22px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 8px;}
+.info ul.tip li em{color:#ff1a1a; text-decoration:underline;}
+
+/* info mobile layer */
+.mwLayer .mobileLy{margin:-134px 0 0 -180px; padding:22px 20px 0; width:320px; height:246px;}
+.mwLayer .mobileLy .bx{height:77px;}
+.mwLayer .mobileLy .bx table th{width:68px;}
+.mwLayer .mobileLy .close{display:none;}
+.mwLayer .mobileLy .txt{padding:13px 5px 0; height:52px; line-height:17px; border-bottom:1px solid #ededed;}
+
+/* info password layer */
+.mwLayer .pwLy{margin:-134px 0 0 -180px; padding:22px 20px 0; width:320px; height:246px;}
+.mwLayer .pwLy .bx{height:77px;}
+.mwLayer .pwLy .bx table th{width:85px;}
+.mwLayer .pwLy .close{display:none;}
+.mwLayer .pwLy .txt{padding:13px 5px 0; height:52px; line-height:17px; border-bottom:1px solid #ededed;}
+
+/* info license layer */
+/*.mwLayer .drLy{margin:-115px 0 0 -180px; padding:22px 20px 0; width:320px; height:208px;}*/
+/* ssun - 메시지 추가로 height 값을 208 에서 230 으로 증가시킴*/
+.mwLayer .drLy{margin:-115px 0 0 -180px; padding:22px 20px 0; width:320px; height:230px;}
+.mwLayer .drLy .txt{padding:10px 5px 0; line-height:18px; letter-spacing:-1px;}
+.mwLayer .drLy .txt em{letter-spacing:1px; color:#1ba4e7;}
+.mwLayer .drLy .close{display:none;}
+.mwLayer .drLy .centerBtn{margin-top:26px !important; padding-top:10px; border-top:1px solid #ededed;}
+
+/* reservation */
+.reservation ul.lnb li a.lnb3{background-position:-120px -212px;}
+.reservation ul.lnb li a.lnb3 span{color:#fff;}
+.reservation h3 *{vertical-align:top;}
+.reservation h3 span{margin-left:4px; color:#0e99dc; font-family:tahoma; font-size:17px; font-weight:bold; line-height:18px;}
+.reservation .cols tbody td{vertical-align:middle !important;}
+.reservation .cols .thumb img{width:85px; height:85px;}
+.reservation .cols .info{text-align:left;}
+.reservation .cols .info *{color:#333; line-height:19px;}
+.reservation .cols .info h4{font-weight:normal;}
+.reservation .cols .info h4 a{font-weight:bold;}
+.reservation .cols .price{padding-right:20px !important; width:130px; text-align:right;}
+.reservation .cols .price a{font-weight:bold; text-decoration:underline; color:#1ba4e7;}
+.reservation .cols .status{color:#333;}
+.reservation .cols .over .info *{color:#666;}
+.reservation .cols .over .price a{color:#666;}
+.reservation .cols .over .status{color:#666;}
+.reservation .tab{margin-bottom:10px;}
+.reservation .tab ul{*zoom:1;}
+.reservation .tab ul:after{content:""; display:block; clear:both;}
+.reservation .tab li{float:left; display:inline; margin-right:12px; padding-left:13px; background:url('//web-assets.socar.kr/template/asset/images/mypage/tab_bar.gif') no-repeat left center;}
+.reservation .tab li a{display:inline-block; padding-right:10px; height:30px; line-height:30px; color:#333; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
+.reservation .tab li a em{font-weight:bold; color:#333;}
+.reservation .tab li.on a{font-weight:bold; background:url('//web-assets.socar.kr/template/asset/images/mypage/ico_tab_on.gif') no-repeat right center;}
+.reservation .tab li.first{padding-left:0; background:none;}
+
+/* reservation change layer */
+.mwLayer .rvChangeLy{margin:-208px 0 0 -180px; padding:22px 20px 0; width:320px; height:394px;}
+.mwLayer .rvChangeLy .bx{height:77px;}
+.mwLayer .rvChangeLy .bx table th{width:68px;}
+.mwLayer .rvChangeLy .close{display:none;}
+.mwLayer .rvChangeLy select{height:25px; .height:20px; border:1px solid #b1b1b1; background:#fff;}
+.mwLayer .rvChangeLy .input{height:23px; line-height:23px; border-color:#b1b1b1;}
+.mwLayer .rvChangeLy .calendar{background:#fff url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat 94px 10px;}
+.mwLayer .rvChangeLy .txt{padding:12px 5px 20px; line-height:16px; border-bottom:1px solid #ededed;}
+
+/* reservation extend layer */
+.mwLayer .rvExtendLy{margin:-208px 0 0 -180px; padding:22px 20px 0; width:320px; height:394px;}
+.mwLayer .rvExtendLy .bx{height:77px;}
+.mwLayer .rvExtendLy .bx table th{width:68px;}
+.mwLayer .rvExtendLy .close{display:none;}
+.mwLayer .rvExtendLy select{height:25px; .height:20px; border:1px solid #b1b1b1; background:#fff;}
+.mwLayer .rvExtendLy .input{height:23px; line-height:23px; border-color:#b1b1b1;}
+.mwLayer .rvExtendLy .calendar{background:#fff url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat 94px 10px;}
+.mwLayer .rvExtendLy .txt{padding:12px 0 0 5px; height:196px; line-height:16px; border-bottom:1px solid #ededed;}
+.mwLayer .rvExtendLy .txt ul li{margin-bottom:10px; padding-left:12px; line-height:17px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 6px;}
+.mwLayer .rvExtendLy .disabled{color:#999; background-color:#f8f8f8;}
+.mwLayer .rvExtendLy .disabled *{color:#999;}
+
+/* reservation cancel layer */
+.mwLayer .rvCancelLy{margin:-208px 0 0 -180px; padding:22px 20px 0; width:320px; height:430px;}
+.mwLayer .rvCancelLy .bx{height:77px; color:#333; line-height:22px;}
+.mwLayer .rvCancelLy .bx strong{color:#333;}
+.mwLayer .rvCancelLy .close{display:none;}
+.mwLayer .rvCancelLy .txt{padding:12px 5px 0; height:230px; line-height:18px; border-bottom:1px solid #ededed;}
+.mwLayer .rvCancelLy .txt ul li{margin-bottom:10px; padding-left:12px; line-height:17px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 6px;}
+.mwLayer .rvCancelLy .txt ul li em{color:#1ba4e7;}
+
+/* coupon */
+.coupon ul.lnb li a.lnb4{background-position:-120px -318px;}
+.coupon ul.lnb li a.lnb4 span{color:#fff;}
+.coupon h3 *{vertical-align:top;}
+.coupon h3 span{margin-left:4px; color:#0e99dc; font-family:tahoma; font-size:17px; font-weight:bold; line-height:18px;}
+.coupon .coupon-add{position:absolute; top:50px; right:60px;}
+.coupon .cols tbody td{color:#333; vertical-align:middle !important;}
+.coupon .cols .thumb{margin-left:18px; width:90px; height:58px; border:1px solid #d8d8d8;}
+.coupon .cols .thumb img{width:90px; height:58px;}
+.coupon .cols .info{text-align:left;}
+.coupon .cols .info *{color:#333; line-height:19px;padding-left:18px;}
+.coupon .cols .info h4.coupon_usage:hover{text-decoration:underline;cursor:pointer;}
+.coupon .cols .terms{width:74px; text-align:left;}
+.coupon .cols .status{width:74px;font-weight:bold; color:#1ba4e7;}
+.coupon .cols .expire{width:190px;}
+.coupon .cols .over td{color:#666;}
+.coupon .cols .over .info *{color:#666;}
+.coupon .cols .over .status{font-weight:normal;}
+
+/* coupon add layer */
+.mwLayer .couponAddLy{margin:-134px 0 0 -180px; padding:22px 20px 0; width:320px; height:246px;}
+.mwLayer .couponAddLy .bx{padding:17px 0 0; height:49px; text-align:center;}
+.mwLayer .couponAddLy .bx .input{width:215px; height:30px; line-height:30px;}
+.mwLayer .couponAddLy .close{display:none;}
+.mwLayer .couponAddLy .txt{padding:6px 5px 18px; line-height:17px; border-bottom:1px solid #ededed;}
+.mwLayer .couponAddLy .txt em{line-height:30px;}
+
+/* payment */
+.payment ul.lnb li a.lnb5{background-position:-120px -424px;}
+.payment .my-credit{position:absolute; top:60px; left:148px;}
+.payment .my-credit em{font-weight:bold; color:#1ba4e7;}
+.payment .gbx li img{vertical-align:middle;}
+.payment .gbx li a{position:relative; top:-2px;}
+.payment .cols .detail{text-align:left;}
+.payment .cols .method{width:75px; text-align:center;}
+.payment .cols .price{padding-right:10px !important; width:78px; text-align:right;}
+.payment .cols .price a{font-weight:bold; text-decoration:underline;}
+.payment .cols .chit{width:70px;}
+.payment .cols .chit a{text-decoration:underline;}
+.payment .cols .name{padding-left:10px !important; width:177px; text-align:left;}
+.payment .cols .detail {width:120px;padding-left:14px !important;}
+.payment .tab{margin-bottom:10px;}
+.payment .tab ul{*zoom:1;}
+.payment .tab ul:after{content:""; display:block; clear:both;}
+.payment .tab li{float:left; display:inline; margin-right:12px; padding-left:13px; background:url('//web-assets.socar.kr/template/asset/images/mypage/tab_bar.gif') no-repeat left center;}
+.payment .tab li a{display:inline-block; padding-right:10px; height:30px; line-height:30px; color:#333; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
+.payment .tab li a em{font-weight:bold; color:#333;}
+.payment .tab li.on a{font-weight:bold; background:url('//web-assets.socar.kr/template/asset/images/mypage/ico_tab_on.gif') no-repeat right center;}
+.payment .tab li.first{padding-left:0; background:none;}
+
+/* member */
+.member ul.lnb li a.lnb2{background-position:-120px -106px;}
+.member .cols tbody td{color:#333; vertical-align:middle !important;}
+.member .cols .name{padding-left:15px !important; width:160px; text-align:left;}
+.member .cols .mail{width:230px; text-align:left;}
+.member .cols .mail a{color:#333;}
+.member .cols .status{color:#0e99dc;}
+.member .cols .btn{width:95px;}
+.member .cols .btn a{font-size:11px; color:#333;}
+.member .cols .ok .status{color:#333;}
+.member .tab{margin:-10px 0 7px;}
+.member .tab ul{*zoom:1;}
+.member .tab ul:after{content:""; display:block; clear:both;}
+.member .tab li{float:left; display:inline; margin-right:12px; padding-left:13px; background:url('//web-assets.socar.kr/template/asset/images/mypage/tab_bar.gif') no-repeat left center;}
+.member .tab li a{display:inline-block; padding-right:10px; height:30px; line-height:30px; color:#333; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
+.member .tab li a em{font-weight:bold; color:#333;}
+.member .tab li.on a{font-weight:bold; background:url('//web-assets.socar.kr/template/asset/images/mypage/ico_tab_on.gif') no-repeat right center;}
+.member .tab li.first{padding-left:0; background:none;}
+
+/* push */
+.list_push {padding-top:12px;}
+.list_push,
+.list_push li {font-size:12px;line-height:20px;color:#666}
+
+/* 다중카드 등록 */
+.mypagecard {position:relative;}
+.mypagecard .txt_more {position:absolute;top:0;right:0;padding-left:16px;background:url('//web-assets.socar.kr/template/asset/images/mypage/ico_card.gif') top left no-repeat;font-size:11px;line-height:22px;color:#999;letter-spacing:-1px;}
+.mypagecard .list_card {display:block;overflow:hidden;width:100%;padding:15px 0;border-top:2px solid #d3d3d3;}
+.mypagecard .list_card li {float:left;width:240px;height:69px;margin-left:8px;border:1px solid #eaeaea;}
+.mypagecard .list_card li.fst {margin-left:0;}
+.mypagecard .list_card li.lst {margin-left:9px;}
+.mypagecard .list_card li.on {border-color:#09abf1;}
+.mypagecard .list_card .box_radio {padding:19px 20px 0;font-weight:bold;font-size:12px;line-height:14px;color:#222;letter-spacing:-1px}
+.mypagecard .list_card .box_radio input {margin-right:9px;vertical-align:top}
+.mypagecard .list_card .btn_del {display:inline-block;margin-left:46px;font-size:11px;line-height:26px;color:#999;text-decoration:underline;letter-spacing:-1px;}
+.mypagecard .list_card .btn {display:block;padding:23px 69px 21px;}
+
+/* 회원카드 등록 */
+#mypage div.lnb .section h3 {height:32px;}
+
+.membercard {position:relative;}
+.membercard .txt_more {position:absolute;top:0;right:0;padding-left:16px;font-size:11px;line-height:22px;color:#999;letter-spacing:-1px;}
+.membercard .list_membcard {display:block;overflow:hidden;width:100%;border-top:2px solid #d3d3d3;}
+.membercard .list_membcard li {padding:14px 0 14px;font-size:12px;line-height:25px;color:#999;border-bottom:1px solid #ededed;}
+.membercard .list_membcard li .inp_radio {display:inline-block;width:13px;height:13px;margin:0;padding:0;vertical-align:middle;}
+.membercard .list_membcard li label {font-weight:bold;color:#222;margin-left:5px;}
+.membercard .list_membcard li dl {display:block;overflow:hidden;width:100%;}
+.membercard .list_membcard li dl dt {float:left;width:140px;line-height:25px;}
+.membercard .list_membcard li dl dd {float:left;width:603px;color:#999;line-height:25px;}
+.membercard .list_membcard li.on dl dd {color:#333;}
+.membercard .list_membcard .inp_tmoney {display:inline-block;width:152px;height:22px;border:1px solid #d5d5d5;vertical-align:top;text-align:center;color:#bbb;}
+.membercard .list_membcard .inp_tmoney_on{color:#222;}
+.membercard .list_membcard .txt_bar {display:inline-block;vertical-align:top;color:#c4c4c4;line-height:24px;}
+.membercard .list_membcard .btnS span {padding:0 12px;color:#222;}
+.membercard .list_membcard .btnS span.disabled {color:#bbb;}
+.membercard .list_membcard li.on .inp_tmoney,
+.membercard .list_membcard li.on .btnS span {color:#222;}
+.membercard .list_membcard li.on .btnS span.disabled {color:#bbb;}
+.membercard .list_membcard .tmoney {}
+.membercard .list_membcard .tip {display:block;padding-top:8px;}
+.membercard .list_membcard li.on .tip {display:block;}
+.membercard .list_membcard .tip li {padding:0 0 0 9px;border:0 none;font-size:11px;line-height:20px;color:#999;letter-spacing:-1px;}
+.membercard .list_membcard .tip li.red {color:#ff0000;}
+.membercard .list_membcard .inp_info {display:none;}
+.membercard .list_membcard .err,
+.membercard .list_membcard .ok {font-size:11px;letter-spacing:-1px;margin-left:10px;}
+.membercard .list_membcard .err {color:#ff0000;}
+.membercard .list_membcard .ok {color:#32b0e4;}
+.membercard .list_membcard .more {display:block;padding-top:8px;font-size:12px;color:#999;}
+.membercard .list_membcard li.on .more {display:block;}
+.membercard .list_membcard .socar_card,
+.membercard .list_membcard .socar_card strong {color:#999;}
+.membercard .list_membcard li.on .socar_card,
+.membercard .list_membcard li.on .socar_card strong {color:#222;}
+
+/* 쏘카카드 발급 신청하기 레이어 */
+.mwLayer .socarcardbox {margin-left:-183px;}
+.mwLayer .socarcardLayer {width:367px;}
+.mwLayer .socarcardLayer .tit {padding:42px 0 17px;text-align:center;}
+.mwLayer .socarcardLayer .txt {font-size:12px;line-height:19px;color:#666;text-align:center;}
+.mwLayer .socarcardLayer .more {font-size:11px;line-height:18px;color:#666;text-align:center;}
+.mwLayer .socarcardLayer .centerBtn {margin-top:26px;padding:9px 12px;border-top:1px solid #ededed;background-color:#fafafa;}
+.mwLayer .socarcardLayer .centerBtn a {margin:0 4px;}
+
+/* T멤버십 */
+.input-four-digit { width: 50px; height: 30px; font-size: 18px; text-align: center; }
+.input-for-membership-value { width: 60px; }
+.input-four-digit:disabled, .input-for-membership-value:disabled { color: #aaa; -webkit-text-fill-color: #aaa; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.decorated-link { font-size: 15px; text-decoration: underline; color: #41b6ea!important; }
+.mkt_agree { cursor: pointer; }
+
+.middot:before { content:"\00b7"; float: left; color: #999; }
+.description { padding-left: 16px; color: #999; }

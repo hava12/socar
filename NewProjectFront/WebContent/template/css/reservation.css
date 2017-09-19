@@ -1,0 +1,337 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* zone navi */
+#zoneNavi{position:absolute;top:68px;right:0;width:630px;}
+#zoneNavi .navi-title{float:right;font-weight: bold;color:#333;}
+#zoneNavi ul{float:right;margin-left: 15px;}
+#zoneNavi ul li{float:left;color:#666;cursor:pointer;height:15px;line-height: 15px;}
+#zoneNavi ul li:hover{color:#222;}
+#zoneNavi ul li.bar-short{padding:0 10px; background:url('//web-assets.socar.kr/template/asset/images/reservation/bar_short.png') no-repeat 0 50%;}
+#zoneNavi ul li:last-child{padding:0 0 0 10px;}
+
+/* map */
+#mapArea{position:relative; width:982px; height:474px; border:1px solid #aeaeae; overflow:hidden;}
+#mapArea .pointer{position:absolute; width:39px; height:38px; cursor:pointer; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_position1.png') no-repeat -50px 0;}
+#mapArea .num{display:block; width:25px; height:25px; font-family:verdana; line-height:26px; text-align:center; color:#fff; font-weight:bold;}
+#mapArea .current{text-indent:-9999em; cursor:default; background-position:-100px 0;}
+#mapArea .active{background-position:0 0;}
+
+/*ssun - tooltip 클래스 바로 적용되도록 처리 */
+/*#mapArea .tooltip{display:none; position:absolute; top:-154px; left:-19px; padding-left:18px; width:240px; height:165px; background:url('/template/asset/images/reservation/socarzone_layer_bg.png') no-repeat left top; z-index:2;}
+#mapArea .tooltip h4{margin-bottom:10px; cursor:pointer;}
+#mapArea .tooltip h4 span{display:inline-block; height:35px; cursor:pointer; line-height:38px; color:#333; vertical-align:middle;}
+#mapArea .tooltip h4 span.bg{margin-left:5px; width:4px; background:url('/template/asset/images/reservation/ico_show.png') no-repeat 0 15px;}
+#mapArea .tooltip p{line-height:22px; color:#333;}
+#mapArea .tooltip p em{color:#0e99dc; font-weight:bold;}
+#mapArea .tooltip p.btn{margin-top:6px;}
+#mapArea .tooltip .close{position:absolute; top:7px; right:11px;}*/
+/*.tooltip{padding-left:18px; width:240px; height:165px; background:url('/template/asset/images/reservation/socarzone_layer_bg.png') no-repeat left top; z-index:2;}*/
+.tooltip{float: left; width: 215px; height: 126px; padding-top: 5px; padding-left: 14px;}
+.tooltip h4{margin-bottom:10px; cursor:pointer;}
+.tooltip h4 span{display:inline-block; height:35px; cursor:pointer; line-height:38px; color:#333; vertical-align:middle;overflow:hidden;max-width: 175px;white-space:nowrap;text-overflow:ellipsis;}
+.tooltip h4 span.bg{margin-left:5px; width:4px; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_show.png') no-repeat 0 15px;}
+.tooltip p{line-height:22px; color:#333;}
+.tooltip p em{color:#0e99dc; font-weight:bold;}
+.tooltip p.btn{margin-top:6px;}
+.tooltip .close{position:absolute; top:8px; right:5px;}
+
+/* busan event by smartNHW */
+.tooltip h4 span.like{margin-left:10px; padding-left: 14px; font-weight: normal; background:url('//web-assets.socar.kr/template/asset/images/event/icon_heart.png') no-repeat 0 13px; cursor: default;}
+.tooltip h4 span.pohang{margin-left:10px; padding-left: 14px; font-weight: normal; background:url('//web-assets.socar.kr/template/asset/images/event/pohang/zzim_icon.png') no-repeat 0 13px; cursor: default;}
+.tooltip p.zzimbtn{margin-top: 10px;}
+
+#mapArea .outside{width:10px; height:10px; background-position:-150px 0;}
+#mapArea .outside .num{display:none;}
+#mapArea .outside .tooltip{top:-156px; left:-25px;}
+
+/* setting */
+#setting{position:absolute; top:13px; left:12px; width:254px; z-index:10;}
+#setting .setting-box{display:none; position:relative;}
+#setting .setting-box h3{padding:12px 0 0 18px; height:28px; background:url('//web-assets.socar.kr/template/asset/images/reservation/setting_bg1.png') no-repeat left top;}
+#setting .setting-box .setting-option{background:url('//web-assets.socar.kr/template/asset/images/reservation/setting_bg2.png') no-repeat left bottom;}
+#setting .setting-box .setting-option .group{margin:0 auto; padding:7px 0; width:244px; border-bottom:1px solid #ececec;}
+#setting .setting-box .setting-option .group table{width:100%;}
+#setting .setting-box .setting-option .group table th{padding:10px 0 10px 15px; width:47px; text-align:left; vertical-align:top;}
+#setting .setting-box .setting-option .group table td{padding:4px 0;}
+#setting .setting-box .setting-option .group label{margin-right:15px;}
+#setting .setting-box .setting-option .group select{height:25px; .height:20px; border:1px solid #b1b1b1; background:#fafafa;}
+#setting .setting-box .setting-option .group .input{height:23px; line-height:23px; border-color:#b1b1b1;}
+#setting .setting-box .setting-option .group .calendar{background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat 94px 10px;}
+#setting .setting-box .setting-option .group .location{background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_show.png') no-repeat 163px 8px;}
+#setting .setting-box .setting-option .group .socar{background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_show.png') no-repeat 163px 8px;}
+#setting .setting-box .setting-option .group .currentPosition{font-size:11px; vertical-align:middle;}
+#setting .setting-box .setting-option .btn{padding-top:11px; height:59px; text-align:center;}
+#setting .ico-desc{margin:5px 0 0 2px;}
+#setting .setting-hidden{position:absolute; top:8px; right:8px;}
+#setting .setting-refresh{position:absolute; top:8px; right:33px;}
+#setting .setting-show{display:none; position:absolute; top:1px; left:1px;}
+#setting.open .setting-box{display:block;}
+
+/* setting option layer */
+.option-layer{display:none; position:absolute; left:199px; border:1px solid #383d43; background:#fff; box-shadow:0 3px 10px rgba(0,0,0,.23); -webkit-box-shadow:0 3px 10px rgba(0,0,0,.23); -moz-box-shadow:0 3px 10px rgba(0,0,0,.23); -ms-box-shadow:0 3px 10px rgba(0,0,0,.23);}
+.option-layer h4{padding-left:13px; border-bottom:1px solid #e6e6e6; background:#fafafa;}
+.option-layer h4 span{display:inline-block; padding-right:12px; height:32px; line-height:34px; color:#333; letter-spacing:-1px; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat;}
+.option-layer .i_label{margin-left:4px; line-height:28px;}
+
+/* socarzone */
+#socarzone{top:169px; width:295px;}
+#socarzone .search{padding:10px 0 0 10px; height:37px; border-bottom:1px solid #c9c9c9; background:url('//web-assets.socar.kr/template/asset/images/reservation/location_search_bg.gif') repeat-x left top;}
+#socarzone .search .input{height:26px; line-height:26px; border-color:#8c8c8c;}
+#socarzone h4 span{color:#0e99dc !important; background-position:108px 14px;}
+#socarzone .result{padding:5px 0 5px 13px; height:168px; line-height:28px; color:#333; overflow-y:auto;}
+#socarzone .result p{padding:5px 0; line-height:18px; color:#333;}
+#socarzone .result li a{line-height:28px; color:#333;}
+#socarzone #autoComplete{display:none; position:absolute; top:37px; left:10px; padding:7px 0; width:273px; height:200px; border:1px solid #383d43; background:#fff; overflow:auto;}
+#socarzone #autoComplete li a{display:block; padding-left:28px; line-height:24px; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_location_result.png') no-repeat 8px -45px;}
+#socarzone #autoComplete li a em{color:#0e99dc;}
+#socarzone #autoComplete li.exact a{background-position:8px 3px;}
+
+/* socar */
+#socar{top:214px; width:242px;}
+#socar h4{border-color:#c9c9c9; background:url('//web-assets.socar.kr/template/asset/images/reservation/location_search_bg.gif') repeat-x left top;}
+#socar h4 span{background-position:54px 14px;}
+#socar .list{margin:0; height:152px; overflow-y:auto;}
+#socar li{border-top:1px solid #eee;}
+
+/* socar */
+#oneway_list {top:214px; width:242px;}
+#oneway_list h4{border-color:#c9c9c9; background:url('//web-assets.socar.kr/template/asset/images/reservation/location_search_bg.gif') repeat-x left top;}
+#oneway_list h4 span{background-position:54px 14px;}
+#oneway_list .list{margin:0; height:152px; overflow-y:auto;}
+#oneway_list li{border-top:1px solid #eee;}
+
+/*ssun - 차종 리스트 구조문제로 제거*/
+/*#socar li a{display:block; padding:19px 0 0 80px; height:31px; background:url('//web-assets.socar.kr/template/asset/images/reservation/socar_car.png') no-repeat;}*/
+#socar li.all{border:none;}
+#socar li.all a{background-position:11px 15px;}
+#socar li.car1 a{background-position:11px -32px;}
+#socar li.car2 a{background-position:11px -87px;}
+
+/* list */
+.list{position:relative; margin-top:43px;}
+.list .list-header{position:relative; *zoom:1;}
+.list .list-header:after{content:""; display:block; clear:both;}
+.list .list-header p.txt{float:left; height:40px; color:#333; line-height:31px;}
+.list .list-header p.select{float:right; padding-top:7px; height:33px;}
+.list .list-header table{width:100%;}
+.list .list-header table th{height:34px; line-height:34px; font-weight:normal; border-top:2px solid #4f555e; border-bottom:1px solid #ededed; background:#f5f5f5;}
+.list .list-header table th a{display:inline-block; padding-right:10px; height:34px; line-height:34px; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat right center;}
+.list .section{position:relative; height:85px; border-bottom:1px solid #ededed; background:none; *zoom:1;}
+.list .section:after{content:""; display:block; clear:both;}
+.list .section .arti{float:left; padding:22px 5px 0 17px; width:115px;}
+/*
+.list .section .arti h4{height:18px; color:#333; line-height:18px; letter-spacing:-1px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+*/
+.list .section .arti h4{height:18px; color:#333; line-height:18px; letter-spacing:-1px;}
+.list .section .arti span{color:#999; line-height:18px;}
+.list .section .carInfo{float:left; width:478px; height:100%;}
+.list .section .carInfo .thumb{float:left; width:100px; height:100%;}
+.list .section .carInfo .thumb img{width:85px; height:85px;}
+.list .section .carInfo .desc{float:left; padding-top:13px; width:378px;}
+.list .section .carInfo .desc h5{height:36px; line-height:36px; color:#333; font-weight:normal;}
+.list .section .carInfo .desc .spec{display:none; color:#333; line-height:18px;}
+.list .section .carInfo .desc .spec .more{display:inline-block; margin-left:10px; padding-right:10px; font-size:11px; vertical-align:middle; text-decoration:underline; color:#999; background:url('/template/asset/images/reservation/ico_show.png') no-repeat right 3px;}
+.list .section .price{float:left; width:200px; height:100%;}
+.list .section .price dl{padding-top:34px; *zoom:1;}
+.list .section .price dl:after{content:""; display:block; clear:both;}
+.list .section .price dt{display:none; float:left; width:100px; letter-spacing:-1px; line-height:20px; color:#333;}
+.list .section .price dd{float:left; padding-right:10px; width:auto; text-align:right;}
+.list .section .price dd strike{color:#333; line-height:20px;}
+.list .section .price dd strong{color:#0e99dc; line-height:20px;}
+.list .section .price dd span{padding-right:10px; line-height:20px;}
+.list .section .price dd.total{padding:0;}
+.list .section .price dd.hide{display: none;}
+.list .section .oil{float:left; padding-top:36px; width:84px; text-align:center;}
+.list .section .rvBtn{float:left; padding:30px 0 0 5px; width:76px;}
+.list .section .rvBtn.unable{opacity:.5; filter:alpha(opacity=50);}
+
+.list .section .price_info{float:left; width:200px; height:100%;}
+.list .section .price_info dl{padding-top:20px;}
+.list .section .price_info dt{display:block;}
+.list .section .price_info dd{padding:0; width:100px; line-height: 20px;}
+
+/* list timeline */
+.list .section .timelineWrap{position:absolute; top:50px; left:237px; z-index:1;}
+.list .section .timelineWrap .time{display:none; position:absolute; top:0; margin-left:-19px; padding-top:31px; width:38px; height:13px; font-size:11px; color:#aaa; text-align:center; background:url('/template/asset/images/reservation/timeline_bar.gif') no-repeat center top; z-index:1;}
+.list .section .timelineWrap .time.date{color:#333;}
+.list .section .timelineWrap .timeline{width:350px; height:8px; background:url('//web-assets.socar.kr/template/asset/images/reservation/timeline_s_120.gif') no-repeat;}
+.list .section .timelineWrap .timeline.time24{background-position:0 0;}
+.list .section .timelineWrap .timeline.time24 .t1{left:59px;}
+.list .section .timelineWrap .timeline.time24 .t2{left:177px;}
+.list .section .timelineWrap .timeline.time24 .t3{left:295px;}
+.list .section .timelineWrap .timeline.time24 .t4{left:412px;}
+.list .section .timelineWrap .timeline.time24 .t5{left:530px;}
+.list .section .timelineWrap .timeline.time48{background-position:0 -40px;}
+.list .section .timelineWrap .timeline.time48 .t1{left:33px;}
+.list .section .timelineWrap .timeline.time48 .t2{left:164px;}
+.list .section .timelineWrap .timeline.time48 .t3{left:295px;}
+.list .section .timelineWrap .timeline.time48 .t4{left:425px;}
+.list .section .timelineWrap .timeline.time48 .t5{left:556px;}
+.list .section .timelineWrap .timeline.time72{background-position:0 -80px;}
+.list .section .timelineWrap .timeline.time72 .t1{left:23px;}
+.list .section .timelineWrap .timeline.time72 .t2{left:113px;}
+.list .section .timelineWrap .timeline.time72 .t3{left:204px;}
+.list .section .timelineWrap .timeline.time72 .t4{left:295px;}
+.list .section .timelineWrap .timeline.time72 .t5{left:385px;}
+.list .section .timelineWrap .timeline.time72 .t6{left:476px;}
+.list .section .timelineWrap .timeline.time72 .t7{left:566px;}
+.list .section .timelineWrap .timeline.time96{background-position:0 -120px;}
+.list .section .timelineWrap .timeline.time96 .t1{left:17px;}
+.list .section .timelineWrap .timeline.time96 .t2{left:87px;}
+.list .section .timelineWrap .timeline.time96 .t3{left:156px;}
+.list .section .timelineWrap .timeline.time96 .t4{left:225px;}
+.list .section .timelineWrap .timeline.time96 .t5{left:295px;}
+.list .section .timelineWrap .timeline.time96 .t6{left:364px;}
+.list .section .timelineWrap .timeline.time96 .t7{left:433px;}
+.list .section .timelineWrap .timeline.time96 .t8{left:502px;}
+.list .section .timelineWrap .timeline.time96 .t9{left:572px;}
+.list .section .timelineWrap .timeline.time120{background-position:0 -160px;}
+.list .section .timelineWrap .timeline.time120 .t1{left:14px;}
+.list .section .timelineWrap .timeline.time120 .t2{left:70px;}
+.list .section .timelineWrap .timeline.time120 .t3{left:126px;}
+.list .section .timelineWrap .timeline.time120 .t4{left:182px;}
+.list .section .timelineWrap .timeline.time120 .t5{left:238px;}
+.list .section .timelineWrap .timeline.time120 .t6{left:295px;}
+.list .section .timelineWrap .timeline.time120 .t7{left:351px;}
+.list .section .timelineWrap .timeline.time120 .t8{left:407px;}
+.list .section .timelineWrap .timeline.time120 .t9{left:463px;}
+.list .section .timelineWrap .timeline.time120 .t10{left:519px;}
+.list .section .timelineWrap .timeline.time120 .t11{left:575px;}
+.list .section .timelineWrap .timeline.time144{background-position:0 -200px;}
+.list .section .timelineWrap .timeline.time144 .t1{left:12px;}
+.list .section .timelineWrap .timeline.time144 .t2{left:59px;}
+.list .section .timelineWrap .timeline.time144 .t3{left:106px;}
+.list .section .timelineWrap .timeline.time144 .t4{left:153px;}
+.list .section .timelineWrap .timeline.time144 .t5{left:200px;}
+.list .section .timelineWrap .timeline.time144 .t6{left:247px;}
+.list .section .timelineWrap .timeline.time144 .t7{left:295px;}
+.list .section .timelineWrap .timeline.time144 .t8{left:342px;}
+.list .section .timelineWrap .timeline.time144 .t9{left:389px;}
+.list .section .timelineWrap .timeline.time144 .t10{left:436px;}
+.list .section .timelineWrap .timeline.time144 .t11{left:483px;}
+.list .section .timelineWrap .timeline.time144 .t12{left:530px;}
+.list .section .timelineWrap .timeline.time144 .t13{left:577px;}
+.list .section .timelineWrap .ui-slider{position:relative;}
+.list .section .timelineWrap .rangeWrap{position:relative; height:100%; z-index:2;}
+
+/* ssun - 닫혔을 때 .overlap span을 .rangeWrap 밖으로 이동*/
+.list .section .timelineWrap .rangeWrap span{position:absolute; top:1px; left:0; display:block; height:6px; text-indent:-9999em; background:#bbb; opacity:.5; filter:alpha(opacity=50);}
+.list .section .timelineWrap span.overlap{position:absolute; top:1px; left:0; display:block; height:6px; text-indent:-9999em; background:#bbb; opacity:.5; filter:alpha(opacity=50);}
+.list .section .timelineWrap .rangeWrap span.overlap{top:0; border:1px solid #d73a20; background:#ff5d42; opacity:1; filter:alpha(opacity=100); z-index:4;}
+.list .section .timelineWrap span.overlap{top:0; border:1px solid #d73a20; background:#ff5d42; opacity:1; filter:alpha(opacity=100); z-index:4;}
+
+.list .section .timelineWrap .ui-corner-all{border:none; border-radius:0;}
+.list .section .timelineWrap .ui-slider-range{position:absolute; top:0; z-index:3;}
+.list .section .timelineWrap .ui-widget-header{height:100%; background:#01a5ed; opacity:.5; filter:alpha(opacity=50);}
+.list .section .timelineWrap .ui-slider-handle{display:none; position:absolute; top:0; margin-left:-10px; width:10px; height:20px; background:url('/template/asset/images/reservation/btn_drag_prev.gif') no-repeat 0 0; z-index:5;}
+.list .section .timelineWrap .ui-slider-handle.next{margin-left:-1px; background:url('//web-assets.socar.kr/template/asset/images/reservation/btn_drag_next.gif') no-repeat 0 0;}
+.list .section .timelineWrap .amount{display:none; margin-top:35px; color:#1fa5e0;}
+.list .section .timelineWrap .amount strong{display:inline-block; width:320px; color:#1fa5e0;}
+.list .section .timelineWrap .alert{display:none; margin-top:35px; color:#ff5d42;}
+.list .section .timelineWrap .noti{display:none; height:24px;}
+.list .section .door{position:absolute; top:24px; right:395px; padding-right:10px; font-size:11px; color:#999; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat right center;}
+.list .section.open{height:242px; background:#fff;}
+.list .section.open .carInfo .desc .spec{display:block;}
+.list .section.open .price dl{padding-top:20px;}
+.list .section.open .price dt{display:block;}
+.list .section.open .price dd{padding:0; width:100px; line-height: 20px;}
+.list .section.open .price dd span{display:none;}
+.list .section.open .price dd.hide{display: block;}
+.list .section.open .timelineWrap{position:absolute; top:105px; left:237px; padding-top:21px; width:714px; background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x left top;}
+.list .section.open .timelineWrap .time{display:block;}
+.list .section.open .timelineWrap .timeline{width:590px; height:20px; background:url('//web-assets.socar.kr/template/asset/images/reservation/timeline_l_120.gif') no-repeat;}
+.list .section.open .timelineWrap .timeline.time24{background-position:0 0;}
+.list .section.open .timelineWrap .timeline.time48{background-position:0 -90px;}
+.list .section.open .timelineWrap .timeline.time72{background-position:0 -180px;}
+.list .section.open .timelineWrap .timeline.time96{background-position:0 -270px;}
+.list .section.open .timelineWrap .timeline.time120{background-position:0 -360px;}
+.list .section.open .timelineWrap .timeline.time144{background-position:0 -450px;}
+
+/* ssun - 열렸을 때 .overlap span을 .rangeWrap 밖으로 이동*/
+.list .section.open .timelineWrap .rangeWrap span{height:18px;}
+.list .section.open .timelineWrap span.overlap{height:18px;}
+/*.list .section.open .timelineWrap .rangeWrap span.overlap{height:16px; border:2px solid #d73a20; border-left:none; border-right:none;}*/
+.list .section.open .timelineWrap .rangeWrap span.overlap{height:16px; border-left:none; border-right:none;}
+/*.list .section.open .timelineWrap span.overlap{height:16px; border:2px solid #d73a20; border-left:none; border-right:none;}*/
+.list .section.open .timelineWrap span.overlap{height:16px; margin-top: 2px; border: none; border-left:none; border-right:none;}
+
+.list .section.open .timelineWrap .ui-widget-header{height:16px; border-top:2px solid #000; border-bottom:2px solid #000;}
+.list .section.open .timelineWrap .ui-slider-handle{display:block;}
+.list .section.open .timelineWrap .amount{display:block;}
+.list .section.open .timelineWrap .alert{display:block;}
+.list .section.open .timelineWrap .noti{display:block;}
+.list .section.open .door{color:#333; background:url('//web-assets.socar.kr/template/asset/images/reservation/btn_close.gif') no-repeat right center;}
+
+/* payment */
+.payment .box{padding:57px 59px 50px; border-bottom-color:#f2f2f2;}
+.payment .box h2{margin:0 !important; height:82px;}
+.payment .section{*zoom:1;}
+.payment .section.reserve-confirm{height:420px;}
+.payment .section.reserve-confirm .group{height:inherit;}
+.payment .section.reserve-oneway-confirm{height:432px;}
+.payment .section.reserve-oneway-confirm .group{height:inherit;}
+.payment .section:after{content:""; display:block; clear:both;}
+.payment .group{float:left; display:inline; width:412px; height:260px; border-bottom:1px solid #d3d3d3;}
+.payment .group.gd{margin-left:40px;}
+.payment .group h3{margin-bottom:20px; height:41px; border-bottom:2px solid #d3d3d3;}
+.payment .group table{width:100%;}
+.payment .group th{padding:10px 0; width:80px; text-align:left; vertical-align:top;}
+.payment .group.gd th {width:96px;}
+.payment .group td{line-height:34px; color:#333;}
+.payment .group a{margin-left:5px; font-size:11px; color:#999; text-decoration:underline; vertical-align:middle;}
+.payment .group strong{color:#333;}
+.payment .group span{margin-left:10px; color:#999;}
+.payment .group em{font-weight:bold; color:#ff2727;}
+.payment .group select{display:block;width:218px;height:25px;margin-top:3px;}
+.payment .group .price{background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x left top;margin-top:6px;}
+.payment .group .price th{height:78px; vertical-align:middle;padding:6px 0 3px;}
+.payment .group .price td strong{font-family:verdana; font-size:28px; letter-spacing:-1px; font-weight:normal; color:#00a3ea; vertical-align:middle;}
+.payment .group .price img{vertical-align:middle;}
+.payment .group .txt_cop_more {padding:9px 0 8px;width:100%;font-size:11px;line-height:14px;color:#333;letter-spacing:-1px;}
+.payment .group .txt_cop_more span {color:#25a2e6;font-size:11px;margin:0;}
+.payment .group .txt_cop_more .link {margin-left:5px;padding-right:5px;background:url('//web-assets.socar.kr/template/asset/images/couponbook/blet01.png') right -1px no-repeat;}
+.payment .group #no-coupon {padding:10px 0 3px;}
+.payment .oneway .group{height:280px;}
+.payment .oneway .group .price th{height:65px;}
+.payment .tip{margin-top:40px;}
+.payment .tip li{line-height:20px;}
+.payment .tip li a{text-decoration:underline; color:#333;}
+.payment .tip li em{color:#f63325;}
+.payment .oil{margin-top:15px;}
+.payment .oil table{width:100%;}
+.payment .oil table th{padding-left:15px; height:31px; text-align:left; font-weight:normal; border:1px solid #ededed; background:#f8f8f8;}
+.payment .oil table td{text-align:center; border:1px solid #ededed;}
+.payment .oil p{margin-top:10px; color:#999; text-align:right; font-size:11px;}
+.payment .confirm{padding: 60px; text-align: left; border:1px solid #d5d5d5; border-top:none; background:#fafafa;}
+.payment .confirm img{vertical-align:middle;}
+.payment .confirm .btn{margin-top :8px; text-align: center;}
+
+/* complete */
+.complete .box{padding:57px 59px 100px; background:#fff url('//web-assets.socar.kr/template/asset/images/reservation/complete_bg.png') no-repeat 436px 119px;}
+.complete .box h2{margin-left:0 !important;}
+.complete .box .txt1{margin-bottom:43px;}
+.complete .box .txt2{margin-bottom:22px;}
+.complete .box .btn{margin-bottom:54px;}
+.complete .box .group{padding:18px 0; border-top:2px solid #d3d3d3; border-bottom:1px solid #ededed;}
+.complete .box .group table{width:100%;}
+.complete .box .group table th{padding-left:24px; width:85px; height:28px; text-align:left; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 10px 12px;}
+.complete .box .group table td{height:28px; color:#333;}
+.complete .box .group table td strong{color:#333;}
+
+option.inapplicable {color:#CCC;}
+
+#socarzone_loading a {text-decoration:underline;}
+
+/* T멤버십 */
+.t-membership-value {margin-left: 5px; margin-top: 10px; display: none; color: red;}
+.input-four-digit { width: 35px; }
+.input-for-membership-value { width: 60px; }
+.input-four-digit:disabled, .input-for-membership-value:disabled {cursor: not-allowed; color: #AAA; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+.decorated-link { font-size: 15px; text-decoration: underline; color: #41b6ea!important; }
+
+.agree-container {margin-bottom: 15px; padding-left: 20px; text-align: left;}
+.agree-description {line-height: 1.5em; font-size:14px;}
+.agree-checkbox {position: relative; float: left; top: 5px;}

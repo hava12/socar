@@ -1,0 +1,104 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+#container{width:1004px;}
+#content{padding:0 0 90px;}
+
+/* visual */
+#visual{position:relative; margin-bottom:47px; height:440px;}
+#visual .clsBannerButton{position:absolute; top:413px; left:2px;}
+#visual .clsBannerButton li{float:left; padding:0 8px; width:234px; cursor:pointer;}
+#visual .clsBannerButton li span{display:block; width:234px; height:26px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/main/visual_pointer_160322.png') no-repeat;}
+#visual .clsBannerButton li span.vis1{background-position:0 0;}
+#visual .clsBannerButton li span.vis2{background-position:-250px 0;}
+#visual .clsBannerButton li span.vis3{background-position:-500px 0;}
+#visual .clsBannerButton li span.vis4{background-position:-750px 0;}
+#visual .clsBannerButton li.on span.vis1{background-position:0 -30px;}
+#visual .clsBannerButton li.on span.vis2{background-position:-250px -30px;}
+#visual .clsBannerButton li.on span.vis3{background-position:-500px -30px;}
+#visual .clsBannerButton li.on span.vis4{background-position:-750px -30px;}
+#visual map area {outline:0 none;}
+
+/* login box */
+.loginBox{position:absolute; top:28px; right:9px; padding-top:17px; width:228px; height:103px;	background:url('//web-assets.socar.kr/template/asset/images/main/right_login_bg.gif') no-repeat left top;}
+.loginBox .txt{margin:0 0 13px 16px;}
+.loginBox .btn{text-align:center;}
+
+/* co2 */
+.co2{position:absolute; top:157px; right:10px; padding:19px 0 0 15px; width:211px; height:55px; background:url('//web-assets.socar.kr/template/asset/images/main/right_co2_bg.gif') no-repeat left top;}
+.co2 h2{margin:0 !important;}
+.co2 .date{position:absolute; top:19px; right:9px; font-size:11px; color:#999;}
+.co2 .data{margin:9px 0 0 28px; font-family:verdana; font-size:18px; color:#333; font-weight:bold;}
+
+/* banner */
+.banner{position:absolute; top:241px; right:10px;}
+.tvc-banner{height:420px; margin-bottom:30px; overflow:hidden;}
+
+/* rule */
+.rule{position:relative; margin:47px 0 0 10px; width:684px;}
+.rule .tab{*zoom:1;}
+.rule .tab:after{content:""; display:block; clear:both;}
+.rule .tab li{float:left;}
+.rule .tab li a{display:block; padding:3px 0; height:13px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/main/rule_tab.png') no-repeat;}
+.rule .tab li a.tab1{width:82px; background-position:0 0;}
+.rule .tab li a.tab2{width:80px; background-position:-82px 0;}
+.rule .tab li.on a.tab1{background-position:0 -20px;}
+.rule .tab li.on a.tab2{background-position:-82px -20px;}
+.rule .rule1{margin:45px 0 0 24px; height:80px;}
+.rule .rule2{display:none; margin:43px 0 0 0; height:82px;}
+.rule .rule2 .img{width:678px; height:79px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/main/rule_img2.png') no-repeat left bottom;}
+.rule .more{position:absolute; top:-2px; right:0; padding:4px;}
+
+/* 웹 메인 개편 2014-12-31 */
+.rule .tab li a {background:url('//web-assets.socar.kr/template/asset/images/main/rule_tab_141227.png') no-repeat}
+.rule .rule1 {margin:20px 0 0 0;height:112px;}
+.rule .rule1 .list_rule {display:block;overflow:hidden;position:relative;width:740px;left:-28px;}
+.rule .rule1 .list_rule li {float:left;width:20%;}
+.rule .rule1 .list_rule li a {display:block;width:112px;height:112px;margin:0 auto;background:url('//web-assets.socar.kr/template/asset/images/main/btn_rule_150922.png') no-repeat;}
+.rule .rule1 .list_rule li .btn1 {background-position:0 0;}
+.rule .rule1 .list_rule li .btn2 {background-position:0 -120px;}
+.rule .rule1 .list_rule li .btn3 {background-position:0 -240px;}
+.rule .rule1 .list_rule li .btn4 {background-position:0 -360px;}
+.rule .rule1 .list_rule li .btn5 {background-position:0 -480px;}
+.rule .rule1 .list_rule li .btn1:hover {background-position:-120px 0;}
+.rule .rule1 .list_rule li .btn2:hover {background-position:-120px -120px;}
+.rule .rule1 .list_rule li .btn3:hover {background-position:-120px -240px;}
+.rule .rule1 .list_rule li .btn4:hover {background-position:-120px -360px;}
+.rule .rule1 .list_rule li .btn5:hover {background-position:-120px -480px;}
+/* 웹 메인 개편 2014-12-31 */
+
+/* notice */
+.notice{position:absolute; top:487px; right:10px; width:234px;}
+.notice .tab{margin-bottom:22px; *zoom:1;}
+.notice .tab:after{content:""; display:block; clear:both;}
+.notice .tab li{float:left;}
+.notice .tab li a{display:block; padding:3px 0; height:13px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/main/notice_tab.png') no-repeat;}
+.notice .tab li a.tab1{width:55px; background-position:0 0;}
+.notice .tab li a.tab2{width:81px; background-position:-55px 0;}
+.notice .tab li.on a.tab1{background-position:0 -20px;}
+.notice .tab li.on a.tab2{background-position:-55px -20px;}
+.notice div ul li a{display:inline-block; line-height:21px;}
+.notice div ul li img{vertical-align:top;}
+.notice .notice2{display:none;}
+.notice .more{position:absolute; top:-2px; right:0; padding:4px;}
+
+/* main movie layer */
+.movie_layer {display:none;position:fixed;_position:absolute;top:0;left:0;width:100%;height:100%;z-index:10002;}
+.movie_layer.open {display:block;}
+.movie_layer .bg {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:.8;-moz-opacity:.8;filter:alpha(opacity=80);}
+.movie_layer .movie {position:absolute;left:50%;top:50%;background:transparent;width:720px;height:405px;}
+.movie_layer .movie #movieWrap {background-color:#000;}
+.movie_layer .close {position:absolute;top:-49px;right:0;padding-bottom:15px;text-align:right;}
+.movie_layer .close img {cursor:pointer;}
+
+/* 2014.08.27 쏘럭키딜 이벤트 레이어 */
+.socar_event_layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:10000;}
+.socar_event_layer.open {display:block;}
+.socar_event_layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.7;-moz-opacity:.7;filter:alpha(opacity=70);}
+.socar_event_layer .socar_event_layer_area {overflow:hidden;position:absolute; left:50%; top:50%;z-index:101;}
+.socar_event_layer .socar_event_layer_area img {vertical-align:top}
+.socar_event_layer .bx_check {display:block;height:33px;background-color:transparent;text-align:right;font-size:0;line-height:0;}
+.socar_event_layer .bx_check input {display:inline-block;height:20px;margin:6px 0 0 13px;font-size:12px;line-height:20px;font-weight:bold;color:#999;overflow:hidden;letter-spacing:-1px;margin-right:8px;vertical-align:top}
+.socar_event_layer .bx_check label {display:inline-block;height:20px;margin:6px 0 0 2px;font-size:12px;line-height:20px;font-weight:bold;color:#999;overflow:hidden;letter-spacing:-1px;margin-right:8px;}

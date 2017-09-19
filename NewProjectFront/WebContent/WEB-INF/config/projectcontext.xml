@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+<context:component-scan base-package="guide"/>
+<context:component-scan base-package="main"/>
+<context:component-scan base-package="member"/>
+<context:component-scan base-package="notice"/>
+<context:component-scan base-package="mypage"/>
+<context:component-scan base-package="reserve"/>
+
+
+<context:annotation-config/>
+<mvc:annotation-driven/>
+
+	 <!-- 접두어 및 접미어 설정을 위해 기본 뷰리졸버를 빈으로 등록 -->
+	 <bean p:order="1" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<!--  접두어 설정-->
+			<property name="prefix" value="/WEB-INF/view"/>			
+			<!--  접미어 설정 -->
+			<property name="suffix" value=".jsp"/>
+	 </bean>
+	 
+
+
+</beans>

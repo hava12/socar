@@ -1,0 +1,148 @@
+﻿@charset "utf-8";
+/* CSH(myint@naver.com) 130103 */
+
+@import url(layout.css?v=20170727);
+
+/* rule */
+.rule h3{padding-top:30px; line-height:24px; font-size:16px; font-weight:bold; color:#444; margin-bottom:10px; letter-spacing: -0.5px;}
+.rule strong{display:block; padding-top:6px; line-height:24px; color:#444;}
+.rule p{line-height:20px; margin-bottom:10px;}
+.rule .pd15{padding-left:15px; line-height:20px; margin-bottom:10px;}
+.rule .pd30{padding-left:30px; line-height:20px; margin-bottom:10px;}
+.rule .pd45{padding-left:45px; line-height:20px; margin-bottom:10px;}
+.rule .pd60{padding-left:60px; line-height:20px; margin-bottom:10px;}
+.rule .pd75{padding-left:75px; line-height:20px; margin-bottom:10px;}
+.rule .pd90{padding-left:90px; line-height:20px; margin-bottom:10px;}
+.rule .cols thead th{border:1px solid #ededed;}
+.rule .cols tbody td{padding-left:10px; text-align:left; vertical-align:middle; border:1px solid #ededed;}
+.rule .cols tbody td.txt-center{padding-left:0px; text-align:center;}
+.rule .cols .first{border-left:none;}
+.rule ul {list-style-type:decimal;}
+.rule ul li {line-height:20px; margin-left:15px; margin-bottom:4px;}
+.rule ol {list-style-type:disc;}
+.rule ol li {line-height:20px; margin-left:15px;}
+.rule .simple_cols {margin-top:5px;width:100%;}
+.rule .simple_cols td {padding:2px;line-height:18px;}
+.rule .simple_cols .gray {color:#afafaf;}
+.rule a {text-decoration:underline;color:#2db2f2;font-weight:bold;}
+.rule strong.title-red {color:#F75F50}
+
+/* join index */
+.join-index .index{height:283px; background:url('//web-assets.socar.kr/template/asset/images/member/join_index_bg_160511.png');}
+.join-index .index h2{margin:0 0 41px 0 !important;}
+.join-index .index .txt1{height:37px;}
+.join-index .type{position:relative;}
+.join-index .type ul{*zoom:1;}
+.join-index .type ul:after{content:""; display:block; clear:both;}
+.join-index .type li{position:relative; float:left; padding:28px 0 0 36px; width:291px; height:203px; border-left:1px solid #ededed;}
+.join-index .type li.first{width:290px; border:none;}
+.join-index .type li h3{height:49px;}
+.join-index .type li label{margin-right:10px; vertical-align:middle;}
+.join-index .type li p{margin-bottom:10px;}
+.join-index .type li .btn{position:absolute; top:160px; left:0; width:100%; text-align:center;}
+.join-index .tip{margin-top:15px; padding:20px 0 20px 30px; background:#f2f2f2;}
+.join-index .tip li{padding-left:16px; line-height:22px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 8px;}
+.join-index .check{display:none; position:absolute; top:0; left:0; padding-top:49px; width:100%; height:182px; text-align:center; background:#fff;}
+.join-index .check h4{height:33px;}
+.join-index .check .ch{margin:25px 0 13px;}
+.join-index .check .input{padding-left:8px; width:270px; height:32px; line-height:32px; color:#999; font-size:14px;}
+.join-index .check .input.focus{color:#333;}
+.join-index .check .alert{margin:0 auto; padding-left:20px; width:330px; color:#ff5d42; line-height:17px; text-align:left; background:url('/template/asset/images/common/bullet.png') no-repeat 0 -51px;}
+.join-index .check .close{position:absolute; top:20px; right:20px; display:block; width:18px; height:18px; text-indent:-9999em; overflow:hidden; background:url('/template/asset/images/common/btn_layer_close.gif') no-repeat 0 0;}
+
+/* join step1 */
+.join .stepType{margin-bottom:14px; height:87px; text-indent:-9999em; overflow:hidden;}
+.join .stepType1{background:#fff url('//web-assets.socar.kr/template/asset/images/member/new/join_step_type1.gif') no-repeat;}
+.join .stepType2{background:#fff url('//web-assets.socar.kr/template/asset/images/member/join_step_type1.gif') no-repeat;}
+.join .stepType.step1{background-position:center 23px;}
+.join .stepType.step2{background-position:center -77px;}
+.join .stepType.step3{background-position:center -177px;}
+.join .stepType.step4{background-position:center -277px;}
+.join h4{height:36px;}
+.join .boxL{padding:59px 59px 80px; border:1px solid #d5d5d5; background:#fff;}
+.join .section{margin-bottom:50px;}
+.join .scroll{margin-bottom:10px; padding:0 15px 15px; height:150px; line-height:20px; overflow-y:auto; border:1px solid #dadada;}
+.join .scroll h5{padding-top:15px; line-height:24px; color:#444;}
+.join .scroll strong{display:block; padding-top:6px; line-height:24px; color:#444;}
+.join .scroll p{line-height:20px;}
+.join .scroll .pd15{padding-left:15px; line-height:20px;}
+.join .scroll .cols thead th{border-left:1px solid #ededed;}
+.join .scroll .cols tbody td{padding-left:10px; text-align:left; vertical-align:middle; border-left:1px solid #ededed;}
+.join .scroll .cols .first{border-left:none;}
+.join .btnS{margin-left:3px;}
+.join .rows td{line-height:24px;}
+.join .cols td{padding:12px 0; vertical-align:top; line-height:18px;}
+.join .cols td strong{color:#222;}
+.join.step1 .check{position:relative; padding:20px 20px; height:85px; border:1px solid #f6f6f6; background:#fbfbfb;}
+.join.step1 .check dl{width:400px; *zoom:1;}
+.join.step1 .check dl:after{content:""; display:block; clear:both;}
+.join.step1 .check dt{float:left; padding-top:6px; width:90px; height:26px;}
+.join.step1 .check dd{float:left; width:310px; height:32px;}
+/* ssun - 버튼 클래스명 submit -> btn_check_ssn 으로 변경 */
+/*.join.step1 .check .submit{position:absolute; top:28px; left:302px;}*/
+.join.step1 .check .btn_check_ssn{position:absolute; top:28px; left:302px;}
+.join.step1 .check .btn_check_dup{position:absolute; top:19px; left:430px;}
+
+.join.step1 .check ul{position:absolute; top:20px; left:540px; padding:3px 5px 0 20px; height:90px; background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot.gif') repeat-y left top;}
+.join.step1 .check ul li{margin-bottom:4px; padding-left:16px; line-height:18px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 8px;}
+.join.step1 .check ul li em{color:#ff1a1a;}
+.join.step2 .section{position:relative;}
+.join.step2 .required{position:absolute; top:0; right:0; text-align:right;}
+.join.step2 .star{display:inline-block; width:9px; height:11px; vertical-align:top; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 -114px;}
+.join.step3 .boxL{padding:59px 0 80px;}
+.join.step3 .boxL .noti{margin:-20px 0 50px; padding:0 59px; height:77px; border-bottom:1px solid #efefef;}
+.join.step3 .boxL .section{padding:0 59px;}
+.join.step3 .driver1{float:left; margin-right:40px; width:526px;}
+.join.step3 .agree{margin-bottom:30px; font-size:14px; font-weight:bold; color:#333; text-align:center;}
+.join.step3 .agree strong{font-size:14px; color:#1ba4e7;}
+.join.step3 .agree span{display:inline-block; margin:10px 0 15px; font-weight:normal;}
+.join.step3 .agree em{font-size:14px; color:#f00;}
+.join.step3 .agree label{display:inline-block; margin-top:15px; font-size:12px; font-weight:normal;}
+.join.step3 ul.tip li{padding-left:16px; color:#999; line-height:22px; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 8px;}
+.join.step3 ul.tip li em{color:#ff1a1a; text-decoration:underline;}
+.join.step4 h4.congrats_join{height:113px;}
+.join.step4 .section{margin-bottom:0;}
+.join.step4 .after_join_txt{height:77px;}
+.join.step4 .txt2{height:30px;}
+.join.step4 .btn{padding-bottom:50px;padding-top:15px;}
+.join.step4 .boxL{background:#fff url('//web-assets.socar.kr/template/asset/images/member/join_step4_bg_n.png') no-repeat 495px 59px;}
+.join.step4 .tb{padding-top:25px; border-top:2px solid #d3d3d3;}
+.join.step4 .tb table{width:100%;}
+.join.step4 .tb table th{padding-left:30px; width:127px; line-height:28px; text-align:left; font-weight:normal; color:#222; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 10px 12px;}
+.join.step4 .tb table td{line-height:28px; color:#222;}
+.join.step4 .tb .tip{margin-top:25px; padding:20px 0 0 10px; color:#aaa; line-height:18px; background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x left top;}
+.join.step4 .tb .tip a{color:#aaa; text-decoration:underline;}
+.join.step4 .bannerBox {display:block;overflow:hidden;width:100%;margin-top:25px;padding-top:30px;background:url('//web-assets.socar.kr/template/asset/images/common/bg_dot_width.gif') repeat-x left top;}
+.join.step4 .bannerBox .left {float:left;}
+.join.step4 .bannerBox .right {float:right;}
+.join .i_label{margin-left:4px; line-height:26px;}
+
+.ui-autocomplete-loading {background: white url('//web-assets.socar.kr/template/asset/images/ui-anim_basic_16x16.gif') right center no-repeat;}
+.join_direction {font-weight:bold;text-decoration:underline !important;}
+#card_error {display:none;color:#ff1a1a;padding:10px;}
+.read_only {color:#888;}
+
+.join.step1 .agree_check{background-image: url('//web-assets.socar.kr/template/asset/images/member/check.png'); width: 25px; height: 23px;display: inline-block; vertical-align: bottom;}
+.join.step1 .agree_check.on{background-image: url('//web-assets.socar.kr/template/asset/images/member/check_on.png');}
+.join.step1 .agree_info{font-family: dotum; font-size: 11pt; font-weight: bold; letter-spacing: -1px; color: #666; display: inline-block; padding-bottom: 1px;}
+
+/* 친구가입/프로모션 변경 css 20140114 */
+.join.step2 table.rows td label.lab_radio {display:inline-block;width:76px;}
+/* 2014.02.08 */
+.box_check {margin: 0 auto 30px; width: 600px;}
+.box_check .agree_check{background-image: url('//web-assets.socar.kr/template/asset/images/member/check.png'); width: 25px; height: 23px;display: inline-block; vertical-align: bottom;}
+.box_check .agree_check.on{background-image: url('//web-assets.socar.kr/template/asset/images/member/check_on.png');}
+.box_check .agree_info {font-family: dotum; font-size: 14px; font-weight: bold; letter-spacing: -1px; color: #333; display: inline-block; padding-bottom: 1px;}
+.box_check .agree_info strong {color:#1ba4e7;text-decoration:underline;}
+
+.mwLayer .joinSNS_Wrap {width:470px;margin-left:-235px;top:20%;}
+.mwLayer .joinSNS_Wrap .scroll {width:400px;}
+.mwLayer .joinSNS_Info dl dd, .mwLayer .joinSNS dl dd {width:335px;}
+.mwLayer .joinSNS_Info .line, .mwLayer .joinSNS_result .line, .mwLayer .joinSNS .line {width:420px;}
+.mwLayer .joinSNS_Info dl dd input, .mwLayer .joinSNS dl dd input {width:319px}
+.mwLayer .joinSNS_Info input.small_input {width:250px;}
+.mwLayer .joinSNS_Info .gray_box {width:418px;padding:9px 0 9px 0;margin:0 auto 19px;line-height:42px;border:1px solid #e8e8e8;text-align:center;}
+.mwLayer #mwCont.joinSNS_Wrap {overflow:visible;}
+.mwLayer .joinSNS_Info .close_open_btn {display:none;position:absolute;top:-68px;right:0;width:162px;height:56px;padding:16px 20px;background:url('//web-assets.socar.kr/template/asset/images/common/join_close_layer.png') 0 0 no-repeat;font-size:12px;line-height:18px;color:#222;}
+.mwLayer .joinSNS_Info .box_email, .mwLayer .joinSNS .box_email {width: 410px;}
+.mwLayer .joinSNS_Info .box_email input.email, .mwLayer .joinSNS .box_email input.email {width: 310px;}
