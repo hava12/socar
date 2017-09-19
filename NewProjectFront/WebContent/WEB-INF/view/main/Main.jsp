@@ -257,13 +257,13 @@ $(document).ready(function() {
 				</div>
 
 				<map name="visual1" id="visual1">
-					<area shape="rect" coords="1,166,144,198" href="/reserve?way=oneway" title="편도 예약하기" />
+					<area shape="rect" coords="1,166,144,198" href="<c:url value='/Reserve/Reserve.do'/>" title="편도 예약하기" />
 				</map>
 				<map name="visual2" id="visual2">
-					<area shape="rect" coords="1,166,144,198" href="/fare" title="쏘카 요금보기" />
+					<area shape="rect" coords="1,166,144,198" href="<c:url value='/Guide/Fare.do'/>" title="쏘카 요금보기" />
 				</map>
 				<map name="visual3" id="visual3">
-					<area shape="rect" coords="1,166,144,198" href="/garage" title="쏘카 차고 구경하기" />
+					<area shape="rect" coords="1,166,144,198" href="<c:url value='/Main/Garage.do'/>" title="쏘카 차고 구경하기" />
 				</map>
 				<map name="visual4" id="visual4">
 					<area shape="rect" coords="1,166,144,198" href="/reserve#seoul" title="가까운 쏘카존 찾기" />
@@ -310,7 +310,7 @@ $(document).ready(function() {
 
 	<a href="/company"><img src='${pageContext.request.contextPath}/template/image/banner_person.png' alt="업무용 카셰어링 지원" /></a></div>
 
-<div id='banner02' class='banner02' style='top:242px'><a href='http://www.socar.kr/garage' target='_self'><img src='https://d353obgi8xzt9w.cloudfront.net/banner/banner_2.png' alt='차종다양화' title='차종다양화' width='226' height='74' /></a></div><div id='banner03' class='banner03' style='top:321px'><a href='https://goo.gl/8w3ExU' target='_blank'><img src='https://d353obgi8xzt9w.cloudfront.net/banner/쏘카채용중_웹배너_226X74.png' alt='쏘카 채용사이트 오픈' title='쏘카 채용사이트 오픈' width='226' height='74' /></a></div>
+<div id='banner02' class='banner02' style='top:242px'><a href='http://www.socar.kr/garage' target='_self'><img src='${pageContext.request.contextPath}/template/image/banner_2.png' alt='차종다양화' title='차종다양화' width='226' height='74' /></a></div><div id='banner03' class='banner03' style='top:321px'><a href='https://goo.gl/8w3ExU' target='_blank'><img src='${pageContext.request.contextPath}/template/image/쏘카채용중_웹배너_226X74.png' alt='쏘카 채용사이트 오픈' title='쏘카 채용사이트 오픈' width='226' height='74' /></a></div>
 
 <!-- 			<div class="co2">
 				<h2><img src='${pageContext.request.contextPath}/template/image/right_co2_txt1.gif' alt="쏘카 이용으로 줄인 CO2 량" /></h2>
@@ -331,7 +331,7 @@ $(document).ready(function() {
 				<!-- 쏘카 이용방법 -->
 				<div class="rule1">
 					<ul class="list_rule">
-						<li><a href="/guide" class="btn1"></a></li>
+						<li><a href="<c:url value='/Guide/Guide.do'/>" class="btn1"></a></li>
 						<li><a href="/company" class="btn2"></a></li>
 						<li><a href="/couponbook" class="btn3"></a></li>
 						<li><a href="/guide#socar5" class="btn4"></a></li>
@@ -366,7 +366,7 @@ $(document).ready(function() {
 								</a>
 							</li>
 						
-							<li>
+							 <li>
 								<a href=https://www.socar.kr/notice/868>
 									[서비스안내] 쏘카부름 수원,...
 									
@@ -374,7 +374,7 @@ $(document).ready(function() {
 									
 								</a>
 							</li>
-						
+						<%--
 							<li>
 								<a href=https://www.socar.kr/notice/867>
 									[매너평가] GOOD & BAD...
@@ -396,10 +396,10 @@ $(document).ready(function() {
 									[이벤트] 평일 친구와 아울렛 가면...
 									
 								</a>
-							</li>
+							</li> --%>
 						
 					</ul>
-					<a href="/notice" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>
+					<a href="<c:url value='/Notice/Notice.do'/>" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>
 				</div>
 				<!-- //공지사항 -->
 
@@ -416,7 +416,7 @@ $(document).ready(function() {
 								<a href="/faq#faq2">내가 예약한 동안 차량은 다른...</a>
 							</li>
 						
-							<li>
+							<!-- <li>
 								<a href="/faq#faq3">반납장소에 다른 차가 세워져 있으면...</a>
 							</li>
 						
@@ -426,7 +426,7 @@ $(document).ready(function() {
 						
 							<li>
 								<a href="/faq#faq5">[부름서비스] 이용을 마친 후 차량...</a>
-							</li>
+							</li> -->
 						
 					</ul>
 					<a href="/faq" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>

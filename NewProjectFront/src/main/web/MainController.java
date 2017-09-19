@@ -11,6 +11,22 @@ public class MainController {
 		return "/main/Main";
 	}//////////////////////////////////////////////////
 	
+	@RequestMapping("/Main/Garage.do")
+	public String garage()throws Exception{
+		return "/main/Garage";
+	}//////////////////////////////////////////////////
+	
+	@RequestMapping("/Main/Company.do")
+	public String company()throws Exception{
+		return "/main/Company";
+	}//////////////////////////////////////////////////
+	
+	@RequestMapping("/Main/About.do")
+	public String about()throws Exception{
+		return "/main/About";
+	}//////////////////////////////////////////////////
+	
+	
 	
 	
 }
