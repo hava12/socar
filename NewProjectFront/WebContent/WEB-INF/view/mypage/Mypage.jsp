@@ -59,7 +59,7 @@
 		ga('send', 'pageview');
 		</script>
 
-<link rel="stylesheet" type="text/css" href="/template/mypage/../asset/css/mypage.css?v=20170731" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/css/mypage.css?v=20170731" />
 <style>
 li.guide { height: 22px; background: none !important; padding-left: 0 !important; }
 </style>
