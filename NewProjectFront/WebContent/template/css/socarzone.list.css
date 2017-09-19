@@ -4,7 +4,7 @@
 .list ul.tab{border-bottom:2px solid #4f555e; *zoom:1;}
 .list ul.tab:after{content:""; display:block; clear:both;}
 .list ul.tab li{float:left; margin-right:23px;}
-.list ul.tab li a{display:inline-block; padding-right:10px; height:40px; line-height:40px; font-weight:bold; color:#666; background:url('/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
+.list ul.tab li a{display:inline-block; padding-right:10px; height:40px; line-height:40px; font-weight:bold; color:#666; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
 .list ul.tab li a em{color:#666; font-weight:normal;}
 .list ul.tab li.on a{color:#1ba4e7; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab_blue.gif') no-repeat right center;}
 .list ul.tab li.on a em{color:#1ba4e7;}

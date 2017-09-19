@@ -20,7 +20,7 @@
 #mapArea .active{background-position:0 0;}
 
 /*ssun - tooltip 클래스 바로 적용되도록 처리 */
-/*#mapArea .tooltip{display:none; position:absolute; top:-154px; left:-19px; padding-left:18px; width:240px; height:165px; background:url('/template/asset/images/reservation/socarzone_layer_bg.png') no-repeat left top; z-index:2;}
+/*#mapArea .tooltip{display:none; position:absolute; top:-154px; left:-19px; padding-left:18px; width:240px; height:165px; background:url('//web-assets.socar.kr/template/asset/images/reservation/socarzone_layer_bg.png') no-repeat left top; z-index:2;}
 #mapArea .tooltip h4{margin-bottom:10px; cursor:pointer;}
 #mapArea .tooltip h4 span{display:inline-block; height:35px; cursor:pointer; line-height:38px; color:#333; vertical-align:middle;}
 #mapArea .tooltip h4 span.bg{margin-left:5px; width:4px; background:url('/template/asset/images/reservation/ico_show.png') no-repeat 0 15px;}
@@ -28,7 +28,7 @@
 #mapArea .tooltip p em{color:#0e99dc; font-weight:bold;}
 #mapArea .tooltip p.btn{margin-top:6px;}
 #mapArea .tooltip .close{position:absolute; top:7px; right:11px;}*/
-/*.tooltip{padding-left:18px; width:240px; height:165px; background:url('/template/asset/images/reservation/socarzone_layer_bg.png') no-repeat left top; z-index:2;}*/
+/*.tooltip{padding-left:18px; width:240px; height:165px; background:url('//web-assets.socar.kr/template/asset/images/reservation/socarzone_layer_bg.png') no-repeat left top; z-index:2;}*/
 .tooltip{float: left; width: 215px; height: 126px; padding-top: 5px; padding-left: 14px;}
 .tooltip h4{margin-bottom:10px; cursor:pointer;}
 .tooltip h4 span{display:inline-block; height:35px; cursor:pointer; line-height:38px; color:#333; vertical-align:middle;overflow:hidden;max-width: 175px;white-space:nowrap;text-overflow:ellipsis;}

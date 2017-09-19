@@ -134,10 +134,10 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 /* ssun - .mwLayer #mwCont top 300px 로 변경 (fixed -> absolute 이슈로 인해 상단에 배치) */
 /*.mwLayer #mwCont{position:absolute; top:50%; left:50%; border-radius:5px; box-shadow:0 4px 20px rgba(0,0,0,.7); -webkit-box-shadow:0 4px 20px rgba(0,0,0,.7); -moz-box-shadow::0 4px 20px rgba(0,0,0,.7); -ms-box-shadow:0 4px 20px rgba(0,0,0,.7); overflow:hidden; background:#fff;}*/
 .mwLayer #mwCont{position:absolute; top:350px;; left:50%; border-radius:5px; box-shadow:0 4px 20px rgba(0,0,0,.7); -webkit-box-shadow:0 4px 20px rgba(0,0,0,.7); -moz-box-shadow::0 4px 20px rgba(0,0,0,.7); -ms-box-shadow:0 4px 20px rgba(0,0,0,.7); overflow:hidden; background:#fff;}
-.mwLayer .close{position:absolute; top:20px; right:20px; display:block; width:16px; height:16px; text-indent:-9999em; overflow:hidden; background:url('/template/asset/images/common/btn_layer_close_s.gif') no-repeat 0 0;}
+.mwLayer .close{position:absolute; top:20px; right:20px; display:block; width:16px; height:16px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/common/btn_layer_close_s.gif') no-repeat 0 0;}
 
 /* login layer
-.mwLayer .loginLy{margin:-110px 0 0 -198px; padding:82px 0 0 30px; width:340px; height:184px; background:#fff url('/template/asset/images/common/login_logo.gif') no-repeat 30px 35px !important;}
+.mwLayer .loginLy{margin:-110px 0 0 -198px; padding:82px 0 0 30px; width:340px; height:184px; background:#fff url('//web-assets.socar.kr/template/asset/images/common/login_logo.gif') no-repeat 30px 35px !important;}
 .mwLayer .login dl{width:230px; *zoom:1;}
 .mwLayer .login dl:after{content:""; display:block; clear:both;}
 .mwLayer .login dt{float:left; padding-top:6px; width:60px; height:28px;}
@@ -147,7 +147,7 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 .mwLayer .login ul{position:absolute; top:150px; left:90px; *zoom:1;}
 .mwLayer .login ul:after{content:""; display:block; clear:both;}
 .mwLayer .login li{float:left;}
-.mwLayer .login li a{display:block; padding:3px 0; height:11px; overflow:hidden; text-indent:-9999em; background:url('/template/asset/images/common/login_txt3.gif') no-repeat;}
+.mwLayer .login li a{display:block; padding:3px 0; height:11px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/login_txt3.gif') no-repeat;}
 .mwLayer .login li a.lg1{width:48px; background-position:0 3px;}
 .mwLayer .login li a.lg2{width:104px; background-position:-48px 3px;}
 .mwLayer .login span.m-line{position:absolute;top:184px;left:30px;width:310px;height:1px;background-color:#E5E6E6;}
@@ -210,10 +210,10 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 .mwLayer .socarzone .socarzoneMapArea ul{padding-left:3px; *zoom:1;}
 .mwLayer .socarzone .socarzoneMapArea ul:after{content:""; display:block; clear:both;}
 .mwLayer .socarzone .socarzoneMapArea ul li{float:left; margin-right:23px;}
-.mwLayer .socarzone .socarzoneMapArea ul li a{display:inline-block; padding-right:10px; height:41px; line-height:41px; font-weight:bold; color:#999; background:url('/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
+.mwLayer .socarzone .socarzoneMapArea ul li a{display:inline-block; padding-right:10px; height:41px; line-height:41px; font-weight:bold; color:#999; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab.gif') no-repeat right center;}
 .mwLayer .socarzone .socarzoneMapArea ul li.on a{color:#1ba4e7; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_tab_blue.gif') no-repeat right center;}
 .mwLayer .socarzone .socarzonMap{position:relative; height:228px; overflow:hidden; border:1px solid #aeaeae;}
-.mwLayer .socarzone .socarzonMap .pointer{position:absolute; width:39px; height:38px; cursor:pointer; background:url('/template/asset/images/reservation/ico_position1.png') no-repeat -50px 0;}
+.mwLayer .socarzone .socarzonMap .pointer{position:absolute; width:39px; height:38px; cursor:pointer; background:url('//web-assets.socar.kr/template/asset/images/reservation/ico_position1.png') no-repeat -50px 0;}
 .mwLayer .socarzone .socarzonMap .num{display:block; width:25px; height:25px; font-family:verdana; line-height:26px; text-align:center; color:#fff; font-weight:bold;}
 .mwLayer .socarzone .socarzonMap .current{text-indent:-9999em; cursor:default; background-position:-100px 0;}
 .mwLayer .socarzone .socarzonMap .active{background-position:0 0;}

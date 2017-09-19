@@ -12,7 +12,7 @@
 #content .couponbook .box_tit:after {display:block;overflow:hidden;width:100%;height:0;content:' ';clear:both;}
 #content .couponbook .box_line {padding-top:39px;border-top:1px dashed #e3e3e3;margin-top:0;}
 
-.couponbook_event {display:block;position:relative;width:868px;height:292px;padding:59px 58px 0;margin:0 auto;background:url('/template/asset/images/couponbook/so_lucky_deal_couponbook_cover_140827.png') 0 0 no-repeat;border:1px solid #d6d6d6;}
+.couponbook_event {display:block;position:relative;width:868px;height:292px;padding:59px 58px 0;margin:0 auto;background:url('//web-assets.socar.kr/template/asset/images/couponbook/so_lucky_deal_couponbook_cover_140827.png') 0 0 no-repeat;border:1px solid #d6d6d6;}
 .couponbook_event .flag {position:absolute;top:-2px;right:59px;}
 .couponbook_event .tit {padding-top:16px;}
 .couponbook_event .cont {padding:27px 3px 10px;}

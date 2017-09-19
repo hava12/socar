@@ -47,8 +47,8 @@
 .join-index .check .ch{margin:25px 0 13px;}
 .join-index .check .input{padding-left:8px; width:270px; height:32px; line-height:32px; color:#999; font-size:14px;}
 .join-index .check .input.focus{color:#333;}
-.join-index .check .alert{margin:0 auto; padding-left:20px; width:330px; color:#ff5d42; line-height:17px; text-align:left; background:url('/template/asset/images/common/bullet.png') no-repeat 0 -51px;}
-.join-index .check .close{position:absolute; top:20px; right:20px; display:block; width:18px; height:18px; text-indent:-9999em; overflow:hidden; background:url('/template/asset/images/common/btn_layer_close.gif') no-repeat 0 0;}
+.join-index .check .alert{margin:0 auto; padding-left:20px; width:330px; color:#ff5d42; line-height:17px; text-align:left; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 0 -51px;}
+.join-index .check .close{position:absolute; top:20px; right:20px; display:block; width:18px; height:18px; text-indent:-9999em; overflow:hidden; background:url('//web-assets.socar.kr/template/asset/images/common/btn_layer_close.gif') no-repeat 0 0;}
 
 /* join step1 */
 .join .stepType{margin-bottom:14px; height:87px; text-indent:-9999em; overflow:hidden;}
