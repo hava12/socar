@@ -299,7 +299,7 @@ $(document).ready(function() {
 					<div class="group">
 						<p class="txt"><img src='${pageContext.request.contextPath}/template/image/right_login_txt1_three_hours.png' alt="즐거운 드라이브 라이프의 시작 가입하면 첫사용 무료! 타면된다 쏘카!" /></p>
 						<p class="btn">
-							<a href="/join"><img src='${pageContext.request.contextPath}/template/image/btn_join.png' alt="회원 가입하기" /></a>
+							<a href="<c:url value='/Join/Join.do'/>"><img src='${pageContext.request.contextPath}/template/image/btn_join.png' alt="회원 가입하기" /></a>
 						</p>
 					</div>
 					<!-- //로그인 전 -->
@@ -310,7 +310,13 @@ $(document).ready(function() {
 
 	<a href="/company"><img src='${pageContext.request.contextPath}/template/image/banner_person.png' alt="업무용 카셰어링 지원" /></a></div>
 
-<div id='banner02' class='banner02' style='top:242px'><a href='http://www.socar.kr/garage' target='_self'><img src='${pageContext.request.contextPath}/template/image/banner_2.png' alt='차종다양화' title='차종다양화' width='226' height='74' /></a></div><div id='banner03' class='banner03' style='top:321px'><a href='https://goo.gl/8w3ExU' target='_blank'><img src='${pageContext.request.contextPath}/template/image/쏘카채용중_웹배너_226X74.png' alt='쏘카 채용사이트 오픈' title='쏘카 채용사이트 오픈' width='226' height='74' /></a></div>
+<div id='banner02' class='banner02' style='top:242px'>
+<a href='<c:url value="/Main/Garage.do"/>' target='_self'><img src='${pageContext.request.contextPath}/template/image/banner_2.png' alt='차종다양화' title='차종다양화' width='226' height='74' /></a>
+</div>
+<%-- <div id='banner03' class='banner03' style='top:321px'>
+<a href='https://goo.gl/8w3ExU' target='_blank'>
+<img src='${pageContext.request.contextPath}/template/image/쏘카채용중_웹배너_226X74.png' alt='쏘카 채용사이트 오픈' title='쏘카 채용사이트 오픈' width='226' height='74' /></a>
+</div> --%>
 
 <!-- 			<div class="co2">
 				<h2><img src='${pageContext.request.contextPath}/template/image/right_co2_txt1.gif' alt="쏘카 이용으로 줄인 CO2 량" /></h2>
@@ -325,8 +331,8 @@ $(document).ready(function() {
 
 			<div class="rule">
 				<ul class="tab">
-				<li class="on"><a href="/guide#socar1" class="tab1">쏘카 이용방법</a></li>
-				<li><a href="/guide#socar2" class="tab2">쏘카 이용규칙</a></li>
+				<li class="on"><a href="<c:url value='/Guide/Guide.do#socar1'/>" class="tab1">쏘카 이용방법</a></li>
+				<li><a href="<c:url value='/Guide/Guide.do#socar2'/>" class="tab2">쏘카 이용규칙</a></li>
 				</ul>
 				<!-- 쏘카 이용방법 -->
 				<div class="rule1">
@@ -474,35 +480,8 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 	<div class="mwLayer">
 		<div class="bg"></div>
 		<div id="mwCont">
-			<!-- login -->
-<div class="login mwCont">
-	<form name="login" method="post" action="https://www.socar.kr/user/login">
-		<input id="redirect" name="redirect" type="hidden" value=""/>
-		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
-		<fieldset>
-			<dl>
-				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/new/id.png' /></dt>
-				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/new/pw.png' /></dt>
-				<dd><input type="password" class="input" name="password" /></dd>
-			</dl>
-			<input type="image" src='${pageContext.request.contextPath}/template/image/new/btn_login.png' class="submit" id="login_btn" />
-
-		</fieldset>
-	</form>
-
-	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/new/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/new/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
-	</ul>
-
-	<!-- SNS 로그인 -->
-	<div class="box_sns">
-		<a href="#" id="fb_login" class="left"><img src='${pageContext.request.contextPath}/template/image/new/fb3_n.png' alt="페이스북" /></a>
-		<a href="#" id="naver_login" class="center"><img src='${pageContext.request.contextPath}/template/image/new/nv3_n.png' alt="네이버" /></a>
-		<a href="#" id="kakao_login" class="right"><img src='${pageContext.request.contextPath}/template/image/new/cco3.png' alt="카카오톡" /></a>
-	</div>
-</div>
+<!-- login -->
+<jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
 <!-- finding id -->

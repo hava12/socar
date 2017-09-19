@@ -386,89 +386,16 @@ function auth_confirm(res) {
         <fieldset>
           <div class="type box">
             <ul>
-            <li class="first">
-              <h3><img src='${pageContext.request.contextPath}/template/image/txt_join1_three_hour.png' alt="개인회원 가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/txt_join2_20150508.jpg' alt="간편하게 가입하고 편리하게 사용하세요! SNS 계정으로 빠르고 쉽게 시작하기!" /></p>
-              <!--☞ <a href='#' id='member_referer_btn' class='member_referer_box join_direction' data-direction_img="/template/asset/images/member/join_index_txt12_refer.gif">프로모션코드(제휴코드) 입력하기</a>-->
-              <p>
-                <img src='${pageContext.request.contextPath}/template/image/txt_join3_20140208_n.jpg' alt="연동가능서비스" />
-                <img src='${pageContext.request.contextPath}/template/image/txt_join4_20140208_n.jpg' alt="" />
-                <img src='${pageContext.request.contextPath}/template/image/txt_join5_20150508.jpg' alt="" />
-                <img src='${pageContext.request.contextPath}/template/image/txt_join6_20140208_n.jpg' alt="" />
-                
-              </p>
-              <p class="btn">
-                <!-- <a href="/join/1"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a> -->
-                <img src='${pageContext.request.contextPath}/template/image/btn_join.png' class="simple_join" style="cursor:pointer;" alt="가입하기" />
-              </p>
-            </li>
-<!-- nanumcar
-            <li>
-              <h3><img src='${pageContext.request.contextPath}/template/image/join_index_txt_nanum_title.gif' alt="나눔카 회원가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt_nanum_desc2.png' alt="서울시 나눔카 제험 이벤트 진행중!" /></p>
-              ☞ <a href='https://www.socar.kr/hi-seoul' class='join_direction'>나눔카 이벤트 자세히보기</a>
-              <p class="btn">
-                <a href="/join/1/서울시나눔카"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a>
-              </p>
-            </li>
--->
-<!-- 가족회원가입 현재는 이것으로 넣을지 말지 결정 못해 보류중-->
-<!--
-            <li>
-              <h3><img src='${pageContext.request.contextPath}/template/image/join_index_txt6.gif' alt="가족회원 가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt7.gif' alt="가족대표의 결제카드로 온 가족이 함께 사용!
-3인 이상 가족이 모이면 혜택이 플러스!" /></p>
-              <p class="btn">
-                <a href="#" class="family"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a>
-              </p>
-            </li>
--->
-<!--
-            <li>
-              <h3><img src='${pageContext.request.contextPath}/template/image/join_index_new01.gif' alt="가족회원 가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_new02.gif' alt="다양한 프로모션에 따라 가입 시 바로 혜택 지급!" /></p>
-              ☞ <a href='#' id='member_referer_btn' class='member_referer_box join_direction' data-direction_img='${pageContext.request.contextPath}/template/image/join_index_txt12_refer.gif'>프로모션코드(제휴코드) 입력하기</a>
+		            <li class="first" style="margin-left: 35%">
+		              <h3><img src='${pageContext.request.contextPath}/template/image/txt_join1_three_hour.png' alt="개인회원 가입" /></h3>
+		              <p><img src='${pageContext.request.contextPath}/template/image/txt_join2_20150508.jpg' alt="간편하게 가입하고 편리하게 사용하세요! SNS 계정으로 빠르고 쉽게 시작하기!" /></p>
+		              <!--☞ <a href='#' id='member_referer_btn' class='member_referer_box join_direction' data-direction_img="/template/asset/images/member/join_index_txt12_refer.gif">프로모션코드(제휴코드) 입력하기</a>-->
+		              <p class="btn">
+		                <!-- <a href="/join/1"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a> -->
+		                <img src='${pageContext.request.contextPath}/template/image/btn_join.png' class="simple_join" style="cursor:pointer;" alt="가입하기" />
+		              </p>
+		            </li>
 
-              <p class="btn">
-                <a href='#' class='member_referer_box join_direction'><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a>
-              </p>
-            </li>
--->
-
-            <li>
-              <h3><img src='${pageContext.request.contextPath}/template/image/join_index_txt_promotion_title_new.png' alt="프로모션신규 가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt_promotion_desc.png' alt="쏘카 프로모션코드를 받으셨나요? 아래 가입하기 버튼을 눌러 받으신 쿠폰번호를 입력해 주세요" /></p>
-              <p class="btn">
-                <a href="#" class="member_referer_box" data-direction_img='${pageContext.request.contextPath}/template/image/join_index_txt13_promotion.png'><img src='${pageContext.request.contextPath}/template/image/btn_join.png' alt="가입하기" /></a>
-              </p>
-            </li>
-<!-- tway
-            <li>
-              <h3><img src='${pageContext.request.contextPath}/template/image/join_index_txt_tway_title.png' alt="티웨이 항공 제휴 가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt_tway_desc.png' alt="쏘카와 티웨이의 제휴 혜택 제공! 항공권 예약 시 제주공항 쏘카 할인" /></p>
-              <p class="btn">
-                <a href="#" class="member_referer_box" data-direction_img='${pageContext.request.contextPath}/template/image/join_index_txt12_tway.png'><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a>
-              </p>
-            </li>
- /tway -->
-
-            <li>
-              <h3><img src='${pageContext.request.contextPath}/template/image/join_corp_or_org.png' alt="법인/단체회원 가입" /></h3>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt9.gif' alt="대표 결제카드로 구성원이 함께 사용 가능! 이용실적에 따라 혜택이 플러스!" /></p>
-              <p>
-                <label for="corpType1">
-                  <input type="radio" name="corpType" value="관리자" id="corpType1" checked="checked" />
-                  법인등록
-                </label>
-                <label for="corpType2">
-                  <input type="radio" name="corpType" value="구성원" id="corpType2" />
-                  법인직원등록
-                </label>
-              </p>
-              <p class="btn">
-                <a href="#" class="corp"><img src='${pageContext.request.contextPath}/template/image/btn_join.png' alt="가입하기" /></a>
-              </p>
-            </li>
             </ul>
 
             <!-- 가족회원 체크 -->
@@ -497,7 +424,7 @@ function auth_confirm(res) {
                 <input id="btn_corp_submit" type="image" src='${pageContext.request.contextPath}/template/image/btn_confirm_b_s.gif' title="확인" />
               </p>
               <p id="corp_alert" class="alert" style="display:none;">
-                해당 명칭과 일치하는 법인 또는 단체가 없습니다.<br />사업자등록증에 기재된 명칭을 입력해주세요.
+                	해당 명칭과 일치하는 법인 또는 단체가 없습니다.<br />사업자등록증에 기재된 명칭을 입력해주세요.
               </p>
 
               <a href="#" class="close">닫기</a>
@@ -528,6 +455,24 @@ function auth_confirm(res) {
         </ul>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         
@@ -570,13 +515,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
     <div class="bg"></div>
     <div id="mwCont">
 <div class="joinSNS mwCont" style="display: block;">
-	<div class="tit"><img src='${pageContext.request.contextPath}/template/image/txt_sns_n.jpg' alt="SNS계정으로 가입하기" /></div>
-	<div class="box_sns">
-		<a href="#" id="fb_join" class="left"><img src='${pageContext.request.contextPath}/template/image/new/fb3_n.png' alt="페이스북" onclick="javascript:ga_call('fb_join_click')" /></a>
-		<a href="#" id="naver_join" class="center"><img src='${pageContext.request.contextPath}/template/image/new/nv3_n.png' alt="네이버" onclick="javascript:ga_call('naver_join_click')" /></a>
-		<a href="#" id="kakao_join" class="right"><img src='${pageContext.request.contextPath}/template/image/new/cco3.png' alt="카카오" onclick="javascript:ga_call('kakao_join_click')" /></a>
-	</div>
-	<div class="line"></div>
+
 	<div class="tit"><img src='${pageContext.request.contextPath}/template/image/txt_email_n.gif' alt="이메일 계정으로 가입하기" /></div>
 	<div class="box_email"><input type="text" id="join_input_email" onclick="$(this).css('background','none')" name="join_input_email" class="email input" /><a href="#" class="join" id="email_join"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="회원가입" onclick="javascript:ga_call('email_join_click')" /></a></div>
 </div>
@@ -660,168 +599,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	<div class="box_check" style="padding-bottom: 10px;">
 		<label for="is_agree" id="agree_label">
 		<span class="agree_check" id="is_agree" style="position:absolute;"></span>
-		<span class="agree_info" style="margin-left:30px">
-			<a href="https://www.socar.kr/terms" target="_blank"><strong>회원이용약관</strong></a>과
-			<a href="#" onclick="javascript:show_policy();"><strong>개인정보 수집 및 이용동의서</strong></a>에 동의합니다. (필수)
-		</span>
-		<div id="policy_simple" class="scroll">
-			<!-- 개인정보 수집·이용안내 (요약) -->
-<section class="rule">
 
-<h3>1. 준회원</h3>
-
-<div class="pd15">
-	<strong class="title-red">• 필수정보</strong>
-	<table class="simple_cols">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>고유식별정보</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>성명, 아이디, 비밀번호, 이메일, 주소</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>탈퇴 후 3개월 간 별도 보관 후 삭제<br /><span class="gray">※ 이용약관 제 7조에 따른 재가입제한 기간 확인 목적</span></td>
-		</tr>
-	</table>
-	<table class="simple_cols" style="margin-top:10px;">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>본인인증</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>생년월일, 성별, 휴대전화번호, 연계정보(CI), 중복확인가입정보(DI), 통신사</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>탈퇴 후 3개월 간 별도 보관 후 삭제<br /><span class="gray">※ 이용약관 제 7조에 따른 재가입제한 기간 확인 목적</span></td>
-		</tr>
-	</table>
-</div>
-
-<div class="pd15">
-	<strong>• 선택정보</strong>
-	<table class="simple_cols">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>커뮤니티</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>프로필 사진</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>회원 탈퇴 시 즉시 삭제</td>
-		</tr>
-	</table>
-</div>
-
-<h3>2. SO회원</h3>
-
-<div class="pd15">
-	<strong class="title-red">• 필수정보</strong>
-	<table class="simple_cols">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>고유식별정보</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>성명, 아이디, 비밀번호, 이메일, 주소</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>탈퇴 후 3개월 간 별도 보관 후 삭제<br /><span class="gray">※ 이용약관 제 7조에 따른 재가입제한 기간 확인 목적</span></td>
-		</tr>
-	</table>
-	<table class="simple_cols" style="margin-top:10px;">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>본인인증</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>생년월일, 성별, 휴대전화번호, 연계정보(CI), 중복확인가입정보(DI), 통신사</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>탈퇴 후 3개월 간 별도 보관 후 삭제<br /><span class="gray">※ 이용약관 제 7조에 따른 재가입제한 기간 확인 목적</span></td>
-		</tr>
-	</table>
-	<table class="simple_cols" style="margin-top:10px;">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>자동차 대여 서비스 제공</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>결제카드정보, 운전면허정보</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>탈퇴 후 3개월 간 별도 보관 후 삭제<br /><span class="gray">※ 이용약관 제 7조에 따른 재가입제한 기간 확인 목적</span></td>
-		</tr>
-	</table>
-
-	<strong>• 선택정보</strong>
-
-	<table class="simple_cols">
-		<colgroup>
-			<col width="74">
-			<col width="*">
-		</colgroup>
-		<tr>
-			<td valign="top">- 수집목적 : </td><td>커뮤니티</td>
-		</tr>
-		<tr>
-			<td valign="top">- 수집항목 : </td><td>프로필 사진</td>
-		</tr>
-		<tr>
-			<td valign="top">- 보유・파기: </td><td>회원 탈퇴 시 즉시 삭제</td>
-		</tr>
-	</table>
-</div>
-
-<p style="line-height:18px;">※ 회원은 개인정보 수집 및 이용에 대해 거부할 권리가 있습니다.
-단, 거부하실 경우 회원가입 및 서비스 이용에 제한이 있음을 알려드립니다.</p>
-
-<a href="/privacy" target="_blank">개인정보처리방침 전문보기</a>
-</section>
-
-		</div>
 		</label>
 	</div>
-	<div class="box_check" style="padding-bottom: 10px;">
-		<label for="mkt_agree" id="mkt_agree_label">
-		<span class="mkt_agree" id="mkt_agree" style="position:absolute;"></span>
-		<span class="mkt_agree_info" style="margin-left:30px">1천원 할인쿠폰과 함께 모든 마케팅 정보수신에 동의합니다. (선택)</span><br />
-		<span class="mkt_agree_info" style="margin-left:30px;color:#F75F50"> - 선택항목 동의 없이도 서비스 이용 가능</span>
-		</label>
-	</div>
-	<div class="box_check gray_box">
-		<label for="mkt_agree_email" id="mkt_agree_email_label">
-		<span class="mkt_agree_sub" id="mkt_agree_email"></span>
-		<span class="mkt_agree_sub_info">이메일</span>
-		</label>
-		<label for="mkt_agree_sms" id="mkt_agree_sms_label">
-		<span class="mkt_agree_sub" id="mkt_agree_sms"></span>
-		<span class="mkt_agree_sub_info">SMS</span>
-		</label>
-		<label for="mkt_agree_push" id="mkt_agree_push_label">
-		<span class="mkt_agree_sub" id="mkt_agree_push"></span>
-		<span class="mkt_agree_sub_info">푸시알림</span>
-		</label>
-	</div>
+
 
 	<div class="box_btn">
 		<a href="#" id="simple-join"><img src='${pageContext.request.contextPath}/template/image/btn_joinok.gif' alt="간편가입 완료" /></a>
@@ -852,36 +633,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		<a href="#" class="join_pr" id="join_later"><img src='${pageContext.request.contextPath}/template/image/btn_lt.gif' alt="나중에 가입" /></a>
 	</div>
 </div>
+
+
 <!-- login -->
-<div class="login mwCont">
-	<form name="login" method="post" action="https://www.socar.kr/user/login">
-		<input id="redirect" name="redirect" type="hidden" value=""/>
-		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
-		<fieldset>
-			<dl>
-				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/new/id.png' /></dt>
-				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/new/pw.png' /></dt>
-				<dd><input type="password" class="input" name="password" /></dd>
-			</dl>
-			<input type="image" src='${pageContext.request.contextPath}/template/image/new/btn_login.png' class="submit" id="login_btn" />
-
-		</fieldset>
-	</form>
-
-	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/new/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/new/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
-	</ul>
-
-	<!-- SNS 로그인 -->
-	<div class="box_sns">
-		<a href="#" id="fb_login" class="left"><img src='${pageContext.request.contextPath}/template/image/new/fb3_n.png' alt="페이스북" /></a>
-		<a href="#" id="naver_login" class="center"><img src='${pageContext.request.contextPath}/template/image/new/nv3_n.png' alt="네이버" /></a>
-		<a href="#" id="kakao_login" class="right"><img src='${pageContext.request.contextPath}/template/image/new/cco3.png' alt="카카오톡" /></a>
-	</div>
-</div>
+<jsp:include page="/template/Login.jsp" />
 <!-- //login -->
+
 
 <!-- finding id -->
 <div class="findingId finding mwCont">
