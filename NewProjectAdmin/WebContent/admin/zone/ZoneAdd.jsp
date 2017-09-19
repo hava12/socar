@@ -115,7 +115,7 @@
 				  <h2>주차장 등록</h2><br/><br/>
 				    <form action="<c:url value='/ZONE/Add.do'/>" method="post">
 		   			<div id="map" style="width:100%;height:350px;"></div>
-				    	
+			    	
 				      	  <table class="table table-bordered table-striped">
 				      	  
 				      	  <thead >
@@ -183,17 +183,38 @@
 	    
 	    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b0979573216988a82c1321345b2297a"></script>
 		<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = { 
-		        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };
-		var position = new daum.maps.LatLng(37.478711, 126.878647);
-	
-		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-		var map = new daum.maps.Map(mapContainer, mapOption); 
-		</script>
-    
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = { 
+			        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };
+			
+			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			
+			// 지도를 클릭한 위치에 표출할 마커입니다
+			var marker = new daum.maps.Marker({ 
+			    // 지도 중심좌표에 마커를 생성합니다 
+			    position: map.getCenter() 
+			}); 
+			// 지도에 마커를 표시합니다
+			marker.setMap(map);
+			
+			// 지도에 클릭 이벤트를 등록합니다
+			// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+			daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+			    
+			    // 클릭한 위도, 경도 정보를 가져옵니다 
+			    var latlng = mouseEvent.latLng; 
+			    
+			    // 마커 위치를 클릭한 위치로 옮깁니다
+			    marker.setPosition(latlng);
+			    
+			    //위도 경도 뿌려주기
+			    document.getElementById('latitude_id').value = latlng.getLat();
+			    document.getElementById('longitude_id').value = latlng.getLng();
+	    
+			});
+</script>
    
    
    
