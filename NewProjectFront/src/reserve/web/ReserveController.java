@@ -8,7 +8,7 @@ public class ReserveController {
 
 	@RequestMapping("/Reserve/Reserve.do")
 	public String reserve() throws Exception{
-		return "/reserve/Reserve";
+		return "/reserve/Reserve"; 
 	}
 	
 }
