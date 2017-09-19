@@ -20,7 +20,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="대한민국 1등 카셰어링 쏘카">
 		<meta property="og:description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료">
-		<meta property="og:image" content="${pageContext.request.contextPath}/template/image/images/pc_m_web_meta_tag.jpg">
+		<meta property="og:image" content="${pageContext.request.contextPath}/template/image/pc_m_web_meta_tag.jpg">
 		<meta property="og:url" content="https://www.socar.kr/">
 
 		<!-- 유투브 랜딩 연결 -->
@@ -527,35 +527,8 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 		<div class="bg"></div>
 		<div id="mwCont">
 
-            <!-- login -->
-<div class="login mwCont">
-	<form name="login" method="post" action="https://www.socar.kr/user/login">
-		<input id="redirect" name="redirect" type="hidden" value=""/>
-		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
-		<fieldset>
-			<dl>
-				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/new/id.png' /></dt>
-				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/new/pw.png' /></dt>
-				<dd><input type="password" class="input" name="password" /></dd>
-			</dl>
-			<input type="image" src='${pageContext.request.contextPath}/template/image/new/btn_login.png' class="submit" id="login_btn" />
-
-		</fieldset>
-	</form>
-
-	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/new/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/new/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
-	</ul>
-
-	<!-- SNS 로그인 -->
-	<div class="box_sns">
-		<a href="#" id="fb_login" class="left"><img src='${pageContext.request.contextPath}/template/image/new/fb3_n.png' alt="페이스북" /></a>
-		<a href="#" id="naver_login" class="center"><img src='${pageContext.request.contextPath}/template/image/new/nv3_n.png' alt="네이버" /></a>
-		<a href="#" id="kakao_login" class="right"><img src='${pageContext.request.contextPath}/template/image/new/cco3.png' alt="카카오톡" /></a>
-	</div>
-</div>
+<!-- login -->
+<jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
 <!-- finding id -->

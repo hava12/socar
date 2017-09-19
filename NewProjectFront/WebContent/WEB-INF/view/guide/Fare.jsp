@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -619,74 +620,51 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td class="first">경형A</td>
-              <td>700</td>
-              <td>7,000</td>
-              <td>500</td>
-              <td>5,000</td>
-            </tr>
-            <tr>
-              <td class="first">경형B</td>
-              <td>700</td>
-              <td>7,000</td>
-              <td>500</td>
-              <td>5,000</td>
-            </tr>
-            <tr>
-              <td class="first">소형</td>
-              <td>800</td>
-              <td>8,000</td>
-              <td>600</td>
-              <td>6,000</td>
-            </tr>
-            <tr>
-              <td class="first">준중형</td>
-              <td>900</td>
-              <td>9,000</td>
-              <td>700</td>
-              <td>7,000</td>
-            </tr>
-            <tr>
-              <td class="first">중형</td>
-              <td>1,000</td>
-              <td>10,000</td>
-              <td>800</td>
-              <td>8,000</td>
-            </tr>
-            <tr>
-              <td class="first">대형</td>
-              <td>1,500</td>
-              <td>15,000</td>
-              <td>1,300</td>
-              <td>13,000</td>
-            </tr>
-            <tr>
-              <td class="first">SUV</td>
-              <td>1,200</td>
-              <td>12,000</td>
-              <td>1,000</td>
-              <td>10,000</td>
-            </tr>
-            <tr>
-              <td class="first">승합</td>
-              <td>1,500</td>
-              <td>15,000</td>
-              <td>1,300</td>
-              <td>13,000</td>
-            </tr>
-            <tr>
-              <td class="first">수입차</td>
-              <td>1,900</td>
-              <td>19,000</td>
-              <td>1,700</td>
-              <td>17,000</td>
-            </tr>
+           
+            <c:if test="${empty model_list}" var="model_not_exist">
+            	<tr>
+            		<td colspan="5">등록된 차량이 없습니다</td>
+            	</tr>
+            </c:if>
+            <c:if test="${not model_not_exist}">
+            	<c:forEach items="${model_list}" var="item">
+            	<tr>
+						<td class="first">${item.car_type}</td>
+						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_one_hour}" /></td>
+						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_one_day}" /></td>
+						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_two_hour}" /></td>
+						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_two_day}" /></td>
+            	</tr>
+            	</c:forEach>
+            </c:if>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 <style type="text/css">
 
@@ -725,35 +703,8 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 <div class="mwLayer">
   <div class="bg"></div>
   <div id="mwCont">
-    <!-- login -->
-<div class="login mwCont">
-	<form name="login" method="post" action="https://www.socar.kr/user/login">
-		<input id="redirect" name="redirect" type="hidden" value=""/>
-		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
-		<fieldset>
-			<dl>
-				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/new/id.png' /></dt>
-				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/new/pw.png' /></dt>
-				<dd><input type="password" class="input" name="password" /></dd>
-			</dl>
-			<input type="image" src='${pageContext.request.contextPath}/template/image/new/btn_login.png' class="submit" id="login_btn" />
-
-		</fieldset>
-	</form>
-
-	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/new/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/new/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
-	</ul>
-
-	<!-- SNS 로그인 -->
-	<div class="box_sns">
-		<a href="#" id="fb_login" class="left"><img src='${pageContext.request.contextPath}/template/image/new/fb3_n.png' alt="페이스북" /></a>
-		<a href="#" id="naver_login" class="center"><img src='${pageContext.request.contextPath}/template/image/new/nv3_n.png' alt="네이버" /></a>
-		<a href="#" id="kakao_login" class="right"><img src='${pageContext.request.contextPath}/template/image/new/cco3.png' alt="카카오톡" /></a>
-	</div>
-</div>
+ <!-- login -->
+<jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
 <!-- finding id -->
@@ -1029,7 +980,24 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 					z-index: 100000;">
 				</div>
 			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 <style type="text/css">
+
 .result_none {width: 100%; height: 40px; line-height: 40px; text-align: center; background-color: #fafafa; border: 1px solid #d3d3d3;}
 .result_none p {font-size: 1.2em; font-weight: bold; line-height:40px;}
 </style>
