@@ -39,6 +39,27 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/parallax-slider/parallax-slider.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/parallax-slider/modernizr.custom.28468.js">
     </script>
+    
+	<script>
+		function find(sel) {
+			var menu = document.getElementById("menu");
+			if (sel == "id") {
+				menu.innerHTML = "아이디검색<span class='fa fa-caret-down'></span>";
+				menu.value = "smem_id";
+			} else if (sel == "name") {
+				menu.innerHTML = "이름검색<span class='fa fa-caret-down'></span>";
+				menu.value = "smem_name";
+			}
+		}
+		/* function inputsmem_id(smem_id,smem_name) {
+			document.getElementById("smem_id").value = smem_id;
+			document.getElementById("smem_name").value = smem_name;
+		}
+		 */
+		 function search() {
+			 
+		 }
+	</script>
 	
   </head>
 
@@ -101,15 +122,15 @@
  	    <div class="box-body">
              <div class="input-group margin">
                  <div class="input-group-btn">
-                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-선택- <span class="fa fa-caret-down"></span></button>
-                     <ul class="dropdown-menu">
-                         <li><a href="#">아이디검색</a></li>
-                         <li><a href="#">이름검색</a></li>
+                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
+                     <ul id="menu" class="dropdown-menu">
+                         <li><a href="#" onclick="find('id')">아이디검색</a></li>
+                         <li><a href="#" onclick="find('name')">이름검색</a></li>
                      </ul>
                  </div><!-- /btn-group -->
                  <input type="text" class="form-control" />
              <span class="input-group-btn">
-                     <button class="btn btn-success btn-info" type="button">검색</button>
+                     <button class="btn btn-success btn-info" onclick="search()" type="button" id="menu">검색</button>
              </span>
              </div><!-- /input-group -->
          </div><!-- /.box-body -->
