@@ -1,6 +1,7 @@
 package zone.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,14 @@ public class ViewController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ZoneDAO dao = new ZoneDAO(req.getServletContext());
 		ZoneDTO dto = dao.selectOne(req.getParameter("soz_code"));
+		try {
+			//하드콛
+			List<ZoneDTO> list = dao.selectEveryList();			
+			req.setAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("/admin/zone/ZoneView.jsp").forward(req, resp);
 	}

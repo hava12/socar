@@ -11,4 +11,5 @@ public interface ZoneService {
 	public int edit(ZoneDTO dto) throws Exception;
 	public int delete(String soz_code) throws Exception;
 	public void close() throws Exception;
+	List<ZoneDTO> selectEveryList() throws Exception;
 }
