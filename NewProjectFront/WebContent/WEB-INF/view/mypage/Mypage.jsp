@@ -1439,79 +1439,10 @@ function auth_confirm(res) {
 						</form>
 					</div>
 					
-					<!-- SNS 연동정보 -->
-					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_sns_n.gif" alt="SNS계정 연동 정보" /></h3>
-						<table cellspacing="0" class="rows tbl_sns">
-						<tbody>
-							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_nv_n.gif" alt="" /></th>
-							
-								<td id="naver_interlock_info">keatmil@naver.com<a href="#" id="naver_close">
-									<img src="/template/mypage/../asset/images/mypage/ico_d.gif" alt="연동 해제하기" class="ico_d" /></a></td>
-							
-							</tr>
-
-							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_fb_n.gif" alt="" /></th>
-							
-								<td><a class="btnS" href="#" id="fb_interlock"><span>연결하기</span></a></td>
-							
-							</tr>
-
-							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_cco.gif" alt="" /></th>
-							
-								<td><a class="btnS" href="#" id="kakao_interlock"><span>연결하기</span></a></td>
-							
-							</tr>
-
-						</tbody>
-						</table>
-						<ul class="tip mt10">
-							<li>SNS 아이디는 로그인 및 한줄댓글 공유에 사용됩니다.</li>
-						</ul>
-					</div>
-					<!-- //SNS 연동정보 -->
 					
-					<!-- noti 수신설정 S -->
-					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_mkt_agree.gif" alt="마케팅 메시지 수신 동의" /></h3>
-						<table cellspacing="0" class="rows">
-							<tbody>
-							<tr>
-								<td>
-									<div style="padding-bottom: 10px;float:left;">
-										<label for="my_mkt_agree" id="my_mkt_agree_label" class="doupdate">
-										<span class="my_mkt_agree mkt_agree on" id="my_mkt_agree"></span>
-										<span class="mkt_agree_info" style="font-weight:bold;font-size:14px;">전체 매체에 대한 마케팅 정보 수신에 동의합니다.</span>
-										</label>
-									</div>
-									<div style="float:right">
-										<label for="my_mkt_agree_email" id="my_mkt_agree_email_label" class="doupdate">
-										<span class="my_mkt_agree_sub mkt_agree_sub on" id="my_mkt_agree_email"></span>
-										<span class="mkt_agree_sub_info">이메일</span>
-										</label>
-										<label for="my_mkt_agree_sms" id="my_mkt_agree_sms_label" class="doupdate">
-										<span class="my_mkt_agree_sub mkt_agree_sub on" id="my_mkt_agree_sms"></span>
-										<span class="mkt_agree_sub_info">SMS</span>
-										</label>
-										<label for="my_mkt_agree_push" id="my_mkt_agree_push_label" class="doupdate">
-										<span class="my_mkt_agree_sub mkt_agree_sub on" id="my_mkt_agree_push"></span>
-										<span class="mkt_agree_sub_info">푸시알림</span>
-										</label>
-									</div>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						<ul class="tip mt10">
-							<li>쏘카의 이벤트와 할인(쿠폰 등) 소식을 받아보세요.</li>
-							<li>변경사항 적용에 최대 2~3일 소요될 수 있습니다.</li>
-							<li style="color:#ff1a1a;">모든 매체 수신 동의시 1천원 쿠폰 증정!</li>
-						</ul>
-					</div>
-					<!-- noti 수신설정 E -->
+					
+					
+					
 
 				
 					<div class="group">
@@ -3200,15 +3131,15 @@ function showJoinLayer(bPassword,email){
 	return;
 }
 
-function showLoginLayer(alertMessage, redirect_to, redirect_data) {
-	if ( redirect_to ) $('#mwCont .login #redirect').val( redirect_to );
-	if ( typeof redirect_data == 'object' ) {
-		$('#mwCont .login #redirect_data').val( JSON.stringify(redirect_data) );
-	}
+// function showLoginLayer(alertMessage, redirect_to, redirect_data) {
+// 	if ( redirect_to ) $('#mwCont .login #redirect').val( redirect_to );
+// 	if ( typeof redirect_data == 'object' ) {
+// 		$('#mwCont .login #redirect_data').val( JSON.stringify(redirect_data) );
+// 	}
 
-	if(alertMessage) alert('로그인이 필요합니다.');
-	$('#header .util1').click();
-}
+// 	if(alertMessage) alert('로그인이 필요합니다.');
+// 	$('#header .util1').click();
+// }
 
 var $cur_page = 1;
 // jQuery.fn.center = function() {
@@ -3221,13 +3152,13 @@ var $cur_page = 1;
 //             el.css(css)
 //     });
 // };
-$('.require_login').click(function(){
-	if ( $(this).data('href') ) {
-		showLoginLayer(true, $(this).data('href') );
-	} else {
-		showLoginLayer(true);
-	}
-});
+// $('.require_login').click(function(){
+// 	if ( $(this).data('href') ) {
+// 		showLoginLayer(true, $(this).data('href') );
+// 	} else {
+// 		showLoginLayer(true);
+// 	}
+// });
 
 $(".aside .quick1").click(function(){
 	

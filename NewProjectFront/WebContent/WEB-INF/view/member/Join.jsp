@@ -202,20 +202,16 @@ $(function(){
 
   $("#simple-join").bind('click',function() {
     var ret = $('#is_agree').hasClass('on');
-    if(!ret){
-        alert('약관에 동의해야 회원가입이 가능합니다.');
-        return false;
-    }
 
-    var sns_connect_id  = $('#sns_connect_id').val(),
-      name  = $.trim($('#join_name').val()),
-      email = $.trim($('#join_email').val()),
-      mobile  = $.trim($('#join_mobile').val()),
-      invite  = $.trim($('#invite').val()),
-      advertise = $.cookie('tmp_advertise'),
-      advertise_id = $.cookie('tmp_advertise_id'),
-      validatedPhoneNum = $('#LGD_MOBILENUM').val(),
-      auth_confirm_key = $('#auth_confirm_key').val();
+     var sns_connect_id  = $('#sns_connect_id').val(),
+       name  = $.trim($('#join_name').val()),
+       email = $.trim($('#join_email').val()),
+       mobile  = $.trim($('#join_mobile').val())
+//       invite  = $.trim($('#invite').val()),
+//       advertise = $.cookie('tmp_advertise'),
+//       advertise_id = $.cookie('tmp_advertise_id'),
+//       validatedPhoneNum = $('#LGD_MOBILENUM').val(),
+//       auth_confirm_key = $('#auth_confirm_key').val();
 
     if(name == '' || /[^가-힣a-zA-Z\s]/.test(name)) {
       alert('이름을 확인해주세요');
@@ -250,9 +246,9 @@ $(function(){
       }
     }
 
-    if($.trim(advertise) != '' && advertise != null) {
-      meta = {name:'쏘카광고', value:advertise, advertise_id:advertise_id};
-    }
+//     if($.trim(advertise) != '' && advertise != null) {
+//       meta = {name:'쏘카광고', value:advertise, advertise_id:advertise_id};
+//     }
 
     var password = '', repassword = '';
     var joinType = $("#join_type").val();
@@ -280,37 +276,27 @@ $(function(){
       }
     }
 
-    if (auth_confirm_key == '') {
-      alert('본인인증을 해주세요.');
-      return false;
-    }
+//     if (auth_confirm_key == '') {
+//       alert('본인인증을 해주세요.');
+//       return false;
+//     }
 
-    var agree_sms = ($('#mkt_agree_sms').hasClass('on')) ? 1 : 0,
-        agree_dm = ($('#mkt_agree_email').hasClass('on')) ? 1 : 0,
-        agree_push= ($('#mkt_agree_push').hasClass('on')) ? 1 : 0;
+//     var agree_sms = ($('#mkt_agree_sms').hasClass('on')) ? 1 : 0,
+//         agree_dm = ($('#mkt_agree_email').hasClass('on')) ? 1 : 0,
+//         agree_push= ($('#mkt_agree_push').hasClass('on')) ? 1 : 0;
 
     $.ajax({
-        url : "https://www.socar.kr/user/simple_add",
+        url : "<c:url value='/Member/CreateSimpleMem.do' />",
         data : {
-          sns_connect_id : sns_connect_id,
-          name: name,
-          email: email,
-          password: password,
-          phone: mobile,
-          join_way1: join_way1,
-          join_way2: invite,
-          channel: 'www',
-          user_agent : navigator.userAgent,
-          meta : JSON.stringify(meta),
-          agree_sms : agree_sms,
-          agree_dm : agree_dm,
-          agree_push : agree_push,
-          auth_confirm_key: auth_confirm_key,
+//        sns_connect_id : sns_connect_id,
+          smem_id : email,
+          smem_name: name,
+          smem_pwd : password,
+          smem_tel : mobile,
         },
         type : "POST",
         dataType: "json",
         success : function(data){
-
         if(data.retCode == 1){
           ga('send','event','pc_web','signup','idmember');
 
@@ -320,22 +306,22 @@ $(function(){
 
           $(".join_pr").unbind("click");
           $(".join_pr").bind("click",function() {
+        	  
             var joinProc = $(this).attr("id");
+            var stage = "";
             if(joinProc == 'join_continue') {
               ga('send', 'event', 'Join', 'click', 'now',1);
+              stage="/Mypage/Mypage.do";
             }
             if(joinProc == 'join_later') {
               ga('send', 'event', 'Join', 'click', 'after',1);
+              stage="/Main/Main.do";
             }
-            $.doPost('https://www.socar.kr/user/login', {
-              join_type : joinType,
-              join_proc : joinProc,
-              member_id : data.result.member_id,
-              email   : $.trim(email),
-              password  : password,
-              oauth_uid : $('#oauth_uid').val(),
-              provider  : $('#provider').val()
+            $.doPost("<c:url value='/Member/JoinResult.do' />", {
+              smem_id : email,
+              stage : stage
             });
+            
           });
         } else {
           alert(data.retMsg + ' 코드 : ' + data.retCode);
