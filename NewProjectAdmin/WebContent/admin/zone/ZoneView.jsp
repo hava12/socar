@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -245,37 +246,65 @@
     </script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b0979573216988a82c1321345b2297a"></script>	
 	<script>
-		var mapContainer = document.getElementById('map'),
-							mapOption = {center: new daum.maps.LatLng(${dto.soz_latitude}, ${dto.soz_longitude}),//센터 위치
-										level:3 //확대 레벨
-		};
-		var map = new daum.maps.Map(mapContainer,mapOption);//지도 생성
+	var mapContainer = document.getElementById('map'),
+	
+	//지도 옵션
+	mapOption = {center: new daum.maps.LatLng(${dto.soz_latitude}, ${dto.soz_longitude}),//센터 위치
+				level:3 //확대 레벨
+				};
+	//지도 생성
+	var map = new daum.maps.Map(mapContainer,mapOption);
+	
+
+	//마커 표시할 위치
+	var position = new daum.maps.LatLng(${dto.soz_latitude}, ${dto.soz_longitude});
+	
+	//마커 생성
+	var marker = new daum.maps.Marker({position:position, clickable:true});
+	
+	//마커를 지도에 표시
+	marker.setMap(map);
+	
+	//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성
+	var iwContent = '<div style="padding:5px;"><b>${dto.soz_name}</b></div><div>${dto.soz_loc}</div><div><a href="https://www.naver.com"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	iwRemoveable = true;
+	
+	//인포윈도우를 생성
+	var infowindow = new daum.maps.InfoWindow({content:iwContent,removable:iwRemoveable});
+	
+	//마커 위에 인포윈도우를 표시
+	infowindow.open(map,marker);
+
+	//다른 마커들 표시
+	var other = [];
+	var other_position = [];
+	var other_marker = [];
+	var other_iwContent = [];
+	var other_infowindow = [];
+	var size = ${fn:length(list)};
+	
+	function close_info(){
+		//상세보기 페이지 이기 때문
+		infowindow.close(map,marker);
+		for(i=1;i<size+1;i++){
+			other_infowindow[i].close(map,other_marker[i]);
+		}
+	}
+	
+	<c:forEach items="${list}" var="item" varStatus="loop">
+		other_position[${loop.count}] = new daum.maps.LatLng(${item.soz_latitude}, ${item.soz_longitude});
+		other_marker[${loop.count}] = new daum.maps.Marker({position:other_position[${loop.count}], clickable:true});
+		other_marker[${loop.count}].setMap(map);
+		other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div><a href="https://www.naver.com"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+		iwRemoveable = true;
+		other_infowindow[${loop.count}] = new daum.maps.InfoWindow({content:other_iwContent[${loop.count}],removable:iwRemoveable});		
 		
-		//마커 표시할 위치
-		var position = new daum.maps.LatLng(${dto.soz_latitude}, ${dto.soz_longitude});
-		
-		//마커 생성
-		var marker = new daum.maps.Marker({position:position, clickable:true});
-		
-		//마커를 지도에 표시
-		marker.setMap(map);
-		
-		//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성
-		var iwContent = '<div style="padding:5px;"><b>${dto.soz_name}</b></div><div>${dto.soz_loc}</div><div><a href="https://www.naver.com"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
-			iwRemoveable = true;
-		
-		//인포윈도우를 생성
-		var infowindow = new daum.maps.InfoWindow({content:iwContent,removable:iwRemoveable});
-		
-		//마커 위에 인포윈도우를 표시
-		infowindow.open(map,marker);
-		
-		//마커에 클릭이벤트를 등록합니다
-		daum.maps.event.addListener(marker,'click',function(){
-			//마커 위에 인포윈도우를 표시합니다
-			infowindow.open(map,marker);
-		});
-		
+		daum.maps.event.addListener(other_marker[${loop.count}],'click',function(){
+			close_info();
+			other_infowindow[${loop.count}].open(map,other_marker[${loop.count}]);					
+		});	 			
+	</c:forEach>
+	
 	</script>
   </body>
 

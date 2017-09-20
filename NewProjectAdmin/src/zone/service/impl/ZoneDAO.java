@@ -108,6 +108,32 @@ public class ZoneDAO implements ZoneService{
 		}
 		return dto;
 	}
+	@Override
+	public List<ZoneDTO> selectEveryList() throws Exception {
+		String sql = "SELECT S.*,(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0) AS COUNT FROM SO_ZONE S ORDER BY SOZ_CODE DESC";
+	
+		List<ZoneDTO> list = new Vector<ZoneDTO>();
+		try{
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				ZoneDTO dto = new ZoneDTO();
+				dto.setSoz_code(rs.getString(1));
+				dto.setSoz_name(rs.getString(2));
+				dto.setSoz_loc(rs.getString(3));
+				dto.setSoz_maxcar(rs.getString(4));
+				dto.setSoz_date(rs.getDate(5));
+				dto.setSoz_latitude(rs.getString(6));
+				dto.setSoz_longitude(rs.getString(7));
+				dto.setSoz_i_car(rs.getString(8));
+				list.add(dto);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	public int delete(String soz_code){
 		int affected=0;
