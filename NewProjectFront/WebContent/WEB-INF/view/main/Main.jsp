@@ -338,9 +338,9 @@ $(document).ready(function() {
 				<div class="rule1">
 					<ul class="list_rule">
 						<li><a href="<c:url value='/Guide/Guide.do'/>" class="btn1"></a></li>
-						<li><a href="/company" class="btn2"></a></li>
-						<li><a href="/couponbook" class="btn3"></a></li>
-						<li><a href="/guide#socar5" class="btn4"></a></li>
+						<li><a href="<c:url value='/Guide/Company.jsp'/>" class="btn2"></a></li>
+						<li><a href="<c:url value='/Guide/Couponbook.do'/>" class="btn3"></a></li>
+						<li><a href="<c:url value='/Guide/Guide.do#socar5'/>" class="btn4"></a></li>
 						<li><a href="http://goo.gl/e9rRxk" target="_blank" class="btn5"></a></li>
 					</ul>
 				</div>

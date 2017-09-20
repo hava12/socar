@@ -20,7 +20,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="대한민국 1등 카셰어링 쏘카">
 		<meta property="og:description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료">
-		<meta property="og:image" content="https://www.socar.kr/template/asset/images/pc_m_web_meta_tag.jpg">
+		<meta property="og:image" content="${pageContext.request.contextPath}/template/images/pc_m_web_meta_tag.jpg">
 		<meta property="og:url" content="https://www.socar.kr/">
 
 		<!-- 유투브 랜딩 연결 -->
@@ -61,9 +61,9 @@
 
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/couponbook.css?v=20170731' />
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/jquery.mCustomScrollbar.css' />
-<script type="text/javascript" src="/template/couponbook/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="/template/couponbook/../asset/js/jquery.plugin.min.js?v=20150630"></script>
-<script type="text/javascript" src="/template/couponbook/../asset/js/jquery.countdown.min.js?v=20150630"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.plugin.min.js?v=20150630"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.countdown.min.js?v=20150630"></script>
 <script type="text/javascript">
 
 

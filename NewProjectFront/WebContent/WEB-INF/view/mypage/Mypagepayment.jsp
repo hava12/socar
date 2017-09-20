@@ -44,11 +44,11 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505264849"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505264849"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505264849"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505264849"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505264849"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505264899"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505264899"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505264899"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505264899"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505264899"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -59,123 +59,114 @@
 		ga('send', 'pageview');
 		</script>
 
-
-<link rel="stylesheet" type="text/css" href="/template/mypage/../asset/css/mypage.css?v=20170731" />
-<style type="text/css">
-#mypage .gbx li.tip em {display:inline-block;width:76px;}
-#mypage .cols td {padding:17px 0 21px;line-height:20px;vertical-align:top !important}
-#mypage.coupon .cols .info * {padding-left:12px;}
-#mypage.coupon .cols .info .coupon_usage {font-weight:bold;font-size:12px;line-height:20px;color:#333;}
-#mypage.coupon .cols .info .desc {padding-top:3px;font-size:12px;line-height:20px;color:#999;}
-#mypage.coupon .cols .info .list_info {padding-left:14px;padding-top:11px;font-size:12px;line-height:20px;color:#666;}
-#mypage.coupon .cols .info .list_info li {padding-left:0;}
-</style>
-<script type="text/javascript">
-$(function(){
-	$('.coupon_usage').click(function () {
-		alert('쿠폰은 쏘카 예약시 예약확인 단계에서 사용 가능합니다.');
-	});
-
-	$('#coupon_active').bind('click', function () {
-		$.ajax({
-			url : "https://www.socar.kr/mypage/coupon_add",
-			type : "POST",
-			data : {
-				code: $('#coupon_code').val()
-			},
-			dataType: "json",
-			success : function(data){
-				if(data.retCode == '1'){
-					alert('쿠폰 등록이 완료되었습니다.');
-					$('#mwCont .close').click();
-					window.location.href = '/mypage/coupon';
-				}
-				else{
-					alert(data.retMsg + ' 코드 : ' + data.retCode);
-				}
-			},
-			error : function(){
-				alert('err');
-			}
-		});
-
-		return false;
-	});
-})
-</script>
+<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/mypage.css?v=20170731' />
 </head>
-
-<body id="mypage" class="coupon">
+<body id="mypage" class="payment">
 <div id="wrap">
-
 		<jsp:include page="/template/Header.jsp"/>
-
 
 	<div id="container">
 		<div id="content">
-			<h2><img src="/template/mypage/../asset/images/mypage/h2.gif" alt="마이페이지 - 내 정보와 예약내역, 쿠폰 등을 확인할 수 있습니다." /></h2>
-
+			<h2><img src='${pageContext.request.contextPath}/template/image/h2.gif' alt="[마이페이지] 내 정보와 예약내역, 쿠폰 등을 확인할 수 있습니다." /></h2>
 			<div class="box lnb">
-
 				                <!-- lnb -->
                 <ul class="lnb">
-                <li><a href="/mypage" title="내 정보" class="lnb1">내 정보</a></li>
-                <li><a href="/mypage/reserve" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
-                <li><a href="/mypage/coupon" title="내 쿠폰" class="lnb4">내 쿠폰 <span>0</span></a></li>
-                <li><a href="/mypage/payment" title="결제내역" class="lnb5">결제내역</a></li>
+                <li><a href="<c:url value='/Mypage/Mypage.do'/>" title="내 정보" class="lnb1">내 정보</a></li>
+                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagepayment.do'/>" title="결제내역" class="lnb5">결제내역</a></li>
                 </ul>
                 <!-- //lnb -->
-
 				<div class="section">
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/coupon_txt1.gif" alt="내 쿠폰" /> <span>0</span> <img src="/template/mypage/../asset/images/mypage/coupon_txt2.gif" alt="개" /></h3>
-
-						<p class="coupon-add"><a href="#" class="couponAddB"><img src="/template/mypage/../asset/images/mypage/btn_coupon.gif" alt="쿠폰 등록하기" /></a></p>
-
+						<h3 class="tit_corp">
+							<img src='${pageContext.request.contextPath}/template/image/payment_txt1.gif' alt="결제내역" />
+							<a href="/mypage/export_xls/payment" target="_blank" class="btn"><img src='${pageContext.request.contextPath}/template/image/btn_reser1.gif' alt="결제내역 다운로드" /></a>
+						</h3>
+						<p class="my-credit">내 크레딧 <em>0</em>원</p>
 						<div class="gbx">
 							<ul>
-							<li>쿠폰은 <em>최초 대여요금에만 적용</em>됩니다. (보험료/주행요금/연장 대여요금에 적용 불가)</li>
-							<li>쿠폰은 예약당 1개만 사용가능합니다. (중복적용 불가)</li>
-							<li>주중전용 쿠폰은 주말 및 공휴일 사용이 불가능합니다.</li>
-							<li>편도 예약시 편도 전용 쿠폰만 사용 가능하며, 편도요금에만 할인이 제공됩니다. (대여료 할인 불가)</li>
-							<li>예약 취소시, 쿠폰은 유효기간 내에만 재발급됩니다.</li>
-							<li>제주공항/제주공항교차로존은 전용쿠폰을 제외한 모든 쿠폰적용이 불가합니다.</li>
-							<li class='tip'><em>[주말 기준]</em> 금요일 19:00 ~ 일요일 19:00</li>
-							<li class='tip'><em>[공휴일 기준]</em> 해당일 00:00 ~ 24:00</li>
+							<li>요금 결제 시 보유 크레딧이 있으면 크레딧으로 결제 후 부족 금액만 결제카드로 청구합니다.</li>
+							<li>
+								결제카드 변경은 내 정보 페이지에서 할 수 있습니다.
+								<a href="/mypage"><img src='${pageContext.request.contextPath}/template/image/btn_info.gif' alt="내 정보 바로가기" /></a>
+							</li>
 							</ul>
 						</div>
 						
-							<div class="result_none">
-								<p>발급된 쿠폰이 없습니다.</p>
-							</div>
+							<table cellspacing="0" class="cols">
+							<colgroup><col /><col /><col width="270" /><col /><col /><col /></colgroup>
+							<thead>
+							<tr>
+								<th>구분</th>
+								<th>결제일</th>
+								<th>내역</th>
+								<th>결제수단</th>
+								<th>금액</th>
+								<th>매출전표</th>
+							</tr>
+							</thead>
+							<tbody>
+								
+									<tr>
+										<td>과금</td>
+										<td>2016-12-28</td>
+										<td class="detail">강남역 11번출구 (2016-12-28 17:00)</td>
+										<td class="method">신용카드</td>
+										<td class="price">
+											<!-- <a>10,230원</a> -->
+											<a class="btn_payment_detail" href="#" value='uizyp'>10,230원</a>
+											<em style="display:none;">uizyp</em>
+										</td>
+										<td class="chit">
+											
+												<a href="https://office.easypay.co.kr/mcht/receipt/CardReceiptAction.do?controlNo=52684216122801802744" onclick="window.open(this.href,'receipt','width=410,height=770, scrollbars=yes'); return false;">출력</a>
+											
+										</td>
+									</tr>
+								
+									<tr>
+										<td>과금</td>
+										<td>2016-12-28</td>
+										<td class="detail">강남역 11번출구 (2016-12-28 17:00)</td>
+										<td class="method">신용카드</td>
+										<td class="price">
+											<!-- <a>15,530원</a> -->
+											<a class="btn_payment_detail" href="#" value='uizyp'>15,530원</a>
+											<em style="display:none;">uizyp</em>
+										</td>
+										<td class="chit">
+											
+												<a href="https://pg.nicepay.co.kr/issue/CardIssue.jsp?TID=socar0001m01161612281650352288" onclick="window.open(this.href,'receipt','width=410,height=770, scrollbars=yes'); return false;">출력</a>
+											
+										</td>
+									</tr>
+								
+
+							<!--<tr>
+								<td>차감</td>
+								<td>2012.10.25</td>
+								<td class="detail">요금결제</td>
+								<td class="method">결제카드</td>
+								<td class="price">
+									<a href="popup_payment_detail.html" onclick="window.open(this.href,'payment','width=380,height=500, scrollbars=yes'); return false;">98,900원</a>
+								</td>
+								<td class="chit">
+									<a href="#">출력</a>
+								</td>
+							</tr> -->
+							</tbody>
+							</table>
 						
-
 					</div>
-
 					<!-- paginate -->
-<!-- 					<div class="paginate">
-						<a href="#" class="direction prev"><img src="/template/mypage/../asset/images/common/btn_board_prev.gif" alt="첫 페이지" /></a>
-						<strong>1</strong>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
-						<a href="#">6</a>
-						<a href="#">7</a>
-						<a href="#">8</a>
-						<a href="#">9</a>
-						<a href="#">10</a>
-						<a href="#" class="direction next"><img src="/template/mypage/../asset/images/common/btn_board_next.gif" alt="끝 페이지" /></a>
-					</div> -->
-					<!-- //paginate -->
-					<div style="padding-top:30px;">
-						<a href="https://www.socar.kr/couponbook"><img src="/template/mypage/../asset/images/mypage/coupon_couponbook.gif" alt="쏘카의 다양한 쿠폰혜택 살펴보세요! 쏘카 쿠폰북 바로가기" /></a>
+					<div class="paginate">
+						
 					</div>
+					<!-- //paginate -->
 				</div>
 			</div>
 		</div>
-
-
 		
 <style type="text/css">
 
@@ -200,37 +191,6 @@ div.aside ul :first-child a{border-top:1px solid #BBB;}
 div.aside ul :last-child a{border-bottom:1px solid #BBB;}  
 </style>
 <!-- quick -->
-<div class="aside">
-	<ul>
-		<li>
-			<a href="#" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
-		</li>
-		
-		
-		
-		<li>
-			<a href="#" class="quick2" title="주행요금 계산하기">주행요금 계산하기</a>
-		</li>
-		<li>
-			<a href="#" class="quick3" title="쏘카존 신청하기">쏘카존 신청하기</a>
-		</li>
-
-	</ul>
-</div>
-
-<style type="text/css">
-	.aside_more {
-		position: fixed;
-		top: 111px;
-		right: 51px;
-		z-index: 10000;
-	}
-</style>
-
-<div class="aside_more"><img src='${pageContext.request.contextPath}/template/image/banner_more.png' alt="더보기" />
-</div>
-
-<!-- quick -->
 
 	<jsp:include page="/template/Quick.jsp"/>
 
@@ -242,11 +202,9 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 
 <!-- //footer -->
 
-
 	<div class="mwLayer">
 		<div class="bg"></div>
 		<div id="mwCont">
-
 <!-- login -->
 <jsp:include page="/template/Login.jsp" />
 <!-- //login -->
@@ -1764,36 +1722,28 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js?1505264849" charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js?1505264849" charset="utf-8"></script>
-
-
-			<!-- 쿠폰등록 -->
-			<div class="couponAdd mypage mwCont">
-				<form name="couponAdd" method="post" action="">
-					<fieldset>
-						<h3><img src="/template/mypage/../asset/images/mypage/ly_coupon_title.gif" alt="쿠폰등록" /></h3>
-						<div class="bx">
-							<input id="coupon_code" type="text" class="input" />
-						</div>
-						<p class="txt">
-							<em>쿠폰은 유효기간 동안만 등록, 사용가능합니다.</em><br /><!--쿠폰북 레이어 기본 height:246px 원복할때 참고-->
-							쿠폰은 분할 사용할 수 없으며 종류에 따라 사용 조건이<br />있을 수 있습니다.
-							<!--<span style="color:red;display:block;padding-top:7px;">티웨이 항공권 구매자는 SMS로 수신한 예약번호를 입력해주세요.</span>-->
-						</p>
-
-						<p class="centerBtn">
-							<input id="coupon_active" type="image" src="/template/mypage/../asset/images/mypage/btn_ly_confirm.gif" onclick="return false;" alt="확인" />
-							<a href="#" class="close"><img src="/template/mypage/../asset/images/mypage/btn_ly_cancel.gif" alt="취소" /></a>
-						</p>
-					</fieldset>
-				</form>
-			</div>
-			<!-- //쿠폰등록 -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js?1505264899" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js?1505264899" charset="utf-8"></script>
 
 			<a href="#" class="close">닫기</a>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.btn_payment_detail').bind('click', function () {
+		var url  = '/mypage/payment_detail/' + $(this).attr('value');
+		window.open(url, 'payment', 'width=380,height=700, scrollbars=yes');
+		return false;
+	});
+
+	
+	$('h3.tit_corp a').click(function(){
+		alert ('[확인]을 누르면 다운로드가 시작됩니다.\n파일의 비밀번호는 SMS로 발송됩니다.');
+		return true;
+	});
+	
+});
+</script>
 </body>
 </html>
