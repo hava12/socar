@@ -128,9 +128,9 @@ $(function(){
 
 				<div class="section">
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/coupon_txt1.gif" alt="내 쿠폰" /> <span>0</span> <img src="/template/mypage/../asset/images/mypage/coupon_txt2.gif" alt="개" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/coupon_txt1.gif" alt="내 쿠폰" /> <span>0</span> <img src="${pageContext.request.contextPath}/template/image/coupon_txt2.gif" alt="개" /></h3>
 
-						<p class="coupon-add"><a href="#" class="couponAddB"><img src="/template/mypage/../asset/images/mypage/btn_coupon.gif" alt="쿠폰 등록하기" /></a></p>
+						<p class="coupon-add"><a href="#" class="couponAddB"><img src="${pageContext.request.contextPath}/template/image/btn_coupon.gif" alt="쿠폰 등록하기" /></a></p>
 
 						<div class="gbx">
 							<ul>
@@ -169,7 +169,7 @@ $(function(){
 					</div> -->
 					<!-- //paginate -->
 					<div style="padding-top:30px;">
-						<a href="https://www.socar.kr/couponbook"><img src="/template/mypage/../asset/images/mypage/coupon_couponbook.gif" alt="쏘카의 다양한 쿠폰혜택 살펴보세요! 쏘카 쿠폰북 바로가기" /></a>
+						<a href="https://www.socar.kr/couponbook"><img src="${pageContext.request.contextPath}/template/image/coupon_couponbook.gif" alt="쏘카의 다양한 쿠폰혜택 살펴보세요! 쏘카 쿠폰북 바로가기" /></a>
 					</div>
 				</div>
 			</div>
@@ -1564,8 +1564,8 @@ $("#requestList .deleteCancel").click(function(){
 						</p>
 
 						<p class="centerBtn">
-							<input id="coupon_active" type="image" src="/template/mypage/../asset/images/mypage/btn_ly_confirm.gif" onclick="return false;" alt="확인" />
-							<a href="#" class="close"><img src="/template/mypage/../asset/images/mypage/btn_ly_cancel.gif" alt="취소" /></a>
+							<input id="coupon_active" type="image" src="${pageContext.request.contextPath}/template/image/btn_ly_confirm.gif" onclick="return false;" alt="확인" />
+							<a href="#" class="close"><img src="${pageContext.request.contextPath}/template/image/btn_ly_cancel.gif" alt="취소" /></a>
 						</p>
 					</fieldset>
 				</form>

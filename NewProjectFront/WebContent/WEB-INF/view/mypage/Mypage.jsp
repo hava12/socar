@@ -1328,7 +1328,7 @@ function auth_confirm(res) {
 
 	<div id="container">
 		<div id="content">
-			<h2><img src="/template/mypage/../asset/images/mypage/h2.gif" alt="[마이페이지] 내 정보와 예약내역, 쿠폰 등을 확인할 수 있습니다." /></h2>
+			<h2><img src="${pageContext.request.contextPath}/template/image/h2.gif" alt="[마이페이지] 내 정보와 예약내역, 쿠폰 등을 확인할 수 있습니다." /></h2>
 
 			<div class="box lnb">
 
@@ -1344,23 +1344,23 @@ function auth_confirm(res) {
 				<div class="section">
 				
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/index_txt1.gif" alt="기본정보" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/index_txt1.gif" alt="기본정보" /></h3>
 
 						<form name="info1" method="post" action="">
 							<fieldset>
 								<input type="hidden" name="auth_confirm_key" id="auth_confirm_key" value="" />
 								<table cellspacing="0" class="rows">
 								<tr>
-									<th><img src="/template/mypage/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt3.gif" alt="이름" /></th>
 									<td id="user_name">임형택</td>
 								</tr>
 
 								<tr>
-									<th><img src="/template/mypage/../asset/images/mypage/index_txt2.gif" alt="이메일" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/index_txt2.gif" alt="이메일" /></th>
 									<td>keatmil@naver.com</td>
 								</tr>
 								<tr>
-									<th><img src="/template/mypage/../asset/images/member/join_step2_txt6.gif" alt="비밀번호" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt6.gif" alt="비밀번호" /></th>
 									<td>
 									
 										<input type="password" class="input" style="width:115px" value="1234567" readonly/>
@@ -1370,7 +1370,7 @@ function auth_confirm(res) {
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/mypage/../asset/images/member/join_step2_txt8.gif" alt="휴대폰 번호" /> <em class="star" title="필수항목"></em></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt8.gif" alt="휴대폰 번호" /> <em class="star" title="필수항목"></em></th>
 									<td>
 										<input id="user_phone" type="text" class="input" style="width:115px" value="01064318680" readonly />
 										<input id="confirm_id" type="text" style="display:none;" value="" readonly />
@@ -1432,7 +1432,7 @@ function auth_confirm(res) {
 								</table>
 
 								<p class="centerBtn">
-									<input id="btn_update_basic" type="image" src="/template/mypage/../asset/images/customer/btn_confirm.gif" alt="확인" />
+									<input id="btn_update_basic" type="image" src="${pageContext.request.contextPath}/template/image/btn_confirm.gif" alt="확인" />
 									
 								</p>
 							</fieldset>
@@ -1441,26 +1441,26 @@ function auth_confirm(res) {
 					
 					<!-- SNS 연동정보 -->
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_sns_n.gif" alt="SNS계정 연동 정보" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/tit_sns_n.gif" alt="SNS계정 연동 정보" /></h3>
 						<table cellspacing="0" class="rows tbl_sns">
 						<tbody>
 							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_nv_n.gif" alt="" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/ico_nv_n.gif" alt="" /></th>
 							
 								<td id="naver_interlock_info">keatmil@naver.com<a href="#" id="naver_close">
-									<img src="/template/mypage/../asset/images/mypage/ico_d.gif" alt="연동 해제하기" class="ico_d" /></a></td>
+									<img src="${pageContext.request.contextPath}/template/image/ico_d.gif" alt="연동 해제하기" class="ico_d" /></a></td>
 							
 							</tr>
 
 							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_fb_n.gif" alt="" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/ico_fb_n.gif" alt="" /></th>
 							
 								<td><a class="btnS" href="#" id="fb_interlock"><span>연결하기</span></a></td>
 							
 							</tr>
 
 							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_cco.gif" alt="" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/ico_cco.gif" alt="" /></th>
 							
 								<td><a class="btnS" href="#" id="kakao_interlock"><span>연결하기</span></a></td>
 							
@@ -1476,7 +1476,7 @@ function auth_confirm(res) {
 					
 					<!-- noti 수신설정 S -->
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_mkt_agree.gif" alt="마케팅 메시지 수신 동의" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/tit_mkt_agree.gif" alt="마케팅 메시지 수신 동의" /></h3>
 						<table cellspacing="0" class="rows">
 							<tbody>
 							<tr>
@@ -1515,13 +1515,13 @@ function auth_confirm(res) {
 
 				
 					<div class="group">
-						<h3 id="li_pos"><img src="/template/mypage/../asset/images/mypage/index_txt3.gif" alt="운전면허 정보" /></h3>
+						<h3 id="li_pos"><img src="${pageContext.request.contextPath}/template/image/index_txt3.gif" alt="운전면허 정보" /></h3>
 
 						<form name="info2" id='license_form' method="post" action="">
 							<fieldset>
 								<table cellspacing="0" class="rows">
 								<tr>
-									<th><img src="/template/mypage/../asset/images/mypage/index_txt4.gif" alt="면허종류" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/index_txt4.gif" alt="면허종류" /></th>
 									<td>
 										<label for="type1">
 											<input type="radio" id="type1" name="driverType" checked="checked" /> 1종 보통
@@ -1535,7 +1535,7 @@ function auth_confirm(res) {
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/mypage/../asset/images/mypage/index_txt5.gif" alt="면허번호" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/index_txt5.gif" alt="면허번호" /></th>
 									<td>
 										<select id="license_loc" style="width:108px">
 										<option selected="selected" value="서울">서울</option>
@@ -1580,7 +1580,7 @@ function auth_confirm(res) {
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/mypage/../asset/images/mypage/index_txt6.gif" alt="적성검사 만료일" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/index_txt6.gif" alt="적성검사 만료일" /></th>
 									<td>
 										<div class="picker" id="picker1">
 											
@@ -1590,7 +1590,7 @@ function auth_confirm(res) {
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/mypage/../asset/images/mypage/index_txt7.gif" alt="면허 발급일" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/index_txt7.gif" alt="면허 발급일" /></th>
 									<td>
 										<div class="picker" id="picker2"></div>
 									</td>
@@ -1627,7 +1627,7 @@ function auth_confirm(res) {
 					</div>
 
 					<div class="group mypagecard">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_card.gif" alt="결제카드 정보" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/tit_card.gif" alt="결제카드 정보" /></h3>
 						<div class="txt_more">선택된 카드로 결제가 진행됩니다.</div>
 
 					<!-- 법인회원 제외 member_type == P-->
@@ -1647,7 +1647,7 @@ function auth_confirm(res) {
 						
 						
 							<li class="lst" id="open_register_card_layer_li">
-								<a href="#" class="btn" id="open_register_card_layer"><img src="/template/mypage/../asset/images/mypage/btn_card_add.gif" /></a>
+								<a href="#" class="btn" id="open_register_card_layer"><img src="${pageContext.request.contextPath}/template/image/btn_card_add.gif" /></a>
 							</li>
 						
 						</ul>
@@ -1665,13 +1665,13 @@ function auth_confirm(res) {
 					</div>
 
           <div class="group">
-						<h3 id="li_pos"><img src="/template/mypage/../asset/images/mypage/title_Tmembership.png" alt="T멤버십 정보"></h3>
+						<h3 id="li_pos"><img src="${pageContext.request.contextPath}/template/image/title_Tmembership.png" alt="포인트 정보"></h3>
 						<form>
 							<fieldset>
 								<table cellspacing="0" class="rows">
   								<tbody>
                     <tr>
-    									<th><img src="/template/mypage/../asset/images/mypage/text_cardnumber.png" alt="카드번호"></th>
+    									<th><img src="${pageContext.request.contextPath}/template/image/text_cardnumber.png" alt="카드번호"></th>
     									<td>
                         
                         <input type="text" class="input-four-digit js-input-four-digit" data-order="1" maxlength="4" />
@@ -1685,7 +1685,7 @@ function auth_confirm(res) {
     									</td>
     								</tr>
     								<tr>
-    									<th><img src="/template/mypage/../asset/images/mypage/text_balance.png" alt="잔액"></th>
+    									<th><img src="${pageContext.request.contextPath}/template/image/text_balance.png" alt="잔액"></th>
     									<td class="js-t-membership-value"></td>
     								</tr>
   								</tbody>
@@ -1966,7 +1966,7 @@ function auth_confirm(res) {
 
 					
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/index_txt10.gif" alt="회원제 정보" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/index_txt10.gif" alt="회원제 정보" /></h3>
 
 						<table cellspacing="0" class="cols">
 						<colgroup><col width="120" /><col /><col /><col /></colgroup>
@@ -2009,7 +2009,7 @@ function auth_confirm(res) {
 
 				
 					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/index_txt12.gif" alt="회원탈퇴" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/index_txt12.gif" alt="회원탈퇴" /></h3>
 						<div class="gbx">
 							<div style="margin-bottom: 3px;">쏘카를 이용하시는데 불편함이 있으셨나요?</div>
 							<ul>
@@ -2019,7 +2019,7 @@ function auth_confirm(res) {
 
 						<p class="centerBtn">
 							<a id="btn_user_drop" href="#" class="">
-								<img src="/template/mypage/../asset/images/mypage/btn_leave.gif" alt="탈퇴하기" />
+								<img src="${pageContext.request.contextPath}/template/image/btn_leave.gif" alt="탈퇴하기" />
 							</a>
 						</p>
 
@@ -3376,18 +3376,18 @@ $("#requestList .deleteCancel").click(function(){
 			<div class="mobile mypage mwCont">
 				<form name="mobile" method="post" action="">
 					<fieldset>
-						<h3><img src="/template/mypage/../asset/images/mypage/ly_mobile_title.gif" alt="휴대폰번호 변경" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/ly_mobile_title.gif" alt="휴대폰번호 변경" /></h3>
 						<div class="bx">
 							<table cellspacing="0">
 							<tr>
-								<th><img src="/template/mypage/../asset/images/member/join_step2_txt8.gif" alt="휴대폰 번호" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt8.gif" alt="휴대폰 번호" /></th>
 								<td>
 									<input id="layer_phone_num" type="text" class="input" style="width:115px" />
-									<input id="layer_phone_request" type="image" src="/template/mypage/../asset/images/mypage/btn_ly_mobile.gif" alt="인증번호 전송" />
+									<input id="layer_phone_request" type="image" src="${pageContext.request.contextPath}/template/image/btn_ly_mobile.gif" alt="인증번호 전송" />
 								</td>
 							</tr>
 							<tr>
-								<th><img src="/template/mypage/../asset/images/member/join_step2_txt9.gif" alt="인증번호" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt9.gif" alt="인증번호" /></th>
 								<td>
 									<input id="layer_confirm_num" type="text" class="input" style="width:115px" />
 								</td>
@@ -3397,8 +3397,8 @@ $("#requestList .deleteCancel").click(function(){
 						<p class="txt">명의도용 방지를 위하여 휴대폰 소유 확인 및 인증이 필요합니다.</p>
 
 						<p class="centerBtn">
-							<input id="layer_btn_phone" type="image" src="/template/mypage/../asset/images/mypage/btn_ly_confirm.gif" alt="확인" />
-							<a href="#" class="close"><img src="/template/mypage/../asset/images/mypage/btn_ly_cancel.gif" alt="취소" /></a>
+							<input id="layer_btn_phone" type="image" src="${pageContext.request.contextPath}/template/image/btn_ly_confirm.gif" alt="확인" />
+							<a href="#" class="close"><img src="${pageContext.request.contextPath}/template/image/btn_ly_cancel.gif" alt="취소" /></a>
 						</p>
 					</fieldset>
 				</form>
@@ -3409,17 +3409,17 @@ $("#requestList .deleteCancel").click(function(){
 			<div class="passwordL mypage mwCont">
 				<form name="password" method="post" action="">
 					<fieldset>
-						<h3><img src="/template/mypage/../asset/images/mypage/ly_password_title.gif" alt="비밀번호 변경" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/ly_password_title.gif" alt="비밀번호 변경" /></h3>
 						<div class="bx">
 							<table cellspacing="0">
 							<tr>
-								<th><img src="/template/mypage/../asset/images/member/join_step2_txt6.gif" alt="비밀번호" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt6.gif" alt="비밀번호" /></th>
 								<td>
 									<input id="layer_passwd1" type="password" class="input" style="width:155px" />
 								</td>
 							</tr>
 							<tr>
-								<th><img src="/template/mypage/../asset/images/member/join_step2_txt7.gif" alt="비밀번호 확인" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt7.gif" alt="비밀번호 확인" /></th>
 								<td>
 									<input id="layer_passwd2" type="password" class="input" style="width:155px" />
 								</td>
@@ -3429,8 +3429,8 @@ $("#requestList .deleteCancel").click(function(){
 						<p class="txt">6-20자리의 영문, 숫자만 사용할 수 있습니다.</p>
 
 						<p class="centerBtn">
-							<input id="layer_btn_passwd" type="image" src="/template/mypage/../asset/images/mypage/btn_ly_confirm.gif" onclick="return false;" alt="확인" />
-							<a href="#" class="close"><img src="/template/mypage/../asset/images/mypage/btn_ly_cancel.gif" alt="취소" /></a>
+							<input id="layer_btn_passwd" type="image" src="${pageContext.request.contextPath}/template/image/btn_ly_confirm.gif" onclick="return false;" alt="확인" />
+							<a href="#" class="close"><img src="${pageContext.request.contextPath}/template/image/btn_ly_cancel.gif" alt="취소" /></a>
 						</p>
 					</fieldset>
 				</form>
@@ -3438,12 +3438,12 @@ $("#requestList .deleteCancel").click(function(){
 			<!-- //password -->
 			<!-- driver license -->
 			<div class="licenseL mypage mwCont">
-				<h3><img src="/template/mypage/../asset/images/mypage/ly_license_title.gif" alt="운전면허 정보 변경" /></h3>
+				<h3><img src="${pageContext.request.contextPath}/template/image/ly_license_title.gif" alt="운전면허 정보 변경" /></h3>
 				<p class="txt">운전면허 정보 변경이 완료되었습니다.<br />
 				<p class="txt">운전면허 정보 진위 여부 확인 후 차량 예약이 가능합니다.<br />확인은 1-3일 소요됩니다.</p>
 				<p class="txt">바로 서비스를 이용하셔야 하면, <em>고객센터 1661-3315</em>로 <br />문의해주세요.</p>
 				<p class="centerBtn">
-					<a href="#" class="close"><img src="/template/mypage/../asset/images/common/btn_close.gif" alt="닫기" /></a>
+					<a href="#" class="close"><img src="${pageContext.request.contextPath}/template/image/btn_close.gif" alt="닫기" /></a>
 				</p>
 			</div>
 			<!-- //driver license -->
