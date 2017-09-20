@@ -133,8 +133,8 @@ $(function(){
 								<c:forEach items="${list}" var="item">
 									<tr>
 										<td>${item.not_no}</td>
-										<td class="subj"><a href="/notice/873">${item.not_title}</a></td>
-										<td>${item.postdate}</td>
+										<td class="subj"><a href="/notice/${item.not_no}">${item.not_title}</a></td>
+										<td>${item.not_postdate}</td>
 									</tr>
 								</c:forEach>
 							</c:if>

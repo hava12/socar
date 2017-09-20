@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!-- 자바빈 별칭:매퍼파일에서 환경설정 파일로 위치됨. -->
 	<typeAliases>
 		<typeAlias alias="Car_ModelDto" type="guide.service.Car_ModelDto"/>
+		<typeAlias alias="Noti_ModelDto" type="notice.service.Noti_ModelDto"/>
 	</typeAliases>
 	
 	
@@ -31,6 +32,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 매퍼파일(SQL쿼리 결과와 자바빈 매핑) 정보 설정 -->	
 	<mappers>
 		<mapper resource="mybatis/Guide_mybatis.xml"/>
+		<mapper resource="mybatis/Notice_mybatis.xml"/>
+		
 	</mappers>
 	
 	

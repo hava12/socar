@@ -398,38 +398,7 @@ function auth_confirm(res) {
 
             </ul>
 
-            <!-- 가족회원 체크 -->
-            <div id="family" class="check">
-              <h4><img src='${pageContext.request.contextPath}/template/image/join_index_txt10.gif' alt="가족대표의 아이디(이메일)를 입력해주세요." /></h4>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt11.gif' alt="쏘카에 이미 정회원으로 가입된 가족대표가 있어야만 가입 가능합니다." /></p>
-              <p class="ch">
-                <input type="text" class="input" value="아이디(이메일)" />
-                <input type="image" src='${pageContext.request.contextPath}/template/image/btn_confirm_b_s.gif' onclick="return false;" title="확인" />
-              </p>
-              <p class="alert">
-                해당 이메일로 가입된 정회원이 없습니다.
-              </p>
-
-              <a href="#" class="close">닫기</a>
-            </div>
-            <!-- //가족회원 체크 -->
-
-            <!-- 법인회원 체크 -->
-            <div id="corp" class="check">
-              <h4><img src='${pageContext.request.contextPath}/template/image/join_index_txt12.gif' alt="소속된 법인/단체의 명칭을 입력해주세요." /></h4>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt13.gif' alt="쏘카에 이미 법인/단체가 등록되어 있어야만 가입 가능합니다." /></p>
-              <p class="ch">
-                <input id="input_corp_name" type="text" class="input" value="" />
-                                <em id="corp_id" style="display:none;"></em>
-                <input id="btn_corp_submit" type="image" src='${pageContext.request.contextPath}/template/image/btn_confirm_b_s.gif' title="확인" />
-              </p>
-              <p id="corp_alert" class="alert" style="display:none;">
-                	해당 명칭과 일치하는 법인 또는 단체가 없습니다.<br />사업자등록증에 기재된 명칭을 입력해주세요.
-              </p>
-
-              <a href="#" class="close">닫기</a>
-            </div>
-            <!-- //법인회원 체크 -->
+            
 
             <!-- 제휴코드 체크 -->
             <div id="member_referer" class="check">
