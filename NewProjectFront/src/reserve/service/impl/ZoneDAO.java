@@ -13,9 +13,12 @@ import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Service;
+
 import reserve.service.ZoneDTO;
 import reserve.service.ZoneService;
 
+@Service("ZoneDAO")
 public class ZoneDAO implements ZoneService{
 	
 	private Connection conn;
@@ -27,6 +30,7 @@ public class ZoneDAO implements ZoneService{
 			Context ctx = new InitialContext();
 			DataSource source = (DataSource)ctx.lookup(context.getInitParameter("TOMCAT_JNDI_ROOT")+"/jdbc/socar");
 			conn = source.getConnection();
+			System.out.println("hi");
 		}
 		catch(SQLException | NamingException e){
 			e.printStackTrace();

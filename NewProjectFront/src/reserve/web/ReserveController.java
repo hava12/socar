@@ -20,6 +20,8 @@ public class ReserveController {
 	@RequestMapping("/Reserve/Reserve.do")
 	public String reserve(Model model) throws Exception{
 		List<ZoneDTO> list = dao.selectEveryList();
+		System.out.println(list.size());
+		
 		model.addAttribute("list", list);
 		return "/reserve/Reserve"; 
 	}
