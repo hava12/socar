@@ -1445,42 +1445,9 @@ function auth_confirm(res) {
 						</form>
 					</div>
 					
-					<!-- SNS 연동정보 -->
-					<div class="group">
-						<h3><img src="${pageContext.request.contextPath}/template/image/tit_sns_n.gif" alt="SNS계정 연동 정보" /></h3>
-						<table cellspacing="0" class="rows tbl_sns">
-						<tbody>
-							<tr>
-								<th><img src="${pageContext.request.contextPath}/template/image/ico_nv_n.gif" alt="" /></th>
-							
-								<td id="naver_interlock_info">keatmil@naver.com<a href="#" id="naver_close">
-									<img src="${pageContext.request.contextPath}/template/image/ico_d.gif" alt="연동 해제하기" class="ico_d" /></a></td>
-							
-							</tr>
-
-							<tr>
-								<th><img src="${pageContext.request.contextPath}/template/image/ico_fb_n.gif" alt="" /></th>
-							
-								<td><a class="btnS" href="#" id="fb_interlock"><span>연결하기</span></a></td>
-							
-							</tr>
-
-							<tr>
-								<th><img src="${pageContext.request.contextPath}/template/image/ico_cco.gif" alt="" /></th>
-							
-								<td><a class="btnS" href="#" id="kakao_interlock"><span>연결하기</span></a></td>
-							
-							</tr>
-
-						</tbody>
-						</table>
-						<ul class="tip mt10">
-							<li>SNS 아이디는 로그인 및 한줄댓글 공유에 사용됩니다.</li>
-						</ul>
-					</div>
-					<!-- //SNS 연동정보 -->
 					
-
+					
+					
 				
 					<div class="group">
 						<h3 id="li_pos"><img src="/template/mypage/../asset/images/mypage/index_txt3.gif" alt="운전면허 정보" /></h3>
@@ -1932,48 +1899,6 @@ function auth_confirm(res) {
 						</ul>
 					</div>
 
-					
-					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/index_txt10.gif" alt="회원제 정보" /></h3>
-
-						<table cellspacing="0" class="cols">
-						<colgroup><col width="120" /><col /><col /><col /></colgroup>
-						<thead>
-						<tr>
-							<th>종류</th>
-							<th style="width: 136px;">연회비</th>
-							<th>보험혜택</th>
-							<th>이용요금</th>
-						</tr>
-						</thead>
-						<tbody>
-						
-							<tr>
-								<td><strong>SO회원</strong></td>
-								<td>
-
-									<strong><em style="color: Red">무료</em></strong>
-								</td>
-								<td>
-									대인, 대물, 자손 적용<br />
-									<br />
-									자기부담금 선택 가능<br />
-									- 자기부담금 최대 30만원 : 1일 기준 7,000원~<br />
-									- 자기부담금 최대 70만원 : 1일 기준 5,000원~<br />
-									<br />
-									휴차보상료 별도 부과
-								</td>
-								<td>최대 70% 할인<br />(주중/주말/심야 할인)</td>
-							</tr>
-						
-						</tbody>
-						</table>
-<!--                        <p class="centerBtn">
-							<a href="#"><img src="/template/mypage/../asset/images/mypage/btn_change.gif" alt="회원제 변경하기" /></a>
-						</p> -->
-					</div>
-					
-				
 
 				
 					<div class="group">
