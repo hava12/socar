@@ -746,128 +746,19 @@ Tel : 1661-3315, Fax : 02-6969-9333, 주소 : 제주특별자치도 제주시 �
 <!-- //login -->
 
 <!-- finding id -->
-<div class="findingId finding mwCont">
-	<ul>
-		<li><a href="#" class="lg1" title="아이디 찾기">아이디 찾기</a></li>
-		<li><a href="#" class="lg2" title="비밀번호 찾기">비밀번호 찾기</a></li>
-	</ul>
-
-	<form name="findingId" method="post" action="">
-		<fieldset>
-			<dl>
-				<dt><img src='${pageContext.request.contextPath}/template/image/finding_txt3.gif' alt="이름" /></dt>
-				<dd><input id="find_email_name" type="text" class="input" /></dd>
-				<dt><img src='${pageContext.request.contextPath}/template/image/finding_txt4.gif' alt="휴대폰" /></dt>
-				<dd>
-					<select id="find_email_num1" style="width:51px;">
-						<option selected="selected">010</option>
-						<option>011</option>
-						<option>016</option>
-						<option>017</option>
-						<option>018</option>
-						<option>019</option>
-					</select> -
-					<input id="find_email_num2" type="text" class="input" style="padding:0; width:41px; text-align:center;" /> -
-					<input id="find_email_num3" type="text" class="input" style="padding:0; width:41px; text-align:center;" />
-				</dd>
-			</dl>
-			<input id="btn_find_email" type="image" class="submit" src='${pageContext.request.contextPath}/template/image/btn_confirm_b.gif' />
-		</fieldset>
-	</form>
-</div>
-<!-- //finding id -->
-
 <!-- finding pw -->
-<div class="findingPw finding mwCont">
-	<ul>
-		<li><a href="#" class="lg1" title="아이디 찾기">아이디 찾기</a></li>
-		<li><a href="#" class="lg2" title="비밀번호 찾기">비밀번호 찾기</a></li>
-	</ul>
+<jsp:include page="/template/FindingIdPw.jsp"/>
 
-	<form name="findingPw" method="post" action="">
-		<fieldset>
-			<dl>
-				<dt><img src='${pageContext.request.contextPath}/template/image/finding_txt2.gif' alt="아이디 (이메일)" /></dt>
-				<dd><input id="find_pw_email" type="text" class="input" /></dd>
-				<dt><img src='${pageContext.request.contextPath}/template/image/finding_txt3.gif' alt="이름" /></dt>
-				<dd><input id="find_pw_name" type="text" class="input" /></dd>
-				<dt><img src='${pageContext.request.contextPath}/template/image/finding_txt4.gif' alt="휴대폰" /></dt>
-				<dd>
-					<select id="find_pw_num1" style="width:51px;">
-					<option selected="selected">010</option>
-					<option>011</option>
-					<option>016</option>
-					<option>017</option>
-					<option>018</option>
-					<option>019</option>
-					</select> -
-					<input id="find_pw_num2" type="text" class="input" style="padding:0; width:41px; text-align:center;" /> -
-					<input id="find_pw_num3" type="text" class="input" style="padding:0; width:41px; text-align:center;" />
-				</dd>
-			</dl>
-			<input id="btn_find_pw" type="image" class="submit" src='${pageContext.request.contextPath}/template/image/btn_confirm_b.gif' />
-		</fieldset>
-	</form>
-</div>
-<!-- //finding pw -->
 
             <!-- 주행요금 계산기 -->
-            <div class="oilL mwCont">
-                <h4><img src='${pageContext.request.contextPath}/template/image/oil_txt1_n.gif' alt="주행요금 계산기" /></h4>
-                <form name="oil" method="post" action="">
-                    <fieldset>
-                        <div class="oilForm">
-                            <dl>
-                            <dt><img src='${pageContext.request.contextPath}/template/image/oil_txt2.gif' alt="차종" /></dt>
-                            <dd>
-                            	<select id="oil_carlist" class='oilSelect' style="width:165px;height:28px;font-size: 12px;border-color: #c6cace;">
-                            	<option selected='selected' value="">차종 선택</option>
-								</select>
-                            </dd>
-                            <dt><img src='${pageContext.request.contextPath}/template/image/oil_txt3.gif' alt="거리" /></dt>
-                            <dd>
-                                <input type="text" id="oilDistance" class="input" />
-                            </dd>
-                            </dl>
-                            <input type="image" src='${pageContext.request.contextPath}/template/image/btn_calculate.gif' class="submit" alt="계산" />
-                        </div>
-                        <p class="oilTxt">
-                            <img src='${pageContext.request.contextPath}/template/image/finding_txt4.gif' alt="차종과 거리를 선택해주세요" />
-                        </p>
-                        <p class="oilResult">
-                            <img src='${pageContext.request.contextPath}/template/image/oil_txt15_n.gif' alt="예상 주행요금은" />
-                            <span>14,500</span>
-                            <img src='${pageContext.request.contextPath}/template/image/oil_txt16.gif' alt="원 입니다." />
-                        </p>
-                    </fieldset>
-                </form>
-
-                <p class="txt">
-                    <img src='${pageContext.request.contextPath}/template/image/oil_txt6_n.gif' alt="주행요금은 차량 이용 후 실제 이동거리에 따라 부과되므로, 예상 주행요금과 차이가 있을 수 있습니다." />
-                </p>
-
-                <div class="noti">
-                    <h5><img src='${pageContext.request.contextPath}/template/image/oil_txt7.gif' alt="계산기이용하기" /></h5>
-                    <ol>
-                    <li><img src='${pageContext.request.contextPath}/template/image/oil_txt8.gif' alt="1. 지도서비스에서 출발, 도착지를 설정후 자동차 길찾기를 하세요." /></li>
-                    <li><img src='${pageContext.request.contextPath}/template/image/oil_txt9.gif' alt="2. 길찾기 결과의 총거리를 확인하세요." /></li>
-                    <li><img src='${pageContext.request.contextPath}/template/image/oil_txt10_n.gif' alt="3. 차종과 총거리를 입력하고 주행요금을 미리 예상해보세요." /></li>
-                    </ol>
-
-                    <dl>
-                    <dt><img src='${pageContext.request.contextPath}/template/image/oil_txt11.gif' alt="지도서비스" /></dt>
-                    <dd><a href="http://map.daum.net/?target=car" target="_blank"><img src='${pageContext.request.contextPath}/template/asset/images/common/oil_txt12.gif' alt="다음" /></a></dd>
-                    <dd><a href="http://map.naver.com/index.nhn?menu=route" target="_blank"><img src='${pageContext.request.contextPath}/template/image/oil_txt13.gif' alt="네이버" /></a></dd>
-                    </dl>
-                </div>
-            </div>
+            <jsp:include page="/template/Faretem.jsp"/>
             <!-- //주행요금 계산기 -->
 			
 
 			<!-- 쏘카존 신청하기 -->
 			<jsp:include page="/template/Socarzon.jsp"/>
 			<!-- 친구추천 -->
-			
+			<jsp:include page="/template/Friend.jsp"/>
 			<!-- //친구추천 -->
 
 

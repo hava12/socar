@@ -23,4 +23,8 @@ public class MyPageController {
 	public String mypagecoupon() throws Exception{
 		return "/mypage/Mypagecoupon";
 	}
+	@RequestMapping("/Mypage/Couponbook.do")
+	public String couponbook() throws Exception{
+		return "/mypage/Couponbook";
+	}
 }
