@@ -20,7 +20,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="대한민국 1등 카셰어링 쏘카">
 		<meta property="og:description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료">
-		<meta property="og:image" content="https://www.socar.kr/template/asset/images/pc_m_web_meta_tag.jpg">
+		<meta property="og:image" content="${pageContext.request.contextPath}/template/images/pc_m_web_meta_tag.jpg">
 		<meta property="og:url" content="https://www.socar.kr/">
 
 		<!-- 유투브 랜딩 연결 -->
@@ -61,11 +61,11 @@
 
 
 <script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=9200376e38c344c4dc2ee20a76b6ba19b2605d06&libraries=services" charset="utf-8"></script>
-<link rel="stylesheet" type="text/css" href="/template/mypage/../asset/css/mypage.css?v=20170731" />
-<link rel="stylesheet" href="/template/mypage/../asset/css/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="/template/mypage/../asset/css/jquery.ui.timepicker.css" />
-<script src="/template/mypage/../asset/js/jquery-ui.js"></script>
-<script src="/template/mypage/../asset/js/jquery.ui.timepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/css/mypage.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/template/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/css/jquery.ui.timepicker.css" />
+<script src="${pageContext.request.contextPath}/template/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/template/js/jquery.ui.timepicker.js"></script>
 <script type="text/javascript">
 var $map_small = null;
 var $map_small_marker = null;
@@ -471,10 +471,10 @@ $(function(){
 			<div class="box lnb">
 				                <!-- lnb -->
                 <ul class="lnb">
-                <li><a href="/mypage" title="내 정보" class="lnb1">내 정보</a></li>
-                <li><a href="/mypage/reserve" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
-                <li><a href="/mypage/coupon" title="내 쿠폰" class="lnb4">내 쿠폰 <span>0</span></a></li>
-                <li><a href="/mypage/payment" title="결제내역" class="lnb5">결제내역</a></li>
+                <li><a href="<c:url value='/Mypage/Mypage.do'/>" title="내 정보" class="lnb1">내 정보</a></li>
+                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagepayment.do'/>" title="결제내역" class="lnb5">결제내역</a></li>
                 </ul>
                 <!-- //lnb -->
 

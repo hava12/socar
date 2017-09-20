@@ -1334,10 +1334,10 @@ function auth_confirm(res) {
 
 				                <!-- lnb -->
                 <ul class="lnb">
-                <li><a href="/mypage" title="내 정보" class="lnb1">내 정보</a></li>
-                <li><a href="/mypage/reserve" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
-                <li><a href="/mypage/coupon" title="내 쿠폰" class="lnb4">내 쿠폰 <span>0</span></a></li>
-                <li><a href="/mypage/payment" title="결제내역" class="lnb5">결제내역</a></li>
+                <li><a href="<c:url value='/Mypage/Mypage.do'/>" title="내 정보" class="lnb1">내 정보</a></li>
+                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagepayment.do'/>" title="결제내역" class="lnb5">결제내역</a></li>
                 </ul>
                 <!-- //lnb -->
 
