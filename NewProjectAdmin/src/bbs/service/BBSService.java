@@ -14,13 +14,13 @@ public interface BBSService {
 	public int insertNotice(NoticeDto dto, String[] srcs) throws Exception;
 	
 	//차량 신청 게시판 리스트
-	public List<RqCarDTO> select_RqCarList() throws Exception;
+	public List<RqCarDTO> select_RqCarList(int start,int end) throws Exception;
 	
 	//차량 신청 게시판 게시글 삭제
 	public int delete_RqCarList(String rqc_code) throws Exception;
 	
 	//주차장 신청 게시판 리스트
-	public List<RqLocDTO> select_RqLocList() throws Exception;
+	public List<RqLocDTO> select_RqLocList(int start,int end) throws Exception;
 	//주차장 신청 게시판 게시글 삭제
 	public int delete_RqLocList(String rql_code) throws Exception;
 	

@@ -197,11 +197,16 @@ public class BbsDao implements BBSService {
 				return total;
 			}///////////////////getTotalRecordCount
 			@Override
-			public List<RqCarDTO> select_RqCarList() throws Exception {
+			public List<RqCarDTO> select_RqCarList(int start,int end){
 				List<RqCarDTO> list = new Vector<RqCarDTO>();
-				String sql = "SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE";
+				/*SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE*/
+				String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE) T) WHERE R BETWEEN ? AND ?";
+				try {
 				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1,start);
+				psmt.setInt(2,end);
 				rs = psmt.executeQuery();
+				
 				while(rs.next()){
 					RqCarDTO dto = new RqCarDTO();
 					dto.setRqc_code(rs.getString(1));
@@ -213,17 +218,38 @@ public class BbsDao implements BBSService {
 					dto.setRqc_dis_count(rs.getString(7));
 					list.add(dto);			
 				}
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 				return list;
 			}
 
+			//총 레코드 수 얻기용]
+			public int getRqTotalRecordCount(){
+				int total =0;
+				String sql="SELECT COUNT(*) FROM (SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE)";
+				try {
+					psmt = conn.prepareStatement(sql);
+					rs = psmt.executeQuery();
+					rs.next();
+					total = rs.getInt(1);
+				} catch (SQLException e) {e.printStackTrace();}
+				
+				return total;
+			}///////////////////getTotalRecordCount
 
 
 
 			@Override
-			public List<RqLocDTO> select_RqLocList() throws Exception {
+			public List<RqLocDTO> select_RqLocList(int start,int end){
 				List<RqLocDTO> list = new Vector<RqLocDTO>();
-				String sql = "SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE";
+				/*SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE*/
+				
+				String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE) T) WHERE R BETWEEN ? AND ?";
+				try {
 				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, start);
+				psmt.setInt(2, end);
 				rs = psmt.executeQuery();
 				while(rs.next()){
 					RqLocDTO dto = new RqLocDTO();
@@ -236,10 +262,26 @@ public class BbsDao implements BBSService {
 					dto.setRql_dis_count(rs.getString(7));
 					list.add(dto);
 				}
-				
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 				return list;
 			}
 
+			//총 레코드 수 얻기용]
+			public int getRqlocTotalRecordCount(){
+				int total =0;
+				String sql="SELECT COUNT(*) FROM (SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE)";
+				try {
+					psmt = conn.prepareStatement(sql);
+					rs = psmt.executeQuery();
+					rs.next();
+					total = rs.getInt(1);
+				} catch (SQLException e) {e.printStackTrace();}
+				
+				return total;
+			}///////////////////getTotalRecordCount
+			
 
 
 

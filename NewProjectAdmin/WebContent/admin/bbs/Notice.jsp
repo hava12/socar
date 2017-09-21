@@ -71,12 +71,12 @@
               
               <thead>
                 <tr>
-                  <th width="10%">번호</th>
-                  <th width="50%">제목</th>
-                  <th width="15%">작성자</th>
-                  <th width="15%">작성일</th> 
+                  <th style="text-align: center; width: 10%">번호</th>
+                  <th style="text-align: center; width: 50%">제목</th>
+                  <th style="text-align: center; width: 15%">작성자</th>
+                  <th style="text-align: center; width: 15%">작성일</th> 
                   <!-- <th>수정</th> --> 
-                  <th width="10%">삭제</th> 
+                  <th style="text-align: center; width: 10%">삭제</th> 
                                    
                 </tr>
               </thead>
