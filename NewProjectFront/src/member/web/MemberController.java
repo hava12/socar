@@ -88,6 +88,15 @@ public class MemberController {
 	}////////////////////////////////////////////////
 	
 	
+	@RequestMapping("/Member/CreateMem.do")
+	public String createMem() throws Exception{
+		
+		
+		
+		return "";
+	}
+	
+	
 	
 	
 	

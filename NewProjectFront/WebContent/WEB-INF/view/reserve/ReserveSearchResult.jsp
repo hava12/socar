@@ -1442,38 +1442,7 @@ $(function(){
 
 <div id="wrap">
 
-		<!-- header -->
-	<div id="header-wrapper">
-	<div id="header">
-		<h1><a href=https://www.socar.kr/><img width="80" src='//web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20160823' alt="SOCAR" /></a></h1>
-
-		<ul class="gnb">
-		<li><a href=https://www.socar.kr/guide class="gnb1" title="서비스안내">서비스안내</a></li>
-		<li><a href=https://www.socar.kr/fare class="gnb3" title="요금안내">요금안내</a></li>
-		<li><a href=https://www.socar.kr/company class="gnb7" title="법인/단체안내">법인/단체 안내</a></li>
-		<li><a href=https://www.socar.kr/notice class="gnb4" title="고객센터">고객센터</a></li>
-
-		
-			<li><a href="#" class="gnb5 require_login" title="마이페이지" data-href=https://www.socar.kr/mypage>마이페이지</a></li>
-		
-
-		<li><a href=https://www.socar.kr/reserve class="gnb6" title="쏘카 찾기·예약">쏘카 찾기·예약</a></li>
-		</ul>
-
-		<div class="util">
-
-			<p class="hi-seoul"><a href=https://www.socar.kr/hi-seoul><img src='//web-assets.socar.kr/template/asset/images/common/header_car_sharing_n.gif' alt="공유서울 나눔카" /></a></p>
-
-				
-					<ul>
-					<li><a href=https://www.socar.kr/user/login class="util1" title="로그인">로그인</a></li>
-					<li><a href=https://www.socar.kr/join class="util2" title="회원가입">회원가입</a></li>
-					</ul>
-				
-		</div>
-	</div>
-	</div>
-	<!-- //header -->
+<jsp:include page="/template/Header.jsp" />
 
 
 	<div id="container">

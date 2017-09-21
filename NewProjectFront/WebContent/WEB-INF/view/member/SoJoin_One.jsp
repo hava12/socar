@@ -141,12 +141,7 @@ $(function(){
             return false;
         }
 		
-        $.ajax({
-        	type:'POST',
-        	url : "<c:url value='/Member/CreateMem.do' />"
-        	
-        	
-        });
+        return true;
         
     });/////////////////////////////////////////////////////////////
 
@@ -323,7 +318,7 @@ $(function(){
 			<h3 class="box shadow stepType stepType1 step2">회원정보 입력</h3>
 
 			<div class="boxL">
-				<form name="join" method="post" action="">
+				<form name="join" method="post" action="<c:url value='/Member/CreateMem.do'/>">
 					<fieldset>
 						<div class="section">
 							<h4><img src="/template/member/../asset/images/member/join_step2_txt1.gif" alt="회원정보" /></h4>

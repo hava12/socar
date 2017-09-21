@@ -9,6 +9,9 @@ public class MyPageController {
 	
 	@RequestMapping("/Mypage/Mypage.do")
 	public String mypage() throws Exception{
+		
+		
+		
 		return "/mypage/Mypage";
 	}
 	@RequestMapping("/Mypage/Mypagereserve.do")
