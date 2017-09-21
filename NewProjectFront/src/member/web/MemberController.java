@@ -29,10 +29,18 @@ public class MemberController {
 	}//////////////////////////////////////////////////
 	
 	@RequestMapping("/Member/JoinResult.do")
-	public String joinResult(HttpServletRequest req) throws Exception{
+	public String joinResult(@RequestParam Map map,HttpServletRequest req) throws Exception{
+		System.out.println(map.get("smem_id"));
+		System.out.println(map.get("smem_pwd"));
+		
+		Simple_MemDto dto = null;
+		dto = service.loginMem(map);
 		
 		req.getSession().setAttribute("smem_id", req.getParameter("smem_id"));
+		req.getSession().setAttribute("smem_name", dto.getSmem_name());
+		
 		return "forward:" + req.getParameter("stage").toString();
+		
 	}///////////////////////////////////////////////////////////////////////
 	
 	
@@ -64,6 +72,20 @@ public class MemberController {
 		
 		return "/message/Message";
 	}/////////////////////////////////////////////
+	
+	
+	@RequestMapping("/Member/SoJoin_One.do")
+	public String soJoin_One(HttpServletRequest req,Model model) throws Exception{
+		Simple_MemDto dto = null;
+
+		dto = service.selectOne(req.getSession().getAttribute("smem_id").toString());
+		
+		
+		dto.getSmem_name();
+		model.addAttribute("dto",dto);
+		
+		return "/member/SoJoin_One";
+	}////////////////////////////////////////////////
 	
 	
 	
@@ -107,6 +129,10 @@ public class MemberController {
 		
 		return json.toJSONString();
 	}/////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
 	
 	
 	

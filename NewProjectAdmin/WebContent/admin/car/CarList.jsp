@@ -79,18 +79,18 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="5">등록된 차량이 없습니다.</td></tr>
+						<tr><td colspan="5" align="center">등록된 차량이 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                					<td>${item.car_name_code}</td>	           	                					
-						                <td>${item.car_type_code}</td>
-						                <td><a href="<c:url value='/CAR/CarView.do?car_name_code=${item.car_name_code}'/>">${item.car_name}</a></td>
-						                <td>${item.car_com}</td>
-						                <td>${item.car_trans}</td>
-						                <td>${item.car_max_per}</td>
+	                					<td align="center">${item.car_name_code}</td>	           	                					
+						                <td align="center">${item.car_type_code}</td>
+						                <td align="center"><a href="<c:url value='/CAR/CarView.do?car_name_code=${item.car_name_code}'/>">${item.car_name}</a></td>
+						                <td align="center">${item.car_com}</td>
+						                <td align="center">${item.car_trans}</td>
+						                <td align="center">${item.car_max_per}</td>
 	                		</tr>
                 		</c:forEach>
                 </c:if>

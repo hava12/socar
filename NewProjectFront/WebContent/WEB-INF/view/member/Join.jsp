@@ -314,7 +314,7 @@ $(function(){
             var stage = "";
             if(joinProc == 'join_continue') {
               ga('send', 'event', 'Join', 'click', 'now',1);
-              stage="/Mypage/Mypage.do";
+              stage="/Member/SoJoin_One.do";
             }
             if(joinProc == 'join_later') {
               ga('send', 'event', 'Join', 'click', 'after',1);
@@ -322,6 +322,7 @@ $(function(){
             }
             $.doPost("<c:url value='/Member/JoinResult.do' />", {
               smem_id : email,
+              smem_pwd : password,
               stage : stage
             });
             

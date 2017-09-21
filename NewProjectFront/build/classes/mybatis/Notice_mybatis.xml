@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
            식별자로 사용 -->
  	<select id="selectNoti_ModelList" resultMap="Noti_ModelDtoResult">
-		SELECT * FROM NOTICE	
+		SELECT * FROM NOTICE ORDER BY NOT_NO DESC	
 	</select>
 	
 	

@@ -83,17 +83,17 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listCoupon">
-						<tr><td colspan="6">등록된 쿠폰이 없습니다.</td></tr>
+						<tr><td colspan="6" align="center">등록된 쿠폰이 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listCoupon}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                				<td>${item.cou_code}</td>
-	                				<td>${item.cou_name }</td>
-	                				<td>${item.cou_sale }</td>
-	                				<td>${item.cou_exp }</td>
-	                				<td>${item.cou_create_count}</td>
+	                				<td align="center">${item.cou_code}</td>
+	                				<td align="center">${item.cou_name }</td>
+	                				<td align="center">${item.cou_sale }</td>
+	                				<td align="center">${item.cou_exp }</td>
+	                				<td align="center">${item.cou_create_count}</td>
 	                				<td style="text-align: center;">
 	                					<button class="btn btn-default btn-sm" onclick="detailCoupon('${item.cou_code}')">상세보기</button>
 	                				</td>

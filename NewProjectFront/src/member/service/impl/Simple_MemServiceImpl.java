@@ -31,4 +31,8 @@ public class Simple_MemServiceImpl implements Simple_MemService{
 		return dao.confirmId(smem_id);
 	}///////////////////////////////////////////////////////////////
 
+	public Simple_MemDto selectOne(String smem_id) throws Exception {
+		return dao.selectOne(smem_id);
+	}
+
 }

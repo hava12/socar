@@ -69,14 +69,14 @@
                 
                 <c:choose>
                 	<c:when test="${empty list}">
-                		<td colspan="4">등록된 부서가 없습니다</td>
+                		<td colspan="4" align="center">등록된 부서가 없습니다</td>
                 	</c:when>
                 	<c:otherwise>
                 	<c:forEach items="${list}" var="item">
                 	<tr>
-                		<td>${item.dept_no}</td>
-                		<td>${item.dept_name}</td>
-                		<td>
+                		<td align="center">${item.dept_no}</td>
+                		<td align="center">${item.dept_name}</td>
+                		<td align="center">
                 		
                 		<c:if test="${item.dept_desc.length() gt 20}" var="large">
                 			  <a href="<c:url value='/Admin/DeptDetail.do' />?dept_no=${item.dept_no}"> ${fn:substring(item.dept_desc,1,20)}&nbsp; &nbsp; ..</a>
@@ -85,7 +85,7 @@
                 			<a href="<c:url value='/Admin/DeptDetail.do'/>?dept_no=${item.dept_no}">${item.dept_desc }</a>
                 		</c:if>
                 		</td>
-                		<td>${item.dept_regidate}</td>
+                		<td align="center">${item.dept_regidate}</td>
                 	</tr>
                 	</c:forEach>
                 	</c:otherwise>

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"> -->
@@ -20,7 +21,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="대한민국 1등 카셰어링 쏘카">
 		<meta property="og:description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료">
-		<meta property="og:image" content="${pageContext.request.contextPath}/template/image/pc_m_web_meta_tag.jpg">
+		<meta property="og:image" content="https://www.socar.kr/template/asset/images/pc_m_web_meta_tag.jpg">
 		<meta property="og:url" content="https://www.socar.kr/">
 
 		<!-- 유투브 랜딩 연결 -->
@@ -30,7 +31,7 @@
 
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="icon">
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="shortcut icon">
-		<link href='${pageContext.request.contextPath}/template/image/header_logo.png?v=20170428' rel="image_src" />
+		<link href='//web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20170428' rel="image_src" />
 
 		<!-- 2016/07/15 수정
 		<title>카셰어링 쏘카 - So Smart, SOCAR</title>
@@ -41,14 +42,14 @@
 		<title>대한민국 1등 카셰어링 쏘카</title>
 
 		<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505123494"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505123494"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505123494"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505123494"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505123494"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.banner.js"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/ssun.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/json3.min.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/common.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/day-picker.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.block.ui.min.js?1505958998"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -59,37 +60,163 @@
 		ga('send', 'pageview');
 		</script>
 
-<script type="text/javascript" src='${pageContext.request.contextPath}/template/js/slick.min.js?v=1'></script>
+<link rel="stylesheet" type="text/css" href="//web-assets.socar.kr/template/member/../asset/css/member.css?v=20170731" />
 
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/slick.css' />
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/slick-theme.css' />
-<link rel="stylesheet" href='${pageContext.request.contextPath}/template/css/font-awesome.min.css' />
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/main.css?v=20170731' />
-<style type="text/css">
-.banner01{position:absolute; top:151px; right:10px;}
-.banner02{position:absolute; top:230px; right:10px;}
-.banner03{position:absolute; top:309px; right:10px;}
-.slick-dots{ bottom: 15px; }
-.slick-dots li button:before { content:""; }
-.slick-dots li button { width: 10px; height: 10px; border-radius: 10px; background: #bec1c4; }
-li.slick-active button { background: #e9eaeb; }
-.banner-container { display: block; width: 100%; height: 420px; overflow: hidden; position: relative; }
-.banner-image { position: absolute; top: -100%; left: -100%; right: -100%; bottom: -100%; margin: auto; min-height: 100%; min-width: 100%; }
-.fa, .fa { position: absolute; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); font-size: 40px; z-index: 1; }
-.fa-angle-left { top: 50%; left: 20px; }
-.fa-angle-right { top: 50%; right: 20px; }
-
-</style>
 <script type="text/javascript">
-$(function() {
-	
-	set_cookie('name', null);
-	set_cookie('ssn1', null);
-	set_cookie('ssn2', null);
+function is_email(a){return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(a);}
+$(function(){
 
-	//document.title = '(주)쏘카 :: 신개념 자동차 공유 서비스';
+	$('body').keydown(function(event) {
+		if (event.which == 13) {
+		if($('#search_zip').is(':hidden') == false) {
+			$('#search_zip').click();
+		}
+			event.preventDefault();
+		}
+	});
 
-	$("#visual").jQBanner({nWidth:1004,nHeight:440,nCount:4,isActType:"left",nOrderNo:1,isStartAct:"N",isStartDelay:"N",nDelay:30000000,isBtnType:"li"});
+	$('#email_select').change(function(){
+		var val = $(this).val();
+		if(val == 'null'){
+			val = "";
+		}
+
+		$('#email2').val(val);
+
+		return false;
+	});
+
+
+
+	$("input:radio[name='selbox_joinway']").bind('click', function() {
+		var selected = $(this).val();
+
+		if(selected == '제휴단체'){
+			$("#route1").val('').prop('disabled',false);
+			$("#route2").val('').prop('disabled',true);
+		}
+		else if(selected == '친구추천'){
+			$("#route1").val('').prop('disabled',true);
+			$("#route2").val('').prop('disabled',false);
+		}
+		else{
+			$("#route1").val('').prop('disabled',true);
+			$("#route2").val('').prop('disabled',true);
+		}
+	});
+
+
+
+    $('#selbox_experience').bind('click', function () {
+        var selected = $(this).val();
+
+        if(selected == '있음'){
+            $('#experience_etc').css('display', 'inline');
+        }
+        else if(selected == '없음' || selected == ''){
+            $('#experience_etc').css('display', 'none');
+        }
+    });
+
+    $('#next').bind('click', function () {
+        if(!is_email($.trim($('#email1').val()) + '@' + $.trim($('#email2').val()))){
+            alert('이메일 형식이 잘못되었습니다. 다시 입력해 주세요.');
+            $('#email1').val('').focus();
+            return false;
+        }
+
+        if($('#phone2').val() == '' || $('#phone3').val() == ''){
+            alert('휴대폰번호를 입력해 주세요.');
+            $('#phone3').val('');
+            $('#phone2').val('').focus();
+            return false;
+        }
+        if($('#auth_num').val() == ''){
+            alert('인증번호를 입력해 주세요.');
+            $('#auth_num').focus();
+            return false;
+        }
+        if($('#addr1').val() == '' || $('#addr2').val() == ''){
+            alert('주소를 입력해 주세요.');
+            return false;
+        }
+		
+        $.ajax({
+        	type:'POST',
+        	url : "<c:url value='/Member/CreateMem.do' />"
+        	
+        	
+        });
+        
+    });/////////////////////////////////////////////////////////////
+
+	$('#search_zip').bind('click', function (e) {
+		$.ajax({
+			type: 'GET',
+			url: "https://api.socar.kr/user/zipcode",
+			crossDomain: true,
+			data: { search: $('#search_input').val() },
+			dataType: 'jsonp',
+			success: function(json){
+				var retCode = json['retCode'];
+
+				if(retCode == 1){
+					var result = json['result'];
+					$('.tr_data').remove();
+
+					for(var i in result){
+						$('#search_zip_result').append(
+							'<tr class="tr_data"><th><a class="zip_code" href="#">'
+							+ result[i]['zipcode']
+							+ '</a></th><td><a class="zip_addr" href="#">'
+							+ result[i]['name']
+							+ '</a></td></tr>'
+						);
+					}
+
+					$('.zip_code').bind('click', function () {
+						var zipCode = $(this).text();
+						var zipAddr = $(this).parent().parent().find('.zip_addr').text();
+
+						var zip1 = zipCode.substr(0, zipCode.indexOf('-'));
+						var zip2 = zipCode.substr(zipCode.indexOf('-')+1, 3);
+
+						$('#zip1').val(zip1);
+						$('#zip2').val(zip2);
+						$('#addr1').val(zipAddr);
+						$('.mwLayer').removeClass('open');
+						$('.mwLayer #mwCont').removeClass();
+						$('.mwLayer .mwCont').css('display','none');
+						return false;
+					});
+
+					$('.zip_addr').bind('click', function () {
+						var zipAddr = $(this).text();
+						var zipCode = $(this).parent().parent().find('.zip_code').text();
+
+						var zip1 = zipCode.substr(0, zipCode.indexOf('-'));
+						var zip2 = zipCode.substr(zipCode.indexOf('-')+1, 3);
+
+						$('#zip1').val(zip1);
+						$('#zip2').val(zip2);
+						$('#addr1').val(zipAddr);
+						$('.mwLayer').removeClass('open');
+						$('.mwLayer #mwCont').removeClass();
+						$('.mwLayer .mwCont').css('display','none');
+						return false;
+					});
+				}
+				else{
+					alert(json['retMsg']);
+				}
+			},
+			error: function(){
+				alert('일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+			}
+		}); // $.ajax({})
+
+		return false;
+	}); // $('#search_zip').bind('click')
 
 	var i_text = $('.i_label').next('.i_text');
 	$('.i_label').css('position','absolute');
@@ -113,354 +240,307 @@ $(function() {
 		})
 		.blur();
 
+	$("#selbox-job").change(function() {
+		var val = $("#selbox-job").val();
 
-	$('.notice .tab a').click(function(){
-		$('.notice .tab li').removeClass('on');
-		$(this).parent().addClass('on');
-		$('.notice div').css('display','none');
-		if($(this).hasClass('tab1')) $('.notice .notice1').css('display','block');
-		else $('.notice .notice2').css('display','block');
+		if($.trim(val) == '기타') {
+			$("#etc-job-w").css('display','');
+		}
+		else{
+			if( $("#etc-job-w").css('display') != 'none' ) {
+				$("#etc-job").val('').parent().css('display','none');
+			}
+		}
+
 		return false;
 	});
 
+	$("#selbox-path").change(function() {
+		var val = $.trim($("#selbox-path").val());
 
-	function MovieLayerPopup(param,bg,target,btnOpen,btnClose){
-		$(btnOpen).click(function(){
-			MovieLayerOpen(param,target);
-			return false;
-		});
-	//	$(bg).click(function(){
-	//		$(param).fadeOut();
-	//	});
-		$(btnClose).click(function(){
-			$(param).fadeOut();
-			$('#movieWrap').html('');
-			return false;
-		});
-	}
-	function MovieLayerOpen(param,target){
-		$(param).fadeIn();
-		var temp = $(target);
-		$('#movieWrap').html('<object width="720" height="405"><param name="movie" value="https://www.youtube.com/v/I61a1755u4U?hl=ko_KR&amp;version=3&amp;rel=0&autoplay=1&vq=hd720"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/I61a1755u4U?hl=ko_KR&amp;version=3&amp;rel=0&autoplay=1&vq=hd720" type="application/x-shockwave-flash" width="720" height="405" allowscriptaccess="always" allowfullscreen="true"></embed></object>');
-		if (temp.outerHeight() < $(document).height() ) temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
-	//	else temp.css('top', '0px');
-		if (temp.outerWidth() < $(document).width() ) temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
-	//	else temp.css('left', '0px');
-	}
-	MovieLayerPopup(".movie_layer",".movie_layer .bg",".movie_layer .movie","#movie_layerOpen","#movie_layerClose");
+		if(val == '언론보도') {
+			$("#media").css('display','');
+			$("#portal").css('display','none');
+			$("#etc-path-w").css('display','none');
+		}
+		else if(val == '검색') {
+			$("#media").css('display','none');
+			$("#portal").css('display','');
+			$("#etc-path-w").css('display','none');
+		}
+		else if(val == '기타') {
+			$("#media").css('display','none');
+			$("#portal").css('display','none');
+			$("#etc-path-w").css('display','');
+		}
+		else{
+			$("#media").css('display','none');
+			$("#portal").css('display','none');
+			$("#etc-path-w").css('display','none');
+		}
+
+		$("#media4-txt").val('');
+		$("#portal4-txt").val('');
+		$("#etc-path").val('');
+
+		return false;
+	});
+
+	$(':radio[name="media"],:radio[name="portal"],:radio[name="channel2"]').bind('click', function() {
+		var val = $.trim($(this).val());
+
+		if( val == '직접입력' ) {
+			$(this).parent().next().prop('readonly',false).focus();
+		}
+		else {
+			var name = $.trim($(this).attr('name'));
+
+			if( name == 'media') {
+				$("#media4-txt").val('').prop('readonly',true);
+			}
+			else if( name == 'portal' ) {
+				$("#portal4-txt").val('').prop('readonly',true);
+			}
+			else {
+				$("#exp4-txt").val('').prop('readonly',true);
+			}
+		}
+	});
+	$('#portal4-txt,#media4-txt,#exp4-txt').click(function() {
+		$(this).prev().children(':radio').trigger('click');
+		$(this).prop('readonly',false).focus();
+	});
 });
 </script>
-
-<script type="text/javascript">
-var fb_param = {};
-fb_param.pixel_id = '6007683407223';
-fb_param.value = '0.00';
-(function(){
-  var fpw = document.createElement('script');
-  fpw.async = true;
-  fpw.src = '//connect.facebook.net/en_US/fp.js';
-  var ref = document.getElementsByTagName('script')[0];
-  ref.parentNode.insertBefore(fpw, ref);
-})();
-</script>
-<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6007683407223&amp;value=0" /></noscript>
-
-<style type="text/css">
-#main_banner_n {display:block;position:relative;width:100%;min-width:1004px;height:420px;}
-#main_banner_n .img {display:block;width:100%;min-width:1004px;height:420px;}
-#main_banner_n .prev {display:block;overflow:hidden;position:absolute;top:140px;left:0;width:82px;height:138px;background:url('${pageContext.request.contextPath}/template/image/main_banner_new_btn.png') 0 0 no-repeat;text-indent:-9999px;}
-#main_banner_n .prev:hover {background-position:-150px 0;}
-#main_banner_n .next {display:block;overflow:hidden;position:absolute;top:140px;right:0;width:82px;height:138px;background:url('${pageContext.request.contextPath}/template/image/main_banner_new_btn.png') 0 -200px no-repeat;text-indent:-9999px;}
-#main_banner_n .next:hover {background-position:-150px -200px;}
-</style>
 </head>
-
-<body id="main">
+<body id="member" class="join step2">
 <div id="wrap">
-	
-<jsp:include page="/template/Header.jsp"/>
-<!-- 2015.05.11 -->
+	<jsp:include page="/template/Header.jsp" />
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#main_banner_n > .img').hide();
-	$('#main_banner_n > .img').eq(0).show();
-	var mainbanTarget = $('#main_banner_n > .img');
-	var mainbanIndex = $(mainbanTarget).index();
-	$('#main_banner_n > .prev').click(function(){
-		var showTarget = $('#main_banner_n > .img:visible');
-		var thisIndex = $(showTarget).index();
-		$('#main_banner_n > .img').hide();
-		if (thisIndex == 0){
-			$(mainbanTarget).last().show();
-		} else {
-			$(showTarget).prev().show();
-		}
-	});
-	$('#main_banner_n > .next').click(function(){
-		var showTarget = $('#main_banner_n > .img:visible');
-		var thisIndex = $(showTarget).index();
-		$('#main_banner_n > .img').hide();
-		if (thisIndex == mainbanIndex){
-			$(mainbanTarget).first().show();
-		} else {
-			$(showTarget).next().show();
-		}
-	});
-	timer = setInterval(function() { $('#main_banner_n > .next').click();}, 3000);
-	$('#main_banner_n').hover(function() {clearInterval(timer);}, function() {timer = setInterval(function() { $('#main_banner_n > .next').click();}, 3000);})
-
-	$('.tvc-banner').slick({
-		arrows: true,
-		dots: true,
-		nextArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
-		prevArrow: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-		speed: 1000,
-		autoplay: true,
-		autoplaySpeed: 2500,
-	});
-});
-
-</script>
-	<!-- <div id="main_banner_n"> -->
-		<!-- <div class="img" style="background:url('${pageContext.request.contextPath}/template/image/main_banner_new_img_160211.jpg') 50% 0px no-repeat;"></div> -->
-		<!-- <div class="img" style="background:url('${pageContext.request.contextPath}/template/image/main_banner_new_img2.jpg') 50% 0px no-repeat; display:none;"></div>
-		<div class="img" style="background:url('${pageContext.request.contextPath}/template/image/main_banner_new_img3_151214.jpg') 50% 0px no-repeat; display:none;"></div>
-		<div class="img" style="background:url('${pageContext.request.contextPath}/template/image/main_banner_new_img4.jpg') 50% 0px no-repeat; display:none;"></div>
-		<a href="#" class="prev" id="prev"><span>이미지 좌측 이동</span></a>
-		<a href="#" class="next" id="next"><span>이미지 우측 이동</span></a> -->
-	<!-- </div> -->
-<!--// 2015.05.11 -->
-	<div class="tvc-banner">
-		<a class="banner-container" href="http://pr.socar.kr/sa06" target="_blank">
-			<img src='${pageContext.request.contextPath}/template/image/tvc_banner_1.jpg?v=20170726' class="banner-image" role="presentation" />
-		</a>
-		<a class="banner-container" href="http://pr.socar.kr/sa06" target="_blank">
-			<img src='${pageContext.request.contextPath}/template/image/tvc_banner_2.jpg?v=20170726' class="banner-image" role="presentation" />
-		</a>
-		<a class="banner-container" href="http://pr.socar.kr/sa06" target="_blank">
-			<img src='${pageContext.request.contextPath}/template/image/tvc_banner_3.jpg?v=20170726' class="banner-image" role="presentation" />
-		</a>
-		<a class="banner-container" href="http://pr.socar.kr/sa06" target="_blank">
-			<img src='${pageContext.request.contextPath}/template/image/tvc_banner_4.jpg?v=20170726' class="banner-image" role="presentation" />
-		</a>
-	</div>
 	<div id="container">
 		<div id="content">
-			<!-- visual -->
-			<div id="visual">
-				<div class="clsBannerScreen">
-					<div class="images" style="display:block"><img src='${pageContext.request.contextPath}/template/image/visual1_170719.png' usemap="#visual3" alt="" /></div>
-					<div class="images" style="display:none"><img src='${pageContext.request.contextPath}/template/image/visual2_160322.png' usemap="#visual2" alt="" /></div>
-					<div class="images" style="display:none"><img src='${pageContext.request.contextPath}/template/image/visual3_160322.png' usemap="#visual1" alt="" /></div>
-					<div class="images" style="display:none"><img src='${pageContext.request.contextPath}/template/image/visual4_160322.png' usemap="#visual4" alt="" /></div>
-				</div>
+			<h2><img src="/template/member/../asset/images/member/join_h2.gif" alt="회원가입" /></h2>
+			<h3 class="box shadow stepType stepType1 step2">회원정보 입력</h3>
 
-				<map name="visual1" id="visual1">
-					<area shape="rect" coords="1,166,144,198" href="<c:url value='/Reserve/Reserve.do'/>" title="편도 예약하기" />
-				</map>
-				<map name="visual2" id="visual2">
-					<area shape="rect" coords="1,166,144,198" href="<c:url value='/Guide/Fare.do'/>" title="쏘카 요금보기" />
-				</map>
-				<map name="visual3" id="visual3">
-					<area shape="rect" coords="1,166,144,198" href="<c:url value='/Main/Garage.do'/>" title="쏘카 차고 구경하기" />
-				</map>
-				<map name="visual4" id="visual4">
-					<area shape="rect" coords="1,166,144,198" href="/reserve#seoul" title="가까운 쏘카존 찾기" />
-				</map>
-
-				<ul class="clsBannerButton">
-				<li class="on">
-					<span class="vis3">SMART SERVICE</span>
-				</li>
-				<li>
-					<span class="vis2">SMART PRICE</span>
-				</li>
-				<li>
-					<span class="vis1">SMART SOCAR</span>
-				</li>
-				<li>
-					<span class="vis4">SMART MEMBERSHIP</span>
-				</li>
-				</ul>
-				<div class="movie_layer">
-					<div class="bg"></div>
-					<div class="movie" id="movie">
-						<div class="close"><img src='${pageContext.request.contextPath}/template/image/movie_close.png' id="movie_layerClose" alt="" /></div>
-						<div id="movieWrap"></div>
-					</div>
-				</div>
-			</div>
-			<!-- //visual -->
-
-			<div class="loginBox">
-				
-					<!-- 로그인 전 -->
-					<div class="group">
-						<p class="txt"><img src='${pageContext.request.contextPath}/template/image/right_login_txt1_three_hours.png' alt="즐거운 드라이브 라이프의 시작 가입하면 첫사용 무료! 타면된다 쏘카!" /></p>
-						<p class="btn">
-							<a href="<c:url value='/Join/Join.do'/>"><img src='${pageContext.request.contextPath}/template/image/btn_join.png' alt="회원 가입하기" /></a>
-						</p>
-					</div>
-					<!-- //로그인 전 -->
-				
-			</div>
-
-<div id="banner01" class="banner01" >
-
-	<a href="/company"><img src='${pageContext.request.contextPath}/template/image/banner_person.png' alt="업무용 카셰어링 지원" /></a></div>
-
-<div id='banner02' class='banner02' style='top:242px'>
-<a href='<c:url value="/Main/Garage.do"/>' target='_self'><img src='${pageContext.request.contextPath}/template/image/banner_2.png' alt='차종다양화' title='차종다양화' width='226' height='74' /></a>
-</div>
-<%-- <div id='banner03' class='banner03' style='top:321px'>
-<a href='https://goo.gl/8w3ExU' target='_blank'>
-<img src='${pageContext.request.contextPath}/template/image/쏘카채용중_웹배너_226X74.png' alt='쏘카 채용사이트 오픈' title='쏘카 채용사이트 오픈' width='226' height='74' /></a>
-</div> --%>
-
-<!-- 			<div class="co2">
-				<h2><img src='${pageContext.request.contextPath}/template/image/right_co2_txt1.gif' alt="쏘카 이용으로 줄인 CO2 량" /></h2>
-				<p class="date">12.09.25 기준</p>
-				<p class="data">4,984,021 <img src='${pageContext.request.contextPath}/template/image/right_co2_txt2.gif' alt="kg" /></p>
-			</div>
-
-			<div class="banner">
-				<a href="#"><img src='${pageContext.request.contextPath}/template/image/right_banner.gif' alt="" /></a>
-			</div> -->
-
-
-
-
-			<%-- <div class="rule">
-				<ul class="tab">
-				<li class="on"><a href="<c:url value='/Guide/Guide.do#socar1'/>" class="tab1">쏘카 이용방법</a></li>
-				<li><a href="<c:url value='/Guide/Guide.do#socar2'/>" class="tab2">쏘카 이용규칙</a></li>
-				</ul>
-				<!-- 쏘카 이용방법 -->
-				<div class="rule1">
-					<ul class="list_rule">
-						<li><a href="<c:url value='/Guide/Guide.do'/>" class="btn1"></a></li>
-						<li><a href="<c:url value='/Guide/Company.jsp'/>" class="btn2"></a></li>
-						<li><a href="<c:url value='/Mypage/Couponbook.do'/>" class="btn3"></a></li>
-						<li><a href="<c:url value='/Guide/Guide.do#socar5'/>" class="btn4"></a></li>
-						<li><a href="http://goo.gl/e9rRxk" target="_blank" class="btn5"></a></li>
-					</ul>
-				</div>
-				<!-- //쏘카 이용방법 -->
-
-				<!-- 쏘카 이용규칙 -->
-				<div class="rule2">
-					<p class="img">쏘카 이용규칙</p>
-					<!-- <a href="#" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a> -->
-				</div>
-				<!-- //쏘카 이용규칙 -->
-			</div> --%>
-			
-			
-			<!-- <div>
-			<ui>
-			<li></li>
-			<li></li>
-			<li></li>
-			</ui>
-			</div> -->
-			
-			
-			
-			<div class="notice">
-				<ul class="tab">
-				<li class="on"><a href="#" class="tab1">공지사항</a></li>
-				<li><a href="#" class="tab2">자주묻는 질문</a></li>
-				</ul>
-				<!-- 공지사항 -->
-				<div class="notice1">
-					<h2 class="blind">공지사항</h2>
-					<ul>
+			<div class="boxL">
+				<form name="join" method="post" action="">
+					<fieldset>
+						<div class="section">
+							<h4><img src="/template/member/../asset/images/member/join_step2_txt1.gif" alt="회원정보" /></h4>
+							<p class="required">
+								<em class="star" title="필수항목"></em> <img src="/template/member/../asset/images/member/join_step2_txt2.gif" alt="표시된 항목은 필수항목이므로 반드시 입력해주시기 바랍니다." />
+							</p>
+							<table cellspacing="0" class="rows">
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
+								<td id="user_name">${dto.smem_name}</td>
+							</tr>
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt8.gif" alt="휴대폰 번호" /></th>
+								<td>
+									${dto.smem_tel}
+								</td>
+							</tr>
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt5.gif" alt="아이디 (이메일)" /> <em class="star" title="필수항목"></em></th>
+								<td>
+									<input readonly id="email1" type="text" class="input read_only" value="${fn:split(dto.smem_id,'@')[0]}" style="width:108px" /> @
+									<input readonly id="email2" type="text" class="input read_only" value="${fn:split(dto.smem_id,'@')[1]}" style="width:108px" />
+									<p class="tip mt10">입력한 이메일주소를 아이디로 사용합니다.<br />중요 서비스 공지 및 결제내역 안내메일이 발송될 수 있으므로 본인소유의 이메일만 입력해주세요.</p>
+								</td>
+							</tr>
 						
-							<li>
-								<a href=https://www.socar.kr/notice/869>
-									[이벤트] 금요일 칼퇴 후 떠나는...
-									
-									   <img src='${pageContext.request.contextPath}/template/image/ico_new.png' alt="새글" />
-									
-								</a>
-							</li>
-						
-							 <li>
-								<a href=https://www.socar.kr/notice/868>
-									[서비스안내] 쏘카부름 수원,...
-									
-									   <img src='${pageContext.request.contextPath}/template/image/ico_new.png' alt="새글" />
-									
-								</a>
-							</li>
-						<%--
-							<li>
-								<a href=https://www.socar.kr/notice/867>
-									[매너평가] GOOD & BAD...
-									
-									   <img src='${pageContext.request.contextPath}/template/image/ico_new.png' alt="새글" />
-									
-								</a>
-							</li>
-						
-							<li>
-								<a href=https://www.socar.kr/notice/866>
-									[공지] 부산 편도허브존...
-									
-								</a>
-							</li>
-						
-							<li>
-								<a href=https://www.socar.kr/notice/865>
-									[이벤트] 평일 친구와 아울렛 가면...
-									
-								</a>
-							</li> --%>
-						
-					</ul>
-					<a href="<c:url value='/Notice/Notice.do'/>" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>
-				</div>
-				<!-- //공지사항 -->
-
-				<!-- 자주묻는 질문 -->
-				<div class="notice2">
-					<h2 class="blind">자주묻는 질문</h2>
-					<ul>
-						
-							<li>
-								<a href="/faq#faq1">주유는 어떻게 해야 하나요? 비용은...</a>
-							</li>
-						
-							<li>
-								<a href="/faq#faq2">내가 예약한 동안 차량은 다른...</a>
-							</li>
-						
-							<!-- <li>
-								<a href="/faq#faq3">반납장소에 다른 차가 세워져 있으면...</a>
-							</li>
-						
-							<li>
-								<a href="/faq#faq4">바로반납 혜택을 제공하는 기준은...</a>
-							</li>
-						
-							<li>
-								<a href="/faq#faq5">[부름서비스] 이용을 마친 후 차량...</a>
-							</li> -->
-						
-					</ul>
-					<a href="/faq" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>
-				</div>
-				<!-- //자주묻는 질문 -->
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
+								<td>
+									<input id="zip" type="text" class="input" style="width:35px" value="" disabled="disabled" />
+									<a href="#" id="execDaumPostcode" onclick="javascript:execDaumPostcode();" class="btnS"><span>우편번호</span></a>
+									<p class="mt5">
+										<input id="addr1" type="text" class="input" style="width:240px" value="" disabled="disabled" />
+										<input id="addr2" type="text" class="input" style="width:240px" />
+									</p>
+									<p class="tip mt10">위 주소로 회원카드를 발송합니다. 반드시 우편물 수취가 가능한 주소를 입력해주세요.</p>
+								</td>
+							</tr>
+							<tr>
+							<th><img src="/template/member/../asset/images/member/join_step2_txt24.gif" alt="주 사용지역" /></th>
+								<td>
+									<label for="loc1">
+										<input type="radio" id="loc1" name="loc" value="서울" checked="true"/> 서울
+									</label>
+									<!-- 경기/인천 추가 -->
+									<label for="loc4">
+										<input type="radio" id="loc4" name="loc" value="인천경기" /> 인천·경기
+									</label>
+									<!-- 대구/경북 추가 -->
+									<label for="loc5">
+										<input type="radio" id="loc5" name="loc" value="대구경북" /> 대구·경북
+									</label>
+									<!-- 부산지역 추가 -->
+									<label for="loc3">
+										<input type="radio" id="loc3" name="loc" value="부산경남" /> 부산·경남
+									</label>
+									<!-- 대전/충북 추가 -->
+									<label for="loc6">
+										<input type="radio" id="loc6" name="loc" value="대전충청" /> 대전·충청
+									</label>
+									<!-- 광주/전라 추가 -->
+									<label for="loc7">
+										<input type="radio" id="loc7" name="loc" value="광주전라" /> 광주·전라
+									</label>
+									<label for="loc2">
+										<input type="radio" id="loc2" name="loc" value="제주" /> 제주
+									</label>
+								</td>
+							</tr>
+							</table>
+						</div>
+<!-- 						<div class="section"> -->
+<!-- 							<h4><img src="/template/member/../asset/images/member/join_step2_new01.gif" alt="프로모션 가입"></h4> -->
+<!-- 							<table cellspacing="0" class="rows"> -->
+<!-- 								<tbody> -->
+<!-- 									<tr> -->
+<!-- 										<th><img src="/template/member/../asset/images/member/join_step2_new02.gif" alt="가입경로"></th> -->
+<!-- 										<td> -->
+<!-- 											<input type="radio" id="normal_join" name="selbox_joinway" value="" class="inp_radio" checked="checked" /> -->
+<!-- 											<label for="normal_join" class="lab_radio">일반가입</label> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<th></th> -->
+<!-- 										<td> -->
+<!-- 											<input type="radio" id="promotion_join" name="selbox_joinway" value="제휴단체" class="inp_radio" /> -->
+<!-- 											<label for="promotion_join" class="lab_radio">프로모션 코드</label> -->
+<!-- 											<input id="route1" type="text" class="input" style="width:185px" disabled="disabled"> -->
+<!-- 											<span class="tip ml10">안내 받은 프로모션 코드 전체를 올바르게 입력하셔야만 혜택이 적용됩니다.</span> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<th></th> -->
+<!-- 										<td> -->
+<!-- 											<input type="radio" id="friend_join" name="selbox_joinway" value="친구추천" class="inp_radio" /> -->
+<!-- 											<label for="friend_join" class="lab_radio">친구 추천</label> -->
+<!-- 											<input id="route2" type="text" class="input" style="width:185px" disabled="disabled"> -->
+<!-- 											<span class="tip ml10">친구 아이디(이메일) 전체를 올바르게 입력하셔야만 혜택이 적용됩니다.</span> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 								</tbody> -->
+<!-- 							</table> -->
+<!-- 						</div> -->
+<!-- 						<div class="section"> -->
+<!-- 							<h4><img src="/template/member/../asset/images/member/join_step2_new03.gif" alt="부가정보" /></h4> -->
+<!-- 							<table cellspacing="0" class="rows"> -->
+<!-- 							<tr> -->
+<!-- 								<th><img src="/template/member/../asset/images/member/join_step2_new04.gif" alt="직업" /></th> -->
+<!-- 								<td> -->
+<!-- 									<select id="selbox-job" name="selbox-job" style="width:108px"> -->
+										<!-- <option value="" selected="selected">선택해주세요</option>
+										<option value="회사원">회사원</option>
+										<option value="자영업">자영업</option>
+										<option value="학생">학생</option>
+										<option value="주부">주부</option>
+										<option value="기타">기타</option>-->
+<!-- 									</select> -->
+<!-- 									<span id="etc-job-w" style="display:none;"> -->
+<!-- 										<input id="etc-job" name="etc-job" type="text" class="input" style="width:165px" value="" /> -->
+<!-- 									</span> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr id="selbox-path-tr"> -->
+<!-- 								<th><img src="/template/member/../asset/images/member/join_step2_new05.gif" alt=""></th> -->
+<!-- 								<td> -->
+<!-- 									<select id="selbox-path" name="selbox-path" style="width:108px"> -->
+										<!-- <option value="" selected="selected">선택해주세요</option>
+										<option value="TV광고">TV광고</option>
+										<option value="온라인동영상광고">온라인 동영상 광고</option>
+										<option value="지하철버스광고">지하철·버스 광고</option>
+										<option value="극장광고">극장광고</option>
+										<option value="기타광고">기타광고</option>
+										<option value="지인의소개">지인의 소개</option>
+										<option value="페이스북">페이스북</option>
+										<option value="쏘카차량및쏘카존목격">쏘카 차량 및 쏘카존 목격</option>
+										<option value="언론보도">언론보도</option>
+										<option value="검색">검색</option>
+										<option value="기타">기타</option> -->
+<!-- 									</select> -->
+<!-- 									언론보도 선택시 -->
+<!-- 									<span class="ml10" id="media" style="display:none;"> -->
+<!-- 										<label for="media1"> -->
+<!-- 											<input type="radio" id="media1" name="media" value="구독신문" checked="true" /> 구독신문 -->
+<!-- 										</label> -->
+<!-- 										<label for="media2"> -->
+<!-- 											<input type="radio" id="media2" name="media" value="온라인뉴스" /> 온라인뉴스 -->
+<!-- 										</label> -->
+<!-- 										<label for="media3"> -->
+<!-- 											<input type="radio" id="media3" name="media" value="TV방송" /> TV방송 -->
+<!-- 										</label> -->
+<!-- 										<label for="media4" class="no_margin"> -->
+<!-- 											<input type="radio" id="media4" name="media" value="직접입력" /> 직접입력 -->
+<!-- 										</label> -->
+<!-- 										<input type="text" id="media4-txt" name="media4-txt" style="width:165px" class="input" readonly="readonly" /> -->
+<!-- 									</span> -->
+<!-- 									검색 선택시 -->
+<!-- 									<span class="ml10" id="portal" style="display:none;"> -->
+<!-- 										<label for="portal1"> -->
+<!-- 											<input type="radio" id="portal1" name="portal" value="네이버" checked="true" /> 네이버 -->
+<!-- 										</label> -->
+<!-- 										<label for="portal2"> -->
+<!-- 											<input type="radio" id="portal2" name="portal" value="다음" /> 다음 -->
+<!-- 										</label> -->
+<!-- 										<label for="portal3"> -->
+<!-- 											<input type="radio" id="portal3" name="portal" value="구글" /> 구글 -->
+<!-- 										</label> -->
+<!-- 										<label for="portal4" class="no_margin"> -->
+<!-- 											<input type="radio" id="portal4" name="portal" value="직접입력" /> 직접입력 -->
+<!-- 										</label> -->
+<!-- 										<input type="text" id="portal4-txt" name="portal4-txt" style="width:165px" class="input" readonly="readonly" /> -->
+<!-- 									</span> -->
+<!-- 									기타 선택시 -->
+<!-- 									<span id="etc-path-w" style="display:none;"> -->
+<!-- 										<input id="etc-path" name="etc-path" type="text" class="input" style="width:165px" value="" /> -->
+<!-- 									</span> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 							<th><img src="/template/member/../asset/images/member/join_step2_new06.gif" alt="카셰어링 이용경험" /></th> -->
+<!-- 								<td> -->
+<!-- 									<select id="selbox_experience" style="width:108px"> -->
+										<!-- <option value="" selected="selected">선택해주세요</option>
+										<option value="있음">있음</option>
+										<option value="없음">없음</option> -->
+<!-- 									</select> -->
+<!-- 									<div id="experience_etc" style="display:none;"> -->
+<!-- 										<label for="exp1" class="ml10"> -->
+<!-- 											<input type="radio" id="exp1" name="channel2" value="그린카" checked="true"/> 그린카 -->
+<!-- 										</label> -->
+<!-- 										<label for="exp2"> -->
+<!-- 											<input type="radio" id="exp2" name="channel2" value="KT카셰어링" /> KT카셰어링 -->
+<!-- 										</label> -->
+<!-- 										<label for="exp3"> -->
+<!-- 											<input type="radio" id="exp3" name="channel2" value="씨티카 " /> 씨티카 -->
+<!-- 										</label> -->
+<!-- 										<label for="exp4" class="no_margin"> -->
+<!-- 											<input type="radio" id="exp4" name="channel2" value="직접입력" /> 직접입력 -->
+<!-- 										</label> -->
+<!-- 										<input type="text" id="exp4-txt" name="exp4-txt" style="width:165px" class="input" readonly="readonly" /> -->
+<!-- 									</div> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 							</table> -->
+<!-- 						</div> -->
+						<div class="centerBtn">
+							<input id="next" type="image" src="//web-assets.socar.kr/template/member/../asset/images/member/new/btn_next.gif" alt="다음단계 (면제/결제정보 입력)" />
+						</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 
-		
 <style type="text/css">
 
 /* aside */
-div.aside{position:fixed; top:550px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
-div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('${pageContext.request.contextPath}/template/image/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
+div.aside{position:fixed; top:111px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
+div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
 div.aside a.quick1{background-position:-1px -76px;}
 div.aside a.quick2{background-position:-1px -151px;}
 div.aside a.quick3{background-position:-1px -226px;} 
@@ -480,33 +560,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 </style>
 <!-- quick -->
 
-	<div class="aside">
-	<ul>
-		<li>
-			<a href="#" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
-		</li>
-		
-		<li>
-			<a href="#" class="quick2" title="주행요금 계산하기">주행요금 계산하기</a>
-		</li>
-		<li>
-			<a href="#" class="quick3" title="쏘카존 신청하기">쏘카존 신청하기</a>
-		</li>
-
-	</ul>
-</div>
-
-<style type="text/css">
-	.aside_more {
-		position: fixed;
-		top: 550px;
-		right: 51px;
-		z-index: 10000;
-	}
-</style>
-
-<div class="aside_more"><img src='${pageContext.request.contextPath}/template/image/banner_more.png' alt="더보기" />
-</div>
+	<jsp:include page="/template/Quick.jsp"/>
 
 <!-- //quick -->
 	</div>
@@ -520,51 +574,55 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 	<div class="mwLayer">
 		<div class="bg"></div>
 		<div id="mwCont">
+
 <!-- login -->
 <jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
 <!-- finding id -->
-<!-- finding pw -->
 <jsp:include page="/template/FindingIdPw.jsp"/>
+<!-- finding pw -->
 
             <!-- 주행요금 계산기 -->
             <jsp:include page="/template/Faretem.jsp"/>
+            <!-- //주행요금 계산기 -->
 			
+
 			<!-- 쏘카존 신청하기 -->
 			<jsp:include page="/template/Socarzon.jsp"/>
-			
 			<!-- 친구추천 -->
 			<jsp:include page="/template/Friend.jsp"/>
 			<!-- //친구추천 -->
+			
+
 
 
 		<div id="askcar_div" class="car_requestL mwCont" style="display: block;">
-			<h4 style="height:57px;padding-bottom:40px"><img src='${pageContext.request.contextPath}/template/image/pop_tit.jpg' alt="쏘카로 원하는 차종 신청하기 !!" title="쏘카로 원하는 차종 신청하기 !!"></h4>
+			<h4 style="height:57px;padding-bottom:40px"><img src='//web-assets.socar.kr/template/asset/images/garage/pop_tit.jpg' alt="쏘카로 원하는 차종 신청하기 !!" title="쏘카로 원하는 차종 신청하기 !!"></h4>
 			<form name="request" method="post" action="">
 				<fieldset>
 					<div class="requestForm">
 						
-						<textarea id="layer_askcar_text" cols="" rows="" class="textarea" onclick="alert('로그인 후 작성이 가능합니다.');return false;"></textarea>
-						<input type="image" src='${pageContext.request.contextPath}/template/image/btn_request.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" class="submit" alt="신청">
+						<textarea id="layer_askcar_text" cols="" rows="" class="textarea"></textarea>
+						<input id="layer_askcar_submit" type="image" src='//web-assets.socar.kr/template/asset/images/common/btn_request.gif' onclick="return false;" class="submit" alt="신청">
 						
 					</div>
 				</fieldset>
 			</form>
-			<p id="btn_askcar_close" class="centerBtn"><a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/btn_close.gif' alt="닫기" title="닫기"></a></p>
+			<p id="btn_askcar_close" class="centerBtn"><a href="#" class="close"><img src='//web-assets.socar.kr/template/asset/images/common/btn_close.gif' alt="닫기" title="닫기"></a></p>
 		</div>
 
 
 			<div class="socarcardLayer mwCont">
-				<div class="tit"><img src='${pageContext.request.contextPath}/template/image/socarcardLayer_tit.gif' alt="쏘카카드 발급 신청하기" /></div>
+				<div class="tit"><img src='//web-assets.socar.kr/template/asset/images/mypage/socarcardLayer_tit.gif' alt="쏘카카드 발급 신청하기" /></div>
 				<p class="txt">쏘카카드 발급 신청과 동시에 1,500원이 결제됩니다.</p>
 				<p class="more">※ 기본정보에서 우편 수취가 가능한 주소인지 확인해주세요.</p>
 				<div class="centerBtn">
-					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_confirm.gif' id="socarcard_request" alt="확인" /></a>
-					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
+					<a href="#"><img src='//web-assets.socar.kr/template/asset/images/customer/btn_confirm.gif' id="socarcard_request" alt="확인" /></a>
+					<a href="#"><img src='//web-assets.socar.kr/template/asset/images/customer/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
 				</div>
 				<div id="member_card_regist_indicator" style="display:none;
-					background:url('${pageContext.request.contextPath}/template/image/loading.gif') no-repeat 50% 50%;
+					background:url('//web-assets.socar.kr/template/asset/images/common/loading.gif') no-repeat 50% 50%;
 					background-size:auto 32px;
 					position:absolute;
 					top:0;bottom:0;left:0;right:0;
@@ -630,7 +688,7 @@ $(function(){
 
 	//SNS 로그인 by tary 2014-02-05
 	var options = {
-		auth_token : '',
+		auth_token : '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 		currentURL : (document.URL.split('?')[0]).split('#')[0],
 		fb_init : true,
 		naver_init : true,
@@ -883,29 +941,11 @@ $(function(){
 		var writer = null, password=null;
 
 
-		writer = $.trim($('#layer_askzone_email').val());
-		password = $.trim($('#layer_askzone_password').val());
-
-		if(writer == '' || writer == null){
-			alert('이메일을 입력해 주세요.');
-			return false;
-		}
-
-		if(!is_email(writer)){
-			alert('이메일 형식이 잘못되었습니다. 다시 입력해주세요.');
-			return false;
-		}
-
-		if(password == '' || password == null){
-			alert('비밀번호를 입력해 주세요. 글 삭제시 필요합니다.');
-			return false;
-		}
-
 		$.ajax({
 			type: 'POST',
 			url: "https://api.socar.kr/zone/candidate_ex/create",
 			data: {
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				address : address,
 				lat : lat,
 				lng : lng,
@@ -923,9 +963,6 @@ $(function(){
 				$('#search_ask_address').val('').focusout();
 				$('#layer_askzone_text').val('').focusout();
 
-
-				$('#layer_askzone_email').val('');
-				$('#layer_askzone_password').val('');
 
 				$('#search_region_layer').hide();
 				$("#addr_search_layer").hide();
@@ -1126,7 +1163,7 @@ function build_list(init){
 		url : "https://api.socar.kr/zone/candidate_ex",
 		crossDomain: true,
 		data: {
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			last_id: last_id,
 			address : address,
 			my_request : $(document).data('my_request')
@@ -1134,7 +1171,7 @@ function build_list(init){
 		dataType: 'jsonp',
 		beforeSend: function(xhr) {
 			$list.data("disabled-vscroll",true);
-			output.append('<div id="list-indicator" style="width:auto;height:32px;background:url(\'${pageContext.request.contextPath}/template/image/loading.gif\') 50% 50% no-repeat;"></div>');
+			output.append('<div id="list-indicator" style="width:auto;height:32px;background:url(\'//web-assets.socar.kr/template/asset/images/common/loading.gif\') 50% 50% no-repeat;"></div>');
 
 			$list.append(output.toString());
 			output.clear();
@@ -1159,10 +1196,10 @@ function build_list(init){
 
 						output.append('<p class="txt">' + result[i].contents + '</p>');
 						output.append('<p class="date">' + result[i].created_at + '<a href="#" style="margin-left: 5px;" class="deleteBtn" data-id="' + result[i].id + '" data-mine="' + result[i].is_mine + '">');
-						output.append('<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제"></a></p>');
+						output.append('<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제"></a></p>');
 						output.append('<div class="pw" id="pw_' + result[i].id + '">비밀번호&nbsp;<input type="password" class="input" name="delitem_' + result[i].id + '" id="delitem_' + result[i].id + '" value="" />');
-						output.append('<input type="image" class="deleteOk" data-id="' + result[i].id + '" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인">&nbsp;');
-						output.append('<input type="image" class="deleteCancel" data-id="' + result[i].id + '" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소"> </div>');
+						output.append('<input type="image" class="deleteOk" data-id="' + result[i].id + '" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인">&nbsp;');
+						output.append('<input type="image" class="deleteCancel" data-id="' + result[i].id + '" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소"> </div>');
 
 						var agree_class = "agree_count",
 							disagree_class = "disagree_count";
@@ -1212,7 +1249,7 @@ function vote(id, type){
 		url: "https://api.socar.kr/zone/candidate_ex/vote",
 		crossDomain: true,
 		data: {
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			candidate_id: id,
 			type: type
 		},
@@ -1256,7 +1293,7 @@ function removeItem(id,passwd){
 		url: "https://api.socar.kr/zone/candidate_ex/remove",
 		crossDomain: true,
 		data: {
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			candidate_id: id,
 			password: passwd
 		},
@@ -1482,7 +1519,11 @@ $('.require_login').click(function(){
 
 $(".aside .quick1").click(function(){
 	
-				showLoginLayer(true,window.location.pathname+window.location.search+'#quick1');
+		$('.mwLayer').addClass('open');
+		$('.mwLayer #mwCont').removeClass();
+		$('.mwLayer #mwCont').addClass('inviteLy');
+		$('.mwLayer .mwCont').css('display','none');
+		$('.mwLayer .inviteL').css('display','block');
 	
 
 	return false;
@@ -1671,7 +1712,7 @@ var init_askzone = function(json) {
 		'<p class="txt">' + r.contents + '</p>' +
 		'<p class="date">' + r.created_at +
 			'<a href="#" style="margin-left: 5px;" class="deleteBtn">' +
-				'<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제" />' +
+				'<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제" />' +
 			'</a>' +
 		'</p>' +
 
@@ -1679,8 +1720,8 @@ var init_askzone = function(json) {
 			'비밀번호' +
 			'<input type="text" class="input" />' +
 			'<em style="display:none;">' + r.id + '</em>' +
-			'<input type="image" class="deleteOk" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인" />' +
-			'<input type="image" class="deleteCancel" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소" /> ' +
+			'<input type="image" class="deleteOk" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인" />' +
+			'<input type="image" class="deleteCancel" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소" /> ' +
 		'</div>' +
 
 		'<ul>' +
@@ -1711,7 +1752,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/vote',
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				type: 'agree',
 				candidate_id: $(this).prev().text()
 			},
@@ -1742,7 +1783,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/vote',
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				type: 'disagree',
 				candidate_id: $(this).prev().text()
 			},
@@ -1774,7 +1815,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/remove',
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				password: pass,
 				candidate_id: $(this).prev().text()
 			},
@@ -1809,7 +1850,7 @@ $('#layer_askzone_submit').bind('click', function () {
 		type : "POST",
 		data: {
 			url: 'zone/candidate/create',
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			writer: name,
 			contents: text,
 			password: pass
@@ -1834,50 +1875,88 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js?1505123494" charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js?1505123494" charset="utf-8"></script>
+<script type="text/javascript" src="/template/./asset/js/kakao.min.js?1505958998" charset="utf-8"></script>
+<script type="text/javascript" src="/template/./asset/js/sns_interlocking.js?1505958998" charset="utf-8"></script>
 
 
 			<a href="#" class="close">닫기</a>
 		</div>
-		<!-- 카드 등록 -->
-<div id="cardAdd">
-	<form name="request" method="post" action="">
-		<fieldset>
-			<div class="cardForm">
-				<input id="input_reg_card_num" type="text" class="input" />
-				<input id="btn_reg_card" type="image" src='${pageContext.request.contextPath}/template/image/btn_card_add.png' class="submit" alt="등록" />
-			</div>
-		</fieldset>
-	</form>
-	<p class="txt"><img src='${pageContext.request.contextPath}/template/image/card_reg_required_txt.png' alt="회원번호를 입력해주세요!" /></p>
-	<a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/card_close.png' alt="다음에 등록" /></a>
-</div>
-<!-- //카드 등록 -->
 	</div>
 </div>
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<img src='/template/asset/images/daum_close.png' id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1;width:20px;height:20px;" onclick="closeDaumPostcode()" alt="닫기 버튼">
+</div>
 
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
+<script>
+	// 우편번호 찾기 화면을 넣을 element
+	var element_layer = document.getElementById('layer');
 
-
-
-
-<script type="text/javascript">
-(function() {
-	var _fbq = window._fbq || (window._fbq = []);
-	if (!_fbq.loaded) {
-		var fbds = document.createElement('script');
-		fbds.async = true;
-		fbds.src = '//connect.facebook.net/en_US/fbds.js';
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(fbds, s);
-		_fbq.loaded = true;
+	function closeDaumPostcode() {
+		// iframe을 넣은 element를 안보이게 한다.
+		element_layer.style.display = 'none';
 	}
-	_fbq.push(['addPixelId', '1439217729652257']);
-})();
-window._fbq = window._fbq || [];
-window._fbq.push(['track', 'PixelInitialized', {}]);
+
+	function execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				var fullAddr = data.jibunAddress;
+
+				// 사용자가 도로명 주소를 선택
+				if(data.userSelectedType === 'R'){
+					var extraAddr = ''; // 조합형 주소 변수
+
+					fullAddr = data.roadAddress;
+
+					// 법정동명이 있을 경우 추가
+					if(data.bname !== ''){
+						extraAddr += data.bname;
+					}
+					// 건물명이 있을 경우 추가
+					if(data.buildingName !== ''){
+						extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
+					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+					fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+				}
+
+				// 우편번호와 주소 및 영문주소 정보를 해당 필드에 넣는다.
+				$('#zip').val(data.zonecode);								//신 국가기초구역번호
+				$('#zip').parent().find('label').css('display', 'none');
+				$('#address').val(fullAddr);
+				$('#addr1').val(fullAddr);
+				$('#address').parent().find('label').css('display', 'none');
+				// iframe을 넣은 element를 안보이게 한다.
+				element_layer.style.display = 'none';
+			},
+			width : '100%',
+			height : '100%'
+		}).embed(element_layer);
+
+		// iframe을 넣은 element를 보이게 한다.
+		element_layer.style.display = 'block';
+
+		// iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+		initLayerPosition();
+	}
+
+	// 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+	// resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+	// 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+	function initLayerPosition(){
+		var width = 600; //우편번호서비스가 들어갈 element의 width
+		var height = 460; //우편번호서비스가 들어갈 element의 height
+		var borderWidth = 5; //샘플에서 사용하는 border의 두께
+
+		// 위에서 선언한 값들을 실제 element에 넣는다.
+		element_layer.style.width = width + 'px';
+		element_layer.style.height = height + 'px';
+		element_layer.style.border = borderWidth + 'px solid';
+		// 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+		element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+		element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+	}
 </script>
-<noscript><img height="1" width="1" border="0" alt="" style="display:none" src="https://www.facebook.com/tr?id=1439217729652257&amp;ev=NoScript" /></noscript>
 
 </body>
 </html>

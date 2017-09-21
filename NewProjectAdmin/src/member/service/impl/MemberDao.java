@@ -135,12 +135,15 @@ public class MemberDao implements MemberService {
 	@Override
 	public List<MemDto> selectMemList(int start,int end){
 		List<MemDto> list = new Vector<MemDto>();
-		/*String sql = "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID ";*/
-		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";
+		String sql = "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID ";
+		//String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery();
 			
+			psmt.setInt(1, start);
+			psmt.setInt(2, end);
+			
+			rs = psmt.executeQuery();
 			while(rs.next()){
 				MemDto dto = new MemDto();
 				dto.setSmem_id(rs.getString(1));

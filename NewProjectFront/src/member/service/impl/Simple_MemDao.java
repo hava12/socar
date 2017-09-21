@@ -37,4 +37,12 @@ public class Simple_MemDao implements Simple_MemService {
 		return affected;
 	}
 
+	@Override
+	public Simple_MemDto selectOne(String smem_id) throws Exception {
+		
+		Simple_MemDto dto = null;
+		dto = template.selectOne("selectOneSimple_Mem",smem_id);
+		return dto;
+	}
+
 }
