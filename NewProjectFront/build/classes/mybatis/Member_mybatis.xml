@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertMem" parameterType="MemDto">
-			INSERT INTO MEM VALUES(#{smem_id},#{mem_addr_num},#{mem_addr_fir},#{mem_addr_sec},#{mem_mainarea},null,null,null,null)
+			INSERT INTO MEM(smem_id,mem_addr_num,mem_addr_fir,mem_addr_sec,mem_mainarea) VALUES(#{smem_id},#{mem_addr_num},#{mem_addr_fir},#{mem_addr_sec},#{mem_mainarea})
 	</insert>
 	
 	

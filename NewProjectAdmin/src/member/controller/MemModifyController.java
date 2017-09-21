@@ -27,7 +27,10 @@ public class MemModifyController extends HttpServlet {
 			try {
 				affected = dao.updateMem(req.getParameter("smem_id"),
 						                 req.getParameter("smem_pwd"),
-						                 req.getParameter("mem_addr"));
+						                 req.getParameter("mem_addr_num"),
+						                 req.getParameter("mem_addr_fir"),
+						                 req.getParameter("mem_addr_sec")
+						                 );
 				
 			} catch (Exception e) {e.printStackTrace();}
 			

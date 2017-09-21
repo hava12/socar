@@ -136,7 +136,7 @@ $(function(){
             $('#auth_num').focus();
             return false;
         }
-        if($('#mem_addr_fir').val() == '' || $('#mem_addr_sec').val() == ''){
+        if($('#addr1').val() == '' || $('#addr1').val() == ''){
             alert('주소를 입력해 주세요.');
             return false;
         }
@@ -319,7 +319,7 @@ $(function(){
 
 			<div class="boxL">
 				<form name="join" method="post" action="<c:url value='/Member/CreateMem.do'/>">
-					<input type="hidden" id="smem_id" value="${dto.smem_id}" />
+					<input type="hidden" name="smem_id" value="${dto.smem_id}" />
 					
 					<fieldset>
 						<div class="section">
@@ -350,15 +350,15 @@ $(function(){
 							<tr>
 								<th><img src="/template/member/../asset/images/member/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
 								<td>
-									<input id="zip" type="text" class="input" style="width:35px" value="" disabled="disabled" />
-									<input id="mem_addr_num" type="hidden" value="" />
+									<input id="zip" name="mem_addr_num" type="text" class="input" style="width:35px" value="" />
 									
 									<a href="#" id="execDaumPostcode" onclick="javascript:execDaumPostcode();" class="btnS"><span>우편번호</span></a>
 									<p class="mt5">
-										<input id="mem_addr_fir" type="text" class="input" style="width:240px" value="" />
+										<input id="addr1" type="text" name="mem_addr_fir" class="input" style="width:240px" value="" />
 										
-										<input id="mem_addr_sec" type="text" class="input" style="width:240px" />
+										<input id="addr2" type="text" name="mem_addr_sec" class="input" style="width:240px" />
 									</p>
+									
 									<p class="tip mt10">위 주소로 회원카드를 발송합니다. 반드시 우편물 수취가 가능한 주소를 입력해주세요.</p>
 								</td>
 							</tr>

@@ -146,20 +146,21 @@
 	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.smem_date}</span></td>
 	                		</tr>
 	                		<tr>
-	                				<td><label>주소</label></td>
-	                				<td> <input type="text" name="mem_addr" id="mem_addr_id" class="form-control" value="${mem.mem_addr}"/></td>
+	                				<td><label>우편번호</label></td>
+	                				<td> <input type="text" name="mem_addr_num" id="mem_addr_id" class="form-control" value="${mem.mem_addr_num}"/></td>
 	                		</tr>
+	                		<tr>
+	                				<td><label>주소</label></td>
+	                				<td> 
+		                				<input type="text" name="mem_addr_fir" id="mem_addr_id" class="form-control" value="${mem.mem_addr_fir}"/>
+		                				<input type="text" name="mem_addr_sec" id="mem_addr_id" class="form-control" value="${mem.mem_addr_sec}"/>
+	                				</td>
+	                		</tr>
+	                		
+	                		
 	                		<tr>
 	                				<td><label>주 사용 지역</label></td>
 	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_mainarea}</span></td>
-	                		</tr>
-	                		<tr>
-	                				<td><label>생일</label></td>
-	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_birth}</span></td>
-	                		</tr>
-	                		<tr>
-	                				<td><label>성별</label></td>
-	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_gender}</span></td>
 	                		</tr>
 	                		<tr>
 	                				<td><label>포인트 보기</label></td>
@@ -175,20 +176,52 @@
 	                		</tr>
 	                		<tr>
 	                				<td><label>면허 타입</label></td>
-	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_c_type}</span></td>
+	                				<td><span>&nbsp;&nbsp;&nbsp;
+	                							<c:if test='${mem.mem_c_type eq null}' var="item">
+	                									없음
+	                							</c:if>
+	                							<c:if test='${not item}'>
+	                									${mem.mem_c_type}
+	                							</c:if>
+	                					</span></td>
 	                		</tr>
 	                		<tr>
 	                				<td><label>면허번호</label></td>
-	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_c_num}</span></td>
+	                				<td><span>&nbsp;&nbsp;&nbsp;
+	                							<c:if test='${mem.mem_c_type eq null}' var="item">
+	                									없음
+	                							</c:if>
+	                							<c:if test='${not item}'>
+	                									${mem.mem_c_num}
+	                							</c:if>
+	                				</span></td>
 	                		</tr>
 	                		<tr>
 	                				<td><label>발급일</label></td>
-	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_c_idate}</span></td>
+	                				<td><span>&nbsp;&nbsp;&nbsp;
+												<c:if test='${mem.mem_c_type eq null}' var="item">
+	                									없음
+	                							</c:if>
+	                							<c:if test='${not item}'>
+	                									${mem.mem_c_idate}
+	                							</c:if>
+									</span></td>
 	                		</tr>
 	                		<tr>
 	                				<td><label>면허 만료일</label></td>
-	                				<td><span>&nbsp;&nbsp;&nbsp;${mem.mem_c_expdate}</span></td>
+	                				<td><span>&nbsp;&nbsp;&nbsp;
+												<c:if test='${mem.mem_c_type eq null}' var="item">
+	                									없음
+	                							</c:if>
+	                							<c:if test='${not item}'>
+	                									${mem.mem_c_expdate}
+	                							</c:if>
+									</span></td>
 	                		</tr>
+	                		
+	                		
+	                		
+	                		
 	                		<c:forEach var="card" items="${cardlist}" varStatus="vs">  
 		                		<tr>
 		                				<td><label>카드번호 [${vs.count}번째 카드]</label></td>

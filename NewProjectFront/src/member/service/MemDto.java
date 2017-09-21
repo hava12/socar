@@ -1,16 +1,19 @@
 package member.service;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemDto extends Simple_MemDto {
 	
-	public String mem_addr_num;
-	public String mem_addr_fir;
-	public String mem_addr_sec;
+	private String mem_addr_num;
+	private String mem_addr_fir;
+	private String mem_addr_sec;
 	
-	public String mem_mainarea;
-	public String mem_c_type;
-	public String mem_c_num;
-	public java.util.Date mem_c_expdate;
-	public java.util.Date mem_c_idate;
+	private String mem_mainarea;
+	private String mem_c_type;
+	private String mem_c_num;
+	private java.util.Date mem_c_expdate;
+	private java.util.Date mem_c_idate;
 	
 	
 	

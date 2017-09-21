@@ -17,7 +17,7 @@ public class FindZoneController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ZoneDAO dao = new ZoneDAO(req.getServletContext());
 		List<ZoneDTO> list = new Vector<ZoneDTO>();
-		try {list = dao.selectList(1,2);}
+		try {list = dao.selectList(2,5);}
 		catch (Exception e) {e.printStackTrace();}
 		
 		req.setAttribute("list", list);
