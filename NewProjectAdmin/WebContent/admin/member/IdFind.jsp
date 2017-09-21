@@ -63,7 +63,6 @@
 		function inputsmem_id(smem_id,smem_name) {
 			document.getElementById("smem_id").value = smem_id;
 			document.getElementById("smem_name").value = smem_name;
-			
 		}
 	</script>
   </head>

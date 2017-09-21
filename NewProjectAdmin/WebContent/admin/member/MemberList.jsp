@@ -57,7 +57,8 @@
 		}
 		 */
 		 function search() {
-			 
+			var menu = document.getElementById("menu");
+			location.href="<c:url value='/Member/IdSearch.do'/>?where="+menu.value+"&mem="+document.getElementById("searchtext").value;
 		 }
 	</script>
 	
