@@ -8,7 +8,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"> -->
 
-		
+
 
 		
 
@@ -306,9 +306,6 @@ $(document).ready(function() {
 				
 			</div>
 
-<div id="banner01" class="banner01" >
-
-	<a href="/company"><img src='${pageContext.request.contextPath}/template/image/banner_person.png' alt="업무용 카셰어링 지원" /></a></div>
 
 <div id='banner02' class='banner02' style='top:242px'>
 <a href='<c:url value="/Main/Garage.do"/>' target='_self'><img src='${pageContext.request.contextPath}/template/image/banner_2.png' alt='차종다양화' title='차종다양화' width='226' height='74' /></a>

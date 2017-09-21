@@ -629,7 +629,7 @@
             <c:if test="${not model_not_exist}">
             	<c:forEach items="${model_list}" var="item">
             	<tr>
-						<td class="first">${item.car_type}</td>
+						<td  class="first">${item.car_type}</td>
 						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_one_hour}" /></td>
 						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_one_day}" /></td>
 						<td><fmt:formatNumber pattern="###,###" value="${item.car_insurance_two_hour}" /></td>
