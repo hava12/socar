@@ -131,7 +131,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RqCarController</servlet-name>
-    <url-pattern>/Bbs/RqCar.do</url-pattern>
+    <url-pattern>/Bbs/RqCarList.do</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RqCarDeleteController</servlet-name>
@@ -147,7 +147,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RqLocController</servlet-name>
-    <url-pattern>/Bbs/RqLoc.do</url-pattern>
+    <url-pattern>/Bbs/RqLocList.do</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RqLocDeleteController</servlet-name>
@@ -511,11 +511,11 @@
   </servlet-mapping>
   <context-param>
     <param-name>PAGE_SIZE</param-name>
-    <param-value>10</param-value>
+    <param-value>1</param-value>
   </context-param>
   <context-param>
     <param-name>BLOCK_PAGE</param-name>
-    <param-value>5</param-value>
+    <param-value>1</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>/WEB-INF/index.jsp</welcome-file>
