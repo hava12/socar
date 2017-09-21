@@ -61,8 +61,7 @@
 		</script>
 
 <%-- ${pageContext.request.contextPath}/template/js/maps3.json --%>
-<script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=9200376e38c344c4dc2ee20a76b6ba19b2605d06&libraries=services" charset="utf-8"></script>
-<script type="text/javascript" src='${pageContext.request.contextPath}/template/js/socar-map.js'></script>
+
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/reservation.css' />
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/socarzone.list.css' />
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/jquery-ui.css' />
@@ -527,7 +526,7 @@ $(function(){
 		}
 
 		var invite = '';
-	//친구추천 URL
+		//친구추천 URL
 	
 
 		//제휴코드를 직접 입력했을 경우
@@ -2750,27 +2749,7 @@ mapOption = {center: new daum.maps.LatLng(37.478683, 126.878633),//센터 위치
 //지도 생성
 var map = new daum.maps.Map(mapContainer,mapOption);
 
-
-//마커 표시할 위치
-var position = new daum.maps.LatLng(37.478683, 126.878633);
-
-//마커 생성
-var marker = new daum.maps.Marker({position:position, clickable:true});
-
-//마커를 지도에 표시
-marker.setMap(map);
-
-//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성
-var iwContent = '<div style="padding:5px;"><b>${dto.soz_name}</b></div><div>${dto.soz_loc}</div><div><a href="https://www.naver.com"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
-iwRemoveable = true;
-
-//인포윈도우를 생성
-var infowindow = new daum.maps.InfoWindow({content:iwContent,removable:iwRemoveable});
-
-//마커 위에 인포윈도우를 표시
-//infowindow.open(map,marker);
-
-//다른 마커들 표시
+//모든 마커들 표시
 var other = [];
 var other_position = [];
 var other_marker = [];
@@ -2780,22 +2759,29 @@ var size = ${fn:length(list)};
 
 function close_info(){
 	//상세보기 페이지 이기 때문
-	infowindow.close(map,marker);
+	//infowindow.close(map,marker);
 	for(i=1;i<size+1;i++){
 		other_infowindow[i].close(map,other_marker[i]);
 	}
 }
+function move_map(){
+	 map.setLevel(9);
+	 //panTo안됨
+	 map.setCenter(new daum.maps.LatLng(arguments[0], arguments[1]));
+}
+
 
 <c:forEach items="${list}" var="item" varStatus="loop">
 	other_position[${loop.count}] = new daum.maps.LatLng(${item.soz_latitude}, ${item.soz_longitude});
 	other_marker[${loop.count}] = new daum.maps.Marker({position:other_position[${loop.count}], clickable:true});
 	other_marker[${loop.count}].setMap(map);
-	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div><a href="https://www.naver.com"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
 	iwRemoveable = true;
 	other_infowindow[${loop.count}] = new daum.maps.InfoWindow({content:other_iwContent[${loop.count}],removable:iwRemoveable});		
 	
 	daum.maps.event.addListener(other_marker[${loop.count}],'click',function(){
 		close_info();
+	    move_map(${item.soz_latitude},${item.soz_longitude});
 		other_infowindow[${loop.count}].open(map,other_marker[${loop.count}]);					
 	});	 			
 </c:forEach>
