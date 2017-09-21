@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.impl.Simple_MemServiceImpl;
 
@@ -89,7 +90,9 @@ public class MemberController {
 	
 	
 	@RequestMapping("/Member/CreateMem.do")
-	public String createMem() throws Exception{
+	public String createMem(@RequestParam Map map,Model model) throws Exception{
+		
+		
 		
 		
 		

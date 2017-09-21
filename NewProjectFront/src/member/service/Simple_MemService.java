@@ -12,4 +12,6 @@ public interface Simple_MemService {
 	//아이디 정보 가져오기
 	public Simple_MemDto selectOne(String smem_id) throws Exception;
 	
+	public int CreateMem(MemDto dto) throws Exception;
+	
 }

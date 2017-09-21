@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.Simple_MemService;
 @Repository
@@ -43,6 +44,14 @@ public class Simple_MemDao implements Simple_MemService {
 		Simple_MemDto dto = null;
 		dto = template.selectOne("selectOneSimple_Mem",smem_id);
 		return dto;
+	}
+
+	@Override
+	public int CreateMem(MemDto dto) throws Exception {
+		int affected = 0;
+		affected = template.insert("insertMem",dto);
+		
+		return affected;
 	}
 
 }

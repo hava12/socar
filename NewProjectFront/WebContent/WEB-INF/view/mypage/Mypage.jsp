@@ -1343,10 +1343,11 @@ function auth_confirm(res) {
 
 				<div class="section">
 				
-				<a href="<c:url value='/Member/SoJoin_One.do' />">
-				<img src="/template/mypage/../asset/images/mypage/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" />
-				so회원 아닐 경우 (카드,면허정보 없을 경우)</a>
-				
+				<c:if test="${memtype eq 'simple_mem'}">
+						<a href="<c:url value='/Member/SoJoin_One.do' />">
+						<img src="/template/mypage/../asset/images/mypage/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" />
+						</a>
+				</c:if>
 				
 					<div class="group">
 						<h3><img src="/template/mypage/../asset/images/mypage/index_txt1.gif" alt="기본정보" /></h3>
@@ -1358,7 +1359,7 @@ function auth_confirm(res) {
 								<table cellspacing="0" class="rows">
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
-									<td id="user_name"></td>
+									<td id="user_name">${dto.smem_name}</td>
 								</tr>
 
 								<tr>
@@ -1369,7 +1370,7 @@ function auth_confirm(res) {
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt6.gif" alt="비밀번호" /></th>
 									<td>
 									
-										<input type="password" class="input" style="width:115px" value="1234567" readonly/>
+										<input type="password" class="input" style="width:115px" value="${dto.smem_pwd}" readonly/>
 										<input id="user_passwd" type="password" style="display:none;" value="" readonly/>
 										<a href="#" class="btnS pwB"><span>변경</span></a>
 									
@@ -1378,7 +1379,7 @@ function auth_confirm(res) {
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt8.gif" alt="휴대폰 번호" /> <em class="star" title="필수항목"></em></th>
 									<td>
-										<input id="user_phone" type="text" class="input" style="width:115px" value="01064318680" readonly />
+										<input id="user_phone" type="text" class="input" style="width:115px" value="${dto.smem_tel}" readonly />
 										<input id="confirm_id" type="text" style="display:none;" value="" readonly />
 										<input id="confirm_num" type="text" style="display:none;" value="" readonly />
 										<a href="#" class="btnS btn_auth"><span>변경</span></a>
@@ -1389,11 +1390,11 @@ function auth_confirm(res) {
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
 									<td>
-										<input id="zip" type="text" class="input" style="width:50px" value='07020' disabled="disabled" />
+										<input id="zip" type="text" class="input" style="width:50px" value='${dto.mem_addr_num}' disabled="disabled" />
 										<a href="#" id="execDaumPostcode" onclick="javascript:execDaumPostcode();" class="btnS"><span>우편번호</span></a>
 										<p class="mt5">
-											<input id="addr1" type="text" class="input" style="width:240px" value="서울 동작구 사당동 1154 (사당동, 사당휴먼시아아파트)" disabled="disabled" />
-											<input id="addr2" type="text" class="input" style="width:240px" value="106동304호" />
+											<input id="addr1" type="text" class="input" style="width:240px" value="${dto.mem_addr_fir }" disabled="disabled" />
+											<input id="addr2" type="text" class="input" style="width:240px" value="${dto.mem_addr_sec }" />
 										</p>
 									</td>
 								</tr>

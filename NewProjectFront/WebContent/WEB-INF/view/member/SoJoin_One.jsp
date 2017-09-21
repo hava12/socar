@@ -136,7 +136,7 @@ $(function(){
             $('#auth_num').focus();
             return false;
         }
-        if($('#addr1').val() == '' || $('#addr2').val() == ''){
+        if($('#mem_addr_fir').val() == '' || $('#mem_addr_sec').val() == ''){
             alert('주소를 입력해 주세요.');
             return false;
         }
@@ -319,6 +319,8 @@ $(function(){
 
 			<div class="boxL">
 				<form name="join" method="post" action="<c:url value='/Member/CreateMem.do'/>">
+					<input type="hidden" id="smem_id" value="${dto.smem_id}" />
+					
 					<fieldset>
 						<div class="section">
 							<h4><img src="/template/member/../asset/images/member/join_step2_txt1.gif" alt="회원정보" /></h4>
@@ -349,10 +351,13 @@ $(function(){
 								<th><img src="/template/member/../asset/images/member/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
 								<td>
 									<input id="zip" type="text" class="input" style="width:35px" value="" disabled="disabled" />
+									<input id="mem_addr_num" type="hidden" value="" />
+									
 									<a href="#" id="execDaumPostcode" onclick="javascript:execDaumPostcode();" class="btnS"><span>우편번호</span></a>
 									<p class="mt5">
-										<input id="addr1" type="text" class="input" style="width:240px" value="" disabled="disabled" />
-										<input id="addr2" type="text" class="input" style="width:240px" />
+										<input id="mem_addr_fir" type="text" class="input" style="width:240px" value="" />
+										
+										<input id="mem_addr_sec" type="text" class="input" style="width:240px" />
 									</p>
 									<p class="tip mt10">위 주소로 회원카드를 발송합니다. 반드시 우편물 수취가 가능한 주소를 입력해주세요.</p>
 								</td>
@@ -361,168 +366,36 @@ $(function(){
 							<th><img src="/template/member/../asset/images/member/join_step2_txt24.gif" alt="주 사용지역" /></th>
 								<td>
 									<label for="loc1">
-										<input type="radio" id="loc1" name="loc" value="서울" checked="true"/> 서울
+										<input type="radio" id="loc1" name="mem_mainarea" value="서울" checked="true"/> 서울
 									</label>
 									<!-- 경기/인천 추가 -->
 									<label for="loc4">
-										<input type="radio" id="loc4" name="loc" value="인천경기" /> 인천·경기
+										<input type="radio" id="loc4" name="mem_mainarea" value="인천경기" /> 인천·경기
 									</label>
 									<!-- 대구/경북 추가 -->
 									<label for="loc5">
-										<input type="radio" id="loc5" name="loc" value="대구경북" /> 대구·경북
+										<input type="radio" id="loc5" name="mem_mainarea" value="대구경북" /> 대구·경북
 									</label>
 									<!-- 부산지역 추가 -->
 									<label for="loc3">
-										<input type="radio" id="loc3" name="loc" value="부산경남" /> 부산·경남
+										<input type="radio" id="loc3" name="mem_mainarea" value="부산경남" /> 부산·경남
 									</label>
 									<!-- 대전/충북 추가 -->
 									<label for="loc6">
-										<input type="radio" id="loc6" name="loc" value="대전충청" /> 대전·충청
+										<input type="radio" id="loc6" name="mem_mainarea" value="대전충청" /> 대전·충청
 									</label>
 									<!-- 광주/전라 추가 -->
 									<label for="loc7">
-										<input type="radio" id="loc7" name="loc" value="광주전라" /> 광주·전라
+										<input type="radio" id="loc7" name="mem_mainarea" value="광주전라" /> 광주·전라
 									</label>
 									<label for="loc2">
-										<input type="radio" id="loc2" name="loc" value="제주" /> 제주
+										<input type="radio" id="loc2" name="mem_mainarea" value="제주" /> 제주
 									</label>
 								</td>
 							</tr>
 							</table>
 						</div>
-<!-- 						<div class="section"> -->
-<!-- 							<h4><img src="/template/member/../asset/images/member/join_step2_new01.gif" alt="프로모션 가입"></h4> -->
-<!-- 							<table cellspacing="0" class="rows"> -->
-<!-- 								<tbody> -->
-<!-- 									<tr> -->
-<!-- 										<th><img src="/template/member/../asset/images/member/join_step2_new02.gif" alt="가입경로"></th> -->
-<!-- 										<td> -->
-<!-- 											<input type="radio" id="normal_join" name="selbox_joinway" value="" class="inp_radio" checked="checked" /> -->
-<!-- 											<label for="normal_join" class="lab_radio">일반가입</label> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-<!-- 									<tr> -->
-<!-- 										<th></th> -->
-<!-- 										<td> -->
-<!-- 											<input type="radio" id="promotion_join" name="selbox_joinway" value="제휴단체" class="inp_radio" /> -->
-<!-- 											<label for="promotion_join" class="lab_radio">프로모션 코드</label> -->
-<!-- 											<input id="route1" type="text" class="input" style="width:185px" disabled="disabled"> -->
-<!-- 											<span class="tip ml10">안내 받은 프로모션 코드 전체를 올바르게 입력하셔야만 혜택이 적용됩니다.</span> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-<!-- 									<tr> -->
-<!-- 										<th></th> -->
-<!-- 										<td> -->
-<!-- 											<input type="radio" id="friend_join" name="selbox_joinway" value="친구추천" class="inp_radio" /> -->
-<!-- 											<label for="friend_join" class="lab_radio">친구 추천</label> -->
-<!-- 											<input id="route2" type="text" class="input" style="width:185px" disabled="disabled"> -->
-<!-- 											<span class="tip ml10">친구 아이디(이메일) 전체를 올바르게 입력하셔야만 혜택이 적용됩니다.</span> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-<!-- 								</tbody> -->
-<!-- 							</table> -->
-<!-- 						</div> -->
-<!-- 						<div class="section"> -->
-<!-- 							<h4><img src="/template/member/../asset/images/member/join_step2_new03.gif" alt="부가정보" /></h4> -->
-<!-- 							<table cellspacing="0" class="rows"> -->
-<!-- 							<tr> -->
-<!-- 								<th><img src="/template/member/../asset/images/member/join_step2_new04.gif" alt="직업" /></th> -->
-<!-- 								<td> -->
-<!-- 									<select id="selbox-job" name="selbox-job" style="width:108px"> -->
-										<!-- <option value="" selected="selected">선택해주세요</option>
-										<option value="회사원">회사원</option>
-										<option value="자영업">자영업</option>
-										<option value="학생">학생</option>
-										<option value="주부">주부</option>
-										<option value="기타">기타</option>-->
-<!-- 									</select> -->
-<!-- 									<span id="etc-job-w" style="display:none;"> -->
-<!-- 										<input id="etc-job" name="etc-job" type="text" class="input" style="width:165px" value="" /> -->
-<!-- 									</span> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<!-- 							<tr id="selbox-path-tr"> -->
-<!-- 								<th><img src="/template/member/../asset/images/member/join_step2_new05.gif" alt=""></th> -->
-<!-- 								<td> -->
-<!-- 									<select id="selbox-path" name="selbox-path" style="width:108px"> -->
-										<!-- <option value="" selected="selected">선택해주세요</option>
-										<option value="TV광고">TV광고</option>
-										<option value="온라인동영상광고">온라인 동영상 광고</option>
-										<option value="지하철버스광고">지하철·버스 광고</option>
-										<option value="극장광고">극장광고</option>
-										<option value="기타광고">기타광고</option>
-										<option value="지인의소개">지인의 소개</option>
-										<option value="페이스북">페이스북</option>
-										<option value="쏘카차량및쏘카존목격">쏘카 차량 및 쏘카존 목격</option>
-										<option value="언론보도">언론보도</option>
-										<option value="검색">검색</option>
-										<option value="기타">기타</option> -->
-<!-- 									</select> -->
-<!-- 									언론보도 선택시 -->
-<!-- 									<span class="ml10" id="media" style="display:none;"> -->
-<!-- 										<label for="media1"> -->
-<!-- 											<input type="radio" id="media1" name="media" value="구독신문" checked="true" /> 구독신문 -->
-<!-- 										</label> -->
-<!-- 										<label for="media2"> -->
-<!-- 											<input type="radio" id="media2" name="media" value="온라인뉴스" /> 온라인뉴스 -->
-<!-- 										</label> -->
-<!-- 										<label for="media3"> -->
-<!-- 											<input type="radio" id="media3" name="media" value="TV방송" /> TV방송 -->
-<!-- 										</label> -->
-<!-- 										<label for="media4" class="no_margin"> -->
-<!-- 											<input type="radio" id="media4" name="media" value="직접입력" /> 직접입력 -->
-<!-- 										</label> -->
-<!-- 										<input type="text" id="media4-txt" name="media4-txt" style="width:165px" class="input" readonly="readonly" /> -->
-<!-- 									</span> -->
-<!-- 									검색 선택시 -->
-<!-- 									<span class="ml10" id="portal" style="display:none;"> -->
-<!-- 										<label for="portal1"> -->
-<!-- 											<input type="radio" id="portal1" name="portal" value="네이버" checked="true" /> 네이버 -->
-<!-- 										</label> -->
-<!-- 										<label for="portal2"> -->
-<!-- 											<input type="radio" id="portal2" name="portal" value="다음" /> 다음 -->
-<!-- 										</label> -->
-<!-- 										<label for="portal3"> -->
-<!-- 											<input type="radio" id="portal3" name="portal" value="구글" /> 구글 -->
-<!-- 										</label> -->
-<!-- 										<label for="portal4" class="no_margin"> -->
-<!-- 											<input type="radio" id="portal4" name="portal" value="직접입력" /> 직접입력 -->
-<!-- 										</label> -->
-<!-- 										<input type="text" id="portal4-txt" name="portal4-txt" style="width:165px" class="input" readonly="readonly" /> -->
-<!-- 									</span> -->
-<!-- 									기타 선택시 -->
-<!-- 									<span id="etc-path-w" style="display:none;"> -->
-<!-- 										<input id="etc-path" name="etc-path" type="text" class="input" style="width:165px" value="" /> -->
-<!-- 									</span> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 							<th><img src="/template/member/../asset/images/member/join_step2_new06.gif" alt="카셰어링 이용경험" /></th> -->
-<!-- 								<td> -->
-<!-- 									<select id="selbox_experience" style="width:108px"> -->
-										<!-- <option value="" selected="selected">선택해주세요</option>
-										<option value="있음">있음</option>
-										<option value="없음">없음</option> -->
-<!-- 									</select> -->
-<!-- 									<div id="experience_etc" style="display:none;"> -->
-<!-- 										<label for="exp1" class="ml10"> -->
-<!-- 											<input type="radio" id="exp1" name="channel2" value="그린카" checked="true"/> 그린카 -->
-<!-- 										</label> -->
-<!-- 										<label for="exp2"> -->
-<!-- 											<input type="radio" id="exp2" name="channel2" value="KT카셰어링" /> KT카셰어링 -->
-<!-- 										</label> -->
-<!-- 										<label for="exp3"> -->
-<!-- 											<input type="radio" id="exp3" name="channel2" value="씨티카 " /> 씨티카 -->
-<!-- 										</label> -->
-<!-- 										<label for="exp4" class="no_margin"> -->
-<!-- 											<input type="radio" id="exp4" name="channel2" value="직접입력" /> 직접입력 -->
-<!-- 										</label> -->
-<!-- 										<input type="text" id="exp4-txt" name="exp4-txt" style="width:165px" class="input" readonly="readonly" /> -->
-<!-- 									</div> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<!-- 							</table> -->
-<!-- 						</div> -->
+
 						<div class="centerBtn">
 							<input id="next" type="image" src="//web-assets.socar.kr/template/member/../asset/images/member/new/btn_next.gif" alt="다음단계 (면제/결제정보 입력)" />
 						</div>

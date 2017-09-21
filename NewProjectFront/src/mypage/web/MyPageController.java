@@ -1,16 +1,46 @@
 package mypage.web;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import member.service.MemDto;
+import member.service.Simple_MemDto;
+import member.service.impl.Simple_MemServiceImpl;
+import mypage.service.impl.MyPageServiceImpl;
 
 @Controller
 public class MyPageController {
 
+	@Resource(name="myPageServiceImpl")
+	MyPageServiceImpl service;
+	
+	@Resource(name="simple_MemServiceImpl")
+	 Simple_MemServiceImpl s_service;
+	
 	
 	@RequestMapping("/Mypage/Mypage.do")
-	public String mypage() throws Exception{
+	public String mypage(HttpServletRequest req,Model model) throws Exception{
 		
+		MemDto dto = null;
+		dto = service.gomypage(req.getSession().getAttribute("smem_id").toString());
+		if(dto == null) {
+			Simple_MemDto s_dto = s_service.selectOne(req.getSession().getAttribute("smem_id").toString());
+			dto = new MemDto();
+			dto.setSmem_id(s_dto.getSmem_id());
+			dto.setSmem_name(s_dto.getSmem_name());
+			dto.setSmem_pwd(s_dto.getSmem_pwd());
+			dto.setSmem_tel(s_dto.getSmem_tel());
+			model.addAttribute("memtype","simple_mem");
+		}
+		else {
+			model.addAttribute("memtype","mem");
+		}
 		
+		model.addAttribute("dto",dto);
 		
 		return "/mypage/Mypage";
 	}

@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.Simple_MemService;
 
@@ -33,6 +34,11 @@ public class Simple_MemServiceImpl implements Simple_MemService{
 
 	public Simple_MemDto selectOne(String smem_id) throws Exception {
 		return dao.selectOne(smem_id);
+	}
+
+	@Override
+	public int CreateMem(MemDto dto) throws Exception {
+		return dao.CreateMem(dto);
 	}
 
 }
