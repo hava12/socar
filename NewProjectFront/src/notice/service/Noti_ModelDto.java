@@ -7,6 +7,8 @@ public class Noti_ModelDto {
 	private String not_title; 
 	private String not_content;
 	private String not_postdate;
+	
+	
 	public String getNot_no() {
 		return not_no;
 	}

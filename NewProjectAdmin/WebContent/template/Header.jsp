@@ -107,7 +107,7 @@
                               <a href="<c:url value='/Bbs/Notice.do' />">공지사항 관리</a>
                           </li>
                           <li>
-                              <a href="<c:url value='/admin/bbs/Notice.jsp' />">차량신청 게시판 관리</a>
+                              <a href="<c:url value='/Bbs/RqCar.do' />">차량신청 게시판 관리</a>
                           </li>
                           <li>
                               <a href="<c:url value='/admin/bbs/Notice.jsp' />">지역신청 게시판 관리</a>

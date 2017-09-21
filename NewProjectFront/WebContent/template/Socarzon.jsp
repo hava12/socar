@@ -14,6 +14,7 @@
 					</span>
 				</p>
 
+
 				<form name="request" method="post" action="">
 					<fieldset>
 						<div class="requestForm" style="padding-bottom:15px;">
@@ -30,14 +31,15 @@
 									<li><a href="#">검색된 결과가 없습니다.</a></li>
 								</ul>
 							</div>
-							<textarea id="layer_askzone_text" cols="" rows="" class="textarea" data-in="false" style="width:420px;height:64px;margin-top:10px;color:#999;" onclick="alert('로그인 후 작성이 가능합니다.');return false;">자세한 내용을 적어주세요. (선택사항)</textarea>
+							<textarea id="layer_askzone_text" cols="" rows="" class="textarea" name="search_ask_content" data-in="false" style="width:420px;height:64px;margin-top:10px;color:#999;" onclick="alert('로그인 후 작성이 가능합니다.');return false;">자세한 내용을 적어주세요. (선택사항)</textarea>
 							<div style="width:432px;padding-top:9px;margin-top:12px;border-top:1px solid #eaeaea;text-align:center;">
 								<input type="image" src='${pageContext.request.contextPath}/template/image/btn_socarzone_submit.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" alt="신청하기">
 							</div>
-							
 						</div>
 					</fieldset>
 				</form>
+				
+				
 				<div class="box_titsoting">
 					<div class="tit"><img src='${pageContext.request.contextPath}/template/image/txt_socarzone.gif' alt="쏘카존 신청현황" /></div>
 					<div class="soting">

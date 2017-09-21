@@ -13,6 +13,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="Car_ModelDto" type="guide.service.Car_ModelDto"/>
 		<typeAlias alias="Noti_ModelDto" type="notice.service.Noti_ModelDto"/>
 		<typeAlias alias="Simple_MemDto" type="member.service.Simple_MemDto"/>
+		<typeAlias alias="Rq_carDto" type="main.service.Rq_carDto"/>
+		
 	</typeAliases>
 	
 	
@@ -35,6 +37,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/Guide_mybatis.xml"/>
 		<mapper resource="mybatis/Notice_mybatis.xml"/>
 		<mapper resource="mybatis/Member_mybatis.xml"/>
+		<mapper resource="mybatis/SocarQuick_mybatis.xml"/>
+		
 	</mappers>
 	
 	

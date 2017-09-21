@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="mybatis.SocarQuick_mybatis">
+
+	<resultMap id="Rq_carDtoResult" type="Rq_carDto">
+	    <result property="rqc_code" column="rqc_code"/>
+	    <result property="rqc_content" column="rqc_content"/>
+	    <result property="rqc_loc" column="rqc_loc"/>
+	    <result property="smem_id" column="smem_id"/>
+	    <result property="rqc_date" column="rqc_date"/>
+	</resultMap>
+
+ 	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
+           식별자로 사용 -->
+ 	<select id="selectRq_car_List" resultMap="Rq_carDtoResult">
+		SELECT * FROM RQ_CAR ORDER BY RQC_CODE DESC	
+	</select>
+	
+	
+</mapper>
