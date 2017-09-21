@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"> -->
@@ -30,7 +31,7 @@
 
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="icon">
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="shortcut icon">
-		<link href='${pageContext.request.contextPath}/template/image/header_logo.png?v=20170428' rel="image_src" />
+		<link href='//web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20170428' rel="image_src" />
 
 		<!-- 2016/07/15 수정
 		<title>카셰어링 쏘카 - So Smart, SOCAR</title>
@@ -41,14 +42,14 @@
 		<title>대한민국 1등 카셰어링 쏘카</title>
 
 		<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505270839"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505270839"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505270839"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505270839"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505270839"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.banner.js"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/ssun.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/json3.min.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/common.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/day-picker.js?1505958998"></script>
+		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.block.ui.min.js?1505958998"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -59,390 +60,487 @@
 		ga('send', 'pageview');
 		</script>
 
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/member.css?v=20170731' />
-<link rel="stylesheet" href='${pageContext.request.contextPath}/template/css/jquery-ui.css' />
-<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />-->
-<script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-<!-- spock naver 프리미엄 로그 전환페이지 설정 -->
-<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"> </script>
-<script type="text/javascript">
-  var _nasa={};
-  _nasa["cnv"] = wcs.cnv("2","0"); // 회원가입, 단계 0
-
-</script>
+<link rel="stylesheet" type="text/css" href="//web-assets.socar.kr/template/member/../asset/css/member.css?v=20170731" />
 
 <script type="text/javascript">
+function is_email(a){return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(a);}
 $(function(){
 
-  $('#coupon_register_btn').click(function(){
-    showLoginLayer(false,'/mypage/coupon',null);
-    return false;
-  });
+	$('body').keydown(function(event) {
+		if (event.which == 13) {
+		if($('#search_zip').is(':hidden') == false) {
+			$('#search_zip').click();
+		}
+			event.preventDefault();
+		}
+	});
 
-  $('.member_referer_box').click(function(){
-    if($(this).data('direction_img')) {
-      $('#refer_direction').attr('src',$(this).data('direction_img'));
-    }
+	$('#email_select').change(function(){
+		var val = $(this).val();
+		if(val == 'null'){
+			val = "";
+		}
 
-    $('#member_referer').css('display','block');
-    return false;
-  });
+		$('#email2').val(val);
 
-  $('#btn_member_referer_submit').bind('click', function () {
-    var code = $.trim($('#input_member_referer').val());
+		return false;
+	});
 
-    if(code == ''){
-      alert('프로모션코드(제휴코드)를 입력해 주세요.');
-      return false;
-    }
 
-    $.ajax({
-      url: "https://api.socar.kr/user/validate_member_referer_code",
-      dataType: "jsonp",
-      data: {
-        code: code
-      },
-      success: function( res ) {
-        if(1==res.retCode){
-//          location.href='join/1/'+encodeURIComponent(code);
 
-          set_cookie('tmp_invite', code)
-          $("#invite").val(code);
-          $('#content .simple_join').click();
-        } else {
-          alert(res.retMsg);
+	$("input:radio[name='selbox_joinway']").bind('click', function() {
+		var selected = $(this).val();
+
+		if(selected == '제휴단체'){
+			$("#route1").val('').prop('disabled',false);
+			$("#route2").val('').prop('disabled',true);
+		}
+		else if(selected == '친구추천'){
+			$("#route1").val('').prop('disabled',true);
+			$("#route2").val('').prop('disabled',false);
+		}
+		else{
+			$("#route1").val('').prop('disabled',true);
+			$("#route2").val('').prop('disabled',true);
+		}
+	});
+
+
+
+    $('#selbox_experience').bind('click', function () {
+        var selected = $(this).val();
+
+        if(selected == '있음'){
+            $('#experience_etc').css('display', 'inline');
         }
-      }
+        else if(selected == '없음' || selected == ''){
+            $('#experience_etc').css('display', 'none');
+        }
     });
-    return false;
-  });
 
-    $('#btn_corp_submit').bind('click', function () {
-        var id = $('#corp_id').text();
-
-        if(id == ''){
-            alert('법인/단체를 선택해주세요');
+    $('#next').bind('click', function () {
+        if(!is_email($.trim($('#email1').val()) + '@' + $.trim($('#email2').val()))){
+            alert('이메일 형식이 잘못되었습니다. 다시 입력해 주세요.');
+            $('#email1').val('').focus();
             return false;
         }
 
-        $.doPost('/join/1', {
-            corp_name: $('#input_corp_name').val(),
-            corp_id: $('#corp_id').text()
+        if($('#phone2').val() == '' || $('#phone3').val() == ''){
+            alert('휴대폰번호를 입력해 주세요.');
+            $('#phone3').val('');
+            $('#phone2').val('').focus();
+            return false;
+        }
+        if($('#auth_num').val() == ''){
+            alert('인증번호를 입력해 주세요.');
+            $('#auth_num').focus();
+            return false;
+        }
+        if($('#addr1').val() == '' || $('#addr2').val() == ''){
+            alert('주소를 입력해 주세요.');
+            return false;
+        }
+		
+        $.ajax({
+        	type:'POST',
+        	url : "<c:url value='/Member/CreateMem.do' />"
+        	
+        	
         });
+        
+    });/////////////////////////////////////////////////////////////
 
-        return false;
-    });
+	$('#search_zip').bind('click', function (e) {
+		$.ajax({
+			type: 'GET',
+			url: "https://api.socar.kr/user/zipcode",
+			crossDomain: true,
+			data: { search: $('#search_input').val() },
+			dataType: 'jsonp',
+			success: function(json){
+				var retCode = json['retCode'];
 
-  $('.join-index .box .corp').click(function(){
-    var type = $(':radio[name="corpType"]:checked').val();
-    if(type == '관리자'){
-      //if(confirm("법인/단체 관리자는 소속 구성원 관리 권한을 가지며 차량 예약 및 사용은 불가합니다. 차량을 이용하시려면 관리자 가입 후 별도로 구성원 가입을 해주세요.\n지금 법인/단체 관리자로 가입하시겠습니까?")) {
-      window.location.href = '/join_corp/1';
-      //}
-    }
-    else{
-      $('#corp').css('display','block');
-    }
+				if(retCode == 1){
+					var result = json['result'];
+					$('.tr_data').remove();
 
-    return false;
-  });
+					for(var i in result){
+						$('#search_zip_result').append(
+							'<tr class="tr_data"><th><a class="zip_code" href="#">'
+							+ result[i]['zipcode']
+							+ '</a></th><td><a class="zip_addr" href="#">'
+							+ result[i]['name']
+							+ '</a></td></tr>'
+						);
+					}
 
-  $( "#input_corp_name" ).autocomplete({
-    source: function( request, response ) {
-      $.ajax({
-        url: "https://api.socar.kr/user/find_company",
-        dataType: "jsonp",
-        data: {
-          name: request.term
-        },
-        success: function( data ) {
-          if(data.result.length == 0){
-            $('#corp_alert').css('display', '');
-          }
-          else{
-            $('#corp_alert').css('display', 'none');
-          }
+					$('.zip_code').bind('click', function () {
+						var zipCode = $(this).text();
+						var zipAddr = $(this).parent().parent().find('.zip_addr').text();
 
-          response( $.map( data.result, function( item ) {
-            return {
-              label: item.name,
-              id: item.id
-            }
-          }));
-        }
-      });
-    },
-    minLength: 2,
-    select: function( event, ui ) {
-      $('#input_corp_name').val(ui.item.label);
-      $('#corp_id').text(ui.item.id);
-    },
-    open: function() {
-      $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-    },
-    close: function() {
-      $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-    }
-  });
+						var zip1 = zipCode.substr(0, zipCode.indexOf('-'));
+						var zip2 = zipCode.substr(zipCode.indexOf('-')+1, 3);
 
-  switch(window.location.hash)  {
-  case '#rfr':
-    $('.member_referer_box').click();
-    break;
-  case '#corpTypeC':
-    $('#corpType1').attr("checked",true);
-    break;
-  case '#corpTypeM':
-    $('#corpType2').attr("checked",true);
-    break;
-  default:
-    break;
-  }
+						$('#zip1').val(zip1);
+						$('#zip2').val(zip2);
+						$('#addr1').val(zipAddr);
+						$('.mwLayer').removeClass('open');
+						$('.mwLayer #mwCont').removeClass();
+						$('.mwLayer .mwCont').css('display','none');
+						return false;
+					});
 
-  $("#simple-join").bind('click',function() {
-    var ret = $('#is_agree').hasClass('on');
+					$('.zip_addr').bind('click', function () {
+						var zipAddr = $(this).text();
+						var zipCode = $(this).parent().parent().find('.zip_code').text();
 
-     var sns_connect_id  = $('#sns_connect_id').val(),
-       name  = $.trim($('#join_name').val()),
-       email = $.trim($('#join_email').val()),
-       mobile  = $.trim($('#join_mobile').val())
-//       invite  = $.trim($('#invite').val()),
-//       advertise = $.cookie('tmp_advertise'),
-//       advertise_id = $.cookie('tmp_advertise_id'),
-//       validatedPhoneNum = $('#LGD_MOBILENUM').val(),
-//       auth_confirm_key = $('#auth_confirm_key').val();
+						var zip1 = zipCode.substr(0, zipCode.indexOf('-'));
+						var zip2 = zipCode.substr(zipCode.indexOf('-')+1, 3);
 
-    if(name == '' || /[^가-힣a-zA-Z\s]/.test(name)) {
-      alert('이름을 확인해주세요');
-      return false;
-    }
+						$('#zip1').val(zip1);
+						$('#zip2').val(zip2);
+						$('#addr1').val(zipAddr);
+						$('.mwLayer').removeClass('open');
+						$('.mwLayer #mwCont').removeClass();
+						$('.mwLayer .mwCont').css('display','none');
+						return false;
+					});
+				}
+				else{
+					alert(json['retMsg']);
+				}
+			},
+			error: function(){
+				alert('일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+			}
+		}); // $.ajax({})
 
-    if(!is_email(email)) {
-      alert('이메일 형식이 잘못되었습니다. 다시 입력해주세요.');
-      return false;
-    }
-    
-    
-    
-    
+		return false;
+	}); // $('#search_zip').bind('click')
 
-    if(mobile == '') {
-        alert('휴대폰번호를 확인해주세요');
-        return false;
-    } else {
-      var regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var i_text = $('.i_label').next('.i_text');
+	$('.i_label').css('position','absolute');
+	i_text
+		.focus(function(){
+			$(this).prev('.i_label').css('visibility','hidden');
+		})
+		.blur(function(){
+			if($(this).val() == ''){
+				$(this).prev('.i_label').css('visibility','visible');
+			} else {
+				$(this).prev('.i_label').css('visibility','hidden');
+			}
+		})
+		.change(function(){
+			if($(this).val() == ''){
+				$(this).prev('.i_label').css('visibility','visible');
+			} else {
+				$(this).prev('.i_label').css('visibility','hidden');
+			}
+		})
+		.blur();
 
-      if(!regExp.test(mobile)) {
-        alert('잘못된 휴대폰 번호입니다. 하이픈(-)을 제외한 숫자만 입력해주세요.');
-        return false;
-      }
-    }
+	$("#selbox-job").change(function() {
+		var val = $("#selbox-job").val();
 
-    var join_way1='', meta = '';
+		if($.trim(val) == '기타') {
+			$("#etc-job-w").css('display','');
+		}
+		else{
+			if( $("#etc-job-w").css('display') != 'none' ) {
+				$("#etc-job").val('').parent().css('display','none');
+			}
+		}
 
-    if($.trim(invite) != '') {
-      if( is_email(invite) ) {
-        join_way1 = '친구추천';
-      }
-      else {
-        join_way1 = '제휴단체';
-      }
-    }
+		return false;
+	});
 
-//     if($.trim(advertise) != '' && advertise != null) {
-//       meta = {name:'쏘카광고', value:advertise, advertise_id:advertise_id};
-//     }
+	$("#selbox-path").change(function() {
+		var val = $.trim($("#selbox-path").val());
 
-    var password = '', repassword = '';
-    var joinType = $("#join_type").val();
+		if(val == '언론보도') {
+			$("#media").css('display','');
+			$("#portal").css('display','none');
+			$("#etc-path-w").css('display','none');
+		}
+		else if(val == '검색') {
+			$("#media").css('display','none');
+			$("#portal").css('display','');
+			$("#etc-path-w").css('display','none');
+		}
+		else if(val == '기타') {
+			$("#media").css('display','none');
+			$("#portal").css('display','none');
+			$("#etc-path-w").css('display','');
+		}
+		else{
+			$("#media").css('display','none');
+			$("#portal").css('display','none');
+			$("#etc-path-w").css('display','none');
+		}
 
-    if($.trim(joinType) == "email") {
-      password = $('#upw').val();
-      repassword = $('#upw2').val();
+		$("#media4-txt").val('');
+		$("#portal4-txt").val('');
+		$("#etc-path").val('');
 
-      if(password == '' || repassword == ''){
-        alert('패스워드를 입력해 주세요.');
-        return false;
-      }
+		return false;
+	});
 
-      if ( password.length < 6 ) {
-          alert('비밀번호는 6자리 이상으로 입력해 주세요.');
-          return false;
-      } else if ( ! /[a-zA-Z]/.test(password) || ! /[0-9]/.test(password) ) {
-          alert('비밀번호는 영문과 숫자가 모두 포함되어야 합니다.');
-          return false;
-      }
+	$(':radio[name="media"],:radio[name="portal"],:radio[name="channel2"]').bind('click', function() {
+		var val = $.trim($(this).val());
 
-      if(password != repassword) {
-        alert('패스워드가 잘못되었습니다. 다시 입력해 주세요.');
-        return false;
-      }
-    }
+		if( val == '직접입력' ) {
+			$(this).parent().next().prop('readonly',false).focus();
+		}
+		else {
+			var name = $.trim($(this).attr('name'));
 
-//     if (auth_confirm_key == '') {
-//       alert('본인인증을 해주세요.');
-//       return false;
-//     }
-
-//     var agree_sms = ($('#mkt_agree_sms').hasClass('on')) ? 1 : 0,
-//         agree_dm = ($('#mkt_agree_email').hasClass('on')) ? 1 : 0,
-//         agree_push= ($('#mkt_agree_push').hasClass('on')) ? 1 : 0;
-
-    $.ajax({
-        url : "<c:url value='/Member/CreateSimpleMem.do' />",
-        data : {
-//        sns_connect_id : sns_connect_id,
-          smem_id : email,
-          smem_name: name,
-          smem_pwd : password,
-          smem_tel : mobile,
-        },
-        type : "POST",
-        dataType: "json",
-        success : function(data){
-        if(data.retCode == 1){
-          ga('send','event','pc_web','signup','idmember');
-
-          $('.mwLayer .mwCont').css('display','none');
-          $('.mwLayer .joinSNS_result').css('display','block');
-          $("#mwCont .close").css('display','none');
-
-          $(".join_pr").unbind("click");
-          $(".join_pr").bind("click",function() {
-        	  
-            var joinProc = $(this).attr("id");
-            var stage = "";
-            if(joinProc == 'join_continue') {
-              ga('send', 'event', 'Join', 'click', 'now',1);
-              stage="/Member/SoJoin_One.do";
-            }
-            if(joinProc == 'join_later') {
-              ga('send', 'event', 'Join', 'click', 'after',1);
-              stage="/Main/Main.do";
-            }
-            $.doPost("<c:url value='/Member/JoinResult.do' />", {
-              smem_id : email,
-              smem_pwd : password,
-              stage : stage
-            });
-            
-          });
-        } else {
-          alert(data.retMsg + ' 코드 : ' + data.retCode);
-        }
-       },
-       error : function(){
-        alert('오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-       }
-    });
-
-    return false;
-  });
+			if( name == 'media') {
+				$("#media4-txt").val('').prop('readonly',true);
+			}
+			else if( name == 'portal' ) {
+				$("#portal4-txt").val('').prop('readonly',true);
+			}
+			else {
+				$("#exp4-txt").val('').prop('readonly',true);
+			}
+		}
+	});
+	$('#portal4-txt,#media4-txt,#exp4-txt').click(function() {
+		$(this).prev().children(':radio').trigger('click');
+		$(this).prop('readonly',false).focus();
+	});
 });
-
-$(document).ready(function(){
-  $('.mwLayer .close').hover(function(){
-    $('.mwLayer .joinSNS_Info .close_open_btn').show();
-    $('.mwLayer .close').css('background-image','url(${pageContext.request.contextPath}/template/image/btn_layer_close_s_on.gif)');
-  },function(){
-    $('.mwLayer .joinSNS_Info .close_open_btn').hide();
-    $('.mwLayer .close').css('background-image','url(${pageContext.request.contextPath}/template/image/btn_layer_close_s.gif)');
-  });
-});
-
-// 본인인증 완료 후, 실행
-function auth_confirm(res) {
-  // 인증 값 입력
-  $("#join_name").val(res.name);
-  $("#join_mobile").val(res.phone);
-  $("#auth_confirm_key").val(res.auth_confirm_key);
-  // 인증 후 변경불가
-  $("#join_name, #join_mobile").css('border-color','#fff');
-  $("#join_name, #join_mobile").prop('readonly', true);
-  $("#join_name, #join_mobile").css('color','#999');
-  $("#btn_confirm_num, .tip_auth").hide();
-}
-
-
-
 </script>
 </head>
-
-<body id="member" class="join-index">
+<body id="member" class="join step2">
 <div id="wrap">
-	<jsp:include page="/template/Header.jsp"/>
+	<jsp:include page="/template/Header.jsp" />
 
-  <div id="container">
-    <div id="content">
-      <div class="index"></div>
-      <form name="join" method="post" action="">
-        <fieldset>
-          <div class="type box">
-            <ul>
-		            <li class="first" style="margin-left: 35%">
-		              <h3><img src='${pageContext.request.contextPath}/template/image/txt_join1_three_hour.png' alt="개인회원 가입" /></h3>
-		              <p><img src='${pageContext.request.contextPath}/template/image/txt_join2_20150508.jpg' alt="간편하게 가입하고 편리하게 사용하세요! SNS 계정으로 빠르고 쉽게 시작하기!" /></p>
-		              <!--☞ <a href='#' id='member_referer_btn' class='member_referer_box join_direction' data-direction_img="/template/asset/images/member/join_index_txt12_refer.gif">프로모션코드(제휴코드) 입력하기</a>-->
-		              <p class="btn">
-		                <!-- <a href="/join/1"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' alt="가입하기" /></a> -->
-		                <img src='${pageContext.request.contextPath}/template/image/btn_join.png' class="simple_join" style="cursor:pointer;" alt="가입하기" />
-		              </p>
-		            </li>
+	<div id="container">
+		<div id="content">
+			<h2><img src="/template/member/../asset/images/member/join_h2.gif" alt="회원가입" /></h2>
+			<h3 class="box shadow stepType stepType1 step2">회원정보 입력</h3>
 
-            </ul>
+			<div class="boxL">
+				<form name="join" method="post" action="">
+					<fieldset>
+						<div class="section">
+							<h4><img src="/template/member/../asset/images/member/join_step2_txt1.gif" alt="회원정보" /></h4>
+							<p class="required">
+								<em class="star" title="필수항목"></em> <img src="/template/member/../asset/images/member/join_step2_txt2.gif" alt="표시된 항목은 필수항목이므로 반드시 입력해주시기 바랍니다." />
+							</p>
+							<table cellspacing="0" class="rows">
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
+								<td id="user_name">${dto.smem_name}</td>
+							</tr>
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt8.gif" alt="휴대폰 번호" /></th>
+								<td>
+									${dto.smem_tel}
+								</td>
+							</tr>
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt5.gif" alt="아이디 (이메일)" /> <em class="star" title="필수항목"></em></th>
+								<td>
+									<input readonly id="email1" type="text" class="input read_only" value="${fn:split(dto.smem_id,'@')[0]}" style="width:108px" /> @
+									<input readonly id="email2" type="text" class="input read_only" value="${fn:split(dto.smem_id,'@')[1]}" style="width:108px" />
+									<p class="tip mt10">입력한 이메일주소를 아이디로 사용합니다.<br />중요 서비스 공지 및 결제내역 안내메일이 발송될 수 있으므로 본인소유의 이메일만 입력해주세요.</p>
+								</td>
+							</tr>
+						
+							<tr>
+								<th><img src="/template/member/../asset/images/member/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
+								<td>
+									<input id="zip" type="text" class="input" style="width:35px" value="" disabled="disabled" />
+									<a href="#" id="execDaumPostcode" onclick="javascript:execDaumPostcode();" class="btnS"><span>우편번호</span></a>
+									<p class="mt5">
+										<input id="addr1" type="text" class="input" style="width:240px" value="" disabled="disabled" />
+										<input id="addr2" type="text" class="input" style="width:240px" />
+									</p>
+									<p class="tip mt10">위 주소로 회원카드를 발송합니다. 반드시 우편물 수취가 가능한 주소를 입력해주세요.</p>
+								</td>
+							</tr>
+							<tr>
+							<th><img src="/template/member/../asset/images/member/join_step2_txt24.gif" alt="주 사용지역" /></th>
+								<td>
+									<label for="loc1">
+										<input type="radio" id="loc1" name="loc" value="서울" checked="true"/> 서울
+									</label>
+									<!-- 경기/인천 추가 -->
+									<label for="loc4">
+										<input type="radio" id="loc4" name="loc" value="인천경기" /> 인천·경기
+									</label>
+									<!-- 대구/경북 추가 -->
+									<label for="loc5">
+										<input type="radio" id="loc5" name="loc" value="대구경북" /> 대구·경북
+									</label>
+									<!-- 부산지역 추가 -->
+									<label for="loc3">
+										<input type="radio" id="loc3" name="loc" value="부산경남" /> 부산·경남
+									</label>
+									<!-- 대전/충북 추가 -->
+									<label for="loc6">
+										<input type="radio" id="loc6" name="loc" value="대전충청" /> 대전·충청
+									</label>
+									<!-- 광주/전라 추가 -->
+									<label for="loc7">
+										<input type="radio" id="loc7" name="loc" value="광주전라" /> 광주·전라
+									</label>
+									<label for="loc2">
+										<input type="radio" id="loc2" name="loc" value="제주" /> 제주
+									</label>
+								</td>
+							</tr>
+							</table>
+						</div>
+<!-- 						<div class="section"> -->
+<!-- 							<h4><img src="/template/member/../asset/images/member/join_step2_new01.gif" alt="프로모션 가입"></h4> -->
+<!-- 							<table cellspacing="0" class="rows"> -->
+<!-- 								<tbody> -->
+<!-- 									<tr> -->
+<!-- 										<th><img src="/template/member/../asset/images/member/join_step2_new02.gif" alt="가입경로"></th> -->
+<!-- 										<td> -->
+<!-- 											<input type="radio" id="normal_join" name="selbox_joinway" value="" class="inp_radio" checked="checked" /> -->
+<!-- 											<label for="normal_join" class="lab_radio">일반가입</label> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<th></th> -->
+<!-- 										<td> -->
+<!-- 											<input type="radio" id="promotion_join" name="selbox_joinway" value="제휴단체" class="inp_radio" /> -->
+<!-- 											<label for="promotion_join" class="lab_radio">프로모션 코드</label> -->
+<!-- 											<input id="route1" type="text" class="input" style="width:185px" disabled="disabled"> -->
+<!-- 											<span class="tip ml10">안내 받은 프로모션 코드 전체를 올바르게 입력하셔야만 혜택이 적용됩니다.</span> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<th></th> -->
+<!-- 										<td> -->
+<!-- 											<input type="radio" id="friend_join" name="selbox_joinway" value="친구추천" class="inp_radio" /> -->
+<!-- 											<label for="friend_join" class="lab_radio">친구 추천</label> -->
+<!-- 											<input id="route2" type="text" class="input" style="width:185px" disabled="disabled"> -->
+<!-- 											<span class="tip ml10">친구 아이디(이메일) 전체를 올바르게 입력하셔야만 혜택이 적용됩니다.</span> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 								</tbody> -->
+<!-- 							</table> -->
+<!-- 						</div> -->
+<!-- 						<div class="section"> -->
+<!-- 							<h4><img src="/template/member/../asset/images/member/join_step2_new03.gif" alt="부가정보" /></h4> -->
+<!-- 							<table cellspacing="0" class="rows"> -->
+<!-- 							<tr> -->
+<!-- 								<th><img src="/template/member/../asset/images/member/join_step2_new04.gif" alt="직업" /></th> -->
+<!-- 								<td> -->
+<!-- 									<select id="selbox-job" name="selbox-job" style="width:108px"> -->
+										<!-- <option value="" selected="selected">선택해주세요</option>
+										<option value="회사원">회사원</option>
+										<option value="자영업">자영업</option>
+										<option value="학생">학생</option>
+										<option value="주부">주부</option>
+										<option value="기타">기타</option>-->
+<!-- 									</select> -->
+<!-- 									<span id="etc-job-w" style="display:none;"> -->
+<!-- 										<input id="etc-job" name="etc-job" type="text" class="input" style="width:165px" value="" /> -->
+<!-- 									</span> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr id="selbox-path-tr"> -->
+<!-- 								<th><img src="/template/member/../asset/images/member/join_step2_new05.gif" alt=""></th> -->
+<!-- 								<td> -->
+<!-- 									<select id="selbox-path" name="selbox-path" style="width:108px"> -->
+										<!-- <option value="" selected="selected">선택해주세요</option>
+										<option value="TV광고">TV광고</option>
+										<option value="온라인동영상광고">온라인 동영상 광고</option>
+										<option value="지하철버스광고">지하철·버스 광고</option>
+										<option value="극장광고">극장광고</option>
+										<option value="기타광고">기타광고</option>
+										<option value="지인의소개">지인의 소개</option>
+										<option value="페이스북">페이스북</option>
+										<option value="쏘카차량및쏘카존목격">쏘카 차량 및 쏘카존 목격</option>
+										<option value="언론보도">언론보도</option>
+										<option value="검색">검색</option>
+										<option value="기타">기타</option> -->
+<!-- 									</select> -->
+<!-- 									언론보도 선택시 -->
+<!-- 									<span class="ml10" id="media" style="display:none;"> -->
+<!-- 										<label for="media1"> -->
+<!-- 											<input type="radio" id="media1" name="media" value="구독신문" checked="true" /> 구독신문 -->
+<!-- 										</label> -->
+<!-- 										<label for="media2"> -->
+<!-- 											<input type="radio" id="media2" name="media" value="온라인뉴스" /> 온라인뉴스 -->
+<!-- 										</label> -->
+<!-- 										<label for="media3"> -->
+<!-- 											<input type="radio" id="media3" name="media" value="TV방송" /> TV방송 -->
+<!-- 										</label> -->
+<!-- 										<label for="media4" class="no_margin"> -->
+<!-- 											<input type="radio" id="media4" name="media" value="직접입력" /> 직접입력 -->
+<!-- 										</label> -->
+<!-- 										<input type="text" id="media4-txt" name="media4-txt" style="width:165px" class="input" readonly="readonly" /> -->
+<!-- 									</span> -->
+<!-- 									검색 선택시 -->
+<!-- 									<span class="ml10" id="portal" style="display:none;"> -->
+<!-- 										<label for="portal1"> -->
+<!-- 											<input type="radio" id="portal1" name="portal" value="네이버" checked="true" /> 네이버 -->
+<!-- 										</label> -->
+<!-- 										<label for="portal2"> -->
+<!-- 											<input type="radio" id="portal2" name="portal" value="다음" /> 다음 -->
+<!-- 										</label> -->
+<!-- 										<label for="portal3"> -->
+<!-- 											<input type="radio" id="portal3" name="portal" value="구글" /> 구글 -->
+<!-- 										</label> -->
+<!-- 										<label for="portal4" class="no_margin"> -->
+<!-- 											<input type="radio" id="portal4" name="portal" value="직접입력" /> 직접입력 -->
+<!-- 										</label> -->
+<!-- 										<input type="text" id="portal4-txt" name="portal4-txt" style="width:165px" class="input" readonly="readonly" /> -->
+<!-- 									</span> -->
+<!-- 									기타 선택시 -->
+<!-- 									<span id="etc-path-w" style="display:none;"> -->
+<!-- 										<input id="etc-path" name="etc-path" type="text" class="input" style="width:165px" value="" /> -->
+<!-- 									</span> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 							<th><img src="/template/member/../asset/images/member/join_step2_new06.gif" alt="카셰어링 이용경험" /></th> -->
+<!-- 								<td> -->
+<!-- 									<select id="selbox_experience" style="width:108px"> -->
+										<!-- <option value="" selected="selected">선택해주세요</option>
+										<option value="있음">있음</option>
+										<option value="없음">없음</option> -->
+<!-- 									</select> -->
+<!-- 									<div id="experience_etc" style="display:none;"> -->
+<!-- 										<label for="exp1" class="ml10"> -->
+<!-- 											<input type="radio" id="exp1" name="channel2" value="그린카" checked="true"/> 그린카 -->
+<!-- 										</label> -->
+<!-- 										<label for="exp2"> -->
+<!-- 											<input type="radio" id="exp2" name="channel2" value="KT카셰어링" /> KT카셰어링 -->
+<!-- 										</label> -->
+<!-- 										<label for="exp3"> -->
+<!-- 											<input type="radio" id="exp3" name="channel2" value="씨티카 " /> 씨티카 -->
+<!-- 										</label> -->
+<!-- 										<label for="exp4" class="no_margin"> -->
+<!-- 											<input type="radio" id="exp4" name="channel2" value="직접입력" /> 직접입력 -->
+<!-- 										</label> -->
+<!-- 										<input type="text" id="exp4-txt" name="exp4-txt" style="width:165px" class="input" readonly="readonly" /> -->
+<!-- 									</div> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 							</table> -->
+<!-- 						</div> -->
+						<div class="centerBtn">
+							<input id="next" type="image" src="//web-assets.socar.kr/template/member/../asset/images/member/new/btn_next.gif" alt="다음단계 (면제/결제정보 입력)" />
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
 
-            
-
-            <!-- 제휴코드 체크 -->
-            <div id="member_referer" class="check">
-              <h4><img src='${pageContext.request.contextPath}/template/image/join_index_txt12_refer.gif' alt="안내받은 제휴코드를 입력해주세요." id='refer_direction' /></h4>
-              <p><img src='${pageContext.request.contextPath}/template/image/join_index_txt13_refer.gif' alt="일부 숫자와 영문이 혼동될 수 있습니다. 정확히 입력해주세요." /></p>
-              <p class="ch">
-                <input id="input_member_referer" type="text" class="input" value="" />
-                <input id="btn_member_referer_submit" type="image" src='${pageContext.request.contextPath}/template/image/btn_confirm_b_s.gif' title="확인" />
-              </p>
-              <a href="#" class="close">닫기</a>
-            </div>
-            <!-- //제휴코드 체크 -->
-
-          </div>
-        </fieldset>
-      </form>
-
-      <div class="tip">
-        <ul>
-        <li><strong>만 21세 이상, 운전면허 취득 1년 이후</strong> 쏘카를 사용할 수 있습니다.</li>
-        <li>회원 가입시 운전면허 정보와 결제카드 등록이 필요합니다. 미리 <strong>운전면허증과 신용카드를 준비</strong>해주세요.</li>
-        <li>타인의 정보를 도용해 가입하거나 허위정보로 가입해 차량을 이용할 경우 법적 처벌의 대상이 될 수 있습니다.</li>
-        </ul>
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 <style type="text/css">
 
 /* aside */
 div.aside{position:fixed; top:111px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
-div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('${pageContext.request.contextPath}/template/image/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
+div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
 div.aside a.quick1{background-position:-1px -76px;}
 div.aside a.quick2{background-position:-1px -151px;}
 div.aside a.quick3{background-position:-1px -226px;} 
@@ -473,178 +571,58 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 <!-- //footer -->
 
 
-  <div class="mwLayer">
-    <div class="bg"></div>
-    <div id="mwCont">
-<div class="joinSNS mwCont" style="display: block;">
-
-	<div class="tit"><img src='${pageContext.request.contextPath}/template/image/txt_email_n.gif' alt="이메일 계정으로 가입하기" /></div>
-	<div class="box_email"><input type="text" id="join_input_email" onclick="$(this).css('background','none')" name="join_input_email" class="email input" /><a href="#" class="join" id="email_join"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' class='socar_join_img' alt="회원가입" /></a></div>
-</div>
-
-<style>
-.scroll {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 5px;
-	height: 100px;
-	width:300px;
-	line-height: 20px;
-	overflow-y: auto;
-	border: 1px solid #dadada;
-	display:none;
-}
-.scroll h3{padding-top:15px; line-height:24px; color:#444;}
-.scroll strong{display:block; padding-top:6px; line-height:24px; color:#444;}
-.scroll p{line-height:20px; margin-bottom:10px;}
-.joinSNS_Info .box_check {
-	margin-bottom: 5px;
-}
-</style>
-<script>
-function show_policy(){
-	if($('#policy_simple').css("display") == "none"){
-		$('#policy_simple').show();
-	}else{
-		$('#policy_simple').hide();
-	}
-	return false;
-}
-
-function validatePhoneNumber(phoneNumber) {
-	if (!/^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/.test(phoneNumber)) {
-		alert('잘못된 휴대폰 번호입니다. 하이픈(-)을 제외한 숫자만 입력해주세요.');
-		return false;
-	}
-	return true;
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-	var elmConfirm = document.getElementById('btn_confirm_num');
-	elmConfirm.addEventListener('click', function() {
-			var phoneNumber = document.getElementById('join_mobile').value;
-			if (!validatePhoneNumber(phoneNumber)) return;
-
-			var query = { phone : phoneNumber, name : $("#join_name").val() };
-			document.domain = 'socar.kr';
-
-			postPopup('https://m.socar.kr/authentication/pc', 'width=660,height=660,scrollbars=no,resizable=no', query);
-			return false;
-	});
-});
-</script>
-<div class="joinSNS_Info mwCont">
-	<dl>
-		<dt><label for="join_name">이름</label></dt>
-		<dd style="height:auto">
-			<input type="text" id="join_name" name="join_name" class="input" value="" />
-		</dd>
-		<dt><label for="join_email">이메일</label></dt>
-		<dd><input type="text" id="join_email" name="join_email" class="input" value="" /></dd>
-		<dt><label for="join_mobile">휴대폰</label></dt>
-		<dd style="position:relative;">
-			<input type="text" id="join_mobile" name="join_mobile" class="input small_input" value="" />
-			<button id="btn_confirm_num" class="btnVerify">본인인증</button>
-		</dd>
-		<dt class="tip_auth" />
-		<dd class="tip_auth"><div	style="font-size:11px;line-height:24px;color: #999999;text-indent:2px;">휴대폰 인증이 필요합니다.</div></dd>
-	</dl>
-	<dl class="mt14" id="password_input" style="display:none;">
-		<dt><label for="upw">비밀번호</label></dt>
-		<dd><input type="password" id="upw" name="upw" class="input" value="" /></dd>
-		<dt><label for="upw2">비밀번호 확인</label></dt>
-		<dd><input type="password" id="upw2" name="upw2" class="input" value="" /></dd>
-		<dt></dt>
-		<dd style="font-size:11px;line-height:24px;color: #999999;text-indent:2px;">(영문,숫자 포함 6자 이상)</dd>
-	</dl>
-	<div class="line"></div>
-	<div class="box_check" style="padding-bottom: 10px;">
-		<label for="is_agree" id="agree_label">
-		<span class="agree_check" id="is_agree" style="position:absolute;"></span>
-
-		</label>
-	</div>
-
-
-	<div class="box_btn">
-		<a href="#" id="simple-join"><img src='${pageContext.request.contextPath}/template/image/btn_joinok.gif' alt="간편가입 완료" /></a>
-	</div>
-	<input type="hidden" name="sns_connect_id" id="sns_connect_id" class="input" value="" />
-	<input type="hidden" name="oauth_uid" id="oauth_uid" class="input" value="" />
-	<input type="hidden" name="provider" id="provider" class="input" value="" />
-	<input type="hidden" name="join_type" id="join_type" class="input" value="" />
-	<input type="hidden" name="invite" id="invite" class="input" value="" />
-	<input type="hidden" name="auth_confirm_key" id="auth_confirm_key" class="input" value="" />
-	<div class="close_open_btn">가입이 완료되지 않았습니다.<br />정말 중단하시겠습니까?</div>
-</div>
-
-<form name="LGD_PAYINFO" id="LGD_PAYINFO">
-	<input type="hidden" id="LGD_RESPCODE" value="">
-	<input type="hidden" id="LGD_MOBILE_SUBAUTH_BIRTH" value="">
-	<input type="hidden" id="LGD_MOBILENUM" value="">
-	<input type="hidden" id="LGD_MOBILE_SUBAUTH_SEX" value="">
-	<input type="hidden" id="LGD_MOBILE_SUBAUTH_NAME" value="">
-	<input type="hidden" id="USER_AUTH_LOG_ID" value="">
-</form>
-
-<div class="joinSNS_result mwCont" style="margin-top: 30px;">
-	<div class="img"><img src='${pageContext.request.contextPath}/template/image/bg_join.gif' alt="간편가입이 완료되었습니다. 차량 예약 및 이용을 하시려면 운전면허/결제정보를 등록하여 SO회원으로 가입을 완료해 주셔야 합니다." /></div>
-	<div class="line"></div>
-	<div class="box_btn">
-		<a href="#" class="join_pr" id="join_continue"><img src='${pageContext.request.contextPath}/template/image/btn_joinnext.gif' alt="가입 계속하기" /></a>
-		<a href="#" class="join_pr" id="join_later"><img src='${pageContext.request.contextPath}/template/image/btn_lt.gif' alt="나중에 가입" /></a>
-	</div>
-</div>
-
+	<div class="mwLayer">
+		<div class="bg"></div>
+		<div id="mwCont">
 
 <!-- login -->
 <jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
-
 <!-- finding id -->
-<!-- finding pw -->
 <jsp:include page="/template/FindingIdPw.jsp"/>
+<!-- finding pw -->
 
             <!-- 주행요금 계산기 -->
             <jsp:include page="/template/Faretem.jsp"/>
             <!-- //주행요금 계산기 -->
 			
-<!-- 쏘카존 신청하기 -->
+
+			<!-- 쏘카존 신청하기 -->
 			<jsp:include page="/template/Socarzon.jsp"/>
-			
-			
 			<!-- 친구추천 -->
 			<jsp:include page="/template/Friend.jsp"/>
 			<!-- //친구추천 -->
+			
+
 
 
 		<div id="askcar_div" class="car_requestL mwCont" style="display: block;">
-			<h4 style="height:57px;padding-bottom:40px"><img src='${pageContext.request.contextPath}/template/image/pop_tit.jpg' alt="쏘카로 원하는 차종 신청하기 !!" title="쏘카로 원하는 차종 신청하기 !!"></h4>
+			<h4 style="height:57px;padding-bottom:40px"><img src='//web-assets.socar.kr/template/asset/images/garage/pop_tit.jpg' alt="쏘카로 원하는 차종 신청하기 !!" title="쏘카로 원하는 차종 신청하기 !!"></h4>
 			<form name="request" method="post" action="">
 				<fieldset>
 					<div class="requestForm">
 						
-						<textarea id="layer_askcar_text" cols="" rows="" class="textarea" onclick="alert('로그인 후 작성이 가능합니다.');return false;"></textarea>
-						<input type="image" src='${pageContext.request.contextPath}/template/image/btn_request.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" class="submit" alt="신청">
+						<textarea id="layer_askcar_text" cols="" rows="" class="textarea"></textarea>
+						<input id="layer_askcar_submit" type="image" src='//web-assets.socar.kr/template/asset/images/common/btn_request.gif' onclick="return false;" class="submit" alt="신청">
 						
 					</div>
 				</fieldset>
 			</form>
-			<p id="btn_askcar_close" class="centerBtn"><a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/btn_close.gif' alt="닫기" title="닫기"></a></p>
+			<p id="btn_askcar_close" class="centerBtn"><a href="#" class="close"><img src='//web-assets.socar.kr/template/asset/images/common/btn_close.gif' alt="닫기" title="닫기"></a></p>
 		</div>
 
 
 			<div class="socarcardLayer mwCont">
-				<div class="tit"><img src='${pageContext.request.contextPath}/template/image/socarcardLayer_tit.gif' alt="쏘카카드 발급 신청하기" /></div>
+				<div class="tit"><img src='//web-assets.socar.kr/template/asset/images/mypage/socarcardLayer_tit.gif' alt="쏘카카드 발급 신청하기" /></div>
 				<p class="txt">쏘카카드 발급 신청과 동시에 1,500원이 결제됩니다.</p>
 				<p class="more">※ 기본정보에서 우편 수취가 가능한 주소인지 확인해주세요.</p>
 				<div class="centerBtn">
-					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_confirm.gif' id="socarcard_request" alt="확인" /></a>
-					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
+					<a href="#"><img src='//web-assets.socar.kr/template/asset/images/customer/btn_confirm.gif' id="socarcard_request" alt="확인" /></a>
+					<a href="#"><img src='//web-assets.socar.kr/template/asset/images/customer/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
 				</div>
 				<div id="member_card_regist_indicator" style="display:none;
-					background:url('${pageContext.request.contextPath}/template/image/loading.gif') no-repeat 50% 50%;
+					background:url('//web-assets.socar.kr/template/asset/images/common/loading.gif') no-repeat 50% 50%;
 					background-size:auto 32px;
 					position:absolute;
 					top:0;bottom:0;left:0;right:0;
@@ -710,7 +688,7 @@ $(function(){
 
 	//SNS 로그인 by tary 2014-02-05
 	var options = {
-		auth_token : '',
+		auth_token : '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 		currentURL : (document.URL.split('?')[0]).split('#')[0],
 		fb_init : true,
 		naver_init : true,
@@ -804,25 +782,7 @@ $(function(){
 			alert('이메일 형식이 잘못되었습니다. 다시 입력해주세요.');
 			return false;
 		}
-		var idconfirm = 0;
-		$.ajax({
-			type: 'POST',
-			url:"<c:url value='/Member/ConfirmId.do' />",
-			data: {smem_id : email} ,
-	        dataType: "json",
-	        async: false,
-			success: function(data){
-				if(data.confirm_result == 1){
-					idconfirm = 1;
-				}
-			}
-		});
-		
-		if(idconfirm==1){
-			alert('이미 존재하는 메일입니다.');
-			return false;
-		}
-		
+
 		var invite = '';
 	//친구추천 URL
 	
@@ -981,29 +941,11 @@ $(function(){
 		var writer = null, password=null;
 
 
-		writer = $.trim($('#layer_askzone_email').val());
-		password = $.trim($('#layer_askzone_password').val());
-
-		if(writer == '' || writer == null){
-			alert('이메일을 입력해 주세요.');
-			return false;
-		}
-
-		if(!is_email(writer)){
-			alert('이메일 형식이 잘못되었습니다. 다시 입력해주세요.');
-			return false;
-		}
-
-		if(password == '' || password == null){
-			alert('비밀번호를 입력해 주세요. 글 삭제시 필요합니다.');
-			return false;
-		}
-
 		$.ajax({
 			type: 'POST',
 			url: "https://api.socar.kr/zone/candidate_ex/create",
 			data: {
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				address : address,
 				lat : lat,
 				lng : lng,
@@ -1021,9 +963,6 @@ $(function(){
 				$('#search_ask_address').val('').focusout();
 				$('#layer_askzone_text').val('').focusout();
 
-
-				$('#layer_askzone_email').val('');
-				$('#layer_askzone_password').val('');
 
 				$('#search_region_layer').hide();
 				$("#addr_search_layer").hide();
@@ -1224,7 +1163,7 @@ function build_list(init){
 		url : "https://api.socar.kr/zone/candidate_ex",
 		crossDomain: true,
 		data: {
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			last_id: last_id,
 			address : address,
 			my_request : $(document).data('my_request')
@@ -1232,7 +1171,7 @@ function build_list(init){
 		dataType: 'jsonp',
 		beforeSend: function(xhr) {
 			$list.data("disabled-vscroll",true);
-			output.append('<div id="list-indicator" style="width:auto;height:32px;background:url(\'${pageContext.request.contextPath}/template/image/loading.gif\') 50% 50% no-repeat;"></div>');
+			output.append('<div id="list-indicator" style="width:auto;height:32px;background:url(\'//web-assets.socar.kr/template/asset/images/common/loading.gif\') 50% 50% no-repeat;"></div>');
 
 			$list.append(output.toString());
 			output.clear();
@@ -1257,10 +1196,10 @@ function build_list(init){
 
 						output.append('<p class="txt">' + result[i].contents + '</p>');
 						output.append('<p class="date">' + result[i].created_at + '<a href="#" style="margin-left: 5px;" class="deleteBtn" data-id="' + result[i].id + '" data-mine="' + result[i].is_mine + '">');
-						output.append('<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제"></a></p>');
+						output.append('<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제"></a></p>');
 						output.append('<div class="pw" id="pw_' + result[i].id + '">비밀번호&nbsp;<input type="password" class="input" name="delitem_' + result[i].id + '" id="delitem_' + result[i].id + '" value="" />');
-						output.append('<input type="image" class="deleteOk" data-id="' + result[i].id + '" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인">&nbsp;');
-						output.append('<input type="image" class="deleteCancel" data-id="' + result[i].id + '" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소"> </div>');
+						output.append('<input type="image" class="deleteOk" data-id="' + result[i].id + '" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인">&nbsp;');
+						output.append('<input type="image" class="deleteCancel" data-id="' + result[i].id + '" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소"> </div>');
 
 						var agree_class = "agree_count",
 							disagree_class = "disagree_count";
@@ -1310,7 +1249,7 @@ function vote(id, type){
 		url: "https://api.socar.kr/zone/candidate_ex/vote",
 		crossDomain: true,
 		data: {
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			candidate_id: id,
 			type: type
 		},
@@ -1354,7 +1293,7 @@ function removeItem(id,passwd){
 		url: "https://api.socar.kr/zone/candidate_ex/remove",
 		crossDomain: true,
 		data: {
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			candidate_id: id,
 			password: passwd
 		},
@@ -1580,7 +1519,11 @@ $('.require_login').click(function(){
 
 $(".aside .quick1").click(function(){
 	
-				showLoginLayer(true,window.location.pathname+window.location.search+'#quick1');
+		$('.mwLayer').addClass('open');
+		$('.mwLayer #mwCont').removeClass();
+		$('.mwLayer #mwCont').addClass('inviteLy');
+		$('.mwLayer .mwCont').css('display','none');
+		$('.mwLayer .inviteL').css('display','block');
 	
 
 	return false;
@@ -1769,7 +1712,7 @@ var init_askzone = function(json) {
 		'<p class="txt">' + r.contents + '</p>' +
 		'<p class="date">' + r.created_at +
 			'<a href="#" style="margin-left: 5px;" class="deleteBtn">' +
-				'<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제" />' +
+				'<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제" />' +
 			'</a>' +
 		'</p>' +
 
@@ -1777,8 +1720,8 @@ var init_askzone = function(json) {
 			'비밀번호' +
 			'<input type="text" class="input" />' +
 			'<em style="display:none;">' + r.id + '</em>' +
-			'<input type="image" class="deleteOk" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인" />' +
-			'<input type="image" class="deleteCancel" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소" /> ' +
+			'<input type="image" class="deleteOk" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인" />' +
+			'<input type="image" class="deleteCancel" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소" /> ' +
 		'</div>' +
 
 		'<ul>' +
@@ -1809,7 +1752,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/vote',
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				type: 'agree',
 				candidate_id: $(this).prev().text()
 			},
@@ -1840,7 +1783,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/vote',
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				type: 'disagree',
 				candidate_id: $(this).prev().text()
 			},
@@ -1872,7 +1815,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/remove',
-				auth_token: '',
+				auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 				password: pass,
 				candidate_id: $(this).prev().text()
 			},
@@ -1907,7 +1850,7 @@ $('#layer_askzone_submit').bind('click', function () {
 		type : "POST",
 		data: {
 			url: 'zone/candidate/create',
-			auth_token: '',
+			auth_token: '980f5efca2d62f2a8b1252f4a18afc01eb3d7460ekizg',
 			writer: name,
 			contents: text,
 			password: pass
@@ -1932,24 +1875,88 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js?1505270839" charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js?1505270839" charset="utf-8"></script>
+<script type="text/javascript" src="/template/./asset/js/kakao.min.js?1505958998" charset="utf-8"></script>
+<script type="text/javascript" src="/template/./asset/js/sns_interlocking.js?1505958998" charset="utf-8"></script>
 
-      <a href="#" class="close" onclick="javascript:ga_call('join_close_click')" >닫기</a>
-    </div>
-  </div>
+
+			<a href="#" class="close">닫기</a>
+		</div>
+	</div>
 </div>
-<!-- naver 프리미엄 로그. 구별되라고 일부러 인덴트 무시. -->
-  <script type="text/javascript">
-    if (!wcs_add) var wcs_add={};
-    wcs_add["wa"] = "s_2f6b54845d43";
-    if (!_nasa) var _nasa={};
-    wcs.inflow();
-    wcs_do(_nasa);
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<img src='/template/asset/images/daum_close.png' id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1;width:20px;height:20px;" onclick="closeDaumPostcode()" alt="닫기 버튼">
+</div>
 
-    function ga_call(id){
-      ga('send', 'event', 'web_join_layer', id, {'page' : this.href});
-    }
-  </script>
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
+<script>
+	// 우편번호 찾기 화면을 넣을 element
+	var element_layer = document.getElementById('layer');
+
+	function closeDaumPostcode() {
+		// iframe을 넣은 element를 안보이게 한다.
+		element_layer.style.display = 'none';
+	}
+
+	function execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				var fullAddr = data.jibunAddress;
+
+				// 사용자가 도로명 주소를 선택
+				if(data.userSelectedType === 'R'){
+					var extraAddr = ''; // 조합형 주소 변수
+
+					fullAddr = data.roadAddress;
+
+					// 법정동명이 있을 경우 추가
+					if(data.bname !== ''){
+						extraAddr += data.bname;
+					}
+					// 건물명이 있을 경우 추가
+					if(data.buildingName !== ''){
+						extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
+					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+					fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+				}
+
+				// 우편번호와 주소 및 영문주소 정보를 해당 필드에 넣는다.
+				$('#zip').val(data.zonecode);								//신 국가기초구역번호
+				$('#zip').parent().find('label').css('display', 'none');
+				$('#address').val(fullAddr);
+				$('#addr1').val(fullAddr);
+				$('#address').parent().find('label').css('display', 'none');
+				// iframe을 넣은 element를 안보이게 한다.
+				element_layer.style.display = 'none';
+			},
+			width : '100%',
+			height : '100%'
+		}).embed(element_layer);
+
+		// iframe을 넣은 element를 보이게 한다.
+		element_layer.style.display = 'block';
+
+		// iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+		initLayerPosition();
+	}
+
+	// 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+	// resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+	// 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+	function initLayerPosition(){
+		var width = 600; //우편번호서비스가 들어갈 element의 width
+		var height = 460; //우편번호서비스가 들어갈 element의 height
+		var borderWidth = 5; //샘플에서 사용하는 border의 두께
+
+		// 위에서 선언한 값들을 실제 element에 넣는다.
+		element_layer.style.width = width + 'px';
+		element_layer.style.height = height + 'px';
+		element_layer.style.border = borderWidth + 'px solid';
+		// 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+		element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+		element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+	}
+</script>
+
 </body>
 </html>

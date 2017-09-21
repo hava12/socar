@@ -20,7 +20,7 @@
 	</form>
 
 	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/join.png' alt="회원가입" /></a></li>
+		<li><a title="회원가입" class="lg1" href="<c:url value='/Join/Join.do' />"><img src='${pageContext.request.contextPath}/template/image/join.png' alt="회원가입" /></a></li>
 		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
 	</ul>
 </div>

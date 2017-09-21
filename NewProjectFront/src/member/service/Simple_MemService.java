@@ -9,5 +9,7 @@ public interface Simple_MemService {
 	public Simple_MemDto loginMem(Map map) throws Exception;
 	//아이디 확인
 	public int confirmId(String smem_id) throws Exception;
+	//아이디 정보 가져오기
+	public Simple_MemDto selectOne(String smem_id) throws Exception;
 	
 }

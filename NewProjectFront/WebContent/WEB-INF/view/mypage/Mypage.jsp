@@ -1237,20 +1237,20 @@ $(function(){
 
 	$("#tmoney,#socarcard,#stickercard").click(function(e){
 	
-		if($(document).data("disabled.default")){
-			alert('기본카드 변경처리 중입니다.');
-			return false;
-		}
+// 		if($(document).data("disabled.default")){
+// 			alert('기본카드 변경처리 중입니다.');
+// 			return false;
+// 		}
 
-		if($(this).parent().attr("id") == "no_member" && $(this).parent().data('regist') == 1){
-			alert('이미 등록된 카드가 있습니다.');
-			return false;
-		}
+// 		if($(this).parent().attr("id") == "no_member" && $(this).parent().data('regist') == 1){
+// 			alert('이미 등록된 카드가 있습니다.');
+// 			return false;
+// 		}
 
-		if($(this).hasClass('no_regist')){
-			alert('차량제어에 사용하실 카드 정보를 먼저 등록해 주세요.');
-			return false;
-		}
+// 		if($(this).hasClass('no_regist')){
+// 			alert('차량제어에 사용하실 카드 정보를 먼저 등록해 주세요.');
+// 			return false;
+// 		}
 
 		var id = $(this).val(),
 			$self = $(this),
@@ -1343,10 +1343,9 @@ function auth_confirm(res) {
 
 				<div class="section">
 				
-				
-<!-- 					<a href="join/3" class="join_bn"> -->
-<!-- 						<img src="/template/mypage/../asset/images/mypage/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" /> -->
-<!-- 				so회원 아닐 경우 (카드,면허정보 없을 경우)	</a> -->
+				<a href="<c:url value='/Member/SoJoin_One.do' />">
+				<img src="/template/mypage/../asset/images/mypage/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" />
+				so회원 아닐 경우 (카드,면허정보 없을 경우)</a>
 				
 				
 					<div class="group">
@@ -1354,16 +1353,17 @@ function auth_confirm(res) {
 
 						<form name="info1" method="post" action="">
 							<fieldset>
+					
 								<input type="hidden" name="auth_confirm_key" id="auth_confirm_key" value="" />
 								<table cellspacing="0" class="rows">
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
-									<td id="user_name">임형택</td>
+									<td id="user_name"></td>
 								</tr>
 
 								<tr>
 									<th><img src="/template/mypage/../asset/images/mypage/index_txt2.gif" alt="이메일" /></th>
-									<td>keatmil@naver.com</td>
+									<td>${sessionScope.smem_id}</td>
 								</tr>
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt6.gif" alt="비밀번호" /></th>
@@ -1605,45 +1605,16 @@ function auth_confirm(res) {
 							<fieldset>
 								<table cellspacing="0" class="rows">
   								<tbody>
-                    <tr>
-    									<th><img src="/template/mypage/../asset/images/mypage/text_cardnumber.png" alt="카드번호"></th>
-    									<td>
-                        
-                        <input type="text" class="input-four-digit js-input-four-digit" data-order="1" maxlength="4" />
-                        <input type="text" class="input-four-digit js-input-four-digit" data-order="2" maxlength="4" />
-                        <input type="password" class="input-four-digit js-input-four-digit" data-order="3" maxlength="4" />
-                        <input type="password" class="input-four-digit js-input-four-digit" data-order="4" maxlength="4" />
-                        
-
-                        <a href="#" id="js-t-membership-edit" class="btnS"><span>수정</span></a>
-                        <a href="#" id="js-t-membership-save" class="btnS" style="display: none;"><span>저장</span></a>
-    									</td>
-    								</tr>
     								<tr>
     									<th><img src="/template/mypage/../asset/images/mypage/text_balance.png" alt="잔액"></th>
-    									<td class="js-t-membership-value"></td>
+    									<td class="js-t-membership-value">123123</td>
     								</tr>
   								</tbody>
                 </table>
   						</fieldset>
   					</form>
 
-            <div style="padding-bottom: 10px; margin-top: 15px;">
-              <label for="t-membership-agree" id="t-membership-agree_label" class="doupdate">
-              
-              <span class="js-is-agree mkt_agree"></span>
-              
-              <span class="t-membership-agree-info" style="font-weight:bold;font-size:14px;">개인정보 수집 및 이용에 동의합니다.</span>
-              </label>
-            </div>
 
-						<ul class="tip mt10">
-              <li>제공받는자: (주)쏘카, (주)SK텔레콤</li>
-              <li>수집, 이용 목적: T멤버십 사용 및 환불</li>
-              <li>수집항목: T멤버십 카드번호, T멤버십 등급</li>
-              <li>보유 및 이용기간: T멤버십 서비스 탈퇴시까지</li>
-              <li>동의하지 않을 경우 T멤버십 사용이 불가능합니다.</li>
-						</ul>
 					</div>
 
           <script type="text/javascript">
@@ -1850,41 +1821,12 @@ function auth_confirm(res) {
 							<li>
 								<dl>
 									<dt>
-										<input type="radio" name="member_card" id="tmoney" class="inp_radio no_regist" />
-										<label for="tmoney">T-money 카드</label>
-									</dt>
-									<dd>
-										<div class="tmoney">
-											<input type="text" class="inp_tmoney" id="tmoney_card_number" value="" maxlength="16" />
-										
-											<a href="#" class="btnS" id="regist_t"><span>등록</span></a>
-										
-											<span id="inp_info" class="err inp_info">16자리 카드번호를 입력해주세요.</span>
-											<!-- <span class="err">이미 사용중인 카드입니다.</span>
-											<span class="ok">사용 가능한 카드입니다.</span> -->
-										</div>
-										<ul class="tip">
-											<li class="red">T-money 카드로는 서울지역 쏘카존 차량만 적용 가능합니다.</li>
-											<li>T-money 카드는 회원카드로 사용되며 요금 결제와는 무관합니다.</li>
-											<li>캐시비카드,신용카드가 아닌 T-money 카드 번호를 입력해주세요.</li>
-											<li>T-money 카드 번호는 카드 뒷면에서 찾을 수 있습니다.</li>
-										</ul>
-									</dd>
-								</dl>
-							</li>
-						
-						
-							<li>
-								<dl>
-									<dt>
 										<input type="radio" name="member_card" id="socarcard" class="inp_radio no_regist" />
 										<label for="socarcard">회원카드</label>
 									</dt>
 									<dd>
 										<div class="socar_card">
-										
-											<a href="#" id="socarCardLayer" data-state="0" class="btnS"><span>발급신청</span></a>
-										
+											<a href="#" id="socarCardLayer" data-state="0" class="btnS"><span>발급신청</span></a>									
 										</div>
 										<p class="more">카드 발급 신청시 1,500원이 결제됩니다.</p>
 									</dd>
@@ -1968,8 +1910,8 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 <!-- //login -->
 
 <!-- finding id -->
-<!-- finding pw -->
 <jsp:include page="/template/FindingIdPw.jsp"/>
+<!-- finding pw -->
 
             <!-- 주행요금 계산기 -->
             <jsp:include page="/template/Faretem.jsp"/>

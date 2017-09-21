@@ -37,7 +37,7 @@
 					</c:if>
 					<c:if test="${not isLogin}">
 							<ul>
-							<li><a href=https://www.socar.kr/mypage class="util3">${sessionScope.smem_name} 님</a></li>
+							<li><a href="<c:url value='/Mypage/Mypage.do' />" class="util3">${sessionScope.smem_name} 님</a></li>
 							<li><a href="<c:url value='/Member/Logout.do' />" class="util4" title="로그아웃">로그아웃</a></li>
 							</ul>
 					</c:if>
