@@ -3,7 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
+<script>
+	function closeLayout(){
+		$(".close").trigger("click");
+	}
+</script>
 
 <div id="askzone_div" class="requestL mwCont">
 				<h4 style="height:29px;margin-left:0;"><img src='${pageContext.request.contextPath}/template/image/request_txt3.gif' alt="우리동네 쏘카존 신청하기!!" /></h4>
@@ -19,7 +23,7 @@
 					<fieldset>
 						<div class="requestForm" style="padding-bottom:15px;">
 							
-							<input type="text" id="search_ask_address" name="search_ask_address" data-in="false" class="input" style="width:420px;height:30px;padding-left:10px;color:#999;" value="주소, 장소 이름으로 검색하세요!  ex) 합정동, 홍익대학교" onclick="alert('로그인 후 작성이 가능합니다.');return false;" />
+							<input type="text" id="search_ask_address" name="search_ask_address" data-in="false" class="input" style="width:420px;height:30px;padding-left:10px;color:#999;" value="주소, 장소 이름으로 검색하세요!  ex) 합정동, 홍익대학교" onclick="if(${sessionScope.smem_id eq null}){alert('로그인 후 이용 가능합니다');closeLayout();return false;}" />
 							<input type="hidden" id="search_lat" value="0" />
 							<input type="hidden" id="search_lng" value="0" />
 							
@@ -31,9 +35,9 @@
 									<li><a href="#">검색된 결과가 없습니다.</a></li>
 								</ul>
 							</div>
-							<textarea id="layer_askzone_text" cols="" rows="" class="textarea" name="search_ask_content" data-in="false" style="width:420px;height:64px;margin-top:10px;color:#999;" onclick="alert('로그인 후 작성이 가능합니다.');return false;">자세한 내용을 적어주세요. (선택사항)</textarea>
+							<textarea id="layer_askzone_text" cols="" rows="" class="textarea" name="search_ask_content" data-in="false" style="width:420px;height:64px;margin-top:10px;color:#999;" onclick="if(${sessionScope.smem_id eq null}){alert('로그인 후 이용 가능합니다');closeLayout();return false;}">자세한 내용을 적어주세요. (선택사항)</textarea>
 							<div style="width:432px;padding-top:9px;margin-top:12px;border-top:1px solid #eaeaea;text-align:center;">
-								<input type="image" src='${pageContext.request.contextPath}/template/image/btn_socarzone_submit.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" alt="신청하기">
+								<input type="image" src='${pageContext.request.contextPath}/template/image/btn_socarzone_submit.gif' onclick="if(${sessionScope.smem_id eq null}){alert('로그인 후 이용 가능합니다');closeLayout();return false;}" alt="신청하기">
 							</div>
 						</div>
 					</fieldset>

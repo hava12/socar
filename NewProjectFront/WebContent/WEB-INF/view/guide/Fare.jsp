@@ -730,8 +730,8 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 				<fieldset>
 					<div class="requestForm">
 						
-						<textarea id="layer_askcar_text" cols="" rows="" class="textarea" onclick="alert('로그인 후 작성이 가능합니다.');return false;"></textarea>
-						<input type="image" src='${pageContext.request.contextPath}/template/image/btn_request.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" class="submit" alt="신청">
+						<textarea id="layer_askcar_text" cols="" rows="" class="textarea"></textarea>
+						<input type="image" src='${pageContext.request.contextPath}/template/image/btn_request.gif' class="submit" alt="신청">
 						
 					</div>
 				</fieldset>
@@ -990,23 +990,7 @@ $(function(){
 	$('#search_ask_address').focusin(function(){
 		$(this).css('border-color','#8c8c8c');
 
-		if( $(this).attr("data-in") == 'false'){
-			$(this).val('').css('color','#222');
-		}
 
-		return false;
-	}).focusout(function(){
-		$(this).css('border-color','#c6cace');
-
-		if( $.trim($(this).val()) != "" ){
-			$(this).attr("data-in","true");
-		}
-		else{
-			$(this).attr("data-in","false");
-			$(this).val(searchStr).css("color","#999");
-		}
-
-		return false;
 	});
 
 	var comment = '자세한 내용을 적어주세요. (선택사항)';

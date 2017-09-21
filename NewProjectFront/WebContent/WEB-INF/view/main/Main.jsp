@@ -391,29 +391,7 @@ $(document).ready(function() {
 									
 								</a>
 							</li>
-						<%--
-							<li>
-								<a href=https://www.socar.kr/notice/867>
-									[매너평가] GOOD & BAD...
-									
-									   <img src='${pageContext.request.contextPath}/template/image/ico_new.png' alt="새글" />
-									
-								</a>
-							</li>
 						
-							<li>
-								<a href=https://www.socar.kr/notice/866>
-									[공지] 부산 편도허브존...
-									
-								</a>
-							</li>
-						
-							<li>
-								<a href=https://www.socar.kr/notice/865>
-									[이벤트] 평일 친구와 아울렛 가면...
-									
-								</a>
-							</li> --%>
 						
 					</ul>
 					<a href="<c:url value='/Notice/Notice.do'/>" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>
