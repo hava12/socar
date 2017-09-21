@@ -1,4 +1,26 @@
 
+
+CREATE TABLE Inquiry
+(
+	INQ_NO number NOT NULL,
+	SMEM_ID varchar2(40 char) NOT NULL,
+	INQ_TITLE varchar2(100) NOT NULL,
+	INQ_CONTENT varchar2(2000) NOT NULL,
+	INQ_POSTDATE date NOT NULL,
+	PRIMARY KEY (INQ_NO)
+);
+
+
+
+
+
+
+
+
+
+
+
+
 /* Drop Tables */
 
 DROP TABLE SOCAR.NOTICE_IMG CASCADE CONSTRAINTS;

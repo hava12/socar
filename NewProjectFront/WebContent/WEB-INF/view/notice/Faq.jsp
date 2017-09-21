@@ -190,7 +190,7 @@ $(function(){
 <li><a href="<c:url value='/Notice/Faq.do'/>" title="자주묻는 질문" class="lnb2">자주묻는 질문</a></li>
 
 	<!--<li><a href="javascript:alert('로그인이 필요합니다.');" title="1:1 문의하기" class="lnb3">1:1 문의하기</a></li>-->
-	<li><a href="#" title="1:1 문의하기" class="lnb3 require_login" data-href="/inquiry">1:1 문의하기</a></li>
+	<li><a href="<c:url value='/Notice/Inquiry.do'/>" title="1:1 문의하기" onclick="return requireLogin()"  class="lnb3">1:1 문의하기</a></li>
 <!-- <c:url value='/Notice/Inquiry.do'/> -->
 <li><a href="<c:url value='/Notice/Voc.do'/>" title="고객의견 반영절차" class="lnb4">고객의견 반영절차</a></li>
 </ul>

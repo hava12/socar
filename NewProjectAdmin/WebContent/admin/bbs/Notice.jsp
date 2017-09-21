@@ -71,12 +71,12 @@
               
               <thead>
                 <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>작성자</th>
-                  <th>작성일</th> 
-                  <th>수정</th> 
-                  <th>삭제</th> 
+                  <th width="10%">번호</th>
+                  <th width="50%">제목</th>
+                  <th width="15%">작성자</th>
+                  <th width="15%">작성일</th> 
+                  <!-- <th>수정</th> --> 
+                  <th width="10%">삭제</th> 
                                    
                 </tr>
               </thead>
@@ -84,16 +84,16 @@
                 
                 <c:choose>
                 	<c:when test="${empty list}">
-                	<tr><td colspan="4">등록된 글이 없습니다</td></tr>
+                	<tr><td colspan="4" align="center">등록된 글이 없습니다</td></tr>
                 	</c:when>
                 	<c:otherwise>
                 		<c:forEach var="dto" items="${list}">
                 		<tr>
-	                		<td>${dto.not_no}</td>
-	                		<td><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_title}</a></td>
-	                		<td>${dto.ad_id}</td>
-	                		<td>${dto.not_postdate}</td>
-	                		<td style="text-align: center;"><a href="<c:url value='/Bbs/NoticeEdit.do?not_no=${dto.not_no}'/>"><button class="btn btn-info btn-sm">수정하기</button></a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_no}</a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_title}</a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.ad_id}</a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_postdate}</a></td>
+	                		<%-- <td style="text-align: center;"><a href="<c:url value='/Bbs/NoticeEdit.do?not_no=${dto.not_no}'/>"><button class="btn btn-info btn-sm">수정하기</button></a></td> --%>
 	                		<td style="text-align: center;"><a href='javascript:isDelete(${dto.not_no})'><button class="btn btn-warning btn-sm">삭제하기</button></a></td>
                 		</tr>
                 		</c:forEach>

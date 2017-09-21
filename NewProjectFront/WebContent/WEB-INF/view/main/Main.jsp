@@ -59,10 +59,10 @@
 		ga('send', 'pageview');
 		</script>
 
-<script type="text/javascript" src='//web-assets.socar.kr/template/asset/slick_slider/slick.min.js?v=1'></script>
+<script type="text/javascript" src='${pageContext.request.contextPath}/template/js/slick.min.js?v=1'></script>
 
-<link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/slick_slider/slick.css' />
-<link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/slick_slider/slick-theme.css' />
+<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/slick.css' />
+<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/slick-theme.css' />
 <link rel="stylesheet" href='${pageContext.request.contextPath}/template/css/font-awesome.min.css' />
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/main.css?v=20170731' />
 <style type="text/css">
@@ -480,7 +480,33 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 </style>
 <!-- quick -->
 
-	<jsp:include page="/template/Quick.jsp"/>
+	<div class="aside">
+	<ul>
+		<li>
+			<a href="#" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
+		</li>
+		
+		<li>
+			<a href="#" class="quick2" title="주행요금 계산하기">주행요금 계산하기</a>
+		</li>
+		<li>
+			<a href="#" class="quick3" title="쏘카존 신청하기">쏘카존 신청하기</a>
+		</li>
+
+	</ul>
+</div>
+
+<style type="text/css">
+	.aside_more {
+		position: fixed;
+		top: 550px;
+		right: 51px;
+		z-index: 10000;
+	}
+</style>
+
+<div class="aside_more"><img src='${pageContext.request.contextPath}/template/image/banner_more.png' alt="더보기" />
+</div>
 
 <!-- //quick -->
 	</div>

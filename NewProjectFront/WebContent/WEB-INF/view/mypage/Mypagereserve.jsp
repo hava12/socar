@@ -534,7 +534,7 @@ $(function(){
 										
 										
 										<br />
-										<a class="btn_reserve_print" href="#" value='uizyp'><img src="/template/mypage/../asset/images/btn_statement.gif" alt="" /></a>
+										<a class="btn_reserve_print" href="#" value='uizyp'><img src="${pageContext.request.contextPath}/template/image/btn_statement.gif" alt="" /></a>
 										
 									</td>
 									<td class="status">완료</td>

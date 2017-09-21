@@ -79,18 +79,18 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="6">등록된 쏘카존이 없습니다.</td></tr>
+						<tr><td colspan="6" align="center">등록된 쏘카존이 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                					<td>${item.soz_name}</td>	           	                					
-						                <td><a href="<c:url value='/ZONE/View.do?soz_code=${item.soz_code}'/>">${item.soz_loc}</a></td>
-						                <td>${item.soz_i_car}/${item.soz_maxcar}</td>
-						                <td>${item.soz_date}</td>
-						                <td>${item.soz_latitude}</td>
-						                <td>${item.soz_longitude}</td>
+	                					<td align="center">${item.soz_name}</td>	           	                					
+						                <td align="center"><a href="<c:url value='/ZONE/View.do?soz_code=${item.soz_code}'/>">${item.soz_loc}</a></td>
+						                <td align="center">${item.soz_i_car}/${item.soz_maxcar}</td>
+						                <td align="center">${item.soz_date}</td>
+						                <td align="center">${item.soz_latitude}</td>
+						                <td align="center">${item.soz_longitude}</td>
 	                		</tr>
                 		</c:forEach>
                 </c:if>

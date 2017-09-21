@@ -79,7 +79,7 @@
 <li><a href="<c:url value='/Notice/Notice.do'/>" title="공지사항" class="lnb1">공지사항</a></li>
 <li><a href="<c:url value='/Notice/Faq.do'/>" title="자주묻는 질문" class="lnb2">자주묻는 질문</a></li>
 
-	<li><a href="<c:url value='/Notice/Inquiry.do'/>" title="1:1 문의하기" class="lnb3">1:1 문의하기</a></li>
+	<li><a href="<c:url value='/Notice/Inquiry.do'/>" onclick="return requireLogin()"  title="1:1 문의하기" class="lnb3">1:1 문의하기</a></li>
 
 <li><a href="<c:url value='/Notice/Voc.do'/>" title="고객의견 반영절차" class="lnb4">고객의견 반영절차</a></li>
 </ul>

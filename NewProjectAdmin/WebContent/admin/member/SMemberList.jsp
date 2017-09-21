@@ -77,18 +77,18 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="5">등록된 회원이 없습니다.</td></tr>
+						<tr><td colspan="5" align="center">등록된 회원이 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
                 		
 	                		<tr>
-	                				<td><a href="<c:url value='/Member/SimpleMemberDetail.do' />?smem_id=${item.smem_id}">${item.smem_id }</a></td>
-	                				<td>${item.smem_name }</td>
-	                				<td>${item.smem_tel }</td>
-	                				<td>${item.smem_pwd }</td>
-	                				<td>${item.smem_date }</td>
+	                				<td align="center"><a href="<c:url value='/Member/SimpleMemberDetail.do' />?smem_id=${item.smem_id}">${item.smem_id }</a></td>
+	                				<td align="center"><a href="<c:url value='/Member/SimpleMemberDetail.do' />?smem_id=${item.smem_id}">${item.smem_name }</a></td>
+	                				<td align="center"><a href="<c:url value='/Member/SimpleMemberDetail.do' />?smem_id=${item.smem_id}">${item.smem_tel }</a></td>
+	                				<td align="center"><a href="<c:url value='/Member/SimpleMemberDetail.do' />?smem_id=${item.smem_id}">${item.smem_pwd }</a></td>
+	                				<td align="center"><a href="<c:url value='/Member/SimpleMemberDetail.do' />?smem_id=${item.smem_id}">${item.smem_date }</a></td>
 	                		</tr>
                 		</c:forEach>
                 </c:if>

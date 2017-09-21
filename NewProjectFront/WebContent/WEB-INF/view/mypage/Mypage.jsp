@@ -1237,20 +1237,20 @@ $(function(){
 
 	$("#tmoney,#socarcard,#stickercard").click(function(e){
 	
-		if($(document).data("disabled.default")){
-			alert('기본카드 변경처리 중입니다.');
-			return false;
-		}
+// 		if($(document).data("disabled.default")){
+// 			alert('기본카드 변경처리 중입니다.');
+// 			return false;
+// 		}
 
-		if($(this).parent().attr("id") == "no_member" && $(this).parent().data('regist') == 1){
-			alert('이미 등록된 카드가 있습니다.');
-			return false;
-		}
+// 		if($(this).parent().attr("id") == "no_member" && $(this).parent().data('regist') == 1){
+// 			alert('이미 등록된 카드가 있습니다.');
+// 			return false;
+// 		}
 
-		if($(this).hasClass('no_regist')){
-			alert('차량제어에 사용하실 카드 정보를 먼저 등록해 주세요.');
-			return false;
-		}
+// 		if($(this).hasClass('no_regist')){
+// 			alert('차량제어에 사용하실 카드 정보를 먼저 등록해 주세요.');
+// 			return false;
+// 		}
 
 		var id = $(this).val(),
 			$self = $(this),
@@ -1343,21 +1343,27 @@ function auth_confirm(res) {
 
 				<div class="section">
 				
+				<a href="<c:url value='/Member/SoJoin_One.do' />">
+				<img src="/template/mypage/../asset/images/mypage/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" />
+				so회원 아닐 경우 (카드,면허정보 없을 경우)</a>
+				
+				
 					<div class="group">
 						<h3><img src="/template/mypage/../asset/images/mypage/index_txt1.gif" alt="기본정보" /></h3>
 
 						<form name="info1" method="post" action="">
 							<fieldset>
+					
 								<input type="hidden" name="auth_confirm_key" id="auth_confirm_key" value="" />
 								<table cellspacing="0" class="rows">
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
-									<td id="user_name">임형택</td>
+									<td id="user_name"></td>
 								</tr>
 
 								<tr>
 									<th><img src="/template/mypage/../asset/images/mypage/index_txt2.gif" alt="이메일" /></th>
-									<td>keatmil@naver.com</td>
+									<td>${sessionScope.smem_id}</td>
 								</tr>
 								<tr>
 									<th><img src="/template/mypage/../asset/images/member/join_step2_txt6.gif" alt="비밀번호" /></th>
@@ -1439,80 +1445,9 @@ function auth_confirm(res) {
 						</form>
 					</div>
 					
-					<!-- SNS 연동정보 -->
-					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_sns_n.gif" alt="SNS계정 연동 정보" /></h3>
-						<table cellspacing="0" class="rows tbl_sns">
-						<tbody>
-							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_nv_n.gif" alt="" /></th>
-							
-								<td id="naver_interlock_info">keatmil@naver.com<a href="#" id="naver_close">
-									<img src="/template/mypage/../asset/images/mypage/ico_d.gif" alt="연동 해제하기" class="ico_d" /></a></td>
-							
-							</tr>
-
-							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_fb_n.gif" alt="" /></th>
-							
-								<td><a class="btnS" href="#" id="fb_interlock"><span>연결하기</span></a></td>
-							
-							</tr>
-
-							<tr>
-								<th><img src="/template/mypage/../asset/images/mypage/ico_cco.gif" alt="" /></th>
-							
-								<td><a class="btnS" href="#" id="kakao_interlock"><span>연결하기</span></a></td>
-							
-							</tr>
-
-						</tbody>
-						</table>
-						<ul class="tip mt10">
-							<li>SNS 아이디는 로그인 및 한줄댓글 공유에 사용됩니다.</li>
-						</ul>
-					</div>
-					<!-- //SNS 연동정보 -->
 					
-					<!-- noti 수신설정 S -->
-					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/tit_mkt_agree.gif" alt="마케팅 메시지 수신 동의" /></h3>
-						<table cellspacing="0" class="rows">
-							<tbody>
-							<tr>
-								<td>
-									<div style="padding-bottom: 10px;float:left;">
-										<label for="my_mkt_agree" id="my_mkt_agree_label" class="doupdate">
-										<span class="my_mkt_agree mkt_agree on" id="my_mkt_agree"></span>
-										<span class="mkt_agree_info" style="font-weight:bold;font-size:14px;">전체 매체에 대한 마케팅 정보 수신에 동의합니다.</span>
-										</label>
-									</div>
-									<div style="float:right">
-										<label for="my_mkt_agree_email" id="my_mkt_agree_email_label" class="doupdate">
-										<span class="my_mkt_agree_sub mkt_agree_sub on" id="my_mkt_agree_email"></span>
-										<span class="mkt_agree_sub_info">이메일</span>
-										</label>
-										<label for="my_mkt_agree_sms" id="my_mkt_agree_sms_label" class="doupdate">
-										<span class="my_mkt_agree_sub mkt_agree_sub on" id="my_mkt_agree_sms"></span>
-										<span class="mkt_agree_sub_info">SMS</span>
-										</label>
-										<label for="my_mkt_agree_push" id="my_mkt_agree_push_label" class="doupdate">
-										<span class="my_mkt_agree_sub mkt_agree_sub on" id="my_mkt_agree_push"></span>
-										<span class="mkt_agree_sub_info">푸시알림</span>
-										</label>
-									</div>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						<ul class="tip mt10">
-							<li>쏘카의 이벤트와 할인(쿠폰 등) 소식을 받아보세요.</li>
-							<li>변경사항 적용에 최대 2~3일 소요될 수 있습니다.</li>
-							<li style="color:#ff1a1a;">모든 매체 수신 동의시 1천원 쿠폰 증정!</li>
-						</ul>
-					</div>
-					<!-- noti 수신설정 E -->
-
+					
+					
 				
 					<div class="group">
 						<h3 id="li_pos"><img src="/template/mypage/../asset/images/mypage/index_txt3.gif" alt="운전면허 정보" /></h3>
@@ -1670,45 +1605,16 @@ function auth_confirm(res) {
 							<fieldset>
 								<table cellspacing="0" class="rows">
   								<tbody>
-                    <tr>
-    									<th><img src="/template/mypage/../asset/images/mypage/text_cardnumber.png" alt="카드번호"></th>
-    									<td>
-                        
-                        <input type="text" class="input-four-digit js-input-four-digit" data-order="1" maxlength="4" />
-                        <input type="text" class="input-four-digit js-input-four-digit" data-order="2" maxlength="4" />
-                        <input type="password" class="input-four-digit js-input-four-digit" data-order="3" maxlength="4" />
-                        <input type="password" class="input-four-digit js-input-four-digit" data-order="4" maxlength="4" />
-                        
-
-                        <a href="#" id="js-t-membership-edit" class="btnS"><span>수정</span></a>
-                        <a href="#" id="js-t-membership-save" class="btnS" style="display: none;"><span>저장</span></a>
-    									</td>
-    								</tr>
     								<tr>
     									<th><img src="/template/mypage/../asset/images/mypage/text_balance.png" alt="잔액"></th>
-    									<td class="js-t-membership-value"></td>
+    									<td class="js-t-membership-value">123123</td>
     								</tr>
   								</tbody>
                 </table>
   						</fieldset>
   					</form>
 
-            <div style="padding-bottom: 10px; margin-top: 15px;">
-              <label for="t-membership-agree" id="t-membership-agree_label" class="doupdate">
-              
-              <span class="js-is-agree mkt_agree"></span>
-              
-              <span class="t-membership-agree-info" style="font-weight:bold;font-size:14px;">개인정보 수집 및 이용에 동의합니다.</span>
-              </label>
-            </div>
 
-						<ul class="tip mt10">
-              <li>제공받는자: (주)쏘카, (주)SK텔레콤</li>
-              <li>수집, 이용 목적: T멤버십 사용 및 환불</li>
-              <li>수집항목: T멤버십 카드번호, T멤버십 등급</li>
-              <li>보유 및 이용기간: T멤버십 서비스 탈퇴시까지</li>
-              <li>동의하지 않을 경우 T멤버십 사용이 불가능합니다.</li>
-						</ul>
 					</div>
 
           <script type="text/javascript">
@@ -1915,41 +1821,12 @@ function auth_confirm(res) {
 							<li>
 								<dl>
 									<dt>
-										<input type="radio" name="member_card" id="tmoney" class="inp_radio no_regist" />
-										<label for="tmoney">T-money 카드</label>
-									</dt>
-									<dd>
-										<div class="tmoney">
-											<input type="text" class="inp_tmoney" id="tmoney_card_number" value="" maxlength="16" />
-										
-											<a href="#" class="btnS" id="regist_t"><span>등록</span></a>
-										
-											<span id="inp_info" class="err inp_info">16자리 카드번호를 입력해주세요.</span>
-											<!-- <span class="err">이미 사용중인 카드입니다.</span>
-											<span class="ok">사용 가능한 카드입니다.</span> -->
-										</div>
-										<ul class="tip">
-											<li class="red">T-money 카드로는 서울지역 쏘카존 차량만 적용 가능합니다.</li>
-											<li>T-money 카드는 회원카드로 사용되며 요금 결제와는 무관합니다.</li>
-											<li>캐시비카드,신용카드가 아닌 T-money 카드 번호를 입력해주세요.</li>
-											<li>T-money 카드 번호는 카드 뒷면에서 찾을 수 있습니다.</li>
-										</ul>
-									</dd>
-								</dl>
-							</li>
-						
-						
-							<li>
-								<dl>
-									<dt>
 										<input type="radio" name="member_card" id="socarcard" class="inp_radio no_regist" />
 										<label for="socarcard">회원카드</label>
 									</dt>
 									<dd>
 										<div class="socar_card">
-										
-											<a href="#" id="socarCardLayer" data-state="0" class="btnS"><span>발급신청</span></a>
-										
+											<a href="#" id="socarCardLayer" data-state="0" class="btnS"><span>발급신청</span></a>									
 										</div>
 										<p class="more">카드 발급 신청시 1,500원이 결제됩니다.</p>
 									</dd>
@@ -1964,48 +1841,6 @@ function auth_confirm(res) {
 						</ul>
 					</div>
 
-					
-					<div class="group">
-						<h3><img src="/template/mypage/../asset/images/mypage/index_txt10.gif" alt="회원제 정보" /></h3>
-
-						<table cellspacing="0" class="cols">
-						<colgroup><col width="120" /><col /><col /><col /></colgroup>
-						<thead>
-						<tr>
-							<th>종류</th>
-							<th style="width: 136px;">연회비</th>
-							<th>보험혜택</th>
-							<th>이용요금</th>
-						</tr>
-						</thead>
-						<tbody>
-						
-							<tr>
-								<td><strong>SO회원</strong></td>
-								<td>
-
-									<strong><em style="color: Red">무료</em></strong>
-								</td>
-								<td>
-									대인, 대물, 자손 적용<br />
-									<br />
-									자기부담금 선택 가능<br />
-									- 자기부담금 최대 30만원 : 1일 기준 7,000원~<br />
-									- 자기부담금 최대 70만원 : 1일 기준 5,000원~<br />
-									<br />
-									휴차보상료 별도 부과
-								</td>
-								<td>최대 70% 할인<br />(주중/주말/심야 할인)</td>
-							</tr>
-						
-						</tbody>
-						</table>
-<!--                        <p class="centerBtn">
-							<a href="#"><img src="/template/mypage/../asset/images/mypage/btn_change.gif" alt="회원제 변경하기" /></a>
-						</p> -->
-					</div>
-					
-				
 
 				
 					<div class="group">
@@ -2075,8 +1910,8 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 <!-- //login -->
 
 <!-- finding id -->
-<!-- finding pw -->
 <jsp:include page="/template/FindingIdPw.jsp"/>
+<!-- finding pw -->
 
             <!-- 주행요금 계산기 -->
             <jsp:include page="/template/Faretem.jsp"/>
@@ -2981,15 +2816,15 @@ function showJoinLayer(bPassword,email){
 	return;
 }
 
-function showLoginLayer(alertMessage, redirect_to, redirect_data) {
-	if ( redirect_to ) $('#mwCont .login #redirect').val( redirect_to );
-	if ( typeof redirect_data == 'object' ) {
-		$('#mwCont .login #redirect_data').val( JSON.stringify(redirect_data) );
-	}
+// function showLoginLayer(alertMessage, redirect_to, redirect_data) {
+// 	if ( redirect_to ) $('#mwCont .login #redirect').val( redirect_to );
+// 	if ( typeof redirect_data == 'object' ) {
+// 		$('#mwCont .login #redirect_data').val( JSON.stringify(redirect_data) );
+// 	}
 
-	if(alertMessage) alert('로그인이 필요합니다.');
-	$('#header .util1').click();
-}
+// 	if(alertMessage) alert('로그인이 필요합니다.');
+// 	$('#header .util1').click();
+// }
 
 var $cur_page = 1;
 // jQuery.fn.center = function() {
@@ -3002,13 +2837,13 @@ var $cur_page = 1;
 //             el.css(css)
 //     });
 // };
-$('.require_login').click(function(){
-	if ( $(this).data('href') ) {
-		showLoginLayer(true, $(this).data('href') );
-	} else {
-		showLoginLayer(true);
-	}
-});
+// $('.require_login').click(function(){
+// 	if ( $(this).data('href') ) {
+// 		showLoginLayer(true, $(this).data('href') );
+// 	} else {
+// 		showLoginLayer(true);
+// 	}
+// });
 
 $(".aside .quick1").click(function(){
 	

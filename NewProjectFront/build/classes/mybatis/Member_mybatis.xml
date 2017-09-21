@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace속성:매퍼파일의 완전한경로 .xml는 생략 -->
+<!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
+<mapper namespace="mybatis.Member_mybatis">
+
+
+	<resultMap id="Simple_MemDtoResult" type="Simple_MemDto">
+	    <result property="smem_id" column="smem_id"/>
+	    <result property="smem_name" column="smem_name"/>
+	    <result property="smem_tel" column="smem_tel"/>
+	    <result property="smem_pwd" column="smem_pwd"/>
+	    <result property="smem_date" column="smem_date"/>
+ 	</resultMap>
+ 	
+
+ 	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
+           식별자로 사용 -->
+ 	<insert id="createSimple_Mem" parameterType="java.util.Map" >
+ 			INSERT INTO SIMPLE_MEM VALUES(#{smem_id},#{smem_name},#{smem_tel},#{smem_pwd},sysdate)
+ 	</insert>
+ 	
+	<select id="login" parameterType="java.util.Map" resultType="Simple_MemDto">
+			SELECT * FROM SIMPLE_MEM WHERE SMEM_ID=#{smem_id} AND SMEM_PWD=#{smem_pwd}
+	</select>
+	
+	<select id="confirmId" parameterType="java.lang.String" resultType="int">
+			SELECT COUNT(*) FROM SIMPLE_MEM  WHERE SMEM_ID=#{smem_id}
+	</select>
+	
+	<select id="selectOneSimple_Mem" parameterType="java.lang.String" resultType="Simple_MemDto" >
+			SELECT * FROM SIMPLE_MEM WHERE SMEM_ID=#{smem_id}
+	</select>
+	
+	
+	
+	
+</mapper>
