@@ -688,7 +688,7 @@ $(function(){
 		set_date_time_picker('round', $MAX_DAYS);
 		//마커 세팅
 		
-			
+			//
 
 		$('#input_car_class').val($.cookie('tmp_class_name'));
 		$('#input_car_class').next().text($.cookie('tmp_class_id'));
