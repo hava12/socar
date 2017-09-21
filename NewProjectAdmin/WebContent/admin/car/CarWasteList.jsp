@@ -76,15 +76,15 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="5">페차된 차량이 없습니다.</td></tr>
+						<tr><td colspan="5" align="center">페차된 차량이 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                					<td>${item.car_i_code}</td>	           	                					
-						                <td>${item.car_w_date}</td>
-						                <td><a href="<c:url value='/CAR/CarWasteView.do?car_i_code=${item.car_i_code}'/>">${item.car_w_reason}</a></td>
+	                					<td align="center">${item.car_i_code}</td>	           	                					
+						                <td align="center">${item.car_w_date}</td>
+						                <td align="center"><a href="<c:url value='/CAR/CarWasteView.do?car_i_code=${item.car_i_code}'/>">${item.car_w_reason}</a></td>
 	                		</tr>
                 		</c:forEach>
                 </c:if>

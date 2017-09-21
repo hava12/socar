@@ -86,18 +86,18 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="6">발급 정보가 없습니다.</td></tr>
+						<tr><td colspan="6" align="center">발급 정보가 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                				<td>${item.smem_id}</td>
-	                				<td>${item.card_code}</td>
-	                				<td>${item.card_expdate}</td>
-	                				<td>${item.card_type}</td>
-	                				<td>${item.card_pwd}</td>
-	                				<td>${item.card_createdate}</td>		
+	                				<td align="center">${item.smem_id}</td>
+	                				<td align="center">${item.card_code}</td>
+	                				<td align="center">${item.card_expdate}</td>
+	                				<td align="center">${item.card_type}</td>
+	                				<td align="center">${item.card_pwd}</td>
+	                				<td align="center">${item.card_createdate}</td>		
 	                		</tr>
                 		</c:forEach>
                 </c:if>

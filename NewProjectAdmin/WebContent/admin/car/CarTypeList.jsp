@@ -79,18 +79,18 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="5">등록된 차량이 없습니다.</td></tr>
+						<tr><td colspan="5" align="center">등록된 차량이 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
-	                		<tr>
-	                					<td>${item.car_type_code}</td>	           	                					
-						                <td>${item.car_type}</td>
-						                <td>${item.car_insurance_one_hour}</td>
-						                <td>${item.car_insurance_one_day}</td>
-						                <td>${item.car_insurance_two_hour}</td>
-						                <td>${item.car_insurance_two_day}</td>
+	                		<tr >
+	                					<td align="center">${item.car_type_code}</td>	           	                					
+						                <td align="center">${item.car_type}</td>
+						                <td align="center">${item.car_insurance_one_hour}</td>
+						                <td align="center">${item.car_insurance_one_day}</td>
+						                <td align="center">${item.car_insurance_two_hour}</td>
+						                <td align="center">${item.car_insurance_two_day}</td>
 	                		</tr>
                 		</c:forEach>
                 </c:if>

@@ -78,22 +78,22 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="5">발급 정보가 없습니다.</td></tr>
+						<tr><td colspan="5" align="center">발급 정보가 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                				<td>${item.ms_code}</td>
-	                				<td>${item.smem_id }</td>
+	                				<td align="center">${item.ms_code}</td>
+	                				<td align="center">${item.smem_id }</td>
 	                				<c:choose>
 	                					<c:when test="${item.ms_change >= 0}">
-	                						<td> ${item.ms_change} </td>
-	                						<td> - </td>
+	                						<td align="center"> ${item.ms_change} </td>
+	                						<td align="center"> - </td>
 	                					</c:when>
 	                					<c:otherwise>
-	                						<td> - </td>
-	                						<td> ${item.ms_change} </td>
+	                						<td align="center"> - </td>
+	                						<td align="center"> ${item.ms_change} </td>
 	                					</c:otherwise>
 	                				</c:choose>
 	                				
