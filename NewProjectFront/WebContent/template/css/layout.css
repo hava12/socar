@@ -6,7 +6,7 @@
 body{background:#f8f8f8;}
 
 /* layout */
-#wrap{position:relative; width:100%; min-width:984px; }
+#wrap{position:relative; width:100%; min-width:984px; } 
 #header-wrapper {border-top: 4px solid #00d2ff;border-bottom: 1px solid #e4e4e4;background: #fff;box-sizing: border-box;}
 #header{position:relative; margin:0 auto; padding-top:26px; width:984px; height:44px;}
 #header h1{position:absolute; top:30px; left:0;}
