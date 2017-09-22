@@ -1,5 +1,6 @@
 package member.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -7,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import member.service.CardDto;
 import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.Simple_MemService;
@@ -52,6 +54,16 @@ public class Simple_MemDao implements Simple_MemService {
 		affected = template.insert("insertMem",dto);
 		
 		return affected;
+	}
+
+	@Override
+	public List<CardDto> selectOneMemCard(String smem_id) throws Exception {
+		
+		List<CardDto> list = null;
+		
+		list = template.selectList("selectOneMemCard",smem_id);
+
+		return list;
 	}
 
 }

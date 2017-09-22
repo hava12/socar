@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
            식별자로 사용 -->
  	<select id="myPageSelectOne" resultType="MemDto" parameterType="java.lang.String">
-		SELECT * FROM MEM WHERE SMEM_ID=#{smem_id}
+		SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE M.SMEM_ID=#{smem_id}
 	</select>
 	
 	

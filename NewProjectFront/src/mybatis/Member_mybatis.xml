@@ -15,6 +15,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    <result property="smem_date" column="smem_date"/>
  	</resultMap>
  	
+ 	<resultMap id="CardDtoResult" type="CardDto">
+	    <result property="card_code" column="card_code"/>
+	    <result property="smem_id" column="smem_id"/>
+	    <result property="card_expdate" column="card_expdate"/>
+	    <result property="card_type" column="card_type"/>
+	    <result property="card_birth" column="card_birth"/>
+	    <result property="card_pwd" column="card_pwd"/>
+	    <result property="card_createdate" column="card_createdate"/>
+ 	</resultMap>
+ 	
+ 	
 
  	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
            식별자로 사용 -->
@@ -38,6 +49,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			INSERT INTO MEM(smem_id,mem_addr_num,mem_addr_fir,mem_addr_sec,mem_mainarea) VALUES(#{smem_id},#{mem_addr_num},#{mem_addr_fir},#{mem_addr_sec},#{mem_mainarea})
 	</insert>
 	
+	
+	<select id="selectOneMemCard" parameterType="java.lang.String" resultMap="CardDtoResult">
+			SELECT * FROM CARD WHERE SMEM_ID=#{smem_id}
+	</select>
 	
 	
 	

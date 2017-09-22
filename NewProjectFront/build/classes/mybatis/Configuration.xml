@@ -14,9 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="Noti_ModelDto" type="notice.service.Noti_ModelDto"/>
 		<typeAlias alias="Simple_MemDto" type="member.service.Simple_MemDto"/>
 		<typeAlias alias="MemDto" type="member.service.MemDto"/>
+		<typeAlias alias="CardDto" type="member.service.CardDto"/>
 		<typeAlias alias="Rq_carDto" type="main.service.Rq_carDto"/>
-		
-		
 	</typeAliases>
 	
 	

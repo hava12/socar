@@ -17,7 +17,6 @@ public class MemDto extends Simple_MemDto {
 	
 	
 	
-
 	public String getMem_addr_num() {
 		return mem_addr_num;
 	}

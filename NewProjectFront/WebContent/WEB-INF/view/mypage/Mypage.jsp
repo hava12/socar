@@ -1343,9 +1343,14 @@ function auth_confirm(res) {
 
 				<div class="section">
 				
-				<c:if test="${memtype eq 'simple_mem'}">
-						<a href="<c:url value='/Member/SoJoin_One.do' />">
-						<img src="${pageContext.request.contextPath}/template/image/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" />
+				<c:if test="${empty card_list}">
+						<c:if test="${empty dto.mem_addr_sec}" var="sojointest">
+								<a id="so_join" href="<c:url value='/Member/SoJoin_One.do' />">
+						</c:if>
+						<c:if test="${not sojointest}">
+								<a id="so_join" href="<c:url value='/Member/SoJoin_Two.do' />">
+						</c:if>
+								<img src="${pageContext.request.contextPath}/template/image/join_bn.gif" alt="SO회원 가입하고 지금 예약하세요! SO회원 가입하기" />
 						</a>
 				</c:if>
 				
@@ -1448,7 +1453,7 @@ function auth_confirm(res) {
 					
 					
 					
-					
+	<c:if test="${not empty card_list }">	
 				
 					<div class="group">
 						<h3 id="li_pos"><img src="${pageContext.request.contextPath}/template/image/index_txt3.gif" alt="운전면허 정보" /></h3>
@@ -1460,7 +1465,7 @@ function auth_confirm(res) {
 									<th><img src="${pageContext.request.contextPath}/template/image/index_txt4.gif" alt="면허종류" /></th>
 									<td>
 										<label for="type1">
-											<input type="radio" id="type1" name="driverType" checked="checked" /> 1종 보통
+											<input type="radio" id="type1" name="driverType" /> 1종 보통
 										</label>
 										<label for="type2">
 											<input type="radio" id="type2" name="driverType" /> 2종 보통
@@ -1615,8 +1620,8 @@ function auth_confirm(res) {
   						</fieldset>
   					</form>
 
-
 					</div>
+	</c:if>
 
           <script type="text/javascript">
           $(document).ready(function() {
@@ -1804,7 +1809,9 @@ function auth_confirm(res) {
             }
             });
           </script>
-
+	
+	
+	<c:if test="${not empty card_list }">
 					<div class="group membercard">
 						<h3><img src="${pageContext.request.contextPath}/template/image/tit_membercard_1223.gif" alt="추가 카드키" /></h3>
 						<div class="txt_more">선택한 카드로 차량 문 개폐가 가능합니다.</div>
@@ -1842,7 +1849,7 @@ function auth_confirm(res) {
 						</ul>
 					</div>
 
-
+	</c:if>
 				
 					<div class="group">
 						<h3><img src="${pageContext.request.contextPath}/template/image/index_txt12.gif" alt="회원탈퇴" /></h3>

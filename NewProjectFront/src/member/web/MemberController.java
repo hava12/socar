@@ -90,6 +90,15 @@ public class MemberController {
 	}////////////////////////////////////////////////
 	
 	
+	
+	@RequestMapping("/Member/SoJoin_Two.do")
+	public String soJoin_Two() throws Exception{
+		return "/member/SoJoin_Two";
+	}////////////////////////////////////////////////
+	
+	
+	
+	
 	@RequestMapping("/Member/CreateMem.do")
 	public String createMem(@RequestParam Map map,Model model) throws Exception{
 		
