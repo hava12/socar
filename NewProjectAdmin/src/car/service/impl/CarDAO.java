@@ -271,17 +271,19 @@ public class CarDAO implements CarService{
 	}
 
 	@Override
-	public List<Car_IssueDTO> car_issue_view(String soz_code) throws Exception {
+	public List<Car_IssueDTO> car_issue_view(String soz_code,int start,int end) throws Exception {
 		List<Car_IssueDTO> list = new Vector<Car_IssueDTO>();
 		//String sql = "SELECT C.* FROM CAR_ISSUE C WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0";
-		String sql = "SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,"
+		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,"
 					+ "CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI "
 					+ " JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE "
 					+ " JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE "
-					+ " WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0";
-		
+					+ " WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0) T) WHERE R BETWEEN ? AND ?";
+		try {
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, soz_code);
+		psmt.setInt(2, start);
+		psmt.setInt(3, end);
 		rs = psmt.executeQuery();
 		while(rs.next()) {
 			Car_IssueDTO dto = new Car_IssueDTO();
@@ -304,9 +306,30 @@ public class CarDAO implements CarService{
 			
 			list.add(dto);
 		}
+		}catch (Exception e) {e.printStackTrace();}
 		return list;
 	}
 
+	//총 레코드 수 얻기용]
+			public int getTotalRecordCount(String soz_code){
+				int total =0;
+				String sql = "SELECT COUNT(*) FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,"
+						+ "CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI "
+						+ " JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE "
+						+ " JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE "
+						+ " WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0)";
+				
+				try {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, soz_code);
+					rs = psmt.executeQuery();
+					rs.next();
+					total = rs.getInt(1);
+				} catch (SQLException e) {e.printStackTrace();}
+				
+				return total;
+			}///////////////////getTotalRecordCount
+	
 	@Override
 	public int car_waste(Car_WasteDTO dto) throws Exception {
 		int affected = 0;

@@ -20,7 +20,7 @@ public interface CarService {
 	
 	public int car_issue(Car_IssueDTO dto) throws Exception;
 	
-	public List<Car_IssueDTO> car_issue_view(String soz_code) throws Exception;
+	public List<Car_IssueDTO> car_issue_view(String soz_code,int start,int end) throws Exception;
 	
 	public int car_waste(Car_WasteDTO dto) throws Exception;
 	
