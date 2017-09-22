@@ -203,14 +203,15 @@ public class ZoneDAO implements ZoneService{
 		}///////////////////getTotalRecordCount
 
 		@Override
-		public CarSearchResultDTO searchResult(String soz_code) throws Exception {
+		public List<CarSearchResultDTO> searchResult(String soz_code) throws Exception {
 			System.out.println(soz_code);
 			String sql= "SELECT CAR_NAME, CAR_IMG, CAR_PRICE_SO_WD, CAR_PRICE_SO_WE, CAR_DRIVE_PRICE,CAR_FUEL,CAR_TRANS,B.* FROM CAR C JOIN (SELECT CAR_I_CODE, CAR_NAME_CODE, CAR_I_SAFE_OPTION,CAR_I_ADD_OPTION,CAR_NICK, SOZ_NAME FROM CAR_ISSUE CI JOIN SO_ZONE S ON CI.SOZ_CODE = S.SOZ_CODE WHERE S.SOZ_CODE=?) B ON C.CAR_NAME_CODE = B.CAR_NAME_CODE";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, soz_code);
 			rs = psmt.executeQuery();
-			CarSearchResultDTO dto = new CarSearchResultDTO();
+			List<CarSearchResultDTO> car_list = new Vector<CarSearchResultDTO>();
 			while(rs.next()) {
+				CarSearchResultDTO dto = new CarSearchResultDTO();
 				dto.setCar_name(rs.getString(1));
 				dto.setCar_img(rs.getString(2));
 				if(!Calendar.getInstance().getTime().toString().startsWith("S")) {
@@ -228,9 +229,12 @@ public class ZoneDAO implements ZoneService{
 				dto.setCar_i_add_option(rs.getString(11));
 				dto.setCar_nick(rs.getString(12));
 				dto.setSoz_name(rs.getString(13));
+				car_list.add(dto);
 			}
 			System.out.println(soz_code);
-			return dto;
+			return car_list;
 		}
 	
 }
+
+

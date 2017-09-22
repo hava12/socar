@@ -12,5 +12,5 @@ public interface ZoneService {
 	public int delete(String soz_code) throws Exception;
 	public void close() throws Exception;
 	List<ZoneDTO> selectEveryList() throws Exception;
-	public CarSearchResultDTO searchResult(String soz_code) throws Exception; 
+	public List<CarSearchResultDTO> searchResult(String soz_code) throws Exception; 
 }

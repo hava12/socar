@@ -2791,3 +2791,4 @@ function move_map(){
 <script type="text/javascript" src="/template/reservation/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="/template/reservation/../asset/js/common_reservation.js?1505265015"></script>
 </html>
+
