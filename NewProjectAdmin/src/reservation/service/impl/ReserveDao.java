@@ -3,6 +3,7 @@ package reservation.service.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
@@ -40,14 +41,16 @@ public class ReserveDao implements ReserveService{
 	}/////////////////////////////////////////////////////////////
 	
 	@Override
-	public List<ReserveDto> selectReserveList() throws Exception {
+	public List<ReserveDto> selectReserveList(int start,int end){
 		
 		List<ReserveDto> list = new Vector<>();
 		
-		String sql = "SELECT * FROM RESERVE ORDER BY RES_DATE DESC";
+		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM RESERVE ORDER BY RES_DATE DESC) T) WHERE R BETWEEN ? AND ?";
 		
+		try {
 		psmt = conn.prepareStatement(sql);
-		
+		psmt.setInt(1, start);
+		psmt.setInt(2, end);
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -72,11 +75,26 @@ public class ReserveDao implements ReserveService{
 			
 			list.add(dto);
 		}
+		}catch (Exception e) {e.printStackTrace();
+		}
 		
-		close();
 		return list;
 	}//////////////////////////////////////////////////////////////
 
+	//총 레코드 수 얻기용]
+	public int getTotalRecordCount(){
+		int total =0;
+		String sql="SELECT COUNT(*) FROM (SELECT * FROM RESERVE ORDER BY RES_DATE DESC)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			rs.next();
+			total = rs.getInt(1);
+		} catch (SQLException e) {e.printStackTrace();}
+		
+		return total;
+	}///////////////////getTotalRecordCount
+	
 	@Override
 	public void close() throws Exception {
 		if(rs!=null)rs.close();

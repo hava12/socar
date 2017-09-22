@@ -182,7 +182,11 @@
 	             </div><!-- /input-group -->
 	         </div><!-- /.box-body -->
 		   </div>
-	    <p>1 2 3 4 5 6 7 8 9</p>
+	    <table width="100%">
+		                        <tr align="center">
+		                          <td>${pagingString}</td>
+		                        </tr>
+		                      </table>
           <!--// 검색창  -->
         
  		</div>
