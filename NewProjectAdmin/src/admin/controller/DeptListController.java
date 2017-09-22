@@ -24,7 +24,13 @@ public class DeptListController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getTotalRecordCount();
+				int totalRecordCount=0;
+				try {
+					totalRecordCount = dao.getTotalRecordCount();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -37,7 +43,11 @@ public class DeptListController extends HttpServlet {
 				int start= (nowPage-1)*pageSize+1;
 				int end = nowPage*pageSize;	
 		
-		List<DeptDto> list = dao.selectDeptList(start,end);
+		List<DeptDto> list =null;
+		try {
+			list = dao.selectDeptList(start,end);
+		} catch (Exception e) {e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Admin/DeptList.do?");

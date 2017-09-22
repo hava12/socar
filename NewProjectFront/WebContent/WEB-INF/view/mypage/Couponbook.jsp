@@ -228,7 +228,6 @@ $(function() {
 							<div class="tit_cont">
 								<p class="tit">14시간 13,000원</p>
 							</div>
-							<img src='${pageContext.request.contextPath}/template/image/dash.png' width='280'/>
 							<div class="box_listcont">
 								<dl class="list_cont">
 									<dt>오픈기간</dt>
@@ -325,7 +324,6 @@ $(function() {
 							<div class="tit_cont">
 								<p class="tit">1박2일 36,000원~</p>
 							</div>
-							<img src='${pageContext.request.contextPath}/template/image/dash.png' width='280'/>
 							<div class="box_listcont">
 								<dl class="list_cont">
 									<dt>오픈기간</dt>
@@ -426,7 +424,6 @@ $(function() {
 							<div class="tit_cont">
 								<p class="tit">2박3일 63,000원~</p>
 							</div>
-							<img src='${pageContext.request.contextPath}/template/image/dash.png' width='280'/>
 							<div class="box_listcont">
 								<dl class="list_cont">
 									<dt>오픈기간</dt>
@@ -528,7 +525,6 @@ $(function() {
 							<div class="tit_cont">
 								<p class="tit">5시간 9,900원</p>
 							</div>
-							<img src='${pageContext.request.contextPath}/template/image/dash.png' width='280'/>
 							<div class="box_listcont">
 								<dl class="list_cont">
 									<dt>오픈기간</dt>
@@ -622,7 +618,6 @@ $(function() {
 							<div class="tit_cont">
 								<p class="tit">5천원 할인</p>
 							</div>
-							<img src='${pageContext.request.contextPath}/template/image/dash.png' width='280'/>
 							<div class="box_listcont">
 								<dl class="list_cont">
 									<dt>오픈기간</dt>
@@ -674,11 +669,8 @@ $(function() {
 						<div class="box_bottom">
 							
 							
-								
-									
-								
-							
-							<div class="btn downbtn on" policy_id="2744"  active_limit="999">
+
+							<div policy_id="2744"  active_limit="999">
 							
 								
 									<a href="#">쿠폰받기</a>
@@ -1867,10 +1859,7 @@ $(".aside .quick3").click(function(){
 });
 
 /* coupon book */
-$(".aside .quick4").click(function(){
-	document.location.href="/couponbook";
-	return false;
-});
+
 
 $(".aside .quick5").click(function(){
 	$('.mwLayer').addClass('open');

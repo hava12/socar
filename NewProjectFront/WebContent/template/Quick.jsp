@@ -5,7 +5,7 @@
 <div class="aside">
 	<ul>
 		<li>
-			<a href="#" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
+			<a href="<c:url value='/Mypage/Couponbook.do' />" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
 		</li>
 		
 		<li>

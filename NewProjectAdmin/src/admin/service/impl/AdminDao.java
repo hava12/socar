@@ -54,7 +54,7 @@ public class AdminDao implements AdminService{
 	}
 
 	@Override
-	public List<DeptDto> selectDeptList(int start,int end){
+	public List<DeptDto> selectDeptList(int start,int end) throws Exception {
 		
 		List<DeptDto> list = new Vector<DeptDto>();
 		
@@ -75,12 +75,12 @@ public class AdminDao implements AdminService{
 			list.add(dto);
 		}
 		}catch (Exception e) {e.printStackTrace();}
-		
+		close();
 		return list;
 	}
 	
 	//총 레코드 수 얻기용]
-	public int getTotalRecordCount(){
+	public int getTotalRecordCount() throws Exception{
 		int total =0;
 		String sql="SELECT COUNT(*) FROM DEPT";
 		try {

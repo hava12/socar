@@ -2693,10 +2693,7 @@ $(".aside .quick3").click(function(){
 });
 
 /* coupon book */
-$(".aside .quick4").click(function(){
-	document.location.href="/couponbook";
-	return false;
-});
+
 
 $(".aside .quick5").click(function(){
 	$('.mwLayer').addClass('open');
