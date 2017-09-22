@@ -155,6 +155,7 @@ public class MemberDao implements MemberService {
 				dto.setMem_c_num(rs.getString(7));
 				dto.setMem_c_expdate(rs.getDate(8));
 				dto.setMem_c_idate(rs.getDate(9));
+				dto.setMem_gender(rs.getString(10));
 				dto.setSmem_name(rs.getString(11));
 				dto.setSmem_tel(rs.getString(12));
 				dto.setSmem_pwd(rs.getString(13));
@@ -208,6 +209,7 @@ public class MemberDao implements MemberService {
 		dto.setMem_c_num(rs.getString(7));
 		dto.setMem_c_expdate(rs.getDate(8));
 		dto.setMem_c_idate(rs.getDate(9));
+		dto.setMem_gender(rs.getString(10));
 		dto.setSmem_name(rs.getString(11));
 		dto.setSmem_tel(rs.getString(12));
 		dto.setSmem_pwd(rs.getString(13));
@@ -389,6 +391,7 @@ public class MemberDao implements MemberService {
 			dto.setMem_c_num(rs.getString(7));
 			dto.setMem_c_expdate(rs.getDate(8));
 			dto.setMem_c_idate(rs.getDate(9));
+			dto.setMem_gender(rs.getString(10));
 			dto.setSmem_name(rs.getString(11));
 			dto.setSmem_tel(rs.getString(12));
 			dto.setSmem_pwd(rs.getString(13));

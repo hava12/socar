@@ -12,7 +12,7 @@ public class MemDto {
 	private String mem_c_num;
 	private java.util.Date mem_c_expdate;
 	private java.util.Date mem_c_idate;
-	
+	private String mem_gender;
 	
 	//작업의 효율성을 위한 변수 생성
 	private String smem_name;
@@ -23,13 +23,14 @@ public class MemDto {
 	private int ms_change;
 
 	
-	
-	
-	
-	
-	
-	
-	
+	public String getMem_gender() {
+		return mem_gender;
+	}
+
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
+	}
+
 	public String getSmem_id() {
 		return smem_id;
 	}
