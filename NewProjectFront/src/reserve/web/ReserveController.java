@@ -31,14 +31,16 @@ public class ReserveController {
 	public String searchResult(@RequestParam("soz_code") String soz_code, Model model) throws Exception{
 		List<ZoneDTO> list = dao.selectEveryList();
 
-		CarSearchResultDTO dto = dao.searchResult(soz_code);
+		List<CarSearchResultDTO> car_list = dao.searchResult(soz_code);
 		ZoneDTO zone_dto = dao.selectOne(soz_code);
 		
 		model.addAttribute("zone_dto",zone_dto);
-		model.addAttribute("dto",dto);
+		model.addAttribute("car_list",car_list);
 		model.addAttribute("list", list);
 		return "/reserve/ReserveSearchResult";
 	}
 	
 	
 }
+
+

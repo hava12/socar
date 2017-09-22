@@ -1672,10 +1672,10 @@ $(function(){
 						
 						
 
-							
+							<c:forEach items="${car_list}" var="item" varStatus="loop">
 								<div class="section">
 									<div class="arti">
-										<h4 class="zone_info_popup" value="5237">${dto.soz_name}</h4>
+										<h4 class="zone_info_popup" value="5237">${item.soz_name}</h4>
 										<em style="display:none;">5237</em>
 										<!-- <span>0.4km</span> -->
 									</div>
@@ -1683,12 +1683,12 @@ $(function(){
 										<p class="thumb"><a href="#" class="carDetail"><img src='//web-assets.socar.kr/template/asset/images/car_image/car046.png' /></a></p>
 										<div class="desc">
 											
-												<h5>${dto.car_name}<strong>${dto.car_nick}</strong> </h5>
+												<h5>${item.car_name}<strong>${item.car_nick}</strong> </h5>
 											
 											<em style="display:none;">8471</em>
 											<div class="spec">
-												유종 : <em>${dto.car_fuel}</em><br />
-												옵션 : ${dto.car_trans},${dto.car_i_safe_option},${dto.car_i_add_option}
+												유종 : <em>${item.car_fuel}</em><br />
+												옵션 : ${item.car_trans},${item.car_i_safe_option},${item.car_i_add_option}
 												<!--<a href="#" class="more carDetail view_detail_car">더보기</a>-->
 											</div>
 										</div>
@@ -1736,7 +1736,7 @@ $(function(){
 									
 										<dl>
 											<dt>SO회원 할인가</dt>
-											<dd><strong id="price-s0">${dto.car_price_so} 원</strong></dd>
+											<dd><strong id="price-s0">${item.car_price_so} 원</strong></dd>
 										</dl>
 									
 									</div>
@@ -1744,7 +1744,7 @@ $(function(){
 
 									<!-- 주행요금 -->
 									
-									<div class="oil">${dto.car_drive_price}원/km</div>
+									<div class="oil">${item.car_drive_price}원/km</div>
 									
 									<!-- //주행요금 -->
 
@@ -1764,7 +1764,7 @@ $(function(){
 									<em style="display:none;">timeline0</em>
 								</div>								
 							
-							
+							</c:forEach>
 						
 
 					</fieldset>
@@ -4565,7 +4565,7 @@ function move_map(){
 	other_position[${loop.count}] = new daum.maps.LatLng(${item.soz_latitude}, ${item.soz_longitude});
 	other_marker[${loop.count}] = new daum.maps.Marker({position:other_position[${loop.count}], clickable:true});
 	other_marker[${loop.count}].setMap(map);
-	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do"/>"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
 	iwRemoveable = true;
 	other_infowindow[${loop.count}] = new daum.maps.InfoWindow({content:other_iwContent[${loop.count}],removable:iwRemoveable});		
 		<c:if test="${item.soz_code eq zone_dto.soz_code}">
@@ -4580,3 +4580,4 @@ function move_map(){
 
 </script>
 </html>
+
