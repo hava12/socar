@@ -1671,10 +1671,11 @@ $(function(){
 						</div>
 						
 						
+
 							
 								<div class="section">
 									<div class="arti">
-										<h4 class="zone_info_popup" value="5237">워커힐 호텔</h4>
+										<h4 class="zone_info_popup" value="5237">${dto.soz_name}</h4>
 										<em style="display:none;">5237</em>
 										<!-- <span>0.4km</span> -->
 									</div>
@@ -1682,12 +1683,12 @@ $(function(){
 										<p class="thumb"><a href="#" class="carDetail"><img src='//web-assets.socar.kr/template/asset/images/car_image/car046.png' /></a></p>
 										<div class="desc">
 											
-												<h5>아이오닉 일렉트릭 </h5>
+												<h5>${dto.car_name}<strong>${dto.car_nick}</strong> </h5>
 											
 											<em style="display:none;">8471</em>
 											<div class="spec">
-												유종 : <em>전기</em><br />
-												옵션 : 오토변속기어, 내비게이션, 블랙박스
+												유종 : <em>${dto.car_fuel}</em><br />
+												옵션 : ${dto.car_trans},${dto.car_i_safe_option},${dto.car_i_add_option}
 												<!--<a href="#" class="more carDetail view_detail_car">더보기</a>-->
 											</div>
 										</div>
@@ -1735,7 +1736,7 @@ $(function(){
 									
 										<dl>
 											<dt>SO회원 할인가</dt>
-											<dd><strong id="price-s0">2,700원</strong></dd>
+											<dd><strong id="price-s0">${dto.car_price_so} 원</strong></dd>
 										</dl>
 									
 									</div>
@@ -1743,7 +1744,7 @@ $(function(){
 
 									<!-- 주행요금 -->
 									
-									<div class="oil">0원/km</div>
+									<div class="oil">${dto.car_drive_price}원/km</div>
 									
 									<!-- //주행요금 -->
 
@@ -1761,100 +1762,8 @@ $(function(){
 
 									<a href="#" class="door">자세히</a>
 									<em style="display:none;">timeline0</em>
-								</div>
-								
+								</div>								
 							
-								<div class="section">
-									<div class="arti">
-										<h4 class="zone_info_popup" value="5237">워커힐 호텔</h4>
-										<em style="display:none;">5237</em>
-										<!-- <span>0.4km</span> -->
-									</div>
-									<div class="carInfo">
-										<p class="thumb"><a href="#" class="carDetail"><img src='//web-assets.socar.kr/template/asset/images/car_image/car22.png' /></a></p>
-										<div class="desc">
-											
-												<h5>아반떼AD </h5>
-											
-											<em style="display:none;">9012</em>
-											<div class="spec">
-												유종 : <em>휘발유</em><br />
-												옵션 : 오토변속기어, 내비게이션, 블랙박스
-												<!--<a href="#" class="more carDetail view_detail_car">더보기</a>-->
-											</div>
-										</div>
-									</div>
-
-									<!-- 타임라인 -->
-									<div id="timeline1" class="timelineWrap">
-										<p class="noti"><img src='//web-assets.socar.kr/template/asset/images/reservation/list_noti.gif' alt="" /></p>
-										<div id="slider-range1" num="1" class="timeline time24">
-											<div class="rangeWrap">
-												<a class="ui-slider-handle" href="#"></a>
-												<a class="ui-slider-handle next" href="#"></a>
-											</div>
-											
-												<span class="t1 time date">09.21</span>
-												<span class="t2 time">06:00</span>
-												<span class="t3 time">12:00</span>
-												<span class="t4 time">18:00</span>
-												<span class="t5 time date">09.22</span>
-											
-											<em class="timeline_start_at" style="display:none;">2017-09-21T12:00:00+09:00</em>
-											<em class="timeline_end_at" style="display:none;">2017-09-21T12:30:00+09:00</em>
-											<span class="overlap 0" style="display: none;"></span>
-											<span class="overlap 1" style="display: none;"></span>
-											<span class="overlap 2" style="display: none;"></span>
-											<span class="overlap 3" style="display: none;"></span>
-											<span class="overlap 4" style="display: none;"></span>
-											<span class="overlap 5" style="display: none;"></span>
-											<span class="overlap 6" style="display: none;"></span>
-											<span class="overlap 7" style="display: none;"></span>
-											<span class="overlap 8" style="display: none;"></span>
-											<span class="overlap 9" style="display: none;"></span>
-											<span class="overlap 10" style="display: none;"></span>
-											<span class="overlap 11" style="display: none;"></span>
-										</div>
-										
-											<p id="amount1" class="amount"></p>
-										
-									</div>
-									<!-- //타임라인 -->
-
-									<!-- 대여요금 -->
-									<div class="price price_info">
-									<!-- 기준요금이  할인가보다  클  경우에만  기준요금  표시 -->
-									
-										<dl>
-											<dt>SO회원 할인가</dt>
-											<dd><strong id="price-s1">2,610원</strong></dd>
-										</dl>
-									
-									</div>
-									<!-- //대여요금 -->
-
-									<!-- 주행요금 -->
-									
-									<div class="oil">170원/km</div>
-									
-									<!-- //주행요금 -->
-
-									<div class='rvBtn '>
-										
-										<a id="round" class="btn_reserve" title=''
-											
-												
-													href="#require_login"
-												
-											><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_list_reservation.gif' alt="예약" /></a>
-										<em style="display:none;">5237</em>
-										<em style="display:none;">9012</em>
-									</div>
-
-									<a href="#" class="door">자세히</a>
-									<em style="display:none;">timeline1</em>
-								</div>
-								
 							
 						
 
@@ -4622,7 +4531,7 @@ $("#requestList .deleteCancel").click(function(){
 var mapContainer = document.getElementById('map'),
 
 //지도 옵션
-mapOption = {center: new daum.maps.LatLng(${dto.soz_latitude}, ${dto.soz_longitude}),//센터 위치
+mapOption = {center: new daum.maps.LatLng(${zone_dto.soz_latitude}, ${zone_dto.soz_longitude}),//센터 위치
 			level:9 //확대 레벨
 			};
 //지도 생성
@@ -4659,7 +4568,7 @@ function move_map(){
 	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do"/>"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
 	iwRemoveable = true;
 	other_infowindow[${loop.count}] = new daum.maps.InfoWindow({content:other_iwContent[${loop.count}],removable:iwRemoveable});		
-		<c:if test="${item.soz_code eq dto.soz_code}">
+		<c:if test="${item.soz_code eq zone_dto.soz_code}">
 			other_infowindow[${loop.count}].open(map,other_marker[${loop.count}]);
 		</c:if>
 	daum.maps.event.addListener(other_marker[${loop.count}],'click',function(){
