@@ -37,14 +37,21 @@ public class CardInsertController extends HttpServlet {
 		int affected = 0;
 		dto.setCard_code(req.getParameter("card_code"));
 		dto.setSmem_id(req.getParameter("smem_id"));
+		dto.setCard_type(req.getParameter("card_type").equals("법인")?"b":"p");
 		
 		try {
 		dto.setCard_expdate(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("card_exp_year")+"-"+req.getParameter("card_exp_month")+"-"+req.getParameter("card_exp_date")));
-		dto.setCard_birth(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("card_birth_year")+"-"+req.getParameter("card_birth_month")+"-"+req.getParameter("card_birth_date")));
-		} catch (ParseException e) {e.printStackTrace();}
-		dto.setCard_type(req.getParameter("card_type").equals("법인")?"b":"p");
 		
-		dto.setCard_pwd(req.getParameter("card_pwd_one")+req.getParameter("card_pwd_two"));
+				if(dto.getCard_type().equals("p")) {
+						dto.setCard_birth(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("card_birth_year")+"-"+req.getParameter("card_birth_month")+"-"+req.getParameter("card_birth_date")));
+						dto.setCard_pwd(req.getParameter("card_pwd_one")+req.getParameter("card_pwd_two"));
+				}
+				
+				else {
+						dto.setCard_c_num(req.getParameter("card_c_num"));
+				}
+		} catch (ParseException e) {e.printStackTrace();}
+		
 	
 		MemberDao dao = new MemberDao(req.getServletContext());
 		

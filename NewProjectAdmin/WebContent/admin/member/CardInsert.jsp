@@ -181,7 +181,7 @@ function checkval(){
 					      	  <tr>
 					      	  		<td><label>카드 종류</label></td>
 					      	  		<td>
-					      	  			<input style="margin-left: 20px" type="radio" name="card_type" >법인</input>
+					      	  			<input style="margin-left: 20px" type="radio"  name="card_type" >법인</input>
 								     	<input style="margin-left: 30px" type="radio" name="card_type" checked="checked" >개인</input>
 					      	  		</td>
 					      	  </tr>
@@ -216,6 +216,15 @@ function checkval(){
 								     	</div>
 								     	<div class="col-xs-1">●</div>
 								     	<div class="col-xs-1">●</div>
+								     	
+								    </td>
+					      	  </tr>
+					      	  <tr>
+					      	  		<td><label>사업자등록번호</label></td>
+					      	  		<td>
+					      	  			<div class="col-xs-5">
+								        <input type="text" class="form-control" id="card_c_num" name="card_c_num"/>
+								     	</div>
 								     	
 								    </td>
 					      	  </tr>

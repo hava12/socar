@@ -77,8 +77,7 @@
                   <th style="text-align: center; width: 20%">카드번호</th>
                   <th style="text-align: center; width: 20%">카드 만료일</th>
                   <th style="text-align: center; width: 15%">카드 유형</th>
-                  <th style="text-align: center; width: 15%">카드비번 2자리</th>
-                  <th style="text-align: center; width: 15%">카드발급일</th>
+                  
                   
                 </tr>
 
@@ -86,7 +85,7 @@
               <tbody>
                 
 				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="6" align="center">발급 정보가 없습니다.</td></tr>
+						<tr><td colspan="4" align="center">발급 정보가 없습니다.</td></tr>
 				</c:if>
 				
                 <c:if test="${not listSimpleMem}">
@@ -96,8 +95,6 @@
 	                				<td align="center">${item.card_code}</td>
 	                				<td align="center">${item.card_expdate}</td>
 	                				<td align="center">${item.card_type}</td>
-	                				<td align="center">${item.card_pwd}</td>
-	                				<td align="center">${item.card_createdate}</td>		
 	                		</tr>
                 		</c:forEach>
                 </c:if>

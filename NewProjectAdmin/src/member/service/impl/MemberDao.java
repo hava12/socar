@@ -210,11 +210,11 @@ public class MemberDao implements MemberService {
 		dto.setMem_c_expdate(rs.getDate(8));
 		dto.setMem_c_idate(rs.getDate(9));
 		dto.setMem_gender(rs.getString(10));
-		dto.setSmem_name(rs.getString(11));
-		dto.setSmem_tel(rs.getString(12));
-		dto.setSmem_pwd(rs.getString(13));
-		dto.setSmem_date(rs.getString(14));
-		dto.setMs_change(rs.getInt(15));
+		dto.setSmem_name(rs.getString(12));
+		dto.setSmem_tel(rs.getString(13));
+		dto.setSmem_pwd(rs.getString(14));
+		dto.setSmem_date(rs.getString(15));
+		dto.setMs_change(rs.getInt(16));
 		
 		close();
 		
@@ -332,7 +332,7 @@ public class MemberDao implements MemberService {
 		if(smem_id!=null){
 			sql += " WHERE SMEM_ID='"+smem_id+"' ";
 		}
-		sql += "ORDER BY CARD_CREATEDATE DESC) T) WHERE R BETWEEN ? AND ?";
+		sql += "ORDER BY CARD_EXPDATE DESC) T) WHERE R BETWEEN ? AND ?";
 		
 		try {
 		psmt = conn.prepareStatement(sql);
@@ -347,8 +347,7 @@ public class MemberDao implements MemberService {
 			dto.setCard_type(rs.getString(4));
 			dto.setCard_birth(rs.getDate(5));
 			dto.setCard_pwd(rs.getString(6));
-			dto.setCard_createdate(rs.getDate(7));
-
+			dto.setCard_c_num(rs.getString(7));
 			
 			list.add(dto);
 		}
@@ -408,7 +407,7 @@ public class MemberDao implements MemberService {
 	public int insertCard(CardDto dto) throws Exception {
 		
 		int affected = 0;
-		String sql = "INSERT INTO CARD VALUES(?,?,?,?,?,?,SYSDATE)";
+		String sql = "INSERT INTO CARD VALUES(?,?,?,?,?,?,?,'n')";
 
 		psmt = conn.prepareStatement(sql);
 		
@@ -418,7 +417,7 @@ public class MemberDao implements MemberService {
 		psmt.setString(4, dto.getCard_type());
 		psmt.setDate(5, new java.sql.Date(dto.getCard_birth().getTime()));
 		psmt.setString(6, dto.getCard_pwd());
-		
+		psmt.setString(7, dto.getCard_c_num());
 		affected = psmt.executeUpdate();
 		
 		
