@@ -14,9 +14,18 @@ public class MemDto extends Simple_MemDto {
 	private String mem_c_num;
 	private java.util.Date mem_c_expdate;
 	private java.util.Date mem_c_idate;
+	private String mem_gender;
 	
 	
 	
+	
+	
+	public String getMem_gender() {
+		return mem_gender;
+	}
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
+	}
 	public String getMem_addr_num() {
 		return mem_addr_num;
 	}

@@ -670,7 +670,7 @@ $(function() {
 							
 							
 
-							<div policy_id="2744"  active_limit="999">
+							<div class="btn" policy_id="2744"  active_limit="999">
 							
 								
 									<a href="#">쿠폰받기</a>

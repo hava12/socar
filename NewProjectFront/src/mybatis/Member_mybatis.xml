@@ -22,7 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    <result property="card_type" column="card_type"/>
 	    <result property="card_birth" column="card_birth"/>
 	    <result property="card_pwd" column="card_pwd"/>
-	    <result property="card_createdate" column="card_createdate"/>
+	    <result property="card_c_num" column="card_c_num"/>
+	    <result property="card_default" column="card_default"/>   
+	    <result property="card_create_date" column="card_create_date"/>
  	</resultMap>
  	
  	

@@ -1,5 +1,8 @@
 package member.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import member.service.CardDto;
 import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.impl.Simple_MemServiceImpl;
@@ -25,10 +29,15 @@ public class MemberController {
 	@Resource(name="simple_MemServiceImpl")
 	private Simple_MemServiceImpl service;
 	
+	
+	
+	
 	@RequestMapping("/Join/Join.do")
 	public String join()throws Exception{
 		return "/member/Join";
 	}//////////////////////////////////////////////////
+	
+	
 	
 	@RequestMapping("/Member/JoinResult.do")
 	public String joinResult(@RequestParam Map map,HttpServletRequest req) throws Exception{
@@ -97,6 +106,53 @@ public class MemberController {
 	}////////////////////////////////////////////////
 	
 	
+	@RequestMapping("/Member/CompleteSoJoin.do")
+	public String completeSoJoin(@RequestParam Map map) throws Exception{
+		
+		System.out.println(map.get("smem_id"));
+		System.out.println(map.get("mem_c_type"));
+		System.out.println(map.get("mem_c_num"));
+		System.out.println(map.get("mem_c_idate"));
+		System.out.println(map.get("mem_c_expdate"));
+		System.out.println(map.get("mem_gender"));
+		System.out.println(map.get("card_expdate_y"));
+		System.out.println(map.get("card_expdate_m"));
+		System.out.println(map.get("card_type"));
+		System.out.println(map.get("card_birth"));
+		System.out.println(map.get("card_pwd"));
+		System.out.println(map.get("card_c_num"));
+		System.out.println(map.get("card_default"));
+		System.out.println(map.get("card_create_date"));
+		System.out.println(map.get("card_code"));
+		
+		CardDto c_dto = new CardDto();
+		c_dto.setCard_code(map.get("card_code").toString());
+		c_dto.setSmem_id(map.get("smem_id").toString());
+		Calendar card_expdate = Calendar.getInstance();
+		card_expdate.set(Integer.parseInt(map.get("mem_expdate_y").toString()),Integer.parseInt(map.get("mem_expdate_y").toString()),1);
+		c_dto.setCard_expdate(card_expdate.getTime());
+		c_dto.setCard_type(map.get("card_type").toString());
+		c_dto.setCard_birth(map.get("card_birth").toString());
+		c_dto.setCard_c_num(map.get("card_c_num").toString());
+		c_dto.setCard_default(map.get("card_default").toString());
+		
+		MemDto m_dto = new MemDto();
+		
+		m_dto.setSmem_id(map.get("smem_id").toString());
+		m_dto.setMem_c_type(map.get("mem_c_type").toString());
+		m_dto.setMem_c_num(map.get("mem_c_num").toString());
+		
+		SimpleDateFormat f = new SimpleDateFormat();
+		
+		m_dto.setMem_c_idate(f.parse(map.get("mem_c_idate").toString()));
+		m_dto.setMem_c_expdate(f.parse(map.get("mem_c_expdate").toString()));
+		m_dto.setMem_gender(map.get("mem_gender").toString());
+		
+		int affected =  0;
+		affected = service.completeSoJoin(m_dto,c_dto);
+		
+		return "forward:/Mypage/Mypage.do";
+	};
 	
 	
 	@RequestMapping("/Member/CreateMem.do")
@@ -116,8 +172,10 @@ public class MemberController {
 		System.out.println(map.get("mem_mainarea").toString());
 		
 		affected = service.CreateMem(mem_dto);
-		
-		return "";
+		if(map.get("base_file").equals("sojone_one")) {
+			return "/member/SoJoin_Two";			
+		}
+		return "forward:/Mypage/Mypage.do";
 	}
 	
 	

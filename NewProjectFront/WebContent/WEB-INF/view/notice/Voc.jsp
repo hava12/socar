@@ -144,80 +144,38 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 <div class="aside_more"><img src='${pageContext.request.contextPath}/template/image/banner_more.png' alt="더보기" />
 </div>
 
+<!-- quick -->
+
+	<jsp:include page="/template/Quick.jsp"/>
+
 <!-- //quick -->
 	</div>
+
 <!-- footer -->
-<div id="footer">
-  <div class="gr">
-    <ul class="footer-menu">
-      <li><a href=https://www.socar.kr/about class="menu1" title="회사소개">회사소개</a></li>
-      <li><a href="https://goo.gl/Aqsjr5" title="채용안내" target="_blank" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_recruit_new.png' alt="채용안내"></a></li>
-      <li><a href="https://www.dropbox.com/sh/qiypdh3xl3mmktf/AAAlXsdhOZUY3HTPcvcwPXfCa?dl=0" target="_blank" class="menu2" title="보도자료">보도자료</a></li>
-<!-- 2015.07.29 -->
-      <li><a href=https://www.socar.kr/terms title="회원이용약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_member_n.png' alt="회원이용약관" /></a></li>
-      <li><a href=https://www.socar.kr/privacy class="menu5" title="개인정보처리방침">개인정보처리방침</a></li>
-      <li><a href=https://www.socar.kr/rent_terms title="자동차대여약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_rental_n2.png' alt="자동차대여약관" /></a></li>
-      <li><a href=https://www.socar.kr/gis_terms title="위치기반서비스 이용약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='${pageContext.request.contextPath}/template/image/footer_menu_location_n.png' alt="위치기반서비스 이용약관" /></a></li>
+		<jsp:include page="/template/Footer.jsp"/>
 
-<!--// 2015.07.29 -->
-    </ul>
-    <address>
-			<img src='${pageContext.request.contextPath}/template/image/footer_address.png' alt="(주) 쏘카 통신판매업 신고 : 제 2011-제주조천-0021호, 정보보호 담당자 : 김명훈, 사업자등록번호 : 616-81-90529  대표자 : 이재용
-Tel : 1661-3315, Fax : 02-6969-9333, 주소 : 제주특별자치도 제주시 도령로 129, 5층 (연동, 드림플라자) 63126" />
-		</address>
-    <p class="copyright"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/footer_copyright_n2.png' alt="Copyright © 2013 SOCAR  All rights reserved." /></p>
-    <div class="ccm"><a href="/impact"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/ccm.png' /></a></div>
-    <div class="eco"><a href="/impact"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/eco.png' /></a></div>
-    <div class="bcorp"><a href="/impact"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/bcorp.jpg' /></a></div>
-    <div class="csa"><a href="http://carsharing.org/" target="_blank"><img style="margin-top:15px;" src='${pageContext.request.contextPath}/template/image/csa.png' /></a></div>
-  </div>
-
-  <ul class="sns">
-  	<li><a href="https://www.facebook.com/socarsharing" target="_blank" class="sns1" title="SOCAR Facebook">SOCAR Facebook</a></li>
-  	<li><a href="http://talk.socar.kr" target="_blank" class="sns3" title="SOCAR Blog">SOCAR Blog</a></li>
-  	<li><a href="mailto:info@socar.kr" class="sns4" title="info@socar.kr">E-mail</a></li>
-  </ul>
-</div>
 <!-- //footer -->
 
 	<div class="mwLayer">
 		<div class="bg"></div>
 		<div id="mwCont">
+			<!-- callCenter -->
+			<div class="call mwCont">
+				<div><img src='${pageContext.request.contextPath}/template/image/callcenter_img_20160516.gif' alt="콜센터 - 문의사항이 있거나 차량 운행 중 도움이 필요한 때 쏘카 전문 상담원이 빠르고 친절하게 도와드립니다. 예약및 이용중 차량안내 - 일반상담 1661-3315, 긴급상담 1661-4977 이고 일반상담의 경우 차량 고장 및 이용관련 문의, 예약관련 문의를 받고 긴급상담의 경우 사고접수 및 처리사항 확인 하실 수 있습니다. 기타 궁굼한점은 1:1문의나 카카오톡 상담을 이용해주세요." /></div>
+        <a href="https://m.socar.kr/chat" class="click-btn"></a>
+				<p class="centerBtn">
+					<a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/btn_close.gif' alt="닫기" /></a>
+				</p>
+			</div>
+			<!-- //callCenter -->
+
 <!-- login -->
-<div class="login mwCont">
-	<form name="login" method="post" action="https://www.socar.kr/user/login">
-		<input id="redirect" name="redirect" type="hidden" value=""/>
-		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
-		<fieldset>
-			<dl>
-				<dt><img alt="아이디" src='${pageContext.request.contextPath}/template/image/id.png' /></dt>
-				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='${pageContext.request.contextPath}/template/image/pw.png' /></dt>
-				<dd><input type="password" class="input" name="password" /></dd>
-			</dl>
-			<input type="image" src='${pageContext.request.contextPath}/template/image/btn_login.png' class="submit" id="login_btn" />
-
-		</fieldset>
-	</form>
-
-	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='${pageContext.request.contextPath}/template/image/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='${pageContext.request.contextPath}/template/image/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
-	</ul>
-
-	<!-- SNS 로그인 -->
-	<div class="box_sns">
-		<a href="#" id="fb_login" class="left"><img src='${pageContext.request.contextPath}/template/image/fb3_n.png' alt="페이스북" /></a>
-		<a href="#" id="naver_login" class="center"><img src='${pageContext.request.contextPath}/template/image/nv3_n.png' alt="네이버" /></a>
-		<a href="#" id="kakao_login" class="right"><img src='${pageContext.request.contextPath}/template/image/cco3.png' alt="카카오톡" /></a>
-	</div>
-</div>
+<jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
 <!-- finding id -->
 <!-- finding pw -->
 <jsp:include page="/template/FindingIdPw.jsp"/>
-
 
             <!-- 주행요금 계산기 -->
             <jsp:include page="/template/Faretem.jsp"/>

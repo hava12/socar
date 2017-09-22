@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -162,13 +163,6 @@ $(function(){
 		}
 	});
 
-	$('#license_num2').change(function() {
-		if ( !/\d{6}/.test($(this).val()) ) {
-			alert('숫자만 입력가능합니다.');
-			$(this).focus();
-			return;
-		}
-	});
 
 	$(window).bind('beforeunload', function () {
 		return '아직 회원가입이 최종 완료되지 않았습니다.\n차량을 이용하시려면 면허정보와 결제카드 등록을 완료해주세요.';
@@ -203,56 +197,64 @@ $(function(){
 		var cnum01 = $.trim($("#card_num_01").val()),
 			cnum02 = $.trim($("#card_num_02").val()),
 			cnum03 = $.trim($("#card_num_03").val()),
-			cnum04 = $.trim($("#card_num_04").val());
-
+			cnum04 = $.trim($("#card_num_04").val()),
+			smem_id = $.trim($("#smem_id").val());
+	
+		if(smem_id ==null){
+			alert('먼저 로그인 해 주세요');
+			return false;
+		}
+		
 		if(cnum01 == '' || cnum02 == '' || cnum03 == '' || cnum04 == ''){
 			alert('카드번호를 입력해 주세요.');
 			return false;
 		}
-/*
-		if ( !/\d{4}/.test(cnum01) || !/\d{4}/.test(cnum02) || !/\d{4}/.test(cnum03) || !/\d{4}/.test(cnum04) ) {
-			alert('카드번호는 숫자만 입력가능합니다.');
-			return false;
-		}
-*/
+
+		
 		var reg = /^\d+$/;
-		var card_num = cnum01 + '' + cnum02 + '' + cnum03 + '' + cnum04;
+		var card_code = cnum01 + '' + cnum02 + '' + cnum03 + '' + cnum04;
 
-		if(! reg.test(card_num)){
+		if(! reg.test(card_code)){
 			alert('카드번호는 숫자만 입력가능합니다.');
 			return false;
 		}
-
-		var exp_y = $("#exp_y").val(), exp_m = $("#exp_m").val();
-		var rear_ssn = '', card_pw = '';
+		$("#card_code").val(cnum01 + '-' + cnum02 + '-' + cnum03 + '-' + cnum04);
+		
+		
+		$("#card_expdate_y").val($("#exp_y").val());
+		$("#card_expdate_m").val($("#exp_m").val());
+		var card_birth = null, card_pw = '';
 
 		if( $('input:radio[name=card_type]:checked').val() == 0 ){
-			rear_ssn = $.trim($("#rear_ssn_card").val());
+			card_birth = $.trim($("#rear_ssn_card").val());
 
-			if(rear_ssn == ''){
+			if(card_birth == ''){
 				alert('생년월일 6자리(yymmdd)를 입력해 주세요.');
 				$("#rear_ssn_card").val('').focus();
 				return false;
 			}
 
-			if(!/\d{6}/.test(rear_ssn) || rear_ssn.length < 6) {
+			if(!/\d{6}/.test(card_birth) || card_birth.length < 6) {
 				alert('생년월일 6자리를 정확하게 입력해주세요.');
 				return false;
 			}
+			$("#card_birth").val(card_birth);
 
-			card_pw = $.trim($("#card_pw").val());
-
-			if(card_pw == ''){
+			if($.trim($("#card_pw").val()) == ''){
 				alert('카드비밀번호 앞 2자리를 입력해 주세요.');
 				$("#card_pw").focus();
 				return false;
 			}
 
-			if(!/\d{2}/.test(card_pw)){
+			if(!/\d{2}/.test($.trim($("#card_pw").val()))){
 				alert('카드비밀번호는 숫자만 입력가능합니다.');
 				$("#card_pw").val('').focus();
 				return false;
 			}
+			$("#card_pwd").val($.trim($("#card_pw").val()));
+			
+			$("#card_type").val('p');
+			
 		}
 		else{
 			var corp_num01 = $.trim($("#corp_num_01").val()),
@@ -264,12 +266,14 @@ $(function(){
 				return false;
 			}
 
-			rear_ssn = corp_num01 + '' + corp_num02 + '' + corp_num03;
+			$("#card_c_num").val(corp_num01 + '-' + corp_num02 + '-' + corp_num03);
 
 			if( false == checkBizID(rear_ssn) ){
 				alert('잘못된 사업자등록번호입니다');
 				return false;
 			}
+			
+			$("#card_type").val('b');
 		}
 
 		if(! $("input:checkbox[id='is_card_agree']").is(":checked")){
@@ -277,46 +281,51 @@ $(function(){
 			return false;
 		}
 
-		$.ajax({
-			type: 'GET',
-			url: "https://api.socar.kr/user/add_billing",
-			data: {
-				auth_token: 'ab78f1a53d86f6687400cc0724466cd04a44687dkjmtg',
-				card_num: card_num,
-				exp_y : exp_y,
-				exp_m : exp_m,
-				rear_ssn : rear_ssn,
-				card_pw : card_pw
-			},
-			crossDomain: true,
-			dataType: 'jsonp',
-			beforeSend: function(){
-				$(document).data('disabled',true);
-			},
-			success: function(res){
-				if(res.retCode == 1){
-					var cardInfo = res.result.card_name, cardAprvDate = res.result.card_approval_date;
-					$('#card_type').text(cardInfo + '카드');
-					$('#card_date').text(cardAprvDate);
-					set_cookie('tmp_card_type', $('#card_type').text());
+// 		$.ajax({
+// 			type: 'GET',
+// 			url: "<>",
+// 			data: {
+// 				card_num: card_num,
+// 				exp_y : exp_y,
+// 				exp_m : exp_m,
+// 				card_type : card_type,
+// 				card_birth : card_birth,
+// 				card_pwd : card_pw,
+// 				card_c_num : card_c_num,
+// 				card_default : 'y'
+// 			},
+// 			crossDomain: true,
+// 			dataType: 'jsonp',
+// 			beforeSend: function(){
+// 				$(document).data('disabled',true);
+// 			},
+// 			success: function(res){
+// 				if(res.retCode == 1){
+// 					var cardInfo = res.result.card_name, cardAprvDate = res.result.card_approval_date;
+// 					$('#card_type').text(cardInfo + '카드');
+// 					$('#card_date').text(cardAprvDate);
+// 					set_cookie('tmp_card_type', $('#card_type').text());
 
-					alert('결제카드가 정상적으로 등록되었습니다.');
+// 					alert('결제카드가 정상적으로 등록되었습니다.');
 
-					$("#btnClose").click();
-				}
-				else{
-					alert(res.retMsg);
-				}
-			},
-			error: function(xhr){
-				$(document).data('disabled',false);
-				alert('일시적인 오류입니다. 잠시 후 다시 시도해 주세요. 코드 : ' + xhr.status);
-			},
-			complete: function(){
-				$(document).data('disabled',false);
-			}
-		});
+// 					$("#btnClose").click();
+// 				}
+// 				else{
+// 					alert(res.retMsg);
+// 				}
+// 			},
+// 			error: function(xhr){
+// 				$(document).data('disabled',false);
+// 				alert('일시적인 오류입니다. 잠시 후 다시 시도해 주세요. 코드 : ' + xhr.status);
+// 			},
+// 			complete: function(){
+// 				$(document).data('disabled',false);
+// 			}
+// 		});
 
+		$("#card_insert_type").html($("#card_code").val());
+		alert("카드 정보가 등록되었습니다.");
+		$("#btnClose").click();
 		return false;
 	});
 
@@ -346,6 +355,21 @@ $(function(){
 		Dname: 'D_issue'
 	});
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	$('#complete').bind('click', function () {
 		if($('#license_num1').val() == '' ||
 			$('#license_num2').val() == '' ||
@@ -360,30 +384,10 @@ $(function(){
 
 
 
-		var sex = $('#male').is(':checked') ? 1 : 2;
-		var ssn = $('#ssn1').val().replace(/\s/g,'');
+		var gender = $('#male').is(':checked') ? 'm' : 'f';
+		
 
-		if(ssn == ''){
-			alert('생년월일 6자리(yymmdd)를 입력해 주세요.');
-			return false;
-		}
-
-		var regexp = /^[0-9]+$/;
-		if(! regexp.test(ssn)){
-			alert('생년월일은 숫자만 입력가능합니다.');
-			$("#ssn1").val('').focus();
-			return false;
-		}
-
-		if(ssn.length < 6) {
-			alert('생년월일 6자리를 정확하게 입력해주세요.');
-			return false;
-		}
-
-		ssn += '' + sex + '000000';
-
-
-		if($('#card_date').text() == ''){
+		if($('#card_code').val() == ''){
 			alert('결제카드를 등록해 주세요.');
 			return false;
 		}
@@ -414,15 +418,15 @@ $(function(){
 		var license_class = 1;
 
 		//1종 보통
-		var license_type = 2;
+		var license_type = '1n';
 
 		//2종 보통
 		if($('#type2').is(':checked')){
-			license_type = 5;
+			license_type = '2n';
 		}
 		//1종 대형
 		else if($('#type3').is(':checked')){
-			license_type = 1;
+			license_type = '1b';
 		}
 
 		var license_loc = $('#license_loc').val();
@@ -446,18 +450,26 @@ $(function(){
 
 		$(window).unbind('beforeunload');
 
-
-
-		$.doPost('https://www.socar.kr/member/complete', {
-			ssn : ssn,
-			license_class: license_class,
-			license_type: license_type,
-			license_num: license_num,
-			issue_date: issue_date,
-			expiration_date: expiration_date,
-			state: member_type,
-			channel: 'www',
-			user_agent : navigator.userAgent
+		var smem_id = $("#smem_id").val();
+		
+		
+		
+		
+		$.doPost("<c:url value='/Member/CompleteSoJoin.do' />", {
+			smem_id : smem_id,
+			mem_c_type : license_type,
+			mem_c_num : license_num,
+			mem_c_idate : issue_date,
+			mem_c_expdate : expiration_date,
+			mem_gender : gender,
+			card_code : $("#card_code").val(),
+			card_expdate_y : $("#card_expdate_y").val(),
+			card_expdate_m : $("#card_expdate_m").val(),
+			card_type : $("#card_type").val(),
+			card_birth : $("#card_birth").val(),
+			card_pwd : $("#card_pwd").val(),
+			card_c_num : $("#card_c_num").val(),
+			card_default : 'y',
 		});
 
 
@@ -508,7 +520,28 @@ $(function(){
 		<jsp:include page="/template/Header.jsp" />
 	<!-- //header -->
 
+	<!-- 면허 정보 -->
+	<input type="hidden" id="mem_c_type" name="mem_c_type">
+	<input type="hidden" id="mem_c_num" name="mem_c_num">
+	<input type="hidden" id="mem_c_expdate" name="mem_c_expdate">
+	<input type="hidden" id="mem_c_idate" name="mem_c_idate">
+	<input type="hidden" id="mem_c_type" name="mem_c_type">
+	
+	
 
+	<!-- 카드 정보 -->
+	<input type="hidden" id="smem_id" name="smem_id" value="${sessionScope.smem_id}">
+	<input type="hidden" id="card_code" name="card_code">
+	<input type="hidden" id="card_expdate_y" name="card_expdate_y">
+	<input type="hidden" id="card_expdate_m" name="card_expdate_m">
+	<input type="hidden" id="card_type" name="card_type">
+	<input type="hidden" id="card_birth" name="card_birth">
+	<input type="hidden" id="card_pwd" name="card_pwd">
+	<input type="hidden" id="card_c_num" name="card_c_num">
+	<input type="hidden" id="card_default" name="card_default">
+		
+	
+	
 	<div id="container">
 		<div id="content">
 			<h2><img src="/template/member/../asset/images/member/join_h2.gif" alt="회원가입" /></h2>
@@ -533,20 +566,20 @@ $(function(){
 									<th><img src="/template/member/../asset/images/member/join_step3_txt4.gif" alt="면허종류 (1)" /></th>
 									<td>
 										<label for="type1">
-											<input type="radio" id="type1" name="driverType" checked="checked" /> 1종 보통
+											<input type="radio" id="type1" name="mem_c_type" checked="checked" /> 1종 보통
 										</label>
 										<label for="type2">
-											<input type="radio" id="type2" name="driverType" /> 2종 보통
+											<input type="radio" id="type2" name="mem_c_type" /> 2종 보통
 										</label>
 										<label for="type3">
-											<input type="radio" id="type3" name="driverType" /> 1종 대형
+											<input type="radio" id="type3" name="mem_c_type" /> 1종 대형
 										</label>
 									</td>
 								</tr>
 								<tr>
 									<th><img src="/template/member/../asset/images/member/join_step3_txt5.gif" alt="면허번호 (2)" /></th>
 									<td>
-										<select id="license_loc" style="width:108px">
+										<select id="license_loc" name="mem_c_num_fir" style="width:108px">
 											<option selected="selected" value="서울">서울</option>
 											<option value="경기">경기</option>
 											<option value="인천">인천</option>
@@ -582,9 +615,9 @@ $(function(){
 											<option value="27">27</option>
 											<option value="28">28</option>
 										</select>
-										<input id="license_num1" maxlength="2" type="text" class="input" style="width:30px" value="" />
-										<input id="license_num2" maxlength="6" type="text" class="input" style="width:50px" value="" />
-										<input id="license_num3" maxlength="2" type="text" class="input" style="width:30px" value="" />
+										<input id="license_num1" maxlength="2" type="text" name="mem_c_num_sec" class="input" style="width:30px" value="" />
+										<input id="license_num2" maxlength="6" type="text" name="mem_c_num_tir" class="input" style="width:50px" value="" />
+										<input id="license_num3" maxlength="2" type="text" name="mem_c_num_fou" class="input" style="width:30px" value="" />
 										<em style='font-size: 12px; color:#999;'>* 지역란 숫자선택 가능</em>
 									</td>
 								</tr>
@@ -601,11 +634,11 @@ $(function(){
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step1_txt9.gif" alt="생년월일/성별" /></th>
+									<th><img src="/template/member/../asset/images/member/join_step1_txt9.gif" alt="성별" /></th>
 									<td>
-										<input id="ssn1" type="text" class="input" style="width:69px;" maxlength="6" /> (6자리)&nbsp;&nbsp;/&nbsp;&nbsp;
-										<label for="male"><input type="radio" id="male" name="sex" value="1" checked="checked" /> 남성</label>
-										<label for="female"><input type="radio" id="female" name="sex" value="2" /> 여성</label>
+<!-- 										<input id="ssn1" type="text" class="input" style="width:69px;" maxlength="6" /> (6자리)&nbsp;&nbsp;/&nbsp;&nbsp; -->
+										<label for="male"><input type="radio" id="male" name="mem_gender" value="m" checked="checked" /> 남성</label>
+										<label for="female"><input type="radio" id="female" name="mem_gender" value="f" /> 여성</label>
 									</td>
 								</tr>
 								<!--
@@ -641,20 +674,16 @@ $(function(){
 								<em style="position: absolute; color : #aaa;margin-left: 8px;margin-top: 4px;">한번 등록으로 편리하게 이용하세요!</em></h4>
 							<table cellspacing="0" class="rows">
 							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step3_txt9.gif" alt="카드사 / 종류" /></th>
+								<th><img src="/template/member/../asset/images/member/join_step3_txt9.gif" alt="카드번호" /></th>
 								<td >
 									<div>
-										<span id="card_type">카드를 등록해주세요.</span>
+										<span id="card_insert_type">카드를 등록해주세요.</span>
 										<!-- INICIS -->
 										<a id="open_register_card_layer" href="#" class="btnS"><span>결제카드 등록</span></a>
 									
 									</div>
 									<div id="card_error">결제카드가 보류 상태이므로 예약 및 차량 이용이 불가합니다.</div>
 								</td>
-							</tr>
-							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step3_txt10.gif" alt="카드등록 승인일" /></th>
-								<td id="card_date"></td>
 							</tr>
 							</table>
 

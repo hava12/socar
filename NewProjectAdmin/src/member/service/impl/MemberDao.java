@@ -407,7 +407,7 @@ public class MemberDao implements MemberService {
 	public int insertCard(CardDto dto) throws Exception {
 		
 		int affected = 0;
-		String sql = "INSERT INTO CARD VALUES(?,?,?,?,?,?,?,'n')";
+		String sql = "INSERT INTO CARD VALUES(?,?,?,?,?,?,?,'n',SYSDATE)";
 
 		psmt = conn.prepareStatement(sql);
 		

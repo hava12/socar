@@ -17,5 +17,7 @@ public interface Simple_MemService {
 	//Card테이블 있는지 확인
 	public List<CardDto> selectOneMemCard(String smem_id) throws Exception;
 	
+	//So멤버 카드/면허 등록
+	public int completeSoJoin(MemDto m_dto,CardDto c_dto) throws Exception;
 	
 }

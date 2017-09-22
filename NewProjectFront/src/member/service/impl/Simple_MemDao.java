@@ -66,4 +66,16 @@ public class Simple_MemDao implements Simple_MemService {
 		return list;
 	}
 
+	@Override
+	public int completeSoJoin(MemDto m_dto,CardDto c_dto) throws Exception {
+		template.commit(false);
+		int affected = 0;
+		
+		template.update("update_Mem_To_Certify",m_dto);
+		
+		template.update("insertCard",c_dto);
+		
+		return 0;
+	}
+
 }

@@ -1876,17 +1876,14 @@ function auth_confirm(res) {
 
 /* aside */
 div.aside{position:fixed; top:111px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
-div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.
-
-
-
-') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
+div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
 div.aside a.quick1{background-position:-1px -76px;}
 div.aside a.quick2{background-position:-1px -151px;}
 div.aside a.quick3{background-position:-1px -226px;} 
 div.aside a.quick4{background-position:-1px -1px;} 
 div.aside a.quick5{background-position:-1px -301px;} 
-div.aside a.quick6{background-position:-1px -301px;} 
+div.aside a.
+{background-position:-1px -301px;} 
 
 div.aside a.quick1:hover{background-position:-60px -76px;}
 div.aside a.quick2:hover{background-position:-60px -151px;}

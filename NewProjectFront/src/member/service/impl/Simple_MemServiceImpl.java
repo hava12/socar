@@ -48,4 +48,9 @@ public class Simple_MemServiceImpl implements Simple_MemService{
 		return dao.selectOneMemCard(smem_id);
 	}
 
+	@Override
+	public int completeSoJoin(MemDto m_dto,CardDto c_dto) throws Exception {
+		return dao.completeSoJoin(m_dto,c_dto);
+	}
+
 }

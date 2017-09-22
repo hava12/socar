@@ -10,10 +10,9 @@ public class CardDto {
 	private String card_type;
 	private String card_birth;
 	private String card_pwd;
-	private java.util.Date card_createdate;
-	
-	
-	
+	private String card_c_num;
+	private String card_default;
+	private java.util.Date card_create_date;
 	
 	
 	
@@ -21,6 +20,21 @@ public class CardDto {
 	
 	
 	//게터세터
+	
+	
+	public String getCard_c_num() {
+		return card_c_num;
+	}
+	public void setCard_c_num(String card_c_num) {
+		this.card_c_num = card_c_num;
+	}
+	public String getCard_default() {
+		return card_default;
+	}
+	public void setCard_default(String card_default) {
+		this.card_default = card_default;
+	}
+
 	public String getCard_code() {
 		return card_code;
 	}
@@ -57,12 +71,13 @@ public class CardDto {
 	public void setCard_pwd(String card_pwd) {
 		this.card_pwd = card_pwd;
 	}
-	public java.util.Date getCard_createdate() {
-		return card_createdate;
+	public java.util.Date getCard_create_date() {
+		return card_create_date;
 	}
-	public void setCard_createdate(java.util.Date card_createdate) {
-		this.card_createdate = card_createdate;
+	public void setCard_create_date(java.util.Date card_create_date) {
+		this.card_create_date = card_create_date;
 	}
+
 	
 	
 }

@@ -10,10 +10,6 @@
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"> -->
 
 		
-
-		
-
-		
 		<meta name="description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료 " />
 		<meta name="keywords" content="서울,제주,부산,경기,인천,카셰어링,카쉐어링,렌트,렌트카,렌터카" />
 		<meta name="title" content="대한민국 1등 카셰어링 쏘카">
@@ -33,12 +29,7 @@
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="shortcut icon">
 		<link href='//web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20170428' rel="image_src" />
 
-		<!-- 2016/07/15 수정
-		<title>카셰어링 쏘카 - So Smart, SOCAR</title>
-		-->
-		
 
-		
 		<title>대한민국 1등 카셰어링 쏘카</title>
 
 		<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
@@ -320,7 +311,7 @@ $(function(){
 			<div class="boxL">
 				<form name="join" method="post" action="<c:url value='/Member/CreateMem.do'/>">
 					<input type="hidden" name="smem_id" value="${dto.smem_id}" />
-					
+					<input type="hidden" name="base_file" value="sojone_one" />
 					<fieldset>
 						<div class="section">
 							<h4><img src="/template/member/../asset/images/member/join_step2_txt1.gif" alt="회원정보" /></h4>
