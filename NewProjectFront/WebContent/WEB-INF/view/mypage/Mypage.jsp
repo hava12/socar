@@ -1575,14 +1575,12 @@ function auth_confirm(res) {
 						
 						<ul class="list_card" id="list_card">
 						
-							<li class="fst on" id="1008837" data-card="현대">
-								
+							<li class="fst on" id="1008837">
 									<div class="box_radio">
 										<input type="radio" name="card_default" id="radio0" class="default inp_radio" checked="checked" />
 										<label for="radio0" class="default">현대카드 (102800)</label>
 									</div>
 									<a href="#" class="card_del btn_del">삭제하기</a>
-								
 							</li>
 						
 						
