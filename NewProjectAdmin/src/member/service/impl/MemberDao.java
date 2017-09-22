@@ -348,7 +348,7 @@ public class MemberDao implements MemberService {
 			dto.setCard_birth(rs.getDate(5));
 			dto.setCard_pwd(rs.getString(6));
 			dto.setCard_createdate(rs.getDate(7));
-			dto.setCard_createdate(rs.getDate(7));
+
 			
 			list.add(dto);
 		}
