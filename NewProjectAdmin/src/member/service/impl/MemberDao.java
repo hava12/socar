@@ -135,8 +135,8 @@ public class MemberDao implements MemberService {
 	@Override
 	public List<MemDto> selectMemList(int start,int end){
 		List<MemDto> list = new Vector<MemDto>();
-		String sql = "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID ";
-		//String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";
+		//String sql = "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID ";
+		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			
@@ -147,19 +147,18 @@ public class MemberDao implements MemberService {
 			while(rs.next()){
 				MemDto dto = new MemDto();
 				dto.setSmem_id(rs.getString(1));
-				dto.setMem_addr(rs.getString(2));
-				dto.setMem_mainarea(rs.getString(3));
-				dto.setMem_birth(rs.getString(4));
-				dto.setMem_gender(rs.getString(5));
-				dto.setMem_date(rs.getDate(6));
-				dto.setMem_c_type(rs.getString(7));
-				dto.setMem_c_num(rs.getString(8));
-				dto.setMem_c_expdate(rs.getDate(9));
-				dto.setMem_c_idate(rs.getDate(10));
-				dto.setSmem_name(rs.getString(12));
-				dto.setSmem_tel(rs.getString(13));
-				dto.setSmem_pwd(rs.getString(14));
-				dto.setSmem_date(rs.getString(15));
+				dto.setMem_addr_num(rs.getString(2));
+				dto.setMem_addr_fir(rs.getString(3));
+				dto.setMem_addr_sec(rs.getString(4));
+				dto.setMem_mainarea(rs.getString(5));
+				dto.setMem_c_type(rs.getString(6));
+				dto.setMem_c_num(rs.getString(7));
+				dto.setMem_c_expdate(rs.getDate(8));
+				dto.setMem_c_idate(rs.getDate(9));
+				dto.setSmem_name(rs.getString(11));
+				dto.setSmem_tel(rs.getString(12));
+				dto.setSmem_pwd(rs.getString(13));
+				dto.setSmem_date(rs.getString(14));
 				list.add(dto);
 			}
 			} catch (Exception e) {e.printStackTrace();
@@ -201,20 +200,19 @@ public class MemberDao implements MemberService {
 		MemDto dto = new MemDto();
 		
 		dto.setSmem_id(rs.getString(1));
-		dto.setMem_addr(rs.getString(2));
-		dto.setMem_mainarea(rs.getString(3));
-		dto.setMem_birth(rs.getString(4));
-		dto.setMem_gender(rs.getString(5));
-		dto.setMem_date(rs.getDate(6));
-		dto.setMem_c_type(rs.getString(7));
-		dto.setMem_c_num(rs.getString(8));
-		dto.setMem_c_expdate(rs.getDate(9));
-		dto.setMem_c_idate(rs.getDate(10));
-		dto.setSmem_name(rs.getString(12));
-		dto.setSmem_tel(rs.getString(13));
-		dto.setSmem_pwd(rs.getString(14));
-		dto.setSmem_date(rs.getString(15));
-		dto.setMs_change(rs.getInt(16));
+		dto.setMem_addr_num(rs.getString(2));
+		dto.setMem_addr_fir(rs.getString(3));
+		dto.setMem_addr_sec(rs.getString(4));
+		dto.setMem_mainarea(rs.getString(5));
+		dto.setMem_c_type(rs.getString(6));
+		dto.setMem_c_num(rs.getString(7));
+		dto.setMem_c_expdate(rs.getDate(8));
+		dto.setMem_c_idate(rs.getDate(9));
+		dto.setSmem_name(rs.getString(11));
+		dto.setSmem_tel(rs.getString(12));
+		dto.setSmem_pwd(rs.getString(13));
+		dto.setSmem_date(rs.getString(14));
+		dto.setMs_change(rs.getInt(15));
 		
 		close();
 		
@@ -295,13 +293,11 @@ public class MemberDao implements MemberService {
 	}/////////////////////////////////////////////////////////////////////
 
 	@Override
-	public int updateMem(String smem_id, String smem_pwd ,String mem_addr) throws Exception {
+	public int updateMem(String smem_id, String smem_pwd ,String mem_addr_num,String mem_addr_fir,String mem_addr_sec) throws Exception {
 		
 		conn.setAutoCommit(false);
 		
-		System.out.println(smem_id);
-		System.out.println(smem_pwd);
-		System.out.println(mem_addr);
+		
 		
 		String sql = "UPDATE SIMPLE_MEM SET SMEM_PWD=? WHERE SMEM_ID=?";
 		int affected=0;
@@ -311,10 +307,12 @@ public class MemberDao implements MemberService {
 		affected = psmt.executeUpdate();
 		
 		if(affected == 1){
-			sql = "UPDATE MEM SET MEM_ADDR=? WHERE SMEM_ID=?";
+			sql = "UPDATE MEM SET MEM_ADDR_NUM=?, MEM_ADDR_FIR=?,MEM_ADDR_SEC=? WHERE SMEM_ID=?";
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, mem_addr);
-			psmt.setString(2, smem_id);
+			psmt.setString(1, mem_addr_num);
+			psmt.setString(2, mem_addr_fir);
+			psmt.setString(3, mem_addr_sec);
+			psmt.setString(4, smem_id);
 			affected = psmt.executeUpdate();
 		}
 		conn.commit();
@@ -383,19 +381,18 @@ public class MemberDao implements MemberService {
 			
 			MemDto dto = new MemDto();
 			dto.setSmem_id(rs.getString(1));
-			dto.setMem_addr(rs.getString(2));
-			dto.setMem_mainarea(rs.getString(3));
-			dto.setMem_birth(rs.getString(4));
-			dto.setMem_gender(rs.getString(5));
-			dto.setMem_date(rs.getDate(6));
-			dto.setMem_c_type(rs.getString(7));
-			dto.setMem_c_num(rs.getString(8));
-			dto.setMem_c_expdate(rs.getDate(9));
-			dto.setMem_c_idate(rs.getDate(10));
-			dto.setSmem_name(rs.getString(12));
-			dto.setSmem_tel(rs.getString(13));
-			dto.setSmem_pwd(rs.getString(14));
-			dto.setSmem_date(rs.getString(15));
+			dto.setMem_addr_num(rs.getString(2));
+			dto.setMem_addr_fir(rs.getString(3));
+			dto.setMem_addr_sec(rs.getString(4));
+			dto.setMem_mainarea(rs.getString(5));
+			dto.setMem_c_type(rs.getString(6));
+			dto.setMem_c_num(rs.getString(7));
+			dto.setMem_c_expdate(rs.getDate(8));
+			dto.setMem_c_idate(rs.getDate(9));
+			dto.setSmem_name(rs.getString(11));
+			dto.setSmem_tel(rs.getString(12));
+			dto.setSmem_pwd(rs.getString(13));
+			dto.setSmem_date(rs.getString(14));
 			list.add(dto);
 		}
 		

@@ -6,7 +6,7 @@
 body{background:#f8f8f8;}
 
 /* layout */
-#wrap{position:relative; width:100%; min-width:984px; }
+#wrap{position:relative; width:100%; min-width:984px; } 
 #header-wrapper {border-top: 4px solid #00d2ff;border-bottom: 1px solid #e4e4e4;background: #fff;box-sizing: border-box;}
 #header{position:relative; margin:0 auto; padding-top:26px; width:984px; height:44px;}
 #header h1{position:absolute; top:30px; left:0;}
@@ -254,7 +254,7 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 .mwLayer .oilL .oilForm dd .i_label{padding-left:9px; line-height:27px; color:#999;}
 .mwLayer .oilL .oilForm dd #oilCarSelect{background:#fdfdfd url('//web-assets.socar.kr/template/asset/images/reservation/ico_open.png') no-repeat 148px 11px;}
 .mwLayer .oilL .oilForm dd #oilCarSelect.focus{background-position:147px 10px;}
-.mwLayer .oilL .oilForm dd #oilDistance{font-family:verdana; font-size:14px; font-weight:bold; background:url('/template/asset/images/common/oil_txt5.gif') no-repeat 141px 8px;}
+.mwLayer .oilL .oilForm dd #oilDistance{font-family:verdana; font-size:14px; font-weight:bold; background:url('//web-assets.socar.kr/template/asset/images/common/oil_txt5.gif') no-repeat 141px 8px;}
 .mwLayer .oilL .oilForm dd #oilDistance.focus{background-position:140px 7px;}
 .mwLayer .oilL .oilForm dd .oilCarList{display:none; position:absolute; top:25px; left:0; padding:8px 0 8px 10px; width:178px; border:1px solid #383d43; background:#fefefe; z-index:1;}
 .mwLayer .oilL .oilForm dd .oilCarList a{display:block; color:#333; line-height:24px;}
@@ -383,10 +383,10 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 .mwLayer .inviteL .inviteForm .textarea{width:475px; height:85px;}
 .mwLayer .inviteL .info{padding:26px 0 0 25px; height:92px; border-top:1px solid #f2f2f2; background:#f9f9f9; margin-top:10px;}
 .mwLayer .inviteL .info h5{height:20px;}
-.mwLayer .inviteL .info li{padding:3px 0 2px 12px; font-size:11px; line-height:15px; color:#999; background:url('/template/asset/images/common/bullet.png') no-repeat 3px 9px;}
+.mwLayer .inviteL .info li{padding:3px 0 2px 12px; font-size:11px; line-height:15px; color:#999; background:url('//web-assets.socar.kr/template/asset/images/common/bullet.png') no-repeat 3px 9px;}
 
 /* event open zone layer */
-.mwLayer #eventInfo{display:none; position:absolute; top:210px; left:50%; margin:-160px 0 0 -524px; width:1067px; height:790px; background:url('/template/asset/images/event/event.png') no-repeat left top;}
+.mwLayer #eventInfo{display:none; position:absolute; top:210px; left:50%; margin:-160px 0 0 -524px; width:1067px; height:790px; background:url('//web-assets.socar.kr/template/asset/images/event/event.png') no-repeat left top;}
 .mwLayer #eventInfo .zone_go{cursor:pointer; position:absolute; top:679px; left:415px; width:auto; height:auto; text-indent:0; background:none;}
 .mwLayer #eventInfo .info_close{cursor:pointer; position:absolute; top:20px; right:3px; width:33px; height:32px; text-indent:0; background:none;}
 
@@ -512,7 +512,7 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 .mwLayer .joinSNS_Info .box_check label, .mwLayer .joinSNS .box_check label {cursor:pointer}
 
 .mwLayer .joinSNS_Info .agree_check,
-.mwLayer .joinSNS .agree_check {background-image: url('/template/asset/images/member/check.png'); width: 25px; height: 23px;display: inline-block; vertical-align: bottom;}
+.mwLayer .joinSNS .agree_check {background-image: url('//web-assets.socar.kr/template/asset/images/member/check.png'); width: 25px; height: 23px;display: inline-block; vertical-align: bottom;}
 .mwLayer .joinSNS_Info .agree_new_check{display:inline-block;height:33px;vertical-align:top}
 
  /*{background-image: url('/template/asset/images/member/check_on.png');}*/
@@ -571,6 +571,6 @@ table.cols tbody td.subj{padding-left:10px; text-align:left;}
 /* marketing 수신 동의 */
 .mkt_agree, .mkt_agree_sub {background-image: url('//web-assets.socar.kr/template/asset/images/member/check.png'); width: 25px; height: 23px;display: inline-block; vertical-align: bottom;}
 .mkt_agree_sub{margin-left:20px;}
-.mkt_agree.on, .mkt_agree_sub.on {background-image: url('/template/asset/images/member/check_on.png');}
+.mkt_agree.on, .mkt_agree_sub.on {background-image: url('//web-assets.socar.kr/template/asset/images/member/check_on.png');}
 .mkt_agree_info, .mkt_agree_sub_info {font-family: dotum; font-size: 12px; font-weight: normal; letter-spacing: -1px; color: #666; display: inline-block; padding-bottom: 3px;}
 .mkt_agree_sub_info {color:#999;}

@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"> -->
 
-
+  
 		
 		<meta name="description" content="내 주변 3분거리에서 원하는 시간 만큼 타면된다 쏘카! 신규 가입 시 3시간 무료 " />
 		<meta name="keywords" content="서울,제주,부산,경기,인천,카셰어링,카쉐어링,렌트,렌트카,렌터카" />
@@ -26,7 +26,7 @@
 
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="icon">
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="shortcut icon">
-		<link href='//web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20170428' rel="image_src" />
+		<link href='${pageContext.request.contextPath}/template/image/header_logo.png?v=20170428' rel="image_src" />
 
 		<!-- 2016/07/15 수정
 		<title>카셰어링 쏘카 - So Smart, SOCAR</title>
@@ -37,14 +37,14 @@
 		<title>대한민국 1등 카셰어링 쏘카</title>
 
 		<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
-		<script type="text/javascript" src="/template/asset/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="/template/asset/js/jquery.banner.js"></script>
-		<script type="text/javascript" src="/template/asset/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="/template/asset/js/ssun.js?1505963534"></script>
-		<script type="text/javascript" src="/template/asset/js/json3.min.js?1505963534"></script>
-		<script type="text/javascript" src="/template/asset/js/common.js?1505963534"></script>
-		<script type="text/javascript" src="/template/asset/js/day-picker.js?1505963534"></script>
-		<script type="text/javascript" src="/template/asset/js/jquery.block.ui.min.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505963534"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -55,7 +55,7 @@
 		ga('send', 'pageview');
 		</script>
 
-<link rel="stylesheet" type="text/css" href="/template/member/../asset/css/member.css?v=20170731" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/css/member.css" />
 
 
 
@@ -2558,8 +2558,8 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="/template/./asset/js/kakao.min.js?1505963534" charset="utf-8"></script>
-<script type="text/javascript" src="/template/./asset/js/sns_interlocking.js?1505963534" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js" charset="utf-8"></script>
 
 			<a href="#" class="close">닫기</a>
 		</div>

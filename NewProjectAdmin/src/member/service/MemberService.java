@@ -19,7 +19,7 @@ public interface MemberService {
 	
 	public MemDto selectMemOne(String smem_id) throws Exception;
 	
-	public int updateMem(String smem_id,String smem_pwd,String mem_addr) throws Exception;
+	public int updateMem(String smem_id,String smem_pwd,String mem_addr_num,String mem_addr_fir,String mem_addr_sec) throws Exception;
 	
 	
 	//Membership관련 메소드

@@ -1,5 +1,6 @@
 package member.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface Simple_MemService {
@@ -11,5 +12,10 @@ public interface Simple_MemService {
 	public int confirmId(String smem_id) throws Exception;
 	//아이디 정보 가져오기
 	public Simple_MemDto selectOne(String smem_id) throws Exception;
+	//MEM테이블 생성
+	public int CreateMem(MemDto dto) throws Exception;
+	//Card테이블 있는지 확인
+	public List<CardDto> selectOneMemCard(String smem_id) throws Exception;
+	
 	
 }

@@ -335,12 +335,11 @@
 			document.getElementById("di_id").focus();
 			return false;
 		}
-		
-	
-		
-		
 	}
-	
+
+	function goList() {
+		location.href="<c:url value='/Reservation/ReserveList.do'/>";
+	}
 	</script>
 	
 	

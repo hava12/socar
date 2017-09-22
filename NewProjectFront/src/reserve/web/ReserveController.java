@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import reserve.service.CarSearchResultDTO;
 import reserve.service.ZoneDTO;
 import reserve.service.impl.ZoneDAO;
 
@@ -29,7 +30,11 @@ public class ReserveController {
 	@RequestMapping("/Reserve/SearchResult.do")
 	public String searchResult(@RequestParam("soz_code") String soz_code, Model model) throws Exception{
 		List<ZoneDTO> list = dao.selectEveryList();
-		ZoneDTO dto = dao.selectOne(soz_code);
+
+		CarSearchResultDTO dto = dao.searchResult(soz_code);
+		ZoneDTO zone_dto = dao.selectOne(soz_code);
+		
+		model.addAttribute("zone_dto",zone_dto);
 		model.addAttribute("dto",dto);
 		model.addAttribute("list", list);
 		return "/reserve/ReserveSearchResult";

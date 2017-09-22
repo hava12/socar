@@ -13,13 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.impl.Simple_MemServiceImpl;
 
 @Controller
 public class MemberController {
 
-	
+	@Resource(name="memDto")
+	private MemDto mem_dto;
 	@Resource(name="simple_MemServiceImpl")
 	private Simple_MemServiceImpl service;
 	
@@ -88,11 +90,32 @@ public class MemberController {
 	}////////////////////////////////////////////////
 	
 	
+	
+	@RequestMapping("/Member/SoJoin_Two.do")
+	public String soJoin_Two() throws Exception{
+		return "/member/SoJoin_Two";
+	}////////////////////////////////////////////////
+	
+	
+	
+	
 	@RequestMapping("/Member/CreateMem.do")
-	public String createMem() throws Exception{
+	public String createMem(@RequestParam Map map,Model model) throws Exception{
 		
+		int affected = 0;
+		mem_dto.setSmem_id(map.get("smem_id").toString());
+		mem_dto.setMem_addr_num(map.get("mem_addr_num").toString());
+		mem_dto.setMem_addr_fir(map.get("mem_addr_fir").toString());
+		mem_dto.setMem_addr_sec(map.get("mem_addr_sec").toString());
+		mem_dto.setMem_mainarea(map.get("mem_mainarea").toString());
 		
+		System.out.println(map.get("smem_id").toString());
+		System.out.println(map.get("mem_addr_num").toString());
+		System.out.println(map.get("mem_addr_fir").toString());
+		System.out.println(map.get("mem_addr_sec").toString());
+		System.out.println(map.get("mem_mainarea").toString());
 		
+		affected = service.CreateMem(mem_dto);
 		
 		return "";
 	}

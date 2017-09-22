@@ -6,7 +6,7 @@ public interface ReserveService {
 
 	
 	//예약 리스트 출력
-	public List<ReserveDto> selectReserveList() throws Exception;
+	public List<ReserveDto> selectReserveList(int start,int end) throws Exception;
 	
 	//예약 입력
 	public int insertReserve(ReserveDto dto) throws Exception;
