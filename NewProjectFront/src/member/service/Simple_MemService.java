@@ -3,6 +3,8 @@ package member.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.transaction.annotation.Transactional;
+
 public interface Simple_MemService {
 	//회원가입
 	public int createSimple_Mem(Map map) throws Exception;

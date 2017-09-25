@@ -8,7 +8,6 @@ public class MemDto extends Simple_MemDto {
 	private String mem_addr_num;
 	private String mem_addr_fir;
 	private String mem_addr_sec;
-	
 	private String mem_mainarea;
 	private String mem_c_type;
 	private String mem_c_num;
@@ -17,9 +16,16 @@ public class MemDto extends Simple_MemDto {
 	private String mem_gender;
 	
 	
+	private int ms_change;
 	
 	
 	
+	public int getMs_change() {
+		return ms_change;
+	}
+	public void setMs_change(int ms_change) {
+		this.ms_change = ms_change;
+	}
 	public String getMem_gender() {
 		return mem_gender;
 	}

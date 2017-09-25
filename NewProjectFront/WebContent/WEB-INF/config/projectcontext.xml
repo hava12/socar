@@ -21,6 +21,10 @@
 <context:component-scan base-package="reserve"/>
 
 
+
+<tx:annotation-driven transaction-manager="txManager"/> 
+
+
 <context:annotation-config/>
 <mvc:annotation-driven/>
 

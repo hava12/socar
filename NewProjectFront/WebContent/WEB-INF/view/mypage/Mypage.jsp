@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,8 +67,6 @@ li.guide { height: 22px; background: none !important; padding-left: 0 !important
 
 
 <script  type="text/javascript">
-
-
 
 
 	var json_url = "https://www.socar.kr/mypage/json_data";
@@ -246,40 +245,40 @@ $(function(){
 	
 		
 			$('#sort2').attr("checked", true);
-		
 
+	
+	var mem_c_type = '${dto.mem_c_type}';
 		
 			//1종 보통
-			$('#type1').attr('checked', true);
-		
+	if(mem_c_type == '1n')$('#type1').attr('checked', true);
+	if(mem_c_type == '2n')$('#type2').attr('checked', true);
+	if(mem_c_type == '1b')$('#type3').attr('checked', true);
+	
 
 		
 
-		$('#license_loc').val('서울');
-
-		
+	<c:set value="${dto.mem_c_expdate}" var='expire' />
+		var expire_y = ${expire.year};
+		var expire_m = ${expire.month};
+		var expire_d = ${expire.date};
 			
 				
-			
-			$('#license_num' + 1).val('11');
-		
-			
-			$('#license_num' + 2).val('057808');
-		
-			
-			$('#license_num' + 3).val('80');
-		
 
-		$('select[name="Y_expire"]').val('2018');
-		$('select[name="M_expire"]').val('10');
-		$('select[name="D_expire"]').val('25');
+		$('select[name="Y_expire"]').val(expire_y);
+		$('select[name="M_expire"]').val(expire_m);
+		$('select[name="D_expire"]').val(expire_d);
 
 
 		//filter for 1.0 user (who does not have issue_date)
 		
-			$('select[name="Y_issue"]').val('2011');
-			$('select[name="M_issue"]').val('10');
-			$('select[name="D_issue"]').val('25');
+	<c:set value="${dto.mem_c_idate}" var='idate' />
+		var idate_y = ${idate.year};
+		var idate_m = ${idate.month};
+		var idate_d = ${idate.date};
+		
+			$('select[name="Y_issue"]').val(idate_y);
+			$('select[name="M_issue"]').val(idate_m);
+			$('select[name="D_issue"]').val(idate_d);
 			
 	
 
@@ -1478,45 +1477,13 @@ function auth_confirm(res) {
 								<tr>
 									<th><img src="${pageContext.request.contextPath}/template/image/index_txt5.gif" alt="면허번호" /></th>
 									<td>
-										<select id="license_loc" style="width:108px">
-										<option selected="selected" value="서울">서울</option>
-										<option value="경기">경기</option>
-										<option value="인천">인천</option>
-										<option value="대전">대전</option>
-										<option value="광주">광주</option>
-										<option value="울산">울산</option>
-										<option value="대구">대구</option>
-										<option value="부산">부산</option>
-										<option value="강원">강원</option>
-										<option value="충남">충남</option>
-										<option value="충북">충북</option>
-										<option value="전남">전남</option>
-										<option value="전북">전북</option>
-										<option value="경남">경남</option>
-										<option value="경북">경북</option>
-										<option value="제주">제주</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-										<option value="21">21</option>
-										<option value="22">22</option>
-										<option value="23">23</option>
-										<option value="24">24</option>
-										<option value="25">25</option>
-										<option value="26">26</option>
-										<option value="27">27</option>
-										<option value="28">28</option>
+										<input type="hidden" class="license_loc" value="${dto.mem_c_num}" />
+										<select id="license_loc" name="licanse_loc" style="width:108px">
+											<option value="${fn:substring(dto.mem_c_num,0,2)}">${fn:substring(dto.mem_c_num,0,2)}</option>
 										</select>
-										<input id="license_num1" maxlength="2" type="text" class="input" style="width:30px" value="" />
-										<input id="license_num2" maxlength="6" type="text" class="input" style="width:50px" value="" />
-										<input id="license_num3" maxlength="2" type="text" class="input" style="width:30px" value="" />
+										<input id="license_num1" maxlength="2" type="text" class="input" style="width:30px" value="${fn:substring(dto.mem_c_num,3,5)}" />
+										<input id="license_num2" maxlength="6" type="text" class="input" style="width:50px" value="${fn:substring(dto.mem_c_num,6,10)}" />
+										<input id="license_num3" maxlength="2" type="text" class="input" style="width:30px" value="${fn:substring(dto.mem_c_num,11,13)}" />
 										<em style='font-size: 12px; color:#999;'>* 지역란 숫자선택 가능</em>
 									</td>
 								</tr>
@@ -1574,15 +1541,15 @@ function auth_confirm(res) {
 					<!-- 법인회원 제외 member_type == P-->
 						
 						<ul class="list_card" id="list_card">
-						
+						<c:forEach items="${card_list}" var="item">
 							<li class="fst on" id="1008837">
 									<div class="box_radio">
 										<input type="radio" name="card_default" id="radio0" class="default inp_radio" checked="checked" />
-										<label for="radio0" class="default">현대카드 (102800)</label>
+										<label for="radio0" class="default">${item.card_type eq 'p'?'개인':'법인'}(${item.card_code})</label>
 									</div>
 									<a href="#" class="card_del btn_del">삭제하기</a>
 							</li>
-						
+						</c:forEach>
 						
 						
 							<li class="lst" id="open_register_card_layer_li">
@@ -1611,7 +1578,7 @@ function auth_confirm(res) {
   								<tbody>
     								<tr>
     									<th><img src="${pageContext.request.contextPath}/template/image/text_balance.png" alt="잔액"></th>
-    									<td class="js-t-membership-value">123123</td>
+    									<td class="js-t-membership-value">${dto.ms_change } 원</td>
     								</tr>
   								</tbody>
                 </table>

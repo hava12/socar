@@ -57,6 +57,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
+	<update id="update_Mem_To_Certify" parameterType="MemDto"  >
+			UPDATE MEM SET MEM_C_TYPE=#{mem_c_type},MEM_C_NUM=#{mem_c_num},MEM_C_EXPDATE=#{mem_c_expdate},MEM_C_IDATE=#{mem_c_idate} WHERE SMEM_ID=#{smem_id}
+	</update>
 	
+	<insert id="insertCard" parameterType="CardDto">
+			INSERT INTO CARD VALUES(#{card_code},#{smem_id},#{card_expdate},#{card_type},#{card_birth,jdbcType=INTEGER},#{card_pwd,jdbcType=VARCHAR},#{card_c_num,jdbcType=VARCHAR},#{card_default},SYSDATE)
+	</insert>
 	
 </mapper>

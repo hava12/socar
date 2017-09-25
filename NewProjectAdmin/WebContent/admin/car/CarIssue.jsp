@@ -109,7 +109,7 @@
 			document.getElementById("car_name_id").focus();
 			return false;
 		}
-		else if(document.getElementById("soz_code_id").value == "차량이 없습니다 등록부터 하세요"){
+		else if(document.getElementById("soz_code_id").value == "등록된 쏘카존이 없습니다 등록부터 하세요"){
 			alert("차량명 코드를 선택해주세요.");
 			document.getElementById("soz_code_id").focus();
 			return false;
@@ -210,7 +210,7 @@
 					      	  			<select class="form-control" id="soz_code_id" name="soz_code">
 					      	  				<c:choose>
 					      	  					<c:when test="${empty zone_list}">
-					      	  						<option>차량이 없습니다 등록부터 하세요</option>
+					      	  						<option>등록된 쏘카존이 없습니다 등록부터 하세요</option>
 					      	  					</c:when>
 					      	  					<c:otherwise>
 					      	  						<c:forEach items="${zone_list}" var="item">

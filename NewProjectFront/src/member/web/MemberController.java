@@ -107,7 +107,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("/Member/CompleteSoJoin.do")
-	public String completeSoJoin(@RequestParam Map map) throws Exception{
+	public String completeSoJoin(@RequestParam Map map,Model model) throws Exception{
 		
 		System.out.println(map.get("smem_id"));
 		System.out.println(map.get("mem_c_type"));
@@ -122,14 +122,13 @@ public class MemberController {
 		System.out.println(map.get("card_pwd"));
 		System.out.println(map.get("card_c_num"));
 		System.out.println(map.get("card_default"));
-		System.out.println(map.get("card_create_date"));
 		System.out.println(map.get("card_code"));
 		
 		CardDto c_dto = new CardDto();
 		c_dto.setCard_code(map.get("card_code").toString());
 		c_dto.setSmem_id(map.get("smem_id").toString());
 		Calendar card_expdate = Calendar.getInstance();
-		card_expdate.set(Integer.parseInt(map.get("mem_expdate_y").toString()),Integer.parseInt(map.get("mem_expdate_y").toString()),1);
+		card_expdate.set(Integer.parseInt(map.get("card_expdate_y").toString()),Integer.parseInt(map.get("card_expdate_y").toString()),1);
 		c_dto.setCard_expdate(card_expdate.getTime());
 		c_dto.setCard_type(map.get("card_type").toString());
 		c_dto.setCard_birth(map.get("card_birth").toString());
@@ -142,7 +141,7 @@ public class MemberController {
 		m_dto.setMem_c_type(map.get("mem_c_type").toString());
 		m_dto.setMem_c_num(map.get("mem_c_num").toString());
 		
-		SimpleDateFormat f = new SimpleDateFormat();
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 		
 		m_dto.setMem_c_idate(f.parse(map.get("mem_c_idate").toString()));
 		m_dto.setMem_c_expdate(f.parse(map.get("mem_c_expdate").toString()));
@@ -151,7 +150,10 @@ public class MemberController {
 		int affected =  0;
 		affected = service.completeSoJoin(m_dto,c_dto);
 		
-		return "forward:/Mypage/Mypage.do";
+		model.addAttribute("WHERE","COMPLETESOJOIN");
+		model.addAttribute("SUC_FAIL",affected);
+		
+		return "/message/Message";
 	};
 	
 	
@@ -165,11 +167,7 @@ public class MemberController {
 		mem_dto.setMem_addr_sec(map.get("mem_addr_sec").toString());
 		mem_dto.setMem_mainarea(map.get("mem_mainarea").toString());
 		
-		System.out.println(map.get("smem_id").toString());
-		System.out.println(map.get("mem_addr_num").toString());
-		System.out.println(map.get("mem_addr_fir").toString());
-		System.out.println(map.get("mem_addr_sec").toString());
-		System.out.println(map.get("mem_mainarea").toString());
+		
 		
 		affected = service.CreateMem(mem_dto);
 		if(map.get("base_file").equals("sojone_one")) {

@@ -40,11 +40,6 @@ public class MyPageController {
 			dto.setSmem_pwd(s_dto.getSmem_pwd());
 			dto.setSmem_tel(s_dto.getSmem_tel());
 		}
-		else {
-			System.out.println(dto.getSmem_id());
-			System.out.println(dto.getSmem_name());
-			System.out.println(dto.getSmem_pwd());
-		}
 
 		List<CardDto> card_list = null;
 		
@@ -55,6 +50,8 @@ public class MyPageController {
 		
 		return "/mypage/Mypage";
 	}
+	
+	
 	@RequestMapping("/Mypage/Mypagereserve.do")
 	public String mypagereserve() throws Exception{
 		return "/mypage/Mypagereserve";

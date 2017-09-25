@@ -26,11 +26,11 @@ public class CarIssueController extends HttpServlet{
       try {
          List<CarDTO> car_list =  car_dao.selectList(1,2);
          
-         //List<ZoneDTO> zone_list = zone_dao.selectList();
+         List<ZoneDTO> zone_list = zone_dao.selectList(1,20000);
          
          ZoneDTO dto = zone_dao.selectOne(req.getParameter("soz_code"));
          req.setAttribute("car_list", car_list);
-         //req.setAttribute("zone_list", zone_list);
+         req.setAttribute("zone_list", zone_list);
          req.setAttribute("dto", dto);
       } catch (Exception e) {
          e.printStackTrace();

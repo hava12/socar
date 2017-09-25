@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import member.service.CardDto;
 import member.service.MemDto;
@@ -68,14 +69,15 @@ public class Simple_MemDao implements Simple_MemService {
 
 	@Override
 	public int completeSoJoin(MemDto m_dto,CardDto c_dto) throws Exception {
-		template.commit(false);
+		
+		
 		int affected = 0;
 		
-		template.update("update_Mem_To_Certify",m_dto);
+		affected = template.update("update_Mem_To_Certify",m_dto);
 		
-		template.update("insertCard",c_dto);
+		if(affected == 1)affected = template.insert("insertCard",c_dto);
 		
-		return 0;
+		return affected;
 	}
 
 }
