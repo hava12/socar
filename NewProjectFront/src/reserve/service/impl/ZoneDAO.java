@@ -106,7 +106,7 @@ public class ZoneDAO implements ZoneService{
 				dto.setSoz_date(rs.getDate(5));
 				dto.setSoz_latitude(rs.getString(6));
 				dto.setSoz_longitude(rs.getString(7));
-				dto.setSoz_i_car(rs.getString(8));
+				dto.setSoz_i_car(rs.getString(8));				
 			}
 		}
 		catch(SQLException e){
