@@ -49,4 +49,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.selectTopOneC_C(cou_code);
 	}
 
+
+	@Override
+	public int selectCouponCount(String smem_id) throws Exception {
+		return dao.selectCouponCount(smem_id);
+	}
+
 }

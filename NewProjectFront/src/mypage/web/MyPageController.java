@@ -38,6 +38,11 @@ public class MyPageController {
 		
 		MemDto dto = null;
 		
+		int couponCount = 0;
+		
+		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		model.addAttribute("couponCount",couponCount);
+		
 		dto = service.gomypage(req.getSession().getAttribute("smem_id").toString());
 		
 		if(dto == null) {
@@ -61,21 +66,41 @@ public class MyPageController {
 	
 	
 	@RequestMapping("/Mypage/Mypagereserve.do")
-	public String mypagereserve() throws Exception{
+	public String mypagereserve(HttpServletRequest req,Model model) throws Exception{
+		
+		int couponCount = 0;
+		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		model.addAttribute("couponCount",couponCount);
+		
 		return "/mypage/Mypagereserve";
 	}
 	@RequestMapping("/Mypage/Mypagepayment.do")
-	public String mypagepayment() throws Exception{
+	public String mypagepayment(HttpServletRequest req,Model model) throws Exception{
+		
+		int couponCount = 0;
+		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		model.addAttribute("couponCount",couponCount);
+		
+		
 		return "/mypage/Mypagepayment";
 	}
-	
+		
 	
 	@RequestMapping("/Mypage/Mypagecoupon.do")
-	public String mypagecoupon(HttpServletRequest req) throws Exception{
+	public String mypagecoupon(HttpServletRequest req,Model model) throws Exception{
 		
-
-		service.myPageCouponBook(req.getSession().getAttribute("smem_id").toString());
+		int couponCount = 0;
+		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		model.addAttribute("couponCount",couponCount);
 		
+		
+		List<CouponDto> list = null;
+		
+		list = service.myPageCouponBook(req.getSession().getAttribute("smem_id").toString());
+		
+		
+		
+		model.addAttribute("list",list);
 		
 		
 		
@@ -87,7 +112,12 @@ public class MyPageController {
 	
 	//쿠폰 북으로 가기
 	@RequestMapping("/Mypage/Couponbook.do")
-	public String couponbook(Model model) throws Exception{
+	public String couponbook(HttpServletRequest req, Model model) throws Exception{
+		
+		int couponCount = 0;
+		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		model.addAttribute("couponCount",couponCount);
+		
 		
 		List<CouponDto> list = null;
 		

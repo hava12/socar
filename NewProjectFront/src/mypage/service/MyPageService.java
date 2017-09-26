@@ -16,4 +16,5 @@ public interface MyPageService {
 
 	public Cou_createDto selectTopOneC_C(String cou_code) throws Exception;
 	
+	public int selectCouponCount(String smem_id) throws Exception;
 }

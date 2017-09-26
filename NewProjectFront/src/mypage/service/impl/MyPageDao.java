@@ -67,5 +67,11 @@ public class MyPageDao implements MyPageService {
 	public Cou_createDto selectTopOneC_C(String cou_code) throws Exception {
 		return template.selectOne("selectTopOneC_C",cou_code);
 	}
+
+
+	@Override
+	public int selectCouponCount(String smem_id) throws Exception {
+		return template.selectOne("selectCouponCount", smem_id);
+	}
 	
 }
