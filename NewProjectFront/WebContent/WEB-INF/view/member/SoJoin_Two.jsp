@@ -544,7 +544,7 @@ $(function(){
 	
 	<div id="container">
 		<div id="content">
-			<h2><img src="/template/member/../asset/images/member/join_h2.gif" alt="회원가입" /></h2>
+			<h2><img src="${pageContext.request.contextPath}/template/image/join_h2.gif" alt="회원가입" /></h2>
 
 			<h3 class="box shadow stepType stepType1 step3">운전면허/결제정보 입력</h3>
 
@@ -556,14 +556,14 @@ $(function(){
 				<form name="join" method="post" action="">
 					<fieldset>
 						<div class="section">
-							<h4><img src="/template/member/../asset/images/member/join_step3_txt2.gif" alt="운전면허" />
+							<h4><img src="${pageContext.request.contextPath}/template/image//join_step3_txt2.gif" alt="운전면허" />
 								<div style="position: absolute; color : #aaa;margin-left: 75px;margin-top: -11px;">쏘카 드라이브를 위한 필수조건!</div>
 							</h4>
 							<div class="driver1">
 								<table cellspacing="0" class="rows">
 
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step3_txt4.gif" alt="면허종류 (1)" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step3_txt4.gif" alt="면허종류 (1)" /></th>
 									<td>
 										<label for="type1">
 											<input type="radio" id="type1" name="mem_c_type" checked="checked" /> 1종 보통
@@ -577,7 +577,7 @@ $(function(){
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step3_txt5.gif" alt="면허번호 (2)" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step3_txt5.gif" alt="면허번호 (2)" /></th>
 									<td>
 										<select id="license_loc" name="mem_c_num_fir" style="width:108px">
 											<option selected="selected" value="서울">서울</option>
@@ -622,19 +622,19 @@ $(function(){
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step3_txt6.gif" alt="갱신기간 만료일 (3)" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step3_txt6.gif" alt="갱신기간 만료일 (3)" /></th>
 									<td>
 										<div class="picker" id="picker1"></div>
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step3_txt7.gif" alt="면허 발급일 (4)" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step3_txt7.gif" alt="면허 발급일 (4)" /></th>
 									<td>
 										<div class="picker" id="picker2"></div>
 									</td>
 								</tr>
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step1_txt9.gif" alt="성별" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step1_txt9.gif" alt="성별" /></th>
 									<td>
 <!-- 										<input id="ssn1" type="text" class="input" style="width:69px;" maxlength="6" /> (6자리)&nbsp;&nbsp;/&nbsp;&nbsp; -->
 										<label for="male"><input type="radio" id="male" name="mem_gender" value="m" checked="checked" /> 남성</label>
@@ -643,7 +643,7 @@ $(function(){
 								</tr>
 								<!--
 								<tr>
-									<th><img src="/template/member/../asset/images/member/join_step3_txt3.gif" alt="암호일련번호" /></th>
+									<th><img src="${pageContext.request.contextPath}/template/image/join_step3_txt3.gif" alt="암호일련번호" /></th>
 									<td>
 										<input id="li_encr_serial" maxlength="6" type="text" class="input" style="width:69px" value="" />
 									</td>
@@ -655,7 +655,7 @@ $(function(){
 
 							</div>
 							<div class="driver2">
-								<img width="290px" src="/template/member/../asset/images/member/license-sample-locale.png" alt="운전면허 샘플 이미지" />
+								<img width="290px" src="${pageContext.request.contextPath}/template/image/license-sample-locale.png" alt="운전면허 샘플 이미지" />
 								<span style="margin-top: 10px;margin-left: 10px;display: inline-block;color: #999;">운전면허 샘플 이미지</span>
 							</div>
 
@@ -670,11 +670,11 @@ $(function(){
 
 
 						<div class="section">
-							<h4><img src="/template/member/../asset/images/member/join_step3_txt8.gif" alt="결제카드" />
+							<h4><img src="${pageContext.request.contextPath}/template/image/join_step3_txt8.gif" alt="결제카드" />
 								<em style="position: absolute; color : #aaa;margin-left: 8px;margin-top: 4px;">한번 등록으로 편리하게 이용하세요!</em></h4>
 							<table cellspacing="0" class="rows">
 							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step3_txt9.gif" alt="카드번호" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step3_txt9.gif" alt="카드번호" /></th>
 								<td >
 									<div>
 										<span id="card_insert_type">카드를 등록해주세요.</span>
@@ -700,7 +700,7 @@ $(function(){
 
 
 						<div class="section" style='display:none'>
-							<h4><img src="/template/member/../asset/images/member/join_step3_txt11.gif" alt="회원제 선택" /></h4>
+							<h4><img src="${pageContext.request.contextPath}/template/image/join_step3_txt11.gif" alt="회원제 선택" /></h4>
 							<table cellspacing="0" class="cols">
 							<thead>
 							<tr>
@@ -908,8 +908,8 @@ $(function(){
 						</div>
 
 						<div class="centerBtn">
-							<a href="javascript:history.back();"><img src="/template/member/../asset/images/member/btn_step_prev.gif" alt="이전단계" /></a>
-							<input id="complete" type="image" src="/template/member/../asset/images/member/btn_join_complete.gif" alt="가입완료" />
+							<a href="javascript:history.back();"><img src="${pageContext.request.contextPath}/template/image/btn_step_prev.gif" alt="이전단계" /></a>
+							<input id="complete" type="image" src="${pageContext.request.contextPath}/template/image/btn_join_complete.gif" alt="가입완료" />
 						</div>
 					</fieldset>
 				</form>
