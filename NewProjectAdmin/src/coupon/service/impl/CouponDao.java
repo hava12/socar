@@ -45,7 +45,7 @@ public class CouponDao implements CouponService {
 	@Override
 	public int insertCoupon(CouponDto dto) throws Exception {
 		
-		String sql ="INSERT INTO COUPON VALUES('C_C_'||LPAD(COU_CODE_SEQ.NEXTVAL,10,'0'),?,?,?,?,?,?,?,?,?,?)";
+		String sql ="INSERT INTO COUPON VALUES('C_C_'||LPAD(COU_CODE_SEQ.NEXTVAL,10,'0'),?,?,?,?,?,?,?,?,?,?,?,?)";
 		int affected = 0;
 		
 		psmt = conn.prepareStatement(sql);
@@ -60,6 +60,8 @@ public class CouponDao implements CouponService {
 		psmt.setDate(8, new java.sql.Date(dto.getCou_exp().getTime()));
 		psmt.setString(9, dto.getMax_sale_per());
 		psmt.setString(10, dto.getCou_only_new());
+		psmt.setString(11, dto.getCou_c_start());
+		psmt.setString(12, dto.getCou_c_end());
 		
 		affected = psmt.executeUpdate();
 		
@@ -107,7 +109,9 @@ public class CouponDao implements CouponService {
 				dto.setCou_exp(rs.getDate(9));
 				dto.setMax_sale_per(rs.getString(10));
 				dto.setCou_only_new(rs.getString(11));
-				dto.setCou_create_count(rs.getInt(12));
+				dto.setCou_c_start(rs.getString(12));
+				dto.setCou_c_start(rs.getString(13));
+				dto.setCou_create_count(rs.getInt(14));
 				list.add(dto);			
 			}		
 		} catch (Exception e) {e.printStackTrace();}
@@ -154,6 +158,8 @@ public class CouponDao implements CouponService {
 		dto.setCou_exp(rs.getDate(9));
 		dto.setMax_sale_per(rs.getString(10));
 		dto.setCou_only_new(rs.getString(11));
+		dto.setCou_c_start(rs.getString(12));
+		dto.setCou_c_end(rs.getString(13));
 		
 		return dto;
 	}
@@ -190,15 +196,13 @@ public class CouponDao implements CouponService {
 	@Override
 	public int createCoupon(Cou_createDto dto) throws Exception {
 		
-		String sql = "INSERT INTO COU_CREATE VALUES('C_CC_'||LPAD(COU_C_CODE_SEQ.NEXTVAL,10,'0'),?,SYSDATE,?,?,?)";
+		String sql = "INSERT INTO COU_CREATE VALUES('C_CC_'||LPAD(COU_C_CODE_SEQ.NEXTVAL,10,'0'),?)";
 		
 		conn.setAutoCommit(false);
 		
 		psmt= conn.prepareStatement(sql);
 		psmt.setString(1, dto.getCou_code());
-		psmt.setDate(2, new java.sql.Date(dto.getCou_c_expdate().getTime()));
-		psmt.setString(3, dto.getCou_c_t_start());
-		psmt.setString(4, dto.getCou_c_t_end());
+
 		
 		int count = 0;
 		for(int i= 0 ; i < dto.getCou_c_count() ; i++ ) {

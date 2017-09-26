@@ -128,12 +128,12 @@
                           <li>
                               <a href="<c:url value='/Coupon/CouponList.do' />">쿠폰 리스트 </a>
                           </li>
-                    	  <li>
-                              <a href="<c:url value='/Coupon/CouponCreate.do' />">쿠폰 발급 </a>
-                          </li>
-                    	  <li>
-                              <a href="<c:url value='/Coupon/CouponIssue.do' />">쿠폰 발급 </a>
-                          </li>
+<!--                     	  <li> -->
+<%--                               <a href="<c:url value='/Coupon/CouponCreate.do' />">쿠폰 발급 </a> --%>
+<!--                           </li> -->
+<!--                     	  <li> -->
+<%--                               <a href="<c:url value='/Coupon/CouponIssue.do' />">쿠폰 발급 </a> --%>
+<!--                           </li> -->
                    
                           
                           

@@ -19,21 +19,23 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="MemDto" type="member.service.MemDto"/>
 		<typeAlias alias="CardDto" type="member.service.CardDto"/>
 		<typeAlias alias="Rq_carDto" type="main.service.Rq_carDto"/>
+		<typeAlias alias="CouponDto" type="mypage.service.CouponDto"/>
+		
 	</typeAliases>
 
 	
 	<!-- 데이타베이스 연결정보 설정 -->
 	 
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC"/>
+<!-- 	<environments default="development"> -->
+<!-- 		<environment id="development"> -->
+<!-- 			<transactionManager type="JDBC"/> -->
 			
 			
-			<dataSource type="JNDI">
-				<property name="data_source" value="java:/comp/env/jdbc/socar"/>
-			</dataSource>
-		</environment>
-	</environments>
+<!-- 			<dataSource type="JNDI"> -->
+<!-- 				<property name="data_source" value="java:/comp/env/jdbc/socar"/> -->
+<!-- 			</dataSource> -->
+<!-- 		</environment> -->
+<!-- 	</environments> -->
 	
 	<!-- 매퍼파일(SQL쿼리 결과와 자바빈 매핑) 정보 설정 -->	
 	<mappers>

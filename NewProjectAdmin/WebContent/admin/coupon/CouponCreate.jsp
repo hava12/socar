@@ -138,51 +138,19 @@ function goCouponInsert(){
 					      	  			<select name="cou_code" class="form-control" style="color: black;" id="cou_code_id">
 					      	  					<option value="null"> </option>
 					      	  				<c:forEach items="${list}" var="item">
-						      	  				<option value="${item.cou_code}">${item.cou_code} - ${item.cou_name}</option>
+					      	  					<c:if test="${not param.cou_code eq item.cou_code}" var="cou_code_same">
+						      	  					<option value="${item.cou_code}">${item.cou_code} - ${item.cou_name}</option>
+					      	  					</c:if>
+					      	  					<c:if test="${not cou_code_sale }">
+					      	  						<option value="${item.cou_code}" selected="selected">${item.cou_code} - ${item.cou_name}</option>
+					      	  					</c:if>
+					      	  					
 					      	  				</c:forEach>
 					      	  			</select>
 					      	  			</div>
 								    </td>
 					      	  </tr>
 					      	 
-					      	  <tr>
-					      	  		<td><label>쿠폰 만료일</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-3" >
-								        <select class="form-control" id="year" name="cou_exp_year">
-								        </select>
-								        </div>
-								        <p class="col-xs-1">년</p>
-					      	  			<div class="col-xs-2" >
-								        <select class="form-control" id="month" name="cou_exp_month">
-								        </select> 
-								        </div>
-								        <p class="col-xs-1">월</p>
-								        <div class="col-xs-2">
-								        <select class="form-control" id="date" name="cou_exp_date">
-								        </select> 
-								        </div>
-								        <p class="col-xs-3">일</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>쿠폰발급가능시간</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control"  name="cou_c_t_start" id="cou_start"/>
-								     	</div>
-								     	<p class="col-xs-1">시</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>쿠폰발급끝시간</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control"  name="cou_c_t_end" id="cou_end"/>
-								     	</div>
-								     	<p class="col-xs-1">시</p>
-					      	  		</td>
-					      	  </tr>
 					      	  <tr>
 					      	  		<td><label>쿠폰 개수 설정</label></td>
 					      	  		<td>

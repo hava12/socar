@@ -29,6 +29,8 @@ public class InsertCouponController extends HttpServlet {
 		dto.setCou_maxtime(req.getParameter("cou_maxtime"));
 		dto.setCou_minage(req.getParameter("cou_minage"));
 		dto.setCou_minuse(req.getParameter("cou_minuse"));
+		dto.setCou_c_start(req.getParameter("cou_c_start"));
+		dto.setCou_c_end(req.getParameter("cou_c_end"));
 		
 		Date d=null;
 		try {d = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("cou_exp_year")+"-"+req.getParameter("cou_exp_month")+"-"+req.getParameter("cou_exp_date"));} 

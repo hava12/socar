@@ -46,6 +46,9 @@
 		var goEditCoupon = function(){
 			location.href="<c:url value='/Coupon/EditCoupon.do' />?cou_code=${dto.cou_code}";	
 		}
+		var createCoupon = function(){
+			location.href="<c:url value='/Coupon/CouponCreate.do' />?cou_code=${dto.cou_code}"
+		}
 		
 	</script>
 	
@@ -135,12 +138,25 @@
 					      	  			<span>${dto.cou_only_new }</span>	
 					      	  		</td>
 					      	  </tr>	
+					      	  <tr>
+					      	  		<td><label>쿠폰 발급 시작 시간</label></td>
+					      	  		<td>
+					      	  			<span>${dto.cou_c_start}</span>	
+					      	  		</td>
+					      	  </tr>	
+					      	  <tr>
+					      	  		<td><label>쿠폰 발급 끝 시간</label></td>
+					      	  		<td>
+					      	  			<span>${dto.cou_c_end }</span>	
+					      	  		</td>
+					      	  </tr>	
 					      </tbody>
 					    
 					       </table>
 				    
 				      <button type="submit" class="btn btn-info" onclick="goEditCoupon()">수정하기</button>
 				      <button type="button" class="btn btn-info" onclick="goCouponList()">리스트 보기</button>
+ 				      <button type="button" class="btn btn-info" onclick="createCoupon()">쿠폰 생성하기</button>
  
 				  </div><!-- /example -->
 

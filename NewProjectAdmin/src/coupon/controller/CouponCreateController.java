@@ -42,12 +42,7 @@ public class CouponCreateController extends HttpServlet {
 			int count = 0 ;
 			
 			dto.setCou_code(req.getParameter("cou_code"));
-			
-			try {dto.setCou_c_expdate(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("cou_exp_year")+"-"+req.getParameter("cou_exp_month")+"-"+req.getParameter("cou_exp_date")));
-			} catch (ParseException e1) {e1.printStackTrace();}
-			
-			dto.setCou_c_t_start(req.getParameter("cou_c_t_start"));
-			dto.setCou_c_t_end(req.getParameter("cou_c_t_end"));
+		
 			dto.setCou_c_count(Integer.parseInt(req.getParameter("cou_c_count")));
 	
 			try {

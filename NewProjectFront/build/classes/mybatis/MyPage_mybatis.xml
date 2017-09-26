@@ -6,11 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- ※ibatis와는 다르게 id값에 .(dot)를 사용 못한다. -->
 <mapper namespace="mybatis.MyPage_mybatis">
 
+	
+	<resultMap id="CouponDtoDtoResult" type="CouponDto">
+	    <result property="cou_code" column="cou_code"/>
+	    <result property="cou_name" column="cou_name"/>
+	    <result property="cou_desc" column="cou_desc"/>
+	    <result property="cou_mintime" column="cou_mintime"/>
+	    <result property="cou_maxtime" column="cou_maxtime"/>
+	    <result property="cou_minage" column="cou_minage"/>
+	    <result property="cou_minuse" column="cou_minuse"/>
+	    <result property="cou_exp" column="cou_exp"/>
+	    <result property="max_sale_per" column="max_sale_per"/>
+	    <result property="cou_only_new" column="cou_only_new"/>
+	    <result property="cou_maxtime" column="cou_maxtime"/>
+	    <result property="cou_c_start" column="cou_c_start"/>
+	    <result property="cou_c_end" column="cou_c_end"/>
+	    <result property="cou_create_count" column="cou_create_count"/>
+
+	</resultMap>
+	
+
 
  	<!-- id속성에 지정한 값을 자바코드(DAO계열 클래스)에서 
            식별자로 사용 -->
  	<select id="myPageSelectOne" resultType="MemDto" parameterType="java.lang.String">
 		SELECT M.*,S.*,(SELECT SUM(MS_CHANGE) FROM MEMBERSHIP MEM WHERE MEM.SMEM_ID=#{smem_id}) ms_change FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE M.SMEM_ID=#{smem_id}
+	</select>
+	
+	<select id="selectCouponList" resultMap="CouponDtoDtoResult">
+		SELECT C.*,(SELECT COUNT(*) FROM COU_CREATE CC WHERE CC.COU_CODE=C.COU_CODE) cou_create_count FROM COUPON C WHERE COU_EXP >= SYSDATE
 	</select>
 	
 	

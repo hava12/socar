@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -88,6 +89,15 @@ $(document).ready(function() {
 
 
 $(function() {
+	
+	
+	var coupon_issue = function(cou_code){
+		$.ajax(){
+			
+		}
+	}
+	
+	
 	$(".btn_moreview").click(function(){
 		var moreLayer = $(this).parent().next().find(".more_layer");
 		moreLayer.show()
@@ -150,37 +160,7 @@ $(function() {
 			return false;
 		}
 
-		$.ajax({
-			url: 'https://api.socar.kr/coupon/dn',
-			crossDomain: true,
-			data: {
-				auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
-				policy_id : policyId
-			},
-			type: 'POST',
-			dataType: 'jsonp',
-			beforeSend: function(xhr){
-				$(document).data("disabled", true);
-			},
-			success: function(res) {
-				if (res['retCode'] == 1) {
-					alert("'" + res['result']['policy_name'] + "' " + res['retMsg']);
-					if(window.opener !== null && window.opener !== undefined) {
-						if(typeof window.opener.remakeCouponList === 'function') {
-							window.opener.remakeCouponList();
-						}
-					}
-					document.location.reload();
-				} else {
-					alert(res['retMsg']);
-				}
-
-				$(document).data("disabled", false);
-			},
-			error: function(){
-				alert('일시적으로 쿠폰 받기에 문제가 발생하였습니다. 다시 시도해주세요. 계속해서 동일한 문제가 발생 시 고객센터로 문의바랍니다. A107');
-			}
-		});
+		
 
 	
 		return false;
@@ -214,10 +194,8 @@ $(function() {
 				<div class="couponbook_cont">
 					
 					<!-- 컨텐츠가 있을시 -->
-				
 				<ul class="list_couponbook">
-				
-					
+				<c:forEach items="${list}" var="item">	
 					<li>
 						<div class="thumb">
 							
@@ -226,23 +204,23 @@ $(function() {
 						</div>
 						<div class="cont">
 							<div class="tit_cont">
-								<p class="tit">14시간 13,000원</p>
+								<p class="tit">${item.cou_name}</p>
 							</div>
 							<div class="box_listcont">
 								<dl class="list_cont">
 									<dt>오픈기간</dt>
-									<dd class="period">2017.09.28 19시까지</dd>
+									<dd class="period"><fmt:formatDate value="${item.cou_exp}" pattern="yyyy-MM-dd"/> 까지</dd>
 								</dl>
 								<dl class="list_cont">
 									<dt>사용조건</dt>
-									<dd style="height: 38px;overflow: hidden;">만 30세 이상 전용<br>
-주중 19시~09시 예약 전용</dd>
+									<dd style="height: 38px;overflow: hidden;">만 ${item.cou_minage}세 이상 전용<br>
+								    ${item.cou_c_start}시~${item.cou_c_end}시 예약 전용</dd>
 								</dl>
 								<dl class="list_cont">
 									<dt>남은수량</dt>
 									<dd class="count">
 										
-											<strong>5,864</strong>개 남음
+											<strong>${item.cou_create_count}</strong>개 남음
 										
 										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a>
 									</dd>
@@ -252,109 +230,13 @@ $(function() {
 												
 												<dl style="margin-bottom: 5px;">
 	<dt>이용 대상</dt>
-	<dd>만 30세 이상 회원(생년월일 경과 기준)</dd>
+	<dd>만 ${item.cou_minage}세 이상 회원(생년월일 경과 기준)</dd>
 </dl>
 
 
 <dl style="margin-bottom: 5px;">
 	<dt>차량 이용 가능 시간</dt>
-	<dd>주중 19:00~09:00</dd>
-</dl>
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>대여/반납 가능 조건</dt>
-	<dd>주중 전용 (일 19:00~금 09:00)<br>
-14시간 예약 시 사용 가능
-</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>존 제한</dt>
-	<dd>제주공항 쏘카존 제외</dd>
-</dl>
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>차종제한</dt>
-	<dd>모닝/스파크/레이/엑센트/프라이드/아반떼/K3/올란도/투싼/티볼리/트랙스/스포티지/QM3 전용</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>기타</dt>
-	<dd>이 쿠폰은 예고없이 종료될 수 있습니다</dd>
-</dl>
-												
-											</div>
-											<a href="javascript:return false;" class="close">닫기</a>
-										</div>
-									</dd>
-								</dl>
-							</div>
-						</div>
-						<div class="box_bottom">
-							
-							
-								
-									
-								
-							
-							<div class="btn downbtn on" policy_id="3314"  active_limit="999">
-							
-								
-									<a href="#">쿠폰받기</a>
-								
-							
-							</div>
-						</div>
-					</li>
-				
-					
-					<li>
-						<div class="thumb">
-							
-								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/2f49317d215cb62690b5dc51503438f9.png' />
-							
-						</div>
-						<div class="cont">
-							<div class="tit_cont">
-								<p class="tit">1박2일 36,000원~</p>
-							</div>
-							<div class="box_listcont">
-								<dl class="list_cont">
-									<dt>오픈기간</dt>
-									<dd class="period">2017.09.22 18시까지</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>사용조건</dt>
-									<dd style="height: 38px;overflow: hidden;">만 26세 이상/10회 이상 전용<br>
-30시간 전용, 대여요금 15% 할인</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>남은수량</dt>
-									<dd class="count">
-										
-											<strong>4,998</strong>개 남음
-										
-										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a>
-									</dd>
-									<dd>
-										<div class="more_layer">
-											<div class="coupon-info" style="height:290px;overflow:auto;">
-												
-												<dl style="margin-bottom: 5px;">
-	<dt>이용 대상</dt>
-	<dd>'만 26세 이상' 또는 '10회 탑승 뱃지' 보유 회원</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>차량 이용 가능 시간</dt>
-	<dd>2017년 9월 24일 24시까지</dd>
+	<dd>${item.cou_c_start}시~${item.cou_c_end}시</dd>
 </dl>
 
 
@@ -362,220 +244,22 @@ $(function() {
 <dl style="margin-bottom: 5px;">
 	<dt>대여/반납 가능 조건</dt>
 	<dd>
-최소 30시간~최대 47시간 예약 시 사용 가능
-</dd>
+	${list_mintime}시간 예약 시 사용 가능
+	</dd>
 </dl>
 
 
-<dl style="margin-bottom: 5px;">
-	<dt>존 제한</dt>
-	<dd>제주공항 쏘카존 제외</dd>
-</dl>
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>존 제한</dt> -->
+<!-- 	<dd>제주공항 쏘카존 제외</dd> -->
+<!-- </dl> -->
 
 
 
-<dl style="margin-bottom: 5px;">
-	<dt>차종제한</dt>
-	<dd>모닝/스파크/레이/엑센트/프라이드/아반떼/K3/K5/LF쏘나타/SM5/말리부/그랜저/올란도/투싼/티볼리/트랙스/스포티지/QM3 전용</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>기타</dt>
-	<dd>쿠폰 사용 시 최초 대여요금에서 최대 15% 할인 혜택이 제공됩니다.<br><br>
-
-36,000원은 최저가 기준에서의 쿠폰 할인 후 대여요금이며, 실제 예약 시 지역/시간대/차종 별 할인율에 따라 다를 수 있습니다.<br><br>
-
-이 쿠폰은 예고없이 종료될 수 있습니다</dd>
-</dl>
-												
-											</div>
-											<a href="javascript:return false;" class="close">닫기</a>
-										</div>
-									</dd>
-								</dl>
-							</div>
-						</div>
-						<div class="box_bottom">
-							
-							
-								
-									
-								
-							
-							<div class="btn downbtn on" policy_id="3127"  active_limit="999">
-							
-								
-									<a href="#">쿠폰받기</a>
-								
-							
-							</div>
-						</div>
-					</li>
-				
-					
-					<li>
-						<div class="thumb">
-							
-								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/d477e65f8e594204aa668ab30361ca5d.png' />
-							
-						</div>
-						<div class="cont">
-							<div class="tit_cont">
-								<p class="tit">2박3일 63,000원~</p>
-							</div>
-							<div class="box_listcont">
-								<dl class="list_cont">
-									<dt>오픈기간</dt>
-									<dd class="period">2017.09.22 18시까지</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>사용조건</dt>
-									<dd style="height: 38px;overflow: hidden;">만 26세 이상/10회 이상 전용<br>
-54시간 전용, 대여요금 13% 할인</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>남은수량</dt>
-									<dd class="count">
-										
-											<strong>2,652</strong>개 남음
-										
-										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a>
-									</dd>
-									<dd>
-										<div class="more_layer">
-											<div class="coupon-info" style="height:290px;overflow:auto;">
-												
-												<dl style="margin-bottom: 5px;">
-	<dt>이용 대상</dt>
-	<dd>'만 26세 이상' 또는 '10회 탑승 뱃지' 보유 회원</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>차량 이용 가능 시간</dt>
-	<dd>2017년 9월 24일 24시까지</dd>
-</dl>
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>대여/반납 가능 조건</dt>
-	<dd>
-최소 54시간~최대 71시간 예약 시 사용 가능
-</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>존 제한</dt>
-	<dd>제주공항 쏘카존 제외</dd>
-</dl>
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>차종제한</dt>
-	<dd>모닝/스파크/레이/엑센트/프라이드/아반떼/K3/K5/LF쏘나타/SM5/말리부/그랜저/올란도/투싼/티볼리/트랙스/스포티지/QM3 전용</dd>
-</dl>
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>기타</dt>
-	<dd>쿠폰 사용 시 최초 대여요금에서 최대 13% 할인 혜택이 제공됩니다. <br><br>
-
-63,000원은 최저가 기준에서의 쿠폰 할인 후 대여요금이며, 실제 예약 시 지역/시간대/차종 별 할인율에 따라 다를 수 있습니다.<br><br>
-
-
-이 쿠폰은 예고없이 종료될 수 있습니다</dd>
-</dl>
-												
-											</div>
-											<a href="javascript:return false;" class="close">닫기</a>
-										</div>
-									</dd>
-								</dl>
-							</div>
-						</div>
-						<div class="box_bottom">
-							
-							
-								
-									
-								
-							
-							<div class="btn downbtn on" policy_id="3128"  active_limit="999">
-							
-								
-									<a href="#">쿠폰받기</a>
-								
-							
-							</div>
-						</div>
-					</li>
-				
-					
-					<li>
-						<div class="thumb">
-							
-								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/f94015fdfe3fe5956318fd346fc27175.png' />
-							
-						</div>
-						<div class="cont">
-							<div class="tit_cont">
-								<p class="tit">5시간 9,900원</p>
-							</div>
-							<div class="box_listcont">
-								<dl class="list_cont">
-									<dt>오픈기간</dt>
-									<dd class="period">2017.09.29 12시까지</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>사용조건</dt>
-									<dd style="height: 38px;overflow: hidden;"><strong style="color:#00d2ff;">미리 예약 가능</strong><br>
-주중 8시~17시 내 예약 가능</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>남은수량</dt>
-									<dd class="count">
-										
-											<strong>1,406</strong>개 남음
-										
-										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a>
-									</dd>
-									<dd>
-										<div class="more_layer">
-											<div class="coupon-info" style="height:290px;overflow:auto;">
-												
-												<dl style="margin-bottom: 5px;">
-	<dt>차량 이용 가능 시간</dt>
-	<dd>주중 8:00~17:00</dd>
-</dl>
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>대여/반납 가능 조건</dt>
-	<dd><strong>미리 예약 가능</strong><br>
-주중 전용 (월 8:00~금 17:00)<br>
-5시간 예약 시 사용 가능
-</dd>
-</dl>
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>존 제한</dt>
-	<dd>제주공항 쏘카존 제외</dd>
-</dl>
-
-
-
-
-<dl style="margin-bottom: 5px;">
-	<dt>차종제한</dt>
-	<dd>모닝/스파크/레이/프라이드/엑센트/아반떼/K3/K5/LF쏘나타/SM5/말리부/올란도/티볼리/트랙스/스포티지/QM3/투싼 전용</dd>
-</dl>
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차종제한</dt> -->
+<!-- 	<dd>모닝/스파크/레이/엑센트/프라이드/아반떼/K3/올란도/투싼/티볼리/트랙스/스포티지/QM3 전용</dd> -->
+<!-- </dl> -->
 
 
 <dl style="margin-bottom: 5px;">
@@ -583,105 +267,399 @@ $(function() {
 	<dd>이 쿠폰은 예고없이 종료될 수 있습니다</dd>
 </dl>
 												
-											</div>
-											<a href="javascript:return false;" class="close">닫기</a>
-										</div>
-									</dd>
-								</dl>
+									</div>
+									<a href="javascript:return false;" class="close">닫기</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="box_bottom">
+					
+							
+								
+									
+								
+							
+							<div class="btn downbtn" id="${item.cou_code}"  active_limit="999">						
+									<a>쿠폰받기</a>
 							</div>
 						</div>
-						<div class="box_bottom">
+					</li>
+				
+	</c:forEach>
+					
+					
+					
+					
+<!-- 					<li> -->
+<!-- 						<div class="thumb"> -->
+							
+<!-- 								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/2f49317d215cb62690b5dc51503438f9.png' /> -->
+							
+<!-- 						</div> -->
+<!-- 						<div class="cont"> -->
+<!-- 							<div class="tit_cont"> -->
+<!-- 								<p class="tit">1박2일 36,000원~</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="box_listcont"> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>오픈기간</dt> -->
+<!-- 									<dd class="period">2017.09.22 18시까지</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>사용조건</dt> -->
+<!-- 									<dd style="height: 38px;overflow: hidden;">만 26세 이상/10회 이상 전용<br> -->
+<!-- 30시간 전용, 대여요금 15% 할인</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>남은수량</dt> -->
+<!-- 									<dd class="count"> -->
+										
+<!-- 											<strong>4,998</strong>개 남음 -->
+										
+<!-- 										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a> -->
+<!-- 									</dd> -->
+<!-- 									<dd> -->
+<!-- 										<div class="more_layer"> -->
+<!-- 											<div class="coupon-info" style="height:290px;overflow:auto;"> -->
+												
+<!-- 												<dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>이용 대상</dt> -->
+<!-- 	<dd>'만 26세 이상' 또는 '10회 탑승 뱃지' 보유 회원</dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차량 이용 가능 시간</dt> -->
+<!-- 	<dd>2017년 9월 24일 24시까지</dd> -->
+<!-- </dl> -->
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>대여/반납 가능 조건</dt> -->
+<!-- 	<dd> -->
+<!-- 최소 30시간~최대 47시간 예약 시 사용 가능 -->
+<!-- </dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>존 제한</dt> -->
+<!-- 	<dd>제주공항 쏘카존 제외</dd> -->
+<!-- </dl> -->
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차종제한</dt> -->
+<!-- 	<dd>모닝/스파크/레이/엑센트/프라이드/아반떼/K3/K5/LF쏘나타/SM5/말리부/그랜저/올란도/투싼/티볼리/트랙스/스포티지/QM3 전용</dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>기타</dt> -->
+<!-- 	<dd>쿠폰 사용 시 최초 대여요금에서 최대 15% 할인 혜택이 제공됩니다.<br><br> -->
+
+<!-- 36,000원은 최저가 기준에서의 쿠폰 할인 후 대여요금이며, 실제 예약 시 지역/시간대/차종 별 할인율에 따라 다를 수 있습니다.<br><br> -->
+
+<!-- 이 쿠폰은 예고없이 종료될 수 있습니다</dd> -->
+<!-- </dl> -->
+												
+<!-- 											</div> -->
+<!-- 											<a href="javascript:return false;" class="close">닫기</a> -->
+<!-- 										</div> -->
+<!-- 									</dd> -->
+<!-- 								</dl> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="box_bottom"> -->
 							
 							
 								
 									
 								
 							
-							<div class="btn downbtn on" policy_id="2785"  active_limit="999">
+<!-- 							<div class="btn downbtn on" policy_id="3127"  active_limit="999"> -->
 							
 								
-									<a href="#">쿠폰받기</a>
+<!-- 									<a href="#">쿠폰받기</a> -->
 								
 							
-							</div>
-						</div>
-					</li>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 				
 					
-					<li>
-						<div class="thumb">
+<!-- 					<li> -->
+<!-- 						<div class="thumb"> -->
 							
-								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/ca9fcd73eabd7c17b28dba593def2a82.png' />
+<!-- 								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/d477e65f8e594204aa668ab30361ca5d.png' /> -->
 							
-						</div>
-						<div class="cont">
-							<div class="tit_cont">
-								<p class="tit">5천원 할인</p>
-							</div>
-							<div class="box_listcont">
-								<dl class="list_cont">
-									<dt>오픈기간</dt>
-									<dd class="period">2017.09.29 19시까지</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>사용조건</dt>
-									<dd style="height: 38px;overflow: hidden;">최소 2시간 예약 전용<br>
-신규존 전용</dd>
-								</dl>
-								<dl class="list_cont">
-									<dt>남은수량</dt>
-									<dd class="count">
+<!-- 						</div> -->
+<!-- 						<div class="cont"> -->
+<!-- 							<div class="tit_cont"> -->
+<!-- 								<p class="tit">2박3일 63,000원~</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="box_listcont"> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>오픈기간</dt> -->
+<!-- 									<dd class="period">2017.09.22 18시까지</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>사용조건</dt> -->
+<!-- 									<dd style="height: 38px;overflow: hidden;">만 26세 이상/10회 이상 전용<br> -->
+<!-- 54시간 전용, 대여요금 13% 할인</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>남은수량</dt> -->
+<!-- 									<dd class="count"> -->
 										
-											<strong>4,193</strong>개 남음
+<!-- 											<strong>2,652</strong>개 남음 -->
 										
-										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a>
-									</dd>
-									<dd>
-										<div class="more_layer">
-											<div class="coupon-info" style="height:290px;overflow:auto;">
+<!-- 										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a> -->
+<!-- 									</dd> -->
+<!-- 									<dd> -->
+<!-- 										<div class="more_layer"> -->
+<!-- 											<div class="coupon-info" style="height:290px;overflow:auto;"> -->
 												
-												<dl style="margin-bottom: 5px;">
-	<dt>대여/반납 가능 조건</dt>
-	<dd>최소 2시간 예약 시 사용 가능<br>
-주중 전용 (일 19:00~금 19:00)
-</dd>
-</dl>
-
-<dl style="margin-bottom: 5px;">
-	<dt>존 제한</dt>
-<dd>신규존(N) 예약 시 사용 가능<br>
-제주공항 쏘카존 제외</dd>
-</dl>
+<!-- 												<dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>이용 대상</dt> -->
+<!-- 	<dd>'만 26세 이상' 또는 '10회 탑승 뱃지' 보유 회원</dd> -->
+<!-- </dl> -->
 
 
-<dl style="margin-bottom: 5px;">
-	<dt>기타</dt>
-	<dd>이 쿠폰은 예고없이 종료될 수 있습니다</dd>
-</dl>
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차량 이용 가능 시간</dt> -->
+<!-- 	<dd>2017년 9월 24일 24시까지</dd> -->
+<!-- </dl> -->
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>대여/반납 가능 조건</dt> -->
+<!-- 	<dd> -->
+<!-- 최소 54시간~최대 71시간 예약 시 사용 가능 -->
+<!-- </dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>존 제한</dt> -->
+<!-- 	<dd>제주공항 쏘카존 제외</dd> -->
+<!-- </dl> -->
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차종제한</dt> -->
+<!-- 	<dd>모닝/스파크/레이/엑센트/프라이드/아반떼/K3/K5/LF쏘나타/SM5/말리부/그랜저/올란도/투싼/티볼리/트랙스/스포티지/QM3 전용</dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>기타</dt> -->
+<!-- 	<dd>쿠폰 사용 시 최초 대여요금에서 최대 13% 할인 혜택이 제공됩니다. <br><br> -->
+
+<!-- 63,000원은 최저가 기준에서의 쿠폰 할인 후 대여요금이며, 실제 예약 시 지역/시간대/차종 별 할인율에 따라 다를 수 있습니다.<br><br> -->
+
+
+<!-- 이 쿠폰은 예고없이 종료될 수 있습니다</dd> -->
+<!-- </dl> -->
 												
-											</div>
-											<a href="javascript:return false;" class="close">닫기</a>
-										</div>
-									</dd>
-								</dl>
-							</div>
-						</div>
-						<div class="box_bottom">
+<!-- 											</div> -->
+<!-- 											<a href="javascript:return false;" class="close">닫기</a> -->
+<!-- 										</div> -->
+<!-- 									</dd> -->
+<!-- 								</dl> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="box_bottom"> -->
 							
-							
-
-							<div class="btn" policy_id="2744"  active_limit="999">
 							
 								
-									<a href="#">쿠폰받기</a>
+									
 								
 							
-							</div>
-						</div>
-					</li>
+<!-- 							<div class="btn downbtn on" policy_id="3128"  active_limit="999"> -->
+							
+								
+<!-- 									<a href="#">쿠폰받기</a> -->
+								
+							
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 				
 					
-						<li class="wait">쿠폰을 기다려주세요</li>
+<!-- 					<li> -->
+<!-- 						<div class="thumb"> -->
+							
+<!-- 								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/f94015fdfe3fe5956318fd346fc27175.png' /> -->
+							
+<!-- 						</div> -->
+<!-- 						<div class="cont"> -->
+<!-- 							<div class="tit_cont"> -->
+<!-- 								<p class="tit">5시간 9,900원</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="box_listcont"> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>오픈기간</dt> -->
+<!-- 									<dd class="period">2017.09.29 12시까지</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>사용조건</dt> -->
+<!-- 									<dd style="height: 38px;overflow: hidden;"><strong style="color:#00d2ff;">미리 예약 가능</strong><br> -->
+<!-- 주중 8시~17시 내 예약 가능</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>남은수량</dt> -->
+<!-- 									<dd class="count"> -->
+										
+<!-- 											<strong>1,406</strong>개 남음 -->
+										
+<!-- 										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a> -->
+<!-- 									</dd> -->
+<!-- 									<dd> -->
+<!-- 										<div class="more_layer"> -->
+<!-- 											<div class="coupon-info" style="height:290px;overflow:auto;"> -->
+												
+<!-- 												<dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차량 이용 가능 시간</dt> -->
+<!-- 	<dd>주중 8:00~17:00</dd> -->
+<!-- </dl> -->
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>대여/반납 가능 조건</dt> -->
+<!-- 	<dd><strong>미리 예약 가능</strong><br> -->
+<!-- 주중 전용 (월 8:00~금 17:00)<br> -->
+<!-- 5시간 예약 시 사용 가능 -->
+<!-- </dd> -->
+<!-- </dl> -->
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>존 제한</dt> -->
+<!-- 	<dd>제주공항 쏘카존 제외</dd> -->
+<!-- </dl> -->
+
+
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>차종제한</dt> -->
+<!-- 	<dd>모닝/스파크/레이/프라이드/엑센트/아반떼/K3/K5/LF쏘나타/SM5/말리부/올란도/티볼리/트랙스/스포티지/QM3/투싼 전용</dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>기타</dt> -->
+<!-- 	<dd>이 쿠폰은 예고없이 종료될 수 있습니다</dd> -->
+<!-- </dl> -->
+												
+<!-- 											</div> -->
+<!-- 											<a href="javascript:return false;" class="close">닫기</a> -->
+<!-- 										</div> -->
+<!-- 									</dd> -->
+<!-- 								</dl> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="box_bottom"> -->
+							
+							
+								
+									
+								
+							
+<!-- 							<div class="btn downbtn on" policy_id="2785"  active_limit="999"> -->
+							
+								
+<!-- 									<a href="#">쿠폰받기</a> -->
+								
+							
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+				
+					
+<!-- 					<li> -->
+<!-- 						<div class="thumb"> -->
+							
+<!-- 								<img src='https://d353obgi8xzt9w.cloudfront.net/coupon/ca9fcd73eabd7c17b28dba593def2a82.png' /> -->
+							
+<!-- 						</div> -->
+<!-- 						<div class="cont"> -->
+<!-- 							<div class="tit_cont"> -->
+<!-- 								<p class="tit">5천원 할인</p> -->
+<!-- 							</div> -->
+<!-- 							<div class="box_listcont"> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>오픈기간</dt> -->
+<!-- 									<dd class="period">2017.09.29 19시까지</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>사용조건</dt> -->
+<!-- 									<dd style="height: 38px;overflow: hidden;">최소 2시간 예약 전용<br> -->
+<!-- 신규존 전용</dd> -->
+<!-- 								</dl> -->
+<!-- 								<dl class="list_cont"> -->
+<!-- 									<dt>남은수량</dt> -->
+<!-- 									<dd class="count"> -->
+										
+<!-- 											<strong>4,193</strong>개 남음 -->
+										
+<!-- 										<a href="javascript: return false;" class="btn_moreview">상세정보보기 &gt;</a> -->
+<!-- 									</dd> -->
+<!-- 									<dd> -->
+<!-- 										<div class="more_layer"> -->
+<!-- 											<div class="coupon-info" style="height:290px;overflow:auto;"> -->
+												
+<!-- 												<dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>대여/반납 가능 조건</dt> -->
+<!-- 	<dd>최소 2시간 예약 시 사용 가능<br> -->
+<!-- 주중 전용 (일 19:00~금 19:00) -->
+<!-- </dd> -->
+<!-- </dl> -->
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>존 제한</dt> -->
+<!-- <dd>신규존(N) 예약 시 사용 가능<br> -->
+<!-- 제주공항 쏘카존 제외</dd> -->
+<!-- </dl> -->
+
+
+<!-- <dl style="margin-bottom: 5px;"> -->
+<!-- 	<dt>기타</dt> -->
+<!-- 	<dd>이 쿠폰은 예고없이 종료될 수 있습니다</dd> -->
+<!-- </dl> -->
+												
+<!-- 											</div> -->
+<!-- 											<a href="javascript:return false;" class="close">닫기</a> -->
+<!-- 										</div> -->
+<!-- 									</dd> -->
+<!-- 								</dl> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="box_bottom"> -->
+							
+							
+
+<!-- 							<div class="btn" policy_id="2744"  active_limit="999"> -->
+							
+								
+<!-- 									<a href="#">쿠폰받기</a> -->
+								
+							
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+				
+					
+<!-- 						<li class="wait">쿠폰을 기다려주세요</li> -->
 					
 				</ul>
 				

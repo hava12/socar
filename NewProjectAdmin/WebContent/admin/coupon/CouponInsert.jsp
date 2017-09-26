@@ -305,6 +305,25 @@
 					        			<input type="radio" name="cou_only_new" style="margin-left: 50px;" value="n">아니오</input>
 					      	  		</td>
 					      	  </tr>	
+					      	  <tr>
+					      	  		<td><label>쿠폰발급가능시간</label></td>
+					      	  		<td>
+					      	  			<div class="col-xs-5">
+								        <input type="text" class="form-control"  name="cou_c_start" id="cou_start"/>
+								     	</div>
+								     	<p class="col-xs-1">시</p>
+					      	  		</td>
+					      	  </tr>
+					      	  <tr>
+					      	  		<td><label>쿠폰발급끝시간</label></td>
+					      	  		<td>
+					      	  			<div class="col-xs-5">
+								        <input type="text" class="form-control"  name="cou_c_end" id="cou_end"/>
+								     	</div>
+								     	<p class="col-xs-1">시</p>
+					      	  		</td>
+					      	  </tr>
+					      	  
 					      </tbody>
 					    
 					       </table>

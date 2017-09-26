@@ -1479,12 +1479,16 @@ function auth_confirm(res) {
 									<td>
 										<input type="hidden" class="license_loc" value="${dto.mem_c_num}" />
 										<select id="license_loc" name="licanse_loc" style="width:108px">
-											<option value="${fn:substring(dto.mem_c_num,0,2)}">${fn:substring(dto.mem_c_num,0,2)}</option>
+											<c:set var="mem_c_num_code_f" value="${fn:substring(dto.mem_c_num,0,2)}" />
+											<c:set var="mem_c_num_length" value="${fn:length(dto.mem_c_num)}" />
+											<c:set var="mem_c_num_code_l" value="${fn:substring(dto.mem_c_num,3,mem_c_num_length)}" />
+											
+											<option value="${mem_c_num_code_f}">${mem_c_num_code_f}</option>
 										</select>
-										<input id="license_num1" maxlength="2" type="text" class="input" style="width:30px" value="${fn:substring(dto.mem_c_num,3,5)}" />
-										<input id="license_num2" maxlength="6" type="text" class="input" style="width:50px" value="${fn:substring(dto.mem_c_num,6,10)}" />
-										<input id="license_num3" maxlength="2" type="text" class="input" style="width:30px" value="${fn:substring(dto.mem_c_num,11,13)}" />
-										<em style='font-size: 12px; color:#999;'>* 지역란 숫자선택 가능</em>
+										<input id="license_num1" maxlength="2" type="text" class="input" style="width:30px" value="${fn:split(mem_c_num_code_l,'-')[0]}" />
+										<input id="license_num2" maxlength="6" type="text" class="input" style="width:50px" value="${fn:split(mem_c_num_code_l,'-')[1]}" />
+										<input id="license_num3" maxlength="2" type="text" class="input" style="width:30px" value="${fn:split(mem_c_num_code_l,'-')[2]}" />
+										<em style='font-size: 12px; color:#999;'>${mem_c_num_length }* 지역란 숫자선택 가능</em>
 									</td>
 								</tr>
 								<tr>

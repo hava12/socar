@@ -13,6 +13,7 @@ import member.service.CardDto;
 import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.impl.Simple_MemServiceImpl;
+import mypage.service.CouponDto;
 import mypage.service.impl.MyPageServiceImpl;
 
 @Controller
@@ -64,8 +65,22 @@ public class MyPageController {
 	public String mypagecoupon() throws Exception{
 		return "/mypage/Mypagecoupon";
 	}
+	
+	
+	
+	//쿠폰 북으로 가기
 	@RequestMapping("/Mypage/Couponbook.do")
-	public String couponbook() throws Exception{
+	public String couponbook(Model model) throws Exception{
+		
+		List<CouponDto> list = null;
+		
+		
+		list = service.goCouponBook();
+		
+		model.addAttribute("list",list);
+		
+		
+		
 		return "/mypage/Couponbook";
 	}
 }

@@ -1,7 +1,8 @@
-package coupon.service;
+package mypage.service;
 
 public class CouponDto {
 
+	
 	private String cou_code;
 	private String cou_name;
 	private String cou_desc;
@@ -16,17 +17,28 @@ public class CouponDto {
 	private String cou_c_start;
 	private String cou_c_end;
 	
-	
 	//효율성 위한 변수 
 	
-	private int cou_create_count;
+		private int cou_create_count;
+		
+	
+	
+	
 	
 	
 	//게터 세터
 	
-
+		
+		
+		
 	public String getCou_code() {
 		return cou_code;
+	}
+	public int getCou_create_count() {
+		return cou_create_count;
+	}
+	public void setCou_create_count(int cou_create_count) {
+		this.cou_create_count = cou_create_count;
 	}
 	public String getCou_c_start() {
 		return cou_c_start;
@@ -39,12 +51,6 @@ public class CouponDto {
 	}
 	public void setCou_c_end(String cou_c_end) {
 		this.cou_c_end = cou_c_end;
-	}
-	public int getCou_create_count() {
-		return cou_create_count;
-	}
-	public void setCou_create_count(int cou_create_count) {
-		this.cou_create_count = cou_create_count;
 	}
 	public void setCou_code(String cou_code) {
 		this.cou_code = cou_code;
@@ -91,6 +97,7 @@ public class CouponDto {
 	public void setCou_minuse(String cou_minuse) {
 		this.cou_minuse = cou_minuse;
 	}
+
 	public java.util.Date getCou_exp() {
 		return cou_exp;
 	}
@@ -109,8 +116,6 @@ public class CouponDto {
 	public void setCou_only_new(String cou_only_new) {
 		this.cou_only_new = cou_only_new;
 	}
-	
-	
 	
 	
 }
