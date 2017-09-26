@@ -55,4 +55,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.selectCouponCount(smem_id);
 	}
 
+
+	@Override
+	public int couponAlreadyHave(Map map) throws Exception {
+		return dao.couponAlreadyHave(map);
+	}
+
 }

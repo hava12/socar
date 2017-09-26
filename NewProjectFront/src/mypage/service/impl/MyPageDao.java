@@ -73,5 +73,11 @@ public class MyPageDao implements MyPageService {
 	public int selectCouponCount(String smem_id) throws Exception {
 		return template.selectOne("selectCouponCount", smem_id);
 	}
+
+
+	@Override
+	public int couponAlreadyHave(Map map) throws Exception {
+		return template.selectOne("couponAlreadyHave",map);
+	}
 	
 }

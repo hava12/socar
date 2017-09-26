@@ -41,5 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCouponCount" parameterType="java.lang.String" resultType="int">
 		SELECT COUNT(*) FROM COU_ISSUE CI WHERE SMEM_ID=#{smem_id} AND (SELECT COUNT(*) FROM COU_USE CU WHERE SMEM_ID=#{smem_id} AND CI.COU_I_CODE=CU.COU_I_CODE)=0
 	</select>
+	<select id="couponAlreadyHave" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM COU_ISSUE CI JOIN COU_CREATE CC ON CI.COU_C_CODE=CC.COU_C_CODE WHERE CI.SMEM_ID=#{smem_id} AND CC.COU_CODE=#{cou_code}
+	</select>
 	
 </mapper>

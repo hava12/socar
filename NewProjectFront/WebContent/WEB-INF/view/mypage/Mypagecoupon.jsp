@@ -122,14 +122,14 @@ $(function(){
                 <ul class="lnb">
                 <li><a href="<c:url value='/Mypage/Mypage.do'/>" title="내 정보" class="lnb1">내 정보</a></li>
                 <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
-                <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>${couponCount}</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>${couponCout}</span></a></li>
                 <li><a href="<c:url value='/Mypage/Mypagepayment.do'/>" title="결제내역" class="lnb5">결제내역</a></li>
                 </ul>
                 <!-- //lnb -->
 
 				<div class="section">
 					<div class="group">
-						<h3><img src="${pageContext.request.contextPath}/template/image/coupon_txt1.gif" alt="내 쿠폰" /> <span>0</span> <img src="${pageContext.request.contextPath}/template/image/coupon_txt2.gif" alt="개" /></h3>
+						<h3><img src="${pageContext.request.contextPath}/template/image/coupon_txt1.gif" alt="내 쿠폰" /> <span>${couponCount}</span> <img src="${pageContext.request.contextPath}/template/image/coupon_txt2.gif" alt="개" /></h3>
 
 						<p class="coupon-add"><a href="#" class="couponAddB"><img src="${pageContext.request.contextPath}/template/image/btn_coupon.gif" alt="쿠폰 등록하기" /></a></p>
 

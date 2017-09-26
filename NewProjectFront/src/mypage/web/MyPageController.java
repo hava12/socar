@@ -140,6 +140,8 @@ public class MyPageController {
 	@ResponseBody
 	@RequestMapping(value="/Mypage/CouponIssueToMem.do",produces="text/html;charset=UTF-8")
 	public String couponIssueToMem(HttpServletRequest req) throws Exception{
+
+		JSONObject json = new JSONObject();
 		
 		
 		String smem_id = req.getSession().getAttribute("smem_id").toString();
@@ -153,11 +155,18 @@ public class MyPageController {
 		System.out.println(map.get("smem_id"));
 		System.out.println(map.get("cou_code"));
 		
+		affected = service.couponAlreadyHave(map);
+		
+		if(affected >= 1) {
+
+			json.put("result", "이미 발급받은 쿠폰입니다.");
+			return json.toJSONString();
+		}
+		
+		
 		Cou_createDto c_c_dto = null;
 		
 		c_c_dto = service.selectTopOneC_C(map.get("cou_code").toString());
-		
-		JSONObject json = new JSONObject();
 		
 		if(c_c_dto == null) {
 			json.put("result", "쿠폰이 모두 소진되었습니다.");
@@ -168,7 +177,7 @@ public class MyPageController {
 		map.put("cou_c_code",c_c_dto.getCou_c_code());
 		affected = service.couponIssueToMem(map);
 
-		json.put("result", affected==1?"입력 성공":"입력 실패");
+		json.put("result", affected==1?"쿠폰이 발급되었습니다!":"쿠폰 발급 실패");
 		
 		return json.toJSONString();
 	}

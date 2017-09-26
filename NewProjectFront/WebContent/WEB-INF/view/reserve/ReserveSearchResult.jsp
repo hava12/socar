@@ -42,14 +42,14 @@
 		<title>대한민국 1등 카셰어링 쏘카</title>
 
 		<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
-		<script type="text/javascript" src="/template/asset/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="/template/asset/js/jquery.banner.js"></script>
-		<script type="text/javascript" src="/template/asset/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="/template/asset/js/ssun.js?1505961969"></script>
-		<script type="text/javascript" src="/template/asset/js/json3.min.js?1505961969"></script>
-		<script type="text/javascript" src="/template/asset/js/common.js?1505961969"></script>
-		<script type="text/javascript" src="/template/asset/js/day-picker.js?1505961969"></script>
-		<script type="text/javascript" src="/template/asset/js/jquery.block.ui.min.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505961969"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -65,10 +65,14 @@
 <link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/jquery-ui.css' />
 <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" /> -->
 <link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/jquery.mCustomScrollbar.css' />
-<script src="/template/reservation/../asset/js/jquery-ui.js"></script>
-<script src="/template/reservation/../asset/js/jquery-collision.js?1505961969"></script>
-<script type="text/javascript" src="/template/reservation/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="/template/reservation/../asset/js/common_reservation.js?1505961969"></script>
+
+
+<script src="${pageContext.request.contextPath}/template/js/jquery-ui.js"></script>
+<script src="//web-assets.socar.kr/template/reservation/../asset/js/jquery-collision.js?1505961969"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/reservation/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/reservation/../asset/js/common_reservation.js?1505961969"></script>
+
+
 <style type="text/css">
 .list .section {cursor:pointer}
 .car_class_item {display:block; height: 35px; color: #333; line-height: 36px; padding-left: 13px}
@@ -1750,12 +1754,9 @@ $(function(){
 
 									<div class='rvBtn '>
 										
-										<a id="round" class="btn_reserve" title=''
-											
-												
-													href="#require_login"
-												
-											><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_list_reservation.gif' alt="예약" /></a>
+										<a id="round" class="btn_reserve" title='' href="#require_login">
+											<img src='//web-assets.socar.kr/template/asset/images/reservation/btn_list_reservation.gif' alt="예약" />
+										</a>
 										<em style="display:none;">5237</em>
 										<em style="display:none;">8471</em>
 									</div>
@@ -3444,8 +3445,8 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="/template/./asset/js/kakao.min.js?1505961969" charset="utf-8"></script>
-<script type="text/javascript" src="/template/./asset/js/sns_interlocking.js?1505961969" charset="utf-8"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/./asset/js/kakao.min.js?1505961969" charset="utf-8"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/./asset/js/sns_interlocking.js?1505961969" charset="utf-8"></script>
 
 
 			<!-- 쏘카존 -->
