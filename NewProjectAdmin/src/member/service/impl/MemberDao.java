@@ -132,6 +132,7 @@ public class MemberDao implements MemberService {
 		return dto;
 	}//////////////////////////////////////////////////////////////////////
 
+	//so회원관리리스트
 	@Override
 	public List<MemDto> selectMemList(int start,int end){
 		List<MemDto> list = new Vector<MemDto>();
@@ -156,10 +157,10 @@ public class MemberDao implements MemberService {
 				dto.setMem_c_expdate(rs.getDate(8));
 				dto.setMem_c_idate(rs.getDate(9));
 				dto.setMem_gender(rs.getString(10));
-				dto.setSmem_name(rs.getString(11));
-				dto.setSmem_tel(rs.getString(12));
-				dto.setSmem_pwd(rs.getString(13));
-				dto.setSmem_date(rs.getString(14));
+				dto.setSmem_name(rs.getString(12));
+				dto.setSmem_tel(rs.getString(13));
+				dto.setSmem_pwd(rs.getString(14));
+				dto.setSmem_date(rs.getString(15));
 				list.add(dto);
 			}
 			} catch (Exception e) {e.printStackTrace();
