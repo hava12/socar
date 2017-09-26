@@ -10,6 +10,10 @@ public interface MyPageService {
 	
 	public List<CouponDto> goCouponBook() throws Exception;
 	
-	
+	public List<CouponDto> myPageCouponBook(String smem_id) throws Exception;
+
+	public int couponIssueToMem(java.util.Map map) throws Exception; 
+
+	public Cou_createDto selectTopOneC_C(String cou_code) throws Exception;
 	
 }

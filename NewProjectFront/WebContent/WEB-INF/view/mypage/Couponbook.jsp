@@ -91,12 +91,6 @@ $(document).ready(function() {
 $(function() {
 	
 	
-	var coupon_issue = function(cou_code){
-		$.ajax(){
-			
-		}
-	}
-	
 	
 	$(".btn_moreview").click(function(){
 		var moreLayer = $(this).parent().next().find(".more_layer");
@@ -129,39 +123,25 @@ $(function() {
 	});
 
 	$(".downbtn").click(function() {
-	
-
-		if($(this).hasClass('soldout')) {
-			alert("쿠폰이 모두 소진되었습니다.");
-			return false;
-		}
-
-		if($(this).hasClass('off')) {
-			alert("조금만 기다려주세요! 오픈시간이 되지 않은 쿠폰입니다.\n기타 궁금하신 사항이 있으시면 고객센터에 문의해 주세요.");
-			return false;
-		}
-
-		if($(this).hasClass('close')) {
-			alert("이미 마감된 쿠폰입니다.");
-			return false;
-		}
-
-		if($(document).data('disabled')) {
-			alert('쿠폰을 다운받는 중입니다.');
-			return false;
-		}
-
-		var policyId		= $(this).attr("policy_id");
-		var owned			= $(this).attr("owned");
-		var active_limit	= $(this).attr("active_limit");
-
-		if(Number(owned) >= Number(active_limit)) {
-			alert("이미 해당 쿠폰을 받으셨습니다. 마이페이지-내쿠폰에서 확인해주세요.");
-			return false;
-		}
-
 		
-
+		
+		
+		
+		var cou_code = $(this).attr("id");
+ 		$.ajax({
+			type: 'POST',
+			url: "<c:url value='/Mypage/CouponIssueToMem.do' />",
+			data:{cou_code : cou_code},
+			dataType:'json',
+			success : function(json){
+				
+			},
+			error:function(){
+				alert("에러 발생");
+			}
+			
+			
+		});
 	
 		return false;
 	});
@@ -282,7 +262,7 @@ $(function() {
 								
 							
 							<div class="btn downbtn" id="${item.cou_code}"  active_limit="999">						
-									<a>쿠폰받기</a>
+									<a href="#">쿠폰받기</a>
 							</div>
 						</div>
 					</li>
@@ -663,29 +643,29 @@ $(function() {
 					
 				</ul>
 				
-					<img src='//web-assets.socar.kr/template/asset/images/couponbook/freecoupon.jpg' style="width: 100%; cursor: pointer; margin-bottom: 64px;" onclick="quick_invite();"/>
+					<img src='${pageContext.request.contextPath}/template/image/freecoupon.jpg' style="width: 100%; cursor: pointer; margin-bottom: 64px;" onclick="quick_invite();"/>
 				</div>
-				<img src='//web-assets.socar.kr/template/asset/images/couponbook/title_coupon_app.png' style="width: 263px" alt="앱에서 쿠폰사용하기" />
+				<img src='${pageContext.request.contextPath}/template/image/title_coupon_app.png' style="width: 263px" alt="앱에서 쿠폰사용하기" />
 				<div class="descript_wrapper">
 					<div class="img_wrapper mobile">
-						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_mobile1.png' style="width: 100%" />
+						<img src='${pageContext.request.contextPath}/template/image/coupon_mobile1.png' style="width: 100%" />
 					</div>
 					<div class="img_wrapper mobile">
-						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_mobile2.png' style="width: 100%" />
+						<img src='${pageContext.request.contextPath}/template/image/coupon_mobile2.png' style="width: 100%" />
 					</div>
 				</div>
-				<img src='//web-assets.socar.kr/template/asset/images/couponbook/title_coupon_web.png' style="width: 350px" alt="홈페이지에서 쿠폰사용하기" /><br/>
+				<img src='${pageContext.request.contextPath}/template/image/title_coupon_web.png' style="width: 350px" alt="홈페이지에서 쿠폰사용하기" /><br/>
 				<div class="descript_wrapper">
 					<div class="img_wrapper web">
-						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_web1.png' style="width: 100%" />
+						<img src='${pageContext.request.contextPath}/template/image/coupon_web1.png' style="width: 100%" />
 						<a href="#" id="mycoupon" class="btn_01">내 쿠폰 확인하기</a>
 					</div>
 					<div class="img_wrapper web">
-						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_web2.png' style="width: 100%;" />
+						<img src='${pageContext.request.contextPath}/template/image/coupon_web2.png' style="width: 100%;" />
 						<a href="https://www.socar.kr/reserve" class="btn_02">쏘카 예약 바로가기</a>
 					</div>
 				</div>
-				<img src='//web-assets.socar.kr/template/asset/images/couponbook/title_use_notice.png' style="width: 274px" alt="쿠폰 사용시 유의사항"/>
+				<img src='${pageContext.request.contextPath}/template/image/title_use_notice.png' style="width: 274px" alt="쿠폰 사용시 유의사항"/>
 				<div class="descript_wrapper">
 					<ul class="notice">
 						<li>• 쿠폰은 <em>최초 대여요금에만 적용</em>됩니다. (보험료/주행요금/연장 대여요금에 적용 불가)</li>
@@ -707,7 +687,7 @@ $(function() {
 
 /* aside */
 div.aside{position:fixed; top:111px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
-div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
+div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('${pageContext.request.contextPath}/template/image/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
 div.aside a.quick1{background-position:-1px -76px;}
 div.aside a.quick2{background-position:-1px -151px;}
 div.aside a.quick3{background-position:-1px -226px;} 
@@ -785,7 +765,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
 				</div>
 				<div id="member_card_regist_indicator" style="display:none;
-					background:url('//web-assets.socar.kr/template/asset/images/common/loading.gif') no-repeat 50% 50%;
+					background:url('${pageContext.request.contextPath}/template/image/loading.gif') no-repeat 50% 50%;
 					background-size:auto 32px;
 					position:absolute;
 					top:0;bottom:0;left:0;right:0;

@@ -1,6 +1,8 @@
 package mypage.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import member.service.MemDto;
 import member.service.Simple_MemDto;
+import mypage.service.Cou_createDto;
 import mypage.service.CouponDto;
 import mypage.service.MyPageService;
 
@@ -39,6 +42,30 @@ public class MyPageDao implements MyPageService {
 			list = template.selectList("selectCouponList");
 		
 		return list;
+	}
+
+
+	@Override
+	public List<CouponDto> myPageCouponBook(String smem_id) throws Exception {
+		
+		List<CouponDto> list = null;
+				list = template.selectList("selectMyCouponBook",smem_id);
+		
+		return list;
+	}
+
+
+	@Override
+	public int couponIssueToMem(Map map) throws Exception {
+		int affected = 0;
+		affected = template.insert("couponIssueToMem",map);
+		return affected;
+	}
+
+
+	@Override
+	public Cou_createDto selectTopOneC_C(String cou_code) throws Exception {
+		return null;
 	}
 	
 }

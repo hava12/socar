@@ -21,10 +21,9 @@ public class CouponDto {
 	
 		private int cou_create_count;
 		
+	//쿠폰 발급
 	
-	
-	
-	
+
 	
 	//게터 세터
 	

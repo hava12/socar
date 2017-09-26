@@ -145,9 +145,45 @@ $(function(){
 							</ul>
 						</div>
 						
-							<div class="result_none">
-								<p>발급된 쿠폰이 없습니다.</p>
-							</div>
+						
+					<!-- 쿠폰 없을 때 -->
+						<div class="result_none">
+							<p>발급된 쿠폰이 없습니다.</p>
+						</div>
+							
+							
+							
+					<!-- 쿠폰 있을 때 -->
+					<table cellspacing="0" class="cols">
+							<thead>
+							<tr>
+								<th>쿠폰</th>
+								<th>유효기간</th>
+								<th>상태</th>
+							</tr>
+							</thead>
+							<tbody>
+								
+								<tr >
+									<td class="info">
+										<h4 class="coupon_usage">쉿! 쏘친님만 드리는 비밀쿠폰 - 1시간 무료</h4>
+										<div class="desc">쏘친님이 보고 싶어 쏘카가 드리는 몰래 선물♥</div>
+										<ul class="list_info">
+											
+											<li>ㆍ 쿠폰소멸 : 아래 유효기간 경과 시</li>
+											
+											<li>ㆍ 제주공항 쏘카존 제외</li>
+											
+											<li>ㆍ BMW 520d/BMW X3/스팅어 제외</li>
+											
+										</ul>
+									</div>
+									<td class="expire">2017-09-08 ~ 2017-10-08</td>
+									<td class="status">사용가능</td>
+								</tr>
+								
+							</tbody>
+							</table>
 						
 
 					</div>
