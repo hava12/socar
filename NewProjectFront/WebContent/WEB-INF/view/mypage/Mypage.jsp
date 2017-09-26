@@ -1327,7 +1327,7 @@ function auth_confirm(res) {
 
 	<div id="container">
 		<div id="content">
-			<h2><img src="${pageContext.request.contextPath}/template/image/h2.gif" alt="[마이페이지] 내 정보와 예약내역, 쿠폰 등을 확인할 수 있습니다." /></h2>
+			<h2><img src="${pageContext.request.contextPath}/template/image/h22.gif" alt="[마이페이지] 내 정보와 예약내역, 쿠폰 등을 확인할 수 있습니다." /></h2>
 
 			<div class="box lnb">
 

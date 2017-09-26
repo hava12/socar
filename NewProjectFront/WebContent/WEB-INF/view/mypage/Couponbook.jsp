@@ -685,29 +685,29 @@ $(function() {
 					
 				</ul>
 				
-					<img src='${pageContext.request.contextPath}/template/image/freecoupon.jpg' style="width: 100%; cursor: pointer; margin-bottom: 64px;" onclick="quick_invite();"/>
+					<img src='//web-assets.socar.kr/template/asset/images/couponbook/freecoupon.jpg' style="width: 100%; cursor: pointer; margin-bottom: 64px;" onclick="quick_invite();"/>
 				</div>
-				<img src='${pageContext.request.contextPath}/template/image/title_coupon_app.png' style="width: 263px" alt="앱에서 쿠폰사용하기" />
+				<img src='//web-assets.socar.kr/template/asset/images/couponbook/title_coupon_app.png' style="width: 263px" alt="앱에서 쿠폰사용하기" />
 				<div class="descript_wrapper">
 					<div class="img_wrapper mobile">
-						<img src='${pageContext.request.contextPath}/template/image/coupon_mobile1.png' style="width: 100%" />
+						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_mobile1.png' style="width: 100%" />
 					</div>
 					<div class="img_wrapper mobile">
-						<img src='${pageContext.request.contextPath}/template/image/coupon_mobile2.png' style="width: 100%" />
+						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_mobile2.png' style="width: 100%" />
 					</div>
 				</div>
-				<img src='${pageContext.request.contextPath}/template/image/title_coupon_web.png' style="width: 350px" alt="홈페이지에서 쿠폰사용하기" /><br/>
+				<img src='//web-assets.socar.kr/template/asset/images/couponbook/title_coupon_web.png' style="width: 350px" alt="홈페이지에서 쿠폰사용하기" /><br/>
 				<div class="descript_wrapper">
 					<div class="img_wrapper web">
-						<img src='${pageContext.request.contextPath}/template/image/coupon_web1.png' style="width: 100%" />
+						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_web1.png' style="width: 100%" />
 						<a href="#" id="mycoupon" class="btn_01">내 쿠폰 확인하기</a>
 					</div>
 					<div class="img_wrapper web">
-						<img src='${pageContext.request.contextPath}/template/image/coupon_web2.png' style="width: 100%;" />
+						<img src='//web-assets.socar.kr/template/asset/images/couponbook/coupon_web2.png' style="width: 100%;" />
 						<a href="https://www.socar.kr/reserve" class="btn_02">쏘카 예약 바로가기</a>
 					</div>
 				</div>
-				<img src='${pageContext.request.contextPath}/template/image/title_use_notice.png' style="width: 274px" alt="쿠폰 사용시 유의사항"/>
+				<img src='//web-assets.socar.kr/template/asset/images/couponbook/title_use_notice.png' style="width: 274px" alt="쿠폰 사용시 유의사항"/>
 				<div class="descript_wrapper">
 					<ul class="notice">
 						<li>• 쿠폰은 <em>최초 대여요금에만 적용</em>됩니다. (보험료/주행요금/연장 대여요금에 적용 불가)</li>
@@ -729,7 +729,7 @@ $(function() {
 
 /* aside */
 div.aside{position:fixed; top:111px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
-div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('${pageContext.request.contextPath}/template/image/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
+div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
 div.aside a.quick1{background-position:-1px -76px;}
 div.aside a.quick2{background-position:-1px -151px;}
 div.aside a.quick3{background-position:-1px -226px;} 
@@ -807,7 +807,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
 				</div>
 				<div id="member_card_regist_indicator" style="display:none;
-					background:url('${pageContext.request.contextPath}/template/image/loading.gif') no-repeat 50% 50%;
+					background:url('//web-assets.socar.kr/template/asset/images/common/loading.gif') no-repeat 50% 50%;
 					background-size:auto 32px;
 					position:absolute;
 					top:0;bottom:0;left:0;right:0;
