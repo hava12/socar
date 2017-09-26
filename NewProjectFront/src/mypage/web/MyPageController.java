@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -107,30 +108,37 @@ public class MyPageController {
 	
 	
 	@ResponseBody
-	@RequestMapping("/Mypage/CouponIssueToMem.do")
+	@RequestMapping(value="/Mypage/CouponIssueToMem.do",produces="text/html;charset=UTF-8")
 	public String couponIssueToMem(HttpServletRequest req) throws Exception{
 		
+		
 		String smem_id = req.getSession().getAttribute("smem_id").toString();
-		String cou_c_code = req.getParameter("cou_c_code");
+		String cou_code = req.getParameter("cou_code");
 		
 		Map map = new HashMap();
 		map.put("smem_id", smem_id);
-		map.put("cou_c_code", cou_c_code);
+		map.put("cou_code", cou_code);
 		int affected = 0;
 		
 		System.out.println(map.get("smem_id"));
-		System.out.println(map.get("cou_c_code"));
+		System.out.println(map.get("cou_code"));
 		
 		Cou_createDto c_c_dto = null;
 		
-		c_c_dto = service.selectTopOneC_C(map.get("cou_c_code").toString());
-		
-		
-		
-		affected = service.couponIssueToMem(map);
+		c_c_dto = service.selectTopOneC_C(map.get("cou_code").toString());
 		
 		JSONObject json = new JSONObject();
-		json.put("result", affected);
+		
+		if(c_c_dto == null) {
+			json.put("result", "쿠폰이 모두 소진되었습니다.");
+			return json.toJSONString();
+		}
+		
+		
+		map.put("cou_c_code",c_c_dto.getCou_c_code());
+		affected = service.couponIssueToMem(map);
+
+		json.put("result", affected==1?"입력 성공":"입력 실패");
 		
 		return json.toJSONString();
 	}

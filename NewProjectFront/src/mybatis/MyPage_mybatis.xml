@@ -22,8 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    <result property="cou_c_start" column="cou_c_start"/>
 	    <result property="cou_c_end" column="cou_c_end"/>
 	    <result property="cou_create_count" column="cou_create_count"/>
-	    
-
 	</resultMap>
 	
 
@@ -35,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectCouponList" resultMap="CouponDtoDtoResult">
-		SELECT C.*,(SELECT COUNT(*) FROM COU_CREATE CC WHERE CC.COU_CODE=C.COU_CODE) cou_create_count FROM COUPON C WHERE COU_EXP >= SYSDATE
+		SELECT C.*,(SELECT COUNT(*) FROM COU_CREATE CC WHERE CC.COU_CODE=C.COU_CODE AND (SELECT COUNT(*) FROM COU_ISSUE CI WHERE CI.COU_C_CODE=CC.COU_C_CODE)=0 ) cou_create_count FROM COUPON C WHERE COU_EXP >= SYSDATE
 		
 	</select>
 	<select id="selectMyCouponBook" parameterType="java.lang.String" resultMap="CouponDtoDtoResult">
@@ -45,6 +43,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="couponIssueToMem" parameterType="java.util.Map">
 		INSERT INTO COU_ISSUE VALUES('COU_I'||LPAD(COU_I_CODE_SEQ.NEXTVAL,10,'0'),#{cou_c_code},#{smem_id},SYSDATE,SYSDATE+31)
 	</insert>
+	
+	<select id="selectTopOneC_C" parameterType="java.lang.String" resultType="Cou_createDto">
+		SELECT * FROM COU_CREATE CC WHERE COU_CODE=#{cou_code} AND ROWNUM=1 AND (SELECT COUNT(*) FROM COU_ISSUE CI WHERE CI.COU_C_CODE=CC.COU_C_CODE)=0
+	</select>
 	
 	
 </mapper>

@@ -65,7 +65,7 @@ public class MyPageDao implements MyPageService {
 
 	@Override
 	public Cou_createDto selectTopOneC_C(String cou_code) throws Exception {
-		return null;
+		return template.selectOne("selectTopOneC_C",cou_code);
 	}
 	
 }

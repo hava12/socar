@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="CardDto" type="member.service.CardDto"/>
 		<typeAlias alias="Rq_carDto" type="main.service.Rq_carDto"/>
 		<typeAlias alias="CouponDto" type="mypage.service.CouponDto"/>
+		<typeAlias alias="Cou_createDto" type="mypage.service.Cou_createDto"/>
 		
 	</typeAliases>
 

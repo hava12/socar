@@ -135,6 +135,10 @@ $(function() {
 			dataType:'json',
 			success : function(json){
 				
+				
+				alert(json.result);
+				
+				location.reload();
 			},
 			error:function(){
 				alert("에러 발생");
