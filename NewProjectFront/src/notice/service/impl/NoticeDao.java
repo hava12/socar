@@ -1,6 +1,7 @@
 package notice.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,9 +18,20 @@ public class NoticeDao implements NoticeService {
 	private SqlSessionTemplate template;
 
 	@Override
-	public List<Noti_ModelDto> selectNoti_ModelList() throws Exception {
-		List<Noti_ModelDto> list = template.selectList("selectNoti_ModelList");
+	public List<Noti_ModelDto> selectNoti_ModelList(Map map) throws Exception {
+		List<Noti_ModelDto> list = template.selectList("selectNoti_ModelList",map);
 		return list;
+	}
+
+	@Override
+	public Noti_ModelDto selectOne(Map map) throws Exception {
+		
+		return template.selectOne("Noticeone",map);
+	}
+
+	@Override
+	public int getTotalCount(Map map) throws Exception {
+		return template.selectOne("Noticetotal",map); 
 	}
 	
 	

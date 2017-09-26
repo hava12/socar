@@ -144,7 +144,9 @@ $(function(){
 					<!-- //list -->
 					<!-- paginate -->
 					<div class="paginate">
-						&nbsp;<strong>1</strong>&nbsp;<a href="https://www.socar.kr/notice/p/2">2</a>&nbsp;<a href="https://www.socar.kr/notice/p/3">3</a>&nbsp;<a href="https://www.socar.kr/notice/p/4">4</a>&nbsp;<a href="https://www.socar.kr/notice/p/5">5</a>&nbsp;<a href="https://www.socar.kr/notice/p/6">6</a>&nbsp;<a href="https://www.socar.kr/notice/p/7">7</a>&nbsp;<a href="https://www.socar.kr/notice/p/8">8</a>&nbsp;<a href="https://www.socar.kr/notice/p/9">9</a>&nbsp;<a href="https://www.socar.kr/notice/p/10">10</a>&nbsp;<a href="https://www.socar.kr/notice/p/11">11</a>&nbsp;<a href="https://www.socar.kr/notice/p/82">&gt;</a>
+						<tr align="center">
+     						<td>${pagingString}</td>
+   						</tr>
 					</div>
 					<!-- //paginate -->
 					<!-- banner -->
