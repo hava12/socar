@@ -33,14 +33,14 @@
 		<title>대한민국 1등 카셰어링 쏘카</title>
 
 		<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.banner.js"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/ssun.js?1505958998"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/json3.min.js?1505958998"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/common.js?1505958998"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/day-picker.js?1505958998"></script>
-		<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.block.ui.min.js?1505958998"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505963534"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505963534"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -51,7 +51,7 @@
 		ga('send', 'pageview');
 		</script>
 
-<link rel="stylesheet" type="text/css" href="//web-assets.socar.kr/template/member/../asset/css/member.css?v=20170731" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/css/member.css" />
 
 <script type="text/javascript">
 function is_email(a){return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(a);}
@@ -305,7 +305,7 @@ $(function(){
 
 	<div id="container">
 		<div id="content">
-			<h2><img src="/template/member/../asset/images/member/join_h2.gif" alt="회원가입" /></h2>
+			<h2><img src="${pageContext.request.contextPath}/template/image/join_h2.gif" alt="회원가입" /></h2>
 			<h3 class="box shadow stepType stepType1 step2">회원정보 입력</h3>
 
 			<div class="boxL">
@@ -314,23 +314,23 @@ $(function(){
 					<input type="hidden" name="base_file" value="sojone_one" />
 					<fieldset>
 						<div class="section">
-							<h4><img src="/template/member/../asset/images/member/join_step2_txt1.gif" alt="회원정보" /></h4>
+							<h4><img src="${pageContext.request.contextPath}/template/image/join_step2_txt1.gif" alt="회원정보" /></h4>
 							<p class="required">
 								<em class="star" title="필수항목"></em> <img src="/template/member/../asset/images/member/join_step2_txt2.gif" alt="표시된 항목은 필수항목이므로 반드시 입력해주시기 바랍니다." />
 							</p>
 							<table cellspacing="0" class="rows">
 							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step2_txt3.gif" alt="이름" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt3.gif" alt="이름" /></th>
 								<td id="user_name">${dto.smem_name}</td>
 							</tr>
 							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step2_txt8.gif" alt="휴대폰 번호" /></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt8.gif" alt="휴대폰 번호" /></th>
 								<td>
 									${dto.smem_tel}
 								</td>
 							</tr>
 							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step2_txt5.gif" alt="아이디 (이메일)" /> <em class="star" title="필수항목"></em></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt5.gif" alt="아이디 (이메일)" /> <em class="star" title="필수항목"></em></th>
 								<td>
 									<input readonly id="email1" type="text" class="input read_only" value="${fn:split(dto.smem_id,'@')[0]}" style="width:108px" /> @
 									<input readonly id="email2" type="text" class="input read_only" value="${fn:split(dto.smem_id,'@')[1]}" style="width:108px" />
@@ -339,7 +339,7 @@ $(function(){
 							</tr>
 						
 							<tr>
-								<th><img src="/template/member/../asset/images/member/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
+								<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt10.gif" alt="주소" /> <em class="star" title="필수항목"></em></th>
 								<td>
 									<input id="zip" name="mem_addr_num" type="text" class="input" style="width:35px" value="" />
 									
@@ -354,7 +354,7 @@ $(function(){
 								</td>
 							</tr>
 							<tr>
-							<th><img src="/template/member/../asset/images/member/join_step2_txt24.gif" alt="주 사용지역" /></th>
+							<th><img src="${pageContext.request.contextPath}/template/image/join_step2_txt24.gif" alt="주 사용지역" /></th>
 								<td>
 									<label for="loc1">
 										<input type="radio" id="loc1" name="mem_mainarea" value="서울" checked="true"/> 서울
@@ -1730,8 +1730,8 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="/template/./asset/js/kakao.min.js?1505958998" charset="utf-8"></script>
-<script type="text/javascript" src="/template/./asset/js/sns_interlocking.js?1505958998" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/image/kakao.min.js?1505958998" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/image/sns_interlocking.js?1505958998" charset="utf-8"></script>
 
 
 			<a href="#" class="close">닫기</a>
@@ -1739,10 +1739,10 @@ $("#requestList .deleteCancel").click(function(){
 	</div>
 </div>
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-<img src='/template/asset/images/daum_close.png' id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1;width:20px;height:20px;" onclick="closeDaumPostcode()" alt="닫기 버튼">
+<img src='${pageContext.request.contextPath}/template/image/daum_close.png' id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1;width:20px;height:20px;" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
 
-<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/template/js/postcode.v2.js"></script>
 <script>
 	// 우편번호 찾기 화면을 넣을 element
 	var element_layer = document.getElementById('layer');

@@ -91,7 +91,7 @@
 
 	<div id="container">
 		<div id="content">
-			<h2><img src='${pageContext.request.contextPath}/template/image/h2.gif' alt="쏘카예약" /></h2>
+			<h2><img src='${pageContext.request.contextPath}/template/image/h222.gif' alt="쏘카예약" /></h2>
 			<div id="zoneNavi">
 				<ul>
 					<li class="bar-short all">전국</li>
