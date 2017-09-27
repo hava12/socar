@@ -113,12 +113,13 @@ function makeExpYear(){
 		output = new StringBuffer();
 
 	var i = year;
-
+	alert(i)
 	for(; i <= expy; i++){
-		output.append('<option value="' + (i+'').substr(2,2) + '">' + i + '년</option>');
+		output.append('<option value="'+(i+'')+'">' + i + '년</option>');
 	}
 
 	$("#exp_y").append(output.toString());
+
 	output.clear();
 
 	return;

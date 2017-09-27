@@ -43,7 +43,7 @@ public class CardInsertController extends HttpServlet {
 		dto.setCard_expdate(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("card_exp_year")+"-"+req.getParameter("card_exp_month")+"-"+req.getParameter("card_exp_date")));
 		
 				if(dto.getCard_type().equals("p")) {
-						dto.setCard_birth(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("card_birth_year")+"-"+req.getParameter("card_birth_month")+"-"+req.getParameter("card_birth_date")));
+						dto.setCard_birth(new SimpleDateFormat("yyMMdd").parse(req.getParameter("card_birth_year")+"-"+req.getParameter("card_birth_month")+"-"+req.getParameter("card_birth_date")).toString());
 						dto.setCard_pwd(req.getParameter("card_pwd_one")+req.getParameter("card_pwd_two"));
 				}
 				

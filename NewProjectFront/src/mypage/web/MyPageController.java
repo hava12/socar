@@ -114,10 +114,7 @@ public class MyPageController {
 	@RequestMapping("/Mypage/Couponbook.do")
 	public String couponbook(HttpServletRequest req, Model model) throws Exception{
 		
-		int couponCount = 0;
-		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
-		model.addAttribute("couponCount",couponCount);
-		
+
 		
 		List<CouponDto> list = null;
 		
@@ -143,7 +140,11 @@ public class MyPageController {
 
 		JSONObject json = new JSONObject();
 		
-		
+		if(req.getSession().getAttribute("smem_id")==null) {
+
+			json.put("result", "우선 로그인 해주세요");
+			return json.toJSONString();
+		}
 		String smem_id = req.getSession().getAttribute("smem_id").toString();
 		String cou_code = req.getParameter("cou_code");
 		

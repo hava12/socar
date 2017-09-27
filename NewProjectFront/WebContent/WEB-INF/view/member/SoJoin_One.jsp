@@ -53,6 +53,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/template/css/member.css" />
 
+<script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script> 
 <script type="text/javascript">
 function is_email(a){return /^([\w!.%+\-])+@([\w\-])+(?:\.[\w\-]+)+$/.test(a);}
 $(function(){

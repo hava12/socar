@@ -109,26 +109,26 @@ public class MemberController {
 	@RequestMapping("/Member/CompleteSoJoin.do")
 	public String completeSoJoin(@RequestParam Map map,Model model) throws Exception{
 		
-//		System.out.println(map.get("smem_id"));
-//		System.out.println(map.get("mem_c_type"));
-//		System.out.println(map.get("mem_c_num"));
-//		System.out.println(map.get("mem_c_idate"));
-//		System.out.println(map.get("mem_c_expdate"));
-//		System.out.println(map.get("mem_gender"));
-//		System.out.println(map.get("card_expdate_y"));
-//		System.out.println(map.get("card_expdate_m"));
-//		System.out.println(map.get("card_type"));
-//		System.out.println(map.get("card_birth"));
-//		System.out.println(map.get("card_pwd"));
-//		System.out.println(map.get("card_c_num"));
-//		System.out.println(map.get("card_default"));
-//		System.out.println(map.get("card_code"));
+		System.out.println(map.get("smem_id"));
+		System.out.println(map.get("mem_c_type"));
+		System.out.println(map.get("mem_c_num"));
+		System.out.println(map.get("mem_c_idate"));
+		System.out.println(map.get("mem_c_expdate"));
+		System.out.println(map.get("mem_gender"));
+		System.out.println(map.get("card_expdate_y"));
+		System.out.println(map.get("card_expdate_m"));
+		System.out.println(map.get("card_type"));
+		System.out.println(map.get("card_birth"));
+		System.out.println(map.get("card_pwd"));
+		System.out.println(map.get("card_c_num"));
+		System.out.println(map.get("card_default"));
+		System.out.println(map.get("card_code"));
 		
 		CardDto c_dto = new CardDto();
 		c_dto.setCard_code(map.get("card_code").toString());
 		c_dto.setSmem_id(map.get("smem_id").toString());
 		Calendar card_expdate = Calendar.getInstance();
-		card_expdate.set(Integer.parseInt(map.get("card_expdate_y").toString()),Integer.parseInt(map.get("card_expdate_y").toString()),1);
+		card_expdate.set(Integer.parseInt(map.get("card_expdate_y").toString()),Integer.parseInt(map.get("card_expdate_m").toString()),1);
 		c_dto.setCard_expdate(card_expdate.getTime());
 		c_dto.setCard_type(map.get("card_type").toString());
 		c_dto.setCard_birth(map.get("card_birth").toString());

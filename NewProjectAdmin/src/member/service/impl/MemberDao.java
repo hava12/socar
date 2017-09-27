@@ -344,8 +344,9 @@ public class MemberDao implements MemberService {
 			dto.setCard_code(rs.getString(1));
 			dto.setSmem_id(rs.getString(2));
 			dto.setCard_expdate(rs.getDate(3));
+			System.out.println(dto.getCard_expdate());
 			dto.setCard_type(rs.getString(4));
-			dto.setCard_birth(rs.getDate(5));
+			dto.setCard_birth(rs.getString(5));
 			dto.setCard_pwd(rs.getString(6));
 			dto.setCard_c_num(rs.getString(7));
 			
@@ -415,7 +416,7 @@ public class MemberDao implements MemberService {
 		psmt.setString(2, dto.getSmem_id());
 		psmt.setDate(3, new java.sql.Date(dto.getCard_expdate().getTime()));
 		psmt.setString(4, dto.getCard_type());
-		psmt.setDate(5, new java.sql.Date(dto.getCard_birth().getTime()));
+		psmt.setString(5, dto.getCard_birth());
 		psmt.setString(6, dto.getCard_pwd());
 		psmt.setString(7, dto.getCard_c_num());
 		affected = psmt.executeUpdate();

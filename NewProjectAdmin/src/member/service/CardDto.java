@@ -6,7 +6,7 @@ public class CardDto {
 	private String smem_id;
 	private java.util.Date card_expdate;
 	private String card_type;
-	private java.util.Date card_birth;
+	private String card_birth;
 	private String card_pwd;
 	private String card_c_num;
 	private String card_default;
@@ -43,10 +43,11 @@ public class CardDto {
 	public void setCard_type(String card_type) {
 		this.card_type = card_type;
 	}
-	public java.util.Date getCard_birth() {
+
+	public String getCard_birth() {
 		return card_birth;
 	}
-	public void setCard_birth(java.util.Date card_birth) {
+	public void setCard_birth(String card_birth) {
 		this.card_birth = card_birth;
 	}
 	public String getCard_pwd() {

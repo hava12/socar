@@ -136,13 +136,12 @@ function goCouponInsert(){
 					      	  		<td>
 					      	  			<div class="col-xs-5">
 					      	  			<select name="cou_code" class="form-control" style="color: black;" id="cou_code_id">
-					      	  					<option value="null"> </option>
 					      	  				<c:forEach items="${list}" var="item">
-					      	  					<c:if test="${not param.cou_code eq item.cou_code}" var="cou_code_same">
-						      	  					<option value="${item.cou_code}">${item.cou_code} - ${item.cou_name}</option>
+					      	  					<c:if test="${param.cou_code eq item.cou_code}" var="cou_code_same">
+						      	  					<option value="${item.cou_code}" selected="selected">${item.cou_code} - ${item.cou_name}</option>
 					      	  					</c:if>
-					      	  					<c:if test="${not cou_code_sale }">
-					      	  						<option value="${item.cou_code}" selected="selected">${item.cou_code} - ${item.cou_name}</option>
+					      	  					<c:if test="${not cou_code_same}">
+					      	  						<option value="${item.cou_code}">${item.cou_code} - ${item.cou_name}</option>
 					      	  					</c:if>
 					      	  					
 					      	  				</c:forEach>

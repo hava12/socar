@@ -25,8 +25,10 @@ public class CouponCreateController extends HttpServlet {
 			try {
 				list = dao.couponList(1,2);
 			} catch (Exception e) {e.printStackTrace();}
-		
+			
+
 			req.setAttribute("list", list);
+
 			
 			req.getRequestDispatcher("/admin/coupon/CouponCreate.jsp").forward(req, resp);
 	}
@@ -44,7 +46,7 @@ public class CouponCreateController extends HttpServlet {
 			dto.setCou_code(req.getParameter("cou_code"));
 		
 			dto.setCou_c_count(Integer.parseInt(req.getParameter("cou_c_count")));
-	
+			
 			try {
 				count = dao.createCoupon(dto);
 			} catch (Exception e) {e.printStackTrace();}
