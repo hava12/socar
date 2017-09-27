@@ -61,4 +61,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.couponAlreadyHave(map);
 	}
 
+
+	@Override
+	public String smem_Verify(String smem_id) throws Exception {
+		return dao.smem_Verify(smem_id);
+	}
+
 }

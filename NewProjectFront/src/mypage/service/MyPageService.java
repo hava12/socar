@@ -22,4 +22,8 @@ public interface MyPageService {
 	public int selectCouponCount(String smem_id) throws Exception;
 	//쿠폰 보유 여부를 알려주는 메소드
 	public int couponAlreadyHave(java.util.Map map) throws Exception; 
+	
+	//본인인증 되었는지 여부 묻는 메소드
+	public String smem_Verify(String smem_id) throws Exception;
+	
 }

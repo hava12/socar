@@ -38,6 +38,10 @@ public class MyPageController {
 		
 		MemDto dto = null;
 		
+		
+		
+		
+		
 		int couponCount = 0;
 		
 		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());

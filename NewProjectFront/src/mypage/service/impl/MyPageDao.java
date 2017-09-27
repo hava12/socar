@@ -79,5 +79,11 @@ public class MyPageDao implements MyPageService {
 	public int couponAlreadyHave(Map map) throws Exception {
 		return template.selectOne("couponAlreadyHave",map);
 	}
+
+
+	@Override
+	public String smem_Verify(String smem_id) throws Exception {
+		return template.selectOne("smem_verify", smem_id);
+	}
 	
 }

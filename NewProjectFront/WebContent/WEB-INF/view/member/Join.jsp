@@ -312,6 +312,7 @@ $(function(){
         	  
             var joinProc = $(this).attr("id");
             var stage = "";
+	          alert("본인인증 메일이 발송됩니다");
             if(joinProc == 'join_continue') {
               ga('send', 'event', 'Join', 'click', 'now',1);
               stage="/Member/SoJoin_One.do";
@@ -511,13 +512,13 @@ function show_policy(){
 	return false;
 }
 
-function validatePhoneNumber(phoneNumber) {
-	if (!/^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/.test(phoneNumber)) {
-		alert('잘못된 휴대폰 번호입니다. 하이픈(-)을 제외한 숫자만 입력해주세요.');
-		return false;
-	}
-	return true;
-}
+// function validatePhoneNumber(phoneNumber) {
+	
+	
+// 	alert("유효성 및 메일 본인인증 함수");
+	
+// 	return true;
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
 	var elmConfirm = document.getElementById('btn_confirm_num');
@@ -540,14 +541,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			<input type="text" id="join_name" name="join_name" class="input" value="" />
 		</dd>
 		<dt><label for="join_email">이메일</label></dt>
-		<dd><input type="text" id="join_email" name="join_email" class="input" value="" /></dd>
-		<dt><label for="join_mobile">휴대폰</label></dt>
-		<dd style="position:relative;">
-			<input type="text" id="join_mobile" name="join_mobile" class="input small_input" value="" />
-			<button id="btn_confirm_num" class="btnVerify">본인인증</button>
+		<dd>
+			<input type="text" id="join_email" name="join_email" class="input" value="" />
 		</dd>
 		<dt class="tip_auth" />
-		<dd class="tip_auth"><div	style="font-size:11px;line-height:24px;color: #999999;text-indent:2px;">휴대폰 인증이 필요합니다.</div></dd>
+		<dd class="tip_auth"><div	style="font-size:11px;line-height:24px;color: #999999;text-indent:2px;">가입 후 본인인증 메일이 발송됩니다.</div></dd>
+		
+		<dt><label for="join_mobile">휴대폰</label></dt>
+		<dd>
+			<input type="text" id="join_mobile" name="join_mobile" class="input" value="" />
+		</dd>
+		
 	</dl>
 	<dl class="mt14" id="password_input" style="display:none;">
 		<dt><label for="upw">비밀번호</label></dt>
