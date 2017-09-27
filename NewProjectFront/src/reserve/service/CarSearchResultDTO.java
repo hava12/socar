@@ -3,7 +3,8 @@ package reserve.service;
 public class CarSearchResultDTO {
 	private String car_name;
 	private String car_img;
-	private String car_price_so;
+	private String car_price_so_wd;
+	private String car_price_so_we;
 	private String car_drive_price;
 	private String car_fuel;
 	private String car_trans;
@@ -13,6 +14,8 @@ public class CarSearchResultDTO {
 	private String car_i_add_option;
 	private String car_nick;
 	private String soz_name;
+	
+
 	
 	public String getCar_name() {
 		return car_name;
@@ -81,11 +84,17 @@ public class CarSearchResultDTO {
 	public void setSoz_name(String soz_name) {
 		this.soz_name = soz_name;
 	}
-	public String getCar_price_so() {
-		return car_price_so;
+	public String getCar_price_so_wd() {
+		return car_price_so_wd;
 	}
-	public void setCar_price_so(String car_price_so) {
-		this.car_price_so = car_price_so;
+	public void setCar_price_so_wd(String car_price_so_wd) {
+		this.car_price_so_wd = car_price_so_wd;
+	}
+	public String getCar_price_so_we() {
+		return car_price_so_we;
+	}
+	public void setCar_price_so_we(String car_price_so_we) {
+		this.car_price_so_we = car_price_so_we;
 	}
 	
 	

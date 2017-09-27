@@ -98,7 +98,7 @@
             
         </div>
 
- 		<div class="col-xs-5 pull-right">
+ 		<!-- <div class="col-xs-5 pull-right">
  	    <div class="box-body">
              <div class="input-group margin">
                  <div class="input-group-btn">
@@ -107,14 +107,24 @@
                          <li><a href="#">아이디검색</a></li>
                          <li><a href="#">이름검색</a></li>
                      </ul>
-                 </div><!-- /btn-group -->
+                 </div>/btn-group
                  <input type="text" class="form-control" />
              <span class="input-group-btn">
                      <button class="btn btn-success btn-info" type="button">검색</button>
              </span>
-             </div><!-- /input-group -->
-         </div><!-- /.box-body -->
-	   </div>
+             </div>
+         </div>
+	   </div> -->
+	   
+	   <form method="post">
+			<select name="searchColumn">
+				<option value="smem_id">아이디</option>
+				<option value="smem_name">이름</option>
+
+			</select> &nbsp; <input type="text" id="tags" size="30" name="searchWord" /><input
+				type="submit" value="검색" />
+		</form>
+		
           <!-- <p style="font-size: 1.3em">1 2 3 4 5 6 7 8 9</p> -->
           <table width="100%">
 		                        <tr align="center">
