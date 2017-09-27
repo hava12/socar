@@ -1740,7 +1740,7 @@ $(function(){
 									
 										<dl>
 											<dt>SO회원 할인가</dt>
-											<dd><strong id="price-s0">${item.car_price_so} 원</strong></dd>
+											<dd><strong id="price-s0">${item.car_price_so_wd} 원</strong></dd>
 										</dl>
 									
 									</div>
