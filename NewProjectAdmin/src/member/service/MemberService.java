@@ -2,13 +2,14 @@ package member.service;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 public interface MemberService {	
 	
 	public int login(AdDto dto) throws Exception;
 	
 	//SimpleMember관련 메소드들
-	public List<SimpleMemDto> selectSimpleMemlist(int start,int end) throws Exception;
+	public List<SimpleMemDto> selectSimpleMemlist(Map<String,Object> map) throws Exception;
 	
 	public SimpleMemDto selectSimpleMemOne(String smem_id) throws Exception;
 	
