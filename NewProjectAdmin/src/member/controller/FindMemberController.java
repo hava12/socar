@@ -41,7 +41,7 @@ public class FindMemberController extends HttpServlet {
 		} catch (Exception e) {e.printStackTrace();}
 		
 		//페이지용 문자열 생성]
-		String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Bbs/Notice.do?");
+		String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Member/FindId.do?");
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pagingString", pagingString);
