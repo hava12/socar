@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import reserve.service.CarSearchResultDTO;
 import reserve.service.ZoneDTO;
+import reserve.service.impl.CarDAO;
 import reserve.service.impl.ZoneDAO;
 
 @Controller
 public class ReserveController {
 	
-	@Resource(name="ZoneDAO")
+	@Resource(name="zoneDAO")
 	private ZoneDAO dao;
+	
+	@Resource(name="carDAO")
+	private CarDAO car_dao;
 	
 	@RequestMapping("/Reserve/Reserve.do")
 	public String reserve(Model model) throws Exception{
@@ -31,7 +35,8 @@ public class ReserveController {
 	public String searchResult(@RequestParam("soz_code") String soz_code, Model model) throws Exception{
 		List<ZoneDTO> list = dao.selectEveryList();
 
-		List<CarSearchResultDTO> car_list = dao.searchResult(soz_code);
+		List<CarSearchResultDTO> car_list = car_dao.car_search_result(soz_code);
+
 		ZoneDTO zone_dto = dao.selectOne(soz_code);
 		
 		model.addAttribute("zone_dto",zone_dto);

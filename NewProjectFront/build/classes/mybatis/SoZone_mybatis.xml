@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SoZone_mybatis">
+	<resultMap id="ZoneDTOResult" type="ZoneDTO">	
+		<result property="soz_code" column="soz_code"/>
+		<result property="soz_name" column="soz_name"/>
+		<result property="soz_loc" column="soz_loc"/>
+		<result property="soz_maxcar" column="soz_maxcar"/>
+		<result property="soz_date" column="soz_date"/>
+		<result property="soz_latitude" column="soz_latitude"/>
+		<result property="soz_longitude" column="soz_longitude"/>
+		<result property="soz_i_car" column="soz_i_car"/>
+	</resultMap>
+
+	<select id="zoneSelectList" parameterType="java.util.Map" resultType="List">
+		SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT S.*,
+		(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND
+		(SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0)
+		AS COUNT FROM SO_ZONE S ORDER BY SOZ_CODE DESC) T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<insert id="zoneInsert" parameterType="ZoneDTO">
+	INSERT INTO SO_ZONE VALUES('SOZ_'||LPAD(SO_ZONE_SEQ.NEXTVAL,5,'0'),#{soz_name},#{soz_loc},#{soz_maxcar},SYSDATE,#{soz_latitude},#{soz_longitude})	
+	</insert>
+	
+	<select id="zoneSelectOne" parameterType="String" resultType="ZoneDTO">
+	SELECT S.*,(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0) AS COUNT FROM SO_ZONE S WHERE SOZ_CODE=#{soz_code}
+	</select>
+	
+	<select id="zoneSelectEveryList" resultMap="ZoneDTOResult">
+	SELECT S.*,(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0) AS SOZ_I_CAR FROM SO_ZONE S ORDER BY SOZ_CODE DESC
+	</select>
+	
+	<delete id="zoneDelete">
+	DELETE SO_ZONE WHERE SOZ_CODE = #{soz_code}
+	</delete>
+	
+	<update id="zoneUpdate" parameterType="ZoneDTO">
+	UPDATE SO_ZONE SET SOZ_NAME=#{soz_name},SOZ_LOC=#{soz_loc},SOZ_MAXCAR=#{soz_maxcar},SOZ_LATITUDE=#{soz_latitude},SOZ_LONGITUDE=#{soz_longitude} WHERE SOZ_CODE=#{soz_code}
+	</update>
+	
+	<select id="zoneTotalRecordCount" resultType="int">
+	SELECT COUNT(*) FROM SO_ZONE
+	</select>
+	
+</mapper>

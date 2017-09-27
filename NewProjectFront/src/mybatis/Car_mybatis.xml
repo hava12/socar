@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.Car_mybatis">
+
+	<resultMap id="CarSearchResultList" type="CarSearchResultDTO">	
+		<result property="car_name" column="car_name"/>
+		<result property="car_img" column="car_img"/>
+		<result property="car_price_so_wd" column="car_price_so_wd"/>
+		<result property="car_price_so_we" column="car_price_so_we"/>
+		<result property="car_drive_price" column="car_drive_price"/>
+		<result property="car_fuel" column="car_fuel"/>
+		<result property="car_trans" column="car_trans"/>
+		<result property="car_i_code" column="car_i_code"/>
+		<result property="car_name_code" column="car_name_code"/>
+		<result property="car_i_safe_option" column="car_i_safe_option"/>
+		<result property="car_i_add_option" column="car_i_add_option"/>
+		<result property="car_nick" column="car_nick"/>
+		<result property="soz_name" column="soz_name"/>
+	</resultMap>
+	
+	<resultMap id="CarDTOList" type="CarDTO">
+		<result property="car_name_code" column="car_name_code"/>
+		<result property="car_type_code" column="car_type_code"/>
+		<result property="car_name" column="car_name"/>
+		<result property="car_img" column="car_img"/>
+		<result property="car_desc" column="car_desc"/>
+		<result property="car_land_price" column="car_land_price"/>
+		<result property="car_jeju_price" column="car_jeju_price"/>
+		<result property="car_price_so_wd" column="car_price_so_wd"/>
+		<result property="car_price_so_we" column="car_price_so_we"/>
+		<result property="car_drive_price" column="car_drive_price"/>
+		<result property="car_com" column="car_com"/>
+		<result property="car_fuel" column="car_fuel"/>
+		<result property="car_trans" column="car_trans"/>
+		<result property="car_max_per" column="car_max_per"/>
+	</resultMap>
+	
+	<resultMap id="CarModelDTOList" type="CarModelDTO">
+		<result property="car_type_code" column="car_type_code"/>
+		<result property="car_type" column="car_type"/>
+		<result property="car_insurance_one_hour" column="car_insurance_one_hour"/>
+		<result property="car_insurance_one_day" column="car_insurance_one_day"/>
+		<result property="car_insurance_two_hour" column="car_insurance_two_hour"/>
+		<result property="car_insurance_two_day" column="car_insurance_two_day"/>
+	</resultMap>
+	
+	<resultMap id="CarIssueDTOList" type="CarIssueDTO">
+		<result property="car_i_code" column="car_i_code"/>
+		<result property="car_name_code" column="car_name_code"/>
+		<result property="soz_code" column="soz_code"/>
+		<result property="car_i_date" column="car_i_date"/>
+		<result property="car_i_safe_option" column="car_i_safe_option"/>
+		<result property="car_i_add_option" column="car_i_add_option"/>
+		<result property="car_nick" column="car_nick"/>
+		<result property="car_i_num" column="car_i_num"/>		
+		<result property="car_land_price" column="car_land_price"/>
+		<result property="car_jeju_price" column="car_jeju_price"/>
+		<result property="car_price_so_wd" column="car_price_so_wd"/>
+		<result property="car_price_so_we" column="car_price_so_we"/>		
+		<result property="car_insurance_one_hour" column="car_insurance_one_hour"/>
+		<result property="car_insurance_one_day" column="car_insurance_one_day"/>
+		<result property="car_insurance_two_hour" column="car_insurance_two_hour"/>
+		<result property="car_insurance_two_day" column="car_insurance_two_day"/>
+	</resultMap>
+	
+	<resultMap id="CarWasteDTOList" type="CarWasteDTO">
+		<result property="car_i_code" column="car_i_code"/>
+		<result property="car_w_date" column="car_w_date"/>
+		<result property="car_w_reason" column="car_i_reason"/>	
+	</resultMap>
+	
+	<select id="carSearchResult" parameterType="String" resultMap="CarSearchResultList">
+		SELECT CAR_NAME, CAR_IMG, CAR_PRICE_SO_WD, CAR_PRICE_SO_WE, CAR_DRIVE_PRICE,CAR_FUEL,CAR_TRANS,B.* FROM CAR C JOIN (SELECT CAR_I_CODE, CAR_NAME_CODE, CAR_I_SAFE_OPTION,CAR_I_ADD_OPTION,CAR_NICK, SOZ_NAME FROM CAR_ISSUE CI JOIN SO_ZONE S ON CI.SOZ_CODE = S.SOZ_CODE WHERE S.SOZ_CODE=#{soz_code}) B ON C.CAR_NAME_CODE = B.CAR_NAME_CODE
+	</select>
+	<select id="selectCarList" parameterType="java.util.Map" resultMap="CarDTOList">
+	SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CAR ORDER BY CAR_NAME_CODE DESC) T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getCarListTotalRecordCount" resultType="int">
+	SELECT COUNT(*) FROM CAR	
+	</select>
+	
+	<select id="carSelectOne" resultType="CarDTO">
+	SELECT * FROM CAR WHERE CAR_NAME_CODE = #{car_name_code}
+	</select>
+	
+	<insert id="carInsert" parameterType="CarDTO">
+	INSERT INTO CAR VALUES('CNC_'||LPAD(CAR_NAME_CODE_SEQ.NEXTVAL,5,'0'),#{car_name_code},#{car_type_code},#{car_name},#{car_img},#{car_desc},#{car_land_price},#{car_jeju_price},#{car_price_so_wd},#{car_price_so_we},#{car_drive_price},#{car_com},#{car_fuel},#{car_trans},#{car_max_per})
+	</insert>
+	
+	<update id="carUpdate" parameterType="CarDTO">
+	UPDATE CAR SET CAR_TYPE_CODE=#{car_type_code},CAR_NAME=#{car_name},CAR_IMG=#{car_img},CAR_DESC=#{car_desc},CAR_LAND_PRICE=#{car_land_price},CAR_JEJU_PRICE=#{car_jeju_price},CAR_PRICE_SO_WD=#{car_price_so_wd},CAR_PRICE_SO_WE=#{car_price_so_we},
+	CAR_DRIVE_PRICE=#{car_drive_price},CAR_COM=#{car_com},CAR_FUEL=#{car_fuel},CAR_TRANS=#{car_trans},CAR_MAX_PER=#{car_max_per} WHERE CAR_NAME_CODE=#{car_name_code}
+	</update>
+	
+	<delete id="carDelete" parameterType="String">
+	DELETE CAR WHERE CAR_NAME_CODE = #{car_name_code}
+	</delete>
+	
+	<select id="carSelectTypeList" parameterType="java.util.Map" resultMap="CarModelDTOList">
+	SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CAR_MODEL) T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getCarTypeTotalRecordCount" resultType="int">
+	SELECT COUNT(*) FROM CAR_MODEL
+	</select>
+	
+	<insert id="carInsertType" parameterType="CarModelDTO">
+	INSERT INTO CAR_MODEL VALUES('C_T_'||LPAD(CAR_TYPE_CODE_SEQ.NEXTVAL,10,'0'),#{car_type},#{car_insurance_one_hour},#{car_insurance_one_day},#{car_insurance_two_hour},#{car_insurance_two_day})
+	</insert>
+	
+	<insert id="carIssue" parameterType="CarIssueDTO">
+	INSERT INTO CAR_ISSUE VALUES('C_T_'||LPAD(CAR_I_CODE_SEQ.NEXTVAL,10,'0'),#{car_name_code},#{soz_code},#{car_i_date},#{car_i_num},#{car_i_safe_option},#{car_i_add_option},#{car_nick})
+	</insert>
+	
+	<select id="carIssueView" parameterType="java.util.Map" resultMap="CarIssueDTOList">
+	SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,
+	CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI 
+	JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE 
+	JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE
+	WHERE SOZ_CODE=#{soz_code} AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0) T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getTotalRecordCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,
+	CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI
+	JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE
+	JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE
+	WHERE SOZ_CODE=#{soz_code} AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0)
+	</select>
+	
+	<insert id="carWaste" parameterType="CarWasteDTO">
+	INSERT INTO CAR_WASTE VALUES(#{car_i_code},#{car_w_date},#{car_w_reason})
+	</insert>
+	
+	<select id="carWasteDTOList" parameterType="java.util.Map" resultMap="CarWasteDTOList">
+	SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CAR_WASTE) T) WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getWasteTotalRecord" resultType="int">
+	SELECT COUNT(*) FROM CAR_WASTE
+	</select>
+	
+	<select id="carWasteView" parameterType="String" resultType="CarWasteDTO">
+	SELECT * FROM CAR_WASTE WHERE CAR_I_CODE=#{car_i_code}
+	</select>
+</mapper>

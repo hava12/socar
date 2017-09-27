@@ -23,7 +23,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="Rq_carDto" type="main.service.Rq_carDto"/>
 		<typeAlias alias="CouponDto" type="mypage.service.CouponDto"/>
 		<typeAlias alias="Cou_createDto" type="mypage.service.Cou_createDto"/>
-		
+		<typeAlias alias="ZoneDTO" type="reserve.service.ZoneDTO"/>
+		<typeAlias alias="CarDTO" type="reserve.service.CarDTO"/>
+		<typeAlias alias="CarIssueDTO" type="reserve.service.Car_IssueDTO"/>
+		<typeAlias alias="CarModelDTO" type="reserve.service.Car_ModelDto"/>
+		<typeAlias alias="CarWasteDTO" type="reserve.service.Car_WasteDTO"/>
+		<typeAlias alias="CarSearchResultDTO" type="reserve.service.CarSearchResultDTO"/>
 	</typeAliases>
 
 	
@@ -47,6 +52,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/Member_mybatis.xml"/>
 		<mapper resource="mybatis/SocarQuick_mybatis.xml"/>
 		<mapper resource="mybatis/MyPage_mybatis.xml"/>
+		<mapper resource="mybatis/SoZone_mybatis.xml"/>
+		<mapper resource="mybatis/Car_mybatis.xml"/>
 	</mappers>
 
 
