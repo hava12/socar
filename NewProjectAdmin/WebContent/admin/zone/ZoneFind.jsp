@@ -40,21 +40,19 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/parallax-slider/modernizr.custom.28468.js">
     </script>
 	<script>
-		function find(sel) {
-			var menu = document.getElementById("menu");
-			if(sel=="name"){
-				menu.innerHTML = "쏘카존검색<span class='fa fa-caret-down'></span>";
-				menu.value="soz_name";
-			}
-			else if(sel=="loc"){
-				menu.innerHTML = "위치검색<span class='fa fa-caret-down'></span>";
-				menu.value="soz_loc";
-			}	
-		}	
-		function search() {
-			var menu = document.getElementById("menu");
-			location.href="<c:url value='/Member/CardSearch.do'/>?where="+menu.value+"&mem="+document.getElementById("searchtext").value;
+		
+	function find(sel) {
+		var menu = document.getElementById("menu");
+		if (sel == "id") {
+			menu.innerHTML = "쏘카존 검색<span class='fa fa-caret-down' value='soz_name'></span>";
+			abc.value="soz_name"
+		} else if (sel == "name") {
+			menu.innerHTML = "위치 검색<span class='fa fa-caret-down' value='soz_loc'></span>";
+			abc.value="soz_loc"
 		}
+	}
+	
+	
 		function pushparent(id,name) {
 			
 			opener.document.getElementById("zone").value = name;
@@ -113,23 +111,27 @@
             
         </div>
 
+ 		<form method="post">
  		<div class="col-xs-5 pull-right">
- 	    <div class="box-body">
+ 	     <div class="box-body">
              <div class="input-group margin">
                  <div class="input-group-btn">
-                     <button type="button" class="btn btn-info dropdown-toggle" value="soz_name" id="menu" data-toggle="dropdown">쏘카존검색<span class="fa fa-caret-down"></span></button>
-                     <ul class="dropdown-menu">
-                         <li><a onclick="find('name')">쏘카존검색</a></li>
-                         <li><a onclick="find('loc')">위치검색</a></li>
+                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
+                     <ul id="menu" class="dropdown-menu" name="searchColumn">
+                         <li><a onclick="find('id')" >쏘카존 검색</a></li>
+                         <li><a onclick="find('name')">위치 검색</a></li>
                      </ul>
-                 </div><!-- /btn-group -->
-                 <input type="text" class="form-control" id="searchtext" style="color: black;" />
-             <span class="input-group-btn">
-                     <button class="btn btn-success btn-info" onclick="search()" type="button">검색</button>
-             </span>
-             </div><!-- /input-group -->
-         </div><!-- /.box-body -->
+                 </div>
+                 <input type="text" class="form-control" name="searchWord"/>
+             	<span class="input-group-btn">
+             		<input type="hidden" name="searchColumn" id="abc"/>
+                     <button class="btn btn-success btn-info" type="submit" id="menu" value="검색">검색</button>
+            	 </span>
+             </div>
+         </div>
 	   </div>
+	   
+	   </form>
           <table width="100%">
 		                        <tr align="center">
 		                          <td>${pagingString}</td>

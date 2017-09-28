@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.naming.InitialContext;
@@ -38,15 +39,25 @@ public class BbsDao implements BBSService {
 	
 	
 	@Override
-	public List<NoticeDto> selectNoticeList(int start,int end){
+	public List<NoticeDto> selectNoticeList(Map<String, Object> map){
 		/*String sql="SELECT * FROM NOTICE ORDER BY NOT_NO DESC" ;*/
+			String sql = "";
 		
-		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM NOTICE ORDER BY NOT_NO DESC) T) WHERE R BETWEEN ? AND ?";
+		if (map.get("searchWord") != null) {
+			sql +="SELECT * FROM (";
+		}
+		
+			sql +="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM NOTICE ORDER BY NOT_NO DESC) T) WHERE R BETWEEN ? AND ?";
+		
+		if (map.get("searchWord") != null) {
+			sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
+		
 		List<NoticeDto> list = new Vector<NoticeDto>();
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, start);
-			psmt.setInt(2, end);
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 			rs = psmt.executeQuery();
 			
 			while(rs.next()){
@@ -184,9 +195,12 @@ public class BbsDao implements BBSService {
 			}////////////////////update
 			
 			//총 레코드 수 얻기용]
-			public int getTotalRecordCount(){
+			public int getTotalRecordCount(Map<String, Object> map){
 				int total =0;
 				String sql="SELECT COUNT(*) FROM NOTICE";
+				if (map.get("searchWord") != null) {
+					sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 				try {
 					psmt = conn.prepareStatement(sql);
 					rs = psmt.executeQuery();
@@ -197,14 +211,25 @@ public class BbsDao implements BBSService {
 				return total;
 			}///////////////////getTotalRecordCount
 			@Override
-			public List<RqCarDTO> select_RqCarList(int start,int end){
+			public List<RqCarDTO> select_RqCarList(Map<String,Object> map){
 				List<RqCarDTO> list = new Vector<RqCarDTO>();
-				/*SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE*/
-				String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE) T) WHERE R BETWEEN ? AND ?";
+				String sql ="";
+				// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += "SELECT * FROM (";
+				}
+				
+				sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE) T) WHERE R BETWEEN ? AND ?";
+				
+				// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 				try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setInt(1,start);
-				psmt.setInt(2,end);
+				psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+				psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
 				rs = psmt.executeQuery();
 				
 				while(rs.next()){
@@ -225,9 +250,13 @@ public class BbsDao implements BBSService {
 			}
 
 			//총 레코드 수 얻기용]
-			public int getRqTotalRecordCount(){
+			public int getRqTotalRecordCount(Map<String,Object> map){
 				int total =0;
 				String sql="SELECT COUNT(*) FROM (SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE)";
+				// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 				try {
 					psmt = conn.prepareStatement(sql);
 					rs = psmt.executeQuery();
@@ -241,15 +270,24 @@ public class BbsDao implements BBSService {
 
 
 			@Override
-			public List<RqLocDTO> select_RqLocList(int start,int end){
+			public List<RqLocDTO> select_RqLocList(Map<String, Object> map){
 				List<RqLocDTO> list = new Vector<RqLocDTO>();
-				/*SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE*/
+				String sql = "";
+				if (map.get("searchWord") != null) {
+					sql += "SELECT * FROM (";
+				}
 				
-				String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE) T) WHERE R BETWEEN ? AND ?";
+				sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE) T) WHERE R BETWEEN ? AND ?";
+				
+				// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 				try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setInt(1, start);
-				psmt.setInt(2, end);
+				psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+				psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
 				rs = psmt.executeQuery();
 				while(rs.next()){
 					RqLocDTO dto = new RqLocDTO();
@@ -269,9 +307,13 @@ public class BbsDao implements BBSService {
 			}
 
 			//총 레코드 수 얻기용]
-			public int getRqlocTotalRecordCount(){
+			public int getRqlocTotalRecordCount(Map<String, Object> map){
 				int total =0;
 				String sql="SELECT COUNT(*) FROM (SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE)";
+				// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 				try {
 					psmt = conn.prepareStatement(sql);
 					rs = psmt.executeQuery();

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.naming.InitialContext;
@@ -54,16 +55,27 @@ public class AdminDao implements AdminService{
 	}
 
 	@Override
-	public List<DeptDto> selectDeptList(int start,int end) throws Exception {
+	public List<DeptDto> selectDeptList(Map<String, Object> map) throws Exception {
 		
 		List<DeptDto> list = new Vector<DeptDto>();
 		
-		String sql ="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM DEPT ORDER BY DEPT_REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
+		String sql = "";
+		if (map.get("searchWord") != null) {
+		sql += "SELECT * FROM (";
+		}
+		
+		sql +="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM DEPT ORDER BY DEPT_REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
+		
+		// 검색용 쿼리 추가
+					if (map.get("searchWord") != null) {
+						sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+					}
 		
 		try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, start);
-		psmt.setInt(2, end);
+		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -80,9 +92,13 @@ public class AdminDao implements AdminService{
 	}
 	
 	//총 레코드 수 얻기용]
-	public int getTotalRecordCount() throws Exception{
+	public int getTotalRecordCount(Map<String, Object> map) throws Exception{
 		int total =0;
 		String sql="SELECT COUNT(*) FROM DEPT";
+		// 검색용 쿼리 추가
+					if (map.get("searchWord") != null) {
+						sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+					}
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -186,16 +202,27 @@ public class AdminDao implements AdminService{
 
 
 	@Override
-	public List<AdminDto> selectAdminList(int start,int end){
+	public List<AdminDto> selectAdminList(Map<String, Object> map){
 
 		List<AdminDto> list = new Vector<AdminDto>();
+		String sql ="";
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += "SELECT * FROM (";
+		}
 		
-		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT A.*,D.DEPT_NAME FROM AD A JOIN DEPT D ON A.DEPT_NO=D.DEPT_NO ORDER BY AD_REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
+		sql+= "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT A.*,D.DEPT_NAME FROM AD A JOIN DEPT D ON A.DEPT_NO=D.DEPT_NO ORDER BY AD_REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
+		
+		// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 		
 		try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, start);
-		psmt.setInt(2, end);
+		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -213,9 +240,14 @@ public class AdminDao implements AdminService{
 	}
 	
 	//총 레코드 수 얻기용]
-	public int getadminTotalRecordCount(){
+	public int getadminTotalRecordCount(Map<String,Object> map){
 		int total =0;
 		String sql="SELECT COUNT(*) FROM (SELECT T.*,ROWNUM R FROM (SELECT A.*,D.DEPT_NAME FROM AD A JOIN DEPT D ON A.DEPT_NO=D.DEPT_NO ORDER BY AD_REGIDATE DESC) T)";
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();

@@ -1,7 +1,9 @@
 package zone.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +17,38 @@ import zone.service.impl.ZoneDAO;
 public class ListController extends HttpServlet{
 	
 	
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req,resp);
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		//한글처리]
+				req.setCharacterEncoding("UTF-8");
+				//검색과 관련된 파라미터 받기]
+				String 	searchColumn = req.getParameter("searchColumn");
+				String 	searchWord = req.getParameter("searchWord");/*.toUpperCase()*/
+				//검색후 페이징과 관련된 파라미터를 전달할 값을 저장할 변수]
+				String addQuery ="";
+						
+				Map<String,Object> map = new HashMap<String,Object>();
+				
+				System.out.println("searchColumn"+searchColumn);
+				System.out.println("searchWord"+searchWord);
+				if(searchWord !=null){
+					addQuery+="searchColumn="+searchColumn+"&searchWord="+searchWord+"&";
+					map.put("searchColumn",searchColumn);
+					map.put("searchWord",searchWord);
+				}
 		
 		ZoneDAO dao = new ZoneDAO(req.getServletContext());
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getTotalRecordCount();
+				int totalRecordCount=dao.getTotalRecordCount(map);
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -34,8 +60,10 @@ public class ListController extends HttpServlet{
 				//시작 및 끝 ROWNUM구하기]
 				int start= (nowPage-1)*pageSize+1;
 				int end = nowPage*pageSize;	
-		
-		List<ZoneDTO> list = dao.selectList(start,end);
+				map.put("start", start);
+				map.put("end", end);
+				
+		List<ZoneDTO> list = dao.selectList(map);
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/ZONE/List.do?");

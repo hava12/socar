@@ -40,21 +40,18 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/parallax-slider/modernizr.custom.28468.js">
     </script>
 	<script>
-		function find(sel) {
-			var menu = document.getElementById("menu");
-			if(sel=="id"){
-				menu.innerHTML = "아이디검색<span class='fa fa-caret-down'></span>";
-				menu.value="smem_id";
-			}
-			else if(sel=="name"){
-				menu.innerHTML = "이름검색<span class='fa fa-caret-down'></span>";
-				menu.value="smem_name";
-			}	
-		}	
-		function search() {
-			var menu = document.getElementById("menu");
-			location.href="<c:url value='/Member/IdSearch.do'/>?where="+menu.value+"&mem="+document.getElementById("searchtext").value;
+
+	function find(sel) {
+		var menu = document.getElementById("menu");
+		if (sel == "id") {
+			menu.innerHTML = "아이디 검색<span class='fa fa-caret-down' value='smem_id'></span>";
+			abc.value="smem_id"
+		} else if (sel == "name") {
+			menu.innerHTML = "이름 검색<span class='fa fa-caret-down' value='smem_name'></span>";
+			abc.value="smem_name"
 		}
+	}
+	
 // 		function pushparent(id) {
 // 			opener.document.getElementById("smem_id").value = id;
 // 			opener.document.getElementById("smem").value = id;
@@ -108,7 +105,7 @@
 	                				<td>${item.smem_tel }</td>
 	                				<td>${item.smem_pwd }</td>
 	                				<td>${item.smem_date }</td>
-	                				<td style="text-align: center;"><button onclick="inputsmem_id('${item.smem_id}','${item.smem_name }')" type="submit" class="btn btn-default btn-sm">선택</button></td>
+	                				<td style="text-align: center;"><button onclick="inputsmem_id('${item.smem_id}','${item.smem_name }')"  class="btn btn-default btn-sm">선택</button></td>
 	                		</tr>
                 		</c:forEach>
                 </c:if>
@@ -119,23 +116,27 @@
             
         </div>
 
+ 		<form method="post" action="<c:url value='/Member/IdSearch.do'/>">
  		<div class="col-xs-5 pull-right">
- 	    <div class="box-body">
+ 	     <div class="box-body">
              <div class="input-group margin">
                  <div class="input-group-btn">
-                     <button type="button" class="btn btn-info dropdown-toggle" value="smem_id" id="menu" data-toggle="dropdown">아이디검색<span class="fa fa-caret-down"></span></button>
-                     <ul class="dropdown-menu">
-                         <li><a onclick="find('id')">아이디검색</a></li>
-                         <li><a onclick="find('name')">이름검색</a></li>
+                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
+                     <ul id="menu" class="dropdown-menu" name="searchColumn">
+                         <li><a onclick="find('id')" >아이디 검색</a></li>
+                         <li><a onclick="find('name')">카드번호 검색</a></li>
                      </ul>
-                 </div><!-- /btn-group -->
-                 <input type="text" class="form-control" id="searchtext" style="color: black;" />
-             <span class="input-group-btn">
-                     <button class="btn btn-success btn-info" onclick="search()" type="button">검색</button>
-             </span>
-             </div><!-- /input-group -->
-         </div><!-- /.box-body -->
+                 </div>
+                 <input type="text" class="form-control" name="searchWord"/>
+             	<span class="input-group-btn">
+             		<input type="hidden" name="searchColumn" id="abc"/>
+                     <button class="btn btn-success btn-info" type="submit" id="menu" value="검색">검색</button>
+            	 </span>
+             </div>
+         </div>
 	   </div>
+	   
+	   </form>
           <table width="100%">
 		                        <tr align="center">
 		                          <td>${pagingString}</td>
@@ -176,12 +177,10 @@
     </script>
     <script type="text/javascript">
       $(function() {
-
         $('#da-slider').cslider({
           autoplay    : true,
           bgincrement : 100
         });
-
       });
     </script>
 
@@ -206,7 +205,6 @@
        jQuery('ul.superfish').superfish();
      });
       new WOW().init();
-
    </script>
  </body>
 </html>

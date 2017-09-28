@@ -39,6 +39,38 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/parallax-slider/parallax-slider.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/parallax-slider/modernizr.custom.28468.js">
     </script>
+    <script>
+	
+	function find(sel) {
+		var menu = document.getElementById("menu");
+		if (sel == "id") {
+			menu.innerHTML = "차량 타입 코드<span class='fa fa-caret-down' value='car_type_code'></span>";
+			abc.value="car_type_code"
+		} else if (sel == "name") {
+			menu.innerHTML = "차량 타입<span class='fa fa-caret-down' value='car_type'></span>";
+			abc.value="car_type"
+		}
+		else if (sel == "sel1") {
+			menu.innerHTML = "타입 1_1시간 기준 검색<span class='fa fa-caret-down' value='car_insurance_one_hour'></span>";
+			abc.value="car_insurance_one_hour"
+		}
+		else if (sel == "sel2") {
+			menu.innerHTML = "타입 1_1일 기준 검색<span class='fa fa-caret-down' value='car_insurance_one_day'></span>";
+			abc.value="car_insurance_one_day"
+		}
+		else if (sel == "sel3") {
+			menu.innerHTML = "타입 2_1시간 기준 검색<span class='fa fa-caret-down' value='car_insurance_two_hour'></span>";
+			abc.value="car_insurance_two_hour"
+		}
+		else if (sel == "sel4") {
+			menu.innerHTML = "타입 2_1일 기준 검색<span class='fa fa-caret-down' value='car_insurance_two_day'></span>";
+			abc.value="car_insurance_two_day"
+		}
+	}
+	
+	
+	
+	</script>
 
   </head>
 
@@ -100,23 +132,31 @@
             
         </div>
 
+ 		<form method="post">
  		<div class="col-xs-5 pull-right">
- 	    <div class="box-body">
+ 	     <div class="box-body">
              <div class="input-group margin">
                  <div class="input-group-btn">
-                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-선택- <span class="fa fa-caret-down"></span></button>
-                     <ul class="dropdown-menu">
-                         <li><a href="#">아이디검색</a></li>
-                         <li><a href="#">이름검색</a></li>
+                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
+                     <ul id="menu" class="dropdown-menu" name="searchColumn">
+                         <li><a onclick="find('id')" >차량 타입코드 검색</a></li>
+                         <li><a onclick="find('name')">차량 타입 검색</a></li>
+                         <li><a onclick="find('sel1')">타입 1_1시간 기준 검색</a></li>
+                         <li><a onclick="find('sel2')">타입 1_1일 기준 검색</a></li>
+                         <li><a onclick="find('sel3')">타입 2_1시간 기준 검색</a></li>
+                         <li><a onclick="find('sel4')">타입 2_1일 기준 검색</a></li>
                      </ul>
-                 </div><!-- /btn-group -->
-                 <input type="text" class="form-control" />
-             <span class="input-group-btn">
-                     <button class="btn btn-success btn-info" type="button">검색</button>
-             </span>
-             </div><!-- /input-group -->
-         </div><!-- /.box-body -->
+                 </div>
+                 <input type="text" class="form-control" name="searchWord"/>
+             	<span class="input-group-btn">
+             		<input type="hidden" name="searchColumn" id="abc"/>
+                     <button class="btn btn-success btn-info" type="submit" id="menu" value="검색">검색</button>
+            	 </span>
+             </div>
+         </div>
 	   </div>
+	   
+	   </form>
            <!-- <p>1 2 3 4 5 6 7 8 9</p> -->
           <!-- 페이징 -->
 		                      <table width="100%">

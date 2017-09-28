@@ -24,9 +24,9 @@ public class CarIssueController extends HttpServlet{
       CarDAO car_dao = new CarDAO(req.getServletContext());
       ZoneDAO zone_dao = new ZoneDAO(req.getServletContext());
       try {
-         List<CarDTO> car_list =  car_dao.selectList(1,2);
+         List<CarDTO> car_list =  car_dao.selectList(null);
          
-         List<ZoneDTO> zone_list = zone_dao.selectList(1,20000);
+         List<ZoneDTO> zone_list = zone_dao.selectList(null);
          
          ZoneDTO dto = zone_dao.selectOne(req.getParameter("soz_code"));
          req.setAttribute("car_list", car_list);

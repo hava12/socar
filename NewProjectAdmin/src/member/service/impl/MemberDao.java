@@ -144,20 +144,31 @@ public class MemberDao implements MemberService {
 		return dto;
 	}//////////////////////////////////////////////////////////////////////
 
-	//so회원관리리스트
+	// so회원관리리스트
 	@Override
-	public List<MemDto> selectMemList(int start,int end){
+	public List<MemDto> selectMemList(Map<String, Object> map) {
 		List<MemDto> list = new Vector<MemDto>();
-		//String sql = "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID ";
-		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";
+		String sql = "";
+		if (map.get("searchWord") != null) {
+		sql += "SELECT * FROM (";
+		}
+		// String sql = "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID";
+		
+		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT M.*,SMEM_NAME,SMEM_TEL,SMEM_PWD,SMEM_DATE FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";
+
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += " )WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
+
 		try {
 			psmt = conn.prepareStatement(sql);
-			
-			psmt.setInt(1, start);
-			psmt.setInt(2, end);
-			
+
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
 			rs = psmt.executeQuery();
-			while(rs.next()){
+			while (rs.next()) {
 				MemDto dto = new MemDto();
 				dto.setSmem_id(rs.getString(1));
 				dto.setMem_addr_num(rs.getString(2));
@@ -169,31 +180,38 @@ public class MemberDao implements MemberService {
 				dto.setMem_c_expdate(rs.getDate(8));
 				dto.setMem_c_idate(rs.getDate(9));
 				dto.setMem_gender(rs.getString(10));
-				dto.setSmem_name(rs.getString(12));
-				dto.setSmem_tel(rs.getString(13));
-				dto.setSmem_pwd(rs.getString(14));
-				dto.setSmem_date(rs.getString(15));
+				dto.setSmem_name(rs.getString(11));
+				dto.setSmem_tel(rs.getString(12));
+				dto.setSmem_pwd(rs.getString(13));
+				dto.setSmem_date(rs.getString(14));
 				list.add(dto);
 			}
-			} catch (Exception e) {e.printStackTrace();
-			}
-			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}////////////////////////////////////////////////////////////////////////
 
-	//총 레코드 수 얻기용] SO회원관리
-			public int getSOTotalRecordCount(){
-				int total =0;
-				String sql="SELECT COUNT(*) FROM MEM";
-				try {
-					psmt = conn.prepareStatement(sql);
-					rs = psmt.executeQuery();
-					rs.next();
-					total = rs.getInt(1);
-				} catch (SQLException e) {e.printStackTrace();}
-				
-				return total;
-			}///////////////////getTotalRecordCount
-	
+	// 총 레코드 수 얻기용] SO회원관리
+		public int getSOTotalRecordCount(Map<String, Object> map) {
+			int total = 0;
+			String sql = "SELECT COUNT(*) FROM (SELECT M.*,SMEM_NAME,SMEM_TEL,SMEM_PWD,SMEM_DATE FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID)";
+			// 검색용 쿼리 추가
+			if (map.get("searchWord") != null) {
+				sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+			}
+
+			try {
+				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				rs.next();
+				total = rs.getInt(1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return total;
+		}/////////////////// getTotalRecordCount
 	
 	@Override
 	public MemDto selectMemOne(String smem_id) throws Exception {
@@ -236,14 +254,24 @@ public class MemberDao implements MemberService {
 
 	
 	@Override
-	public List<MembershipDto> selectMembershipList(int start,int end){
-		//String sql = "SELECT * FROM MEMBERSHIP ORDER BY MS_DATE DESC";
-		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEMBERSHIP ORDER BY MS_DATE DESC) T) WHERE R BETWEEN ? AND ?";
+	public List<MembershipDto> selectMembershipList(Map<String,Object> map){
+		String sql ="";
+				if (map.get("searchWord") != null) {
+				sql += "SELECT * FROM (";
+				}
+		
+		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEMBERSHIP ORDER BY MS_DATE DESC) T) WHERE R BETWEEN ? AND ?";
+		
+		// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
+		
 		List<MembershipDto> list = new Vector<MembershipDto>();
 		try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, start);
-		psmt.setInt(2, end);
+		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 		rs = psmt.executeQuery();
 		while(rs.next()){
 			MembershipDto dto = new MembershipDto();
@@ -258,9 +286,13 @@ public class MemberDao implements MemberService {
 	}
 	
 	//총 레코드 수 얻기용]
-		public int getShipTotalRecordCount(){
+		public int getShipTotalRecordCount(Map<String,Object> map){
 			int total =0;
 			String sql="SELECT COUNT(*) FROM MEMBERSHIP";
+			// 검색용 쿼리 추가
+			if (map.get("searchWord") != null) {
+				sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+			}
 			try {
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
@@ -337,20 +369,32 @@ public class MemberDao implements MemberService {
 	}//////////////////////////////////////////////멤버 정보 변경
 
 	@Override
-	public List<CardDto> selectCardList(String smem_id,int start,int end){
+	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map){
 		
 		List<CardDto> list = new Vector<CardDto>();
-		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CARD ";
+		String sql = "";
+		
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += "SELECT * FROM (";
+		}
+		
+		sql +="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CARD ";
 		
 		if(smem_id!=null){
 			sql += " WHERE SMEM_ID='"+smem_id+"' ";
 		}
 		sql += "ORDER BY CARD_EXPDATE DESC) T) WHERE R BETWEEN ? AND ?";
 		
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
+		
 		try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, start);
-		psmt.setInt(2, end);
+		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 		rs = psmt.executeQuery();
 		while(rs.next()){
 			CardDto dto = new CardDto();
@@ -371,9 +415,13 @@ public class MemberDao implements MemberService {
 	}//////////////////selectCardList();
 
 	//총 레코드 수 얻기용]
-		public int getCardTotalRecordCount(){
+		public int getCardTotalRecordCount(Map<String,Object> map){
 			int total =0;
 			String sql="SELECT COUNT(*) FROM CARD";
+			// 검색용 쿼리 추가
+			if (map.get("searchWord") != null) {
+				sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+			}
 			try {
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
@@ -386,12 +434,25 @@ public class MemberDao implements MemberService {
 	
 	
 	@Override
-	public List<MemDto> searchCardList(String mem, String where) throws Exception {
-		String sql= "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE S."+where+"='"+mem+"'";
+	public List<MemDto> searchCardList(String mem, String where,Map<String,Object> map) {
+		String sql = "";
+		if (map.get("searchWord") != null) {
+			sql +="SELECT * FROM (";
+		}
+		
+		sql += "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE S."+where+"='"+mem+"'";
+		
+		// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
+
 		
 		List<MemDto> list = new Vector<MemDto>();
-		
+		try {
 		psmt = conn.prepareStatement(sql);
+		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -407,11 +468,13 @@ public class MemberDao implements MemberService {
 			dto.setMem_c_expdate(rs.getDate(8));
 			dto.setMem_c_idate(rs.getDate(9));
 			dto.setMem_gender(rs.getString(10));
-			dto.setSmem_name(rs.getString(11));
-			dto.setSmem_tel(rs.getString(12));
-			dto.setSmem_pwd(rs.getString(13));
-			dto.setSmem_date(rs.getString(14));
+			dto.setSmem_name(rs.getString(12));
+			dto.setSmem_tel(rs.getString(13));
+			dto.setSmem_pwd(rs.getString(14));
+			dto.setSmem_date(rs.getString(15));
 			list.add(dto);
+		}
+		}catch (Exception e) {e.printStackTrace();
 		}
 		
 		return list;

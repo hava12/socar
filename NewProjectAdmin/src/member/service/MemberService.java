@@ -16,7 +16,7 @@ public interface MemberService {
 	public int updateSmemPwd(String smem_id,String smem_pwd) throws Exception;
 	
 	//Member 관련 메소드들
-	public List<MemDto> selectMemList(int start,int end) throws Exception;
+	public List<MemDto> selectMemList(Map<String,Object> map) throws Exception;
 	
 	public MemDto selectMemOne(String smem_id) throws Exception;
 	
@@ -26,13 +26,13 @@ public interface MemberService {
 	//Membership관련 메소드
 	public int insertPoint(String smem_id,int point) throws Exception;
 	
-	public List<MembershipDto> selectMembershipList(int start,int end) throws Exception;
+	public List<MembershipDto> selectMembershipList(Map<String,Object> map) throws Exception;
 	
 
 	//Card관련 메소드
-	public List<CardDto> selectCardList(String smem_id,int start,int end) throws Exception;	
+	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map) throws Exception;	
 	
-	public List<MemDto> searchCardList(String mem , String where) throws Exception;
+	public List<MemDto> searchCardList(String mem , String where,Map<String,Object> map) throws Exception;
 	
 	public int insertCard(CardDto dto) throws Exception; 
 	
