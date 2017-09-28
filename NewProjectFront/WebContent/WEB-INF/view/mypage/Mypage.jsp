@@ -1343,7 +1343,7 @@ function auth_confirm(res) {
 				<div class="section">
 				
 				<c:if test="${empty card_list}">
-						<c:if test="${empty dto}" var="sojointest">
+						<c:if test="${empty dto.mem_addr_sec}" var="sojointest">
 								<a id="so_join" href="<c:url value='/Member/SoJoin_One.do' />">
 						</c:if>
 						<c:if test="${not sojointest}">
