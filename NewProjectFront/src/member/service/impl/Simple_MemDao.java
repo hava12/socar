@@ -80,4 +80,14 @@ public class Simple_MemDao implements Simple_MemService {
 		return affected;
 	}
 
+	@Override
+	public int verifyMem(String smem_id) throws Exception {
+		return template.update("verifyMem",smem_id);
+	}
+
+	@Override
+	public String verifyToMyPage(String smem_id) throws Exception {
+		return template.selectOne("VerifyToMyPage",smem_id);
+	}
+
 }
