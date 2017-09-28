@@ -106,7 +106,8 @@ var $MAX_DAYS = '90';
 var $MAX_DAYS_ONEWAY = '30';
 // spock 페이지 오픈시 편도 시작점 UI 초기화
 $(document).ready(function(){
-
+	
+	
 	$('.util2').click(function() {
 		var cookie = get_cookie('approach_from_nanumcar');
 		if (cookie === 'true') {
