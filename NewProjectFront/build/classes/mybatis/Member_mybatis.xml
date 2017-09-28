@@ -64,5 +64,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertCard" parameterType="CardDto">
 			INSERT INTO CARD VALUES(#{card_code},#{smem_id},#{card_expdate},#{card_type},#{card_birth,jdbcType=INTEGER},#{card_pwd,jdbcType=VARCHAR},#{card_c_num,jdbcType=VARCHAR},#{card_default},SYSDATE)
 	</insert>
+	<update id="verifyMem" parameterType="java.lang.String">
+			UPDATE SIMPLE_MEM SET SMEM_VERIFY='Y' WHERE SMEM_ID=#{smem_id}
+	</update>
+	<select id="VerifyToMyPage" parameterType="java.lang.String" resultType="java.lang.String">
+			SELECT SMEM_VERIFY FROM SIMPLE_MEM WHERE SMEM_ID=#{smem_id}
+	</select>
 	
 </mapper>

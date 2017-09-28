@@ -6,10 +6,16 @@ import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.tomcat.util.descriptor.web.LoginConfig;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +35,10 @@ public class MemberController {
 	@Resource(name="simple_MemServiceImpl")
 	private Simple_MemServiceImpl service;
 	
+	  @Autowired
+	  private JavaMailSender mailSender;
 	
+
 	
 	
 	@RequestMapping("/Join/Join.do")
@@ -43,6 +52,29 @@ public class MemberController {
 	public String joinResult(@RequestParam Map map,HttpServletRequest req) throws Exception{
 		System.out.println(map.get("smem_id"));
 		System.out.println(map.get("smem_pwd"));
+		
+		  
+	    String setfrom = "hava0682@gmail.com";         
+	    String tomail  = "hava12@naver.com";     // 받는 사람 이메일
+	    String title   = "[쏘카] 본인인증 메일이 도착했습니다.";      // 제목
+	    String content = "본인 인증 완료 확인 메일입니다.<br/>본인인증을 마치시려면<a href='http://192.168.0.133:8080/NewProjectFront/Member/Verify.do?smem_id="+map.get("smem_id").toString()+"'>여기를 눌러주세요</a>";    // 내용
+	   
+	    try {
+	      MimeMessage message = mailSender.createMimeMessage();
+//	      MimeMessageHelper messageHelper 
+//	                        = new MimeMessageHelper(message, true, "UTF-8");
+//	      
+	      message.setFrom(new InternetAddress(setfrom));  // 보내는사람 생략하거나 하면 정상작동을 안함
+	      message.addRecipient(RecipientType.TO,new InternetAddress(tomail));     // 받는사람 이메일
+	      message.setSubject(title); // 메일제목은 생략이 가능하다
+	      message.setText(content,"UTF-8","html");  // 메일 내용
+	     
+	      mailSender.send(message);
+	    } catch(Exception e){
+	      System.out.println(e);
+	    }
+	   
+		
 		
 		Simple_MemDto dto = null;
 		dto = service.loginMem(map);
@@ -178,6 +210,18 @@ public class MemberController {
 	
 	
 	
+	@RequestMapping("/Member/Verify.do")
+	public String verify(HttpServletRequest req,Model model) throws Exception{
+		
+		int affected = 0 ;
+		
+		affected = service.verifyMem(req.getParameter("smem_id"));
+		
+		model.addAttribute("WHERE","VERIFY_MEM");
+		model.addAttribute("SUC_FAIL",affected);
+		
+		return "/message/Message";
+	}
 	
 	
 	
@@ -219,10 +263,20 @@ public class MemberController {
 		return json.toJSONString();
 	}/////////////////////////////////////////////////////////////////////////
 	
+	@ResponseBody
+	@RequestMapping(value="/Member/VerifyToMyPage.do",produces="text/html;charset=UTF-8")
+	public String VerifyToMyPage(@RequestParam Map map) throws Exception{
+		
+		String verify = "N";
+		
+		verify = service.verifyToMyPage(map.get("smem_id").toString());
+		JSONObject json = new JSONObject();
+		json.put("verify", verify);
+		
+		return json.toJSONString();
+	}/////////////////////////////////////////////////////////////////////////
 	
-	
-	
-	
+
 	
 	
 }

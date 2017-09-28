@@ -16,8 +16,12 @@
 	<c:when test="${WHERE eq 'COMPLETESOJOIN' }">
 		<c:set var="SUC_URL"  value="/Mypage/Mypage.do"/>
 		<c:set var="SUC_MSG"  value=" 가입 완료되었습니다."/>
-		<c:set var="FAIL_MSG"  value=" 가입씰퍠하엿습니다."/>
-		
+		<c:set var="FAIL_MSG"  value=" 가입실패하엿습니다."/>
+	</c:when>
+		<c:when test="${WHERE eq 'VERIFY_MEM' }">
+		<c:set var="SUC_URL"  value="/Main/Main.do"/>
+		<c:set var="SUC_MSG"  value=" 본인인증 완료되었습니다."/>
+		<c:set var="FAIL_MSG"  value=" 본인인증에 실패하엿습니다."/>
 	</c:when>
 	
 </c:choose>

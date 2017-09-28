@@ -22,4 +22,9 @@ public interface Simple_MemService {
 	//So멤버 카드/면허 등록
 	public int completeSoJoin(MemDto m_dto,CardDto c_dto) throws Exception;
 	
+	//본인인증 메일 확인
+	public int verifyMem(String smem_id) throws Exception;
+	
+	//마이페이지 연결 시 확인
+	public String verifyToMyPage(String smem_id) throws Exception;
 }

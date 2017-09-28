@@ -53,4 +53,14 @@ public class Simple_MemServiceImpl implements Simple_MemService{
 		return dao.completeSoJoin(m_dto,c_dto);
 	}
 
+	@Override
+	public int verifyMem(String smem_id) throws Exception {
+		return dao.verifyMem(smem_id);
+	}
+
+	@Override
+	public String verifyToMyPage(String smem_id) throws Exception {
+		return dao.verifyToMyPage(smem_id);
+	}
+
 }
