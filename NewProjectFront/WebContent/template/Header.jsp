@@ -6,7 +6,7 @@
 	<script>
 	$(function(){
 		
-			$(".gnb5").bind("click",function(a){
+			$("#verify_confirm").bind("click",function(a){
 					if(<%=session.getAttribute("smem_id")==null%>){
 						alert("로그인이 필요합니다");
 						a.preventDefault();}
@@ -53,7 +53,7 @@
 		<li><a href=<c:url value='/Guide/Fare.do' /> class="gnb3" title="요금안내">요금안내</a></li>
 		<li><a href=<c:url value='/Notice/Notice.do' /> class="gnb4" title="고객센터">고객센터</a></li>
 
-		<li><a href="<c:url value='/Mypage/Mypage.do' />" class="gnb5" title="마이페이지" data-href=https://www.socar.kr/mypage>마이페이지</a></li>
+		<li><a href="<c:url value='/Mypage/Mypage.do' />" id="verify_confirm" class="gnb5" title="마이페이지" data-href=https://www.socar.kr/mypage>마이페이지</a></li>
 		
 
 		<li><a href="<c:url value='/Reserve/Reserve.do' />" class="gnb6" title="쏘카 찾기·예약">쏘카 찾기·예약</a></li>
@@ -68,7 +68,7 @@
 					</c:if>
 					<c:if test="${not isLogin}">
 							<ul>
-							<li><a href="<c:url value='/Mypage/Mypage.do' />" class="util3">${sessionScope.smem_name} 님</a></li>
+							<li><a href="<c:url value='/Mypage/Mypage.do' />" id="verify_confirm" class="util3">${sessionScope.smem_name} 님</a></li>
 							<li><a href="<c:url value='/Member/Logout.do' />" class="util4" title="로그아웃">로그아웃</a></li>
 							</ul>
 					</c:if>

@@ -1,8 +1,10 @@
 package main.web;
 
+import java.net.InetAddress;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +22,8 @@ public class MainController {
 	
 	
 	@RequestMapping("/Main/Main.do")
-	public String main() throws Exception{
+	public String main(HttpServletRequest req) throws Exception{
+
 		return "/main/Main";
 	}//////////////////////////////////////////////////
 	

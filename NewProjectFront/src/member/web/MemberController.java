@@ -1,5 +1,6 @@
 package member.web;
 
+import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,11 +54,17 @@ public class MemberController {
 		System.out.println(map.get("smem_id"));
 		System.out.println(map.get("smem_pwd"));
 		
-		  
+		InetAddress addr = InetAddress.getLocalHost();
+		
 	    String setfrom = "hava0682@gmail.com";         
-	    String tomail  = "hava12@naver.com";     // 받는 사람 이메일
+	    String tomail  = map.get("smem_id").toString();     // 받는 사람 이메일
 	    String title   = "[쏘카] 본인인증 메일이 도착했습니다.";      // 제목
-	    String content = "본인 인증 완료 확인 메일입니다.<br/>본인인증을 마치시려면<a href='http://192.168.0.133:8080/NewProjectFront/Member/Verify.do?smem_id="+map.get("smem_id").toString()+"'>여기를 눌러주세요</a>";    // 내용
+	    String content = "<div style='width:300px; height:380px; vertical-align:middle; text-align:center; display:table-cell; background-color:deepskyblue' >"
+	    				+ "<div style='width:200px; display:inline-block; height:280px; background-color:white;'>"
+	    				+ "<br/><img width=\"110\" src='https://web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20160823' alt=\"SOCAR\"/><br/><br/><br/>"
+	    				+ "안녕하세요 쏘카입니다.<br/><br/>본인인증을 마치시려면<br/> "
+	    				+ "<a href='http://"+addr.getHostAddress()+":"+req.getLocalPort()+"/NewProjectFront/Member/Verify.do?smem_id="+map.get("smem_id").toString()+"'>여기를 눌러주세요</a>"
+	    				+ "</div></div>";    // 내용
 	   
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
@@ -141,20 +148,20 @@ public class MemberController {
 	@RequestMapping("/Member/CompleteSoJoin.do")
 	public String completeSoJoin(@RequestParam Map map,Model model) throws Exception{
 		
-		System.out.println(map.get("smem_id"));
-		System.out.println(map.get("mem_c_type"));
-		System.out.println(map.get("mem_c_num"));
-		System.out.println(map.get("mem_c_idate"));
-		System.out.println(map.get("mem_c_expdate"));
-		System.out.println(map.get("mem_gender"));
-		System.out.println(map.get("card_expdate_y"));
-		System.out.println(map.get("card_expdate_m"));
-		System.out.println(map.get("card_type"));
-		System.out.println(map.get("card_birth"));
-		System.out.println(map.get("card_pwd"));
-		System.out.println(map.get("card_c_num"));
-		System.out.println(map.get("card_default"));
-		System.out.println(map.get("card_code"));
+//		System.out.println(map.get("smem_id"));
+//		System.out.println(map.get("mem_c_type"));
+//		System.out.println(map.get("mem_c_num"));
+//		System.out.println(map.get("mem_c_idate"));
+//		System.out.println(map.get("mem_c_expdate"));
+//		System.out.println(map.get("mem_gender"));
+//		System.out.println(map.get("card_expdate_y"));
+//		System.out.println(map.get("card_expdate_m"));
+//		System.out.println(map.get("card_type"));
+//		System.out.println(map.get("card_birth"));
+//		System.out.println(map.get("card_pwd"));
+//		System.out.println(map.get("card_c_num"));
+//		System.out.println(map.get("card_default"));
+//		System.out.println(map.get("card_code"));
 		
 		CardDto c_dto = new CardDto();
 		c_dto.setCard_code(map.get("card_code").toString());
