@@ -1,13 +1,19 @@
 package reserve.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import reserve.service.CarSearchResultDTO;
 import reserve.service.ZoneDTO;
@@ -30,7 +36,6 @@ public class ReserveController {
 		model.addAttribute("list", list);
 		return "/reserve/Reserve"; 
 	}
-	
 	@RequestMapping("/Reserve/SearchResult.do")
 	public String searchResult(@RequestParam("soz_code") String soz_code, Model model) throws Exception{
 		List<ZoneDTO> list = dao.selectEveryList();

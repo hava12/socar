@@ -321,93 +321,8 @@ function settingInfoWindowData (marker, lat, lng, zone_id, able_num, is_far) {
 		}
 	})
 }
-/* 
-function setMarkerAndPin (lat, lng, num, zone_id, counter, far, total, attr) {
-	far = far || false;
 
-	var key = zone_id + "";
-	if($able_arr.hasOwnProperty(key)){
-		return;
-	}
-	else{
-		$able_arr[key] = num;
-		$total_arr[key] = total;
-	}
 
-	//마커 이미지 세팅
-	if ( far === true ) {
-		var pin = new daum.maps.MarkerImage(
-			'//web-assets.socar.kr/template/asset/images/reservation/ico_position1.png',
-			new daum.maps.Size(14, 14),
-			{
-				spriteSize : new daum.maps.Size(300, 38),
-				spriteOrigin : new daum.maps.Point(150,0)
-			}
-		);
-	} else {
-		var num_pin = Math.min(15,num);
-		//by smartNHW
-		if(num > 9) {
-			num_pin = '9p';
-		}
-		var pin = new daum.maps.MarkerImage(
-			'//web-assets.socar.kr/template/asset/images/pin/pin'+attr+'/pcpin' + num_pin + '.png?v=20170313',
-			new daum.maps.Size(40, 38),
-			new daum.maps.Point(13,32)
-		);
-	} */
-/* 
-	//마커 생성
-	var marker = new daum.maps.Marker({
-		position: new daum.maps.LatLng(lat, lng),
-		image: pin
-	});
-
-	marker.setMap($map);
-
-	if(num == 0 || far === true){
-		marker.setZIndex(0);
-	}
-	else{
-		marker.setZIndex(1);
-	}
-
-	if(far === false && counter == 0){
-		$map.setCenter(new daum.maps.LatLng(lat, lng));
-	}
-
-	if($tmp_selected_zone_id == zone_id){
-		settingInfoWindowData(marker, lat, lng, zone_id, num, far);
-		$map.setCenter(new daum.maps.LatLng(lat, lng));
-	}
-
-	//마커 클릭 이벤트 리스너
-	daum.maps.event.addListener(marker, "click", function(){
-		$map.panTo(new daum.maps.LatLng(lat, lng));
-
-		if($beforeInfoWindow != null) {
-			$beforeInfoWindow.setMap(null);
-			$beforeInfoWindow = null;
-		}
-		marker.setZIndex(marker.getZIndex() + 1);
-		settingInfoWindowData(marker, lat, lng, zone_id, num, far);
-	});
-
-	//맵 클릭 이벤트 리스너 - 열려있는 InfoWindow 제거
-	daum.maps.event.addListener($map, "click", function  () {
-		if($beforeInfoWindow != null){
-			$beforeInfoWindow.setMap(null);
-			$beforeInfoWindow = null;
-		}
-	}); */
-//}
-
-function setOnewayMarker (lat, lng, zone_id, pin, pos) {
-	var pin = new daum.maps.MarkerImage(
-		'//web-assets.socar.kr/template/asset/images/pin/' + pin,
-		new daum.maps.Size(60, 58),
-		new daum.maps.Point(18,32)
-	);
 
 	//마커 생성
 	var marker = new daum.maps.Marker({
@@ -1755,7 +1670,7 @@ $(function(){
 
 									<div class='rvBtn '>
 										
-										<a id="round" class="btn_reserve" title='' href="#require_login">
+										<a id="round" class="btn_reserve" title='' href="#">
 											<img src='//web-assets.socar.kr/template/asset/images/reservation/btn_list_reservation.gif' alt="예약" />
 										</a>
 										<em style="display:none;">5237</em>
@@ -4530,7 +4445,7 @@ $("#requestList .deleteCancel").click(function(){
 var mapContainer = document.getElementById('map'),
 
 //지도 옵션
-mapOption = {center: new daum.maps.LatLng(${zone_dto.soz_latitude}, ${zone_dto.soz_longitude}),//센터 위치
+mapOption = {center: new daum.maps.LatLng(37.478683, 126.878633, 37.478683, 126.878633),//센터 위치
 			level:9 //확대 레벨
 			};
 //지도 생성
