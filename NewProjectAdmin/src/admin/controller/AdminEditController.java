@@ -22,7 +22,7 @@ public class AdminEditController extends HttpServlet {
 		try {
 			dto = dao.selectAdminOne(req.getParameter("ad_id"));
 			dao = new AdminDao(req.getServletContext());
-			list = dao.selectDeptList(1,2);
+			list = dao.selectDeptList(null);
 		} catch (Exception e) {e.printStackTrace();}
 	
 		

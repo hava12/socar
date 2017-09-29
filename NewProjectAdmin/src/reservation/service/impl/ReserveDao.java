@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.naming.InitialContext;
@@ -41,16 +42,26 @@ public class ReserveDao implements ReserveService{
 	}/////////////////////////////////////////////////////////////
 	
 	@Override
-	public List<ReserveDto> selectReserveList(int start,int end){
+	public List<ReserveDto> selectReserveList(Map<String,Object> map){
 		
-		List<ReserveDto> list = new Vector<>();
+		List<ReserveDto> list = new Vector<ReserveDto>();
+		String sql ="";
 		
-		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM RESERVE ORDER BY RES_DATE DESC) T) WHERE R BETWEEN ? AND ?";
+		if (map.get("searchWord") != null) {
+			sql += "SELECT * FROM (";
+			}
+		
+		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM RESERVE ORDER BY RES_DATE DESC) T) WHERE R BETWEEN ? AND ?";
+		
+		// 검색용 쿼리 추가
+				if (map.get("searchWord") != null) {
+					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+				}
 		
 		try {
 		psmt = conn.prepareStatement(sql);
-		psmt.setInt(1, start);
-		psmt.setInt(2, end);
+		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -82,9 +93,13 @@ public class ReserveDao implements ReserveService{
 	}//////////////////////////////////////////////////////////////
 
 	//총 레코드 수 얻기용]
-	public int getTotalRecordCount(){
+	public int getTotalRecordCount(Map<String,Object> map){
 		int total =0;
 		String sql="SELECT COUNT(*) FROM (SELECT * FROM RESERVE ORDER BY RES_DATE DESC)";
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += " )WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();

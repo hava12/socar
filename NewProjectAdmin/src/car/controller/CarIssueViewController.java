@@ -17,7 +17,7 @@ public class CarIssueViewController extends HttpServlet{
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			CarDAO dao = new CarDAO(req.getServletContext());
 			try {
-				List<Car_IssueDTO> list = dao.car_issue_view(req.getParameter("soz_code"),1,2);
+				List<Car_IssueDTO> list = dao.car_issue_view(req.getParameter("soz_code"),null);
 				req.setAttribute("list",list);
 			} catch (Exception e) {
 				e.printStackTrace();

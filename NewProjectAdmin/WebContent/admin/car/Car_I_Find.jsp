@@ -58,26 +58,29 @@
 					href="${pageContext.request.contextPath}/bootstrap/css/parallax-slider/parallax-slider.css" />
 				<script type="text/javascript"
 					src="${pageContext.request.contextPath}/bootstrap/js/parallax-slider/modernizr.custom.28468.js">
-					
+					 
 				</script>
 				<script>
-					function find(sel) {
-						var menu = document.getElementById("menu");
-						if (sel == "id") {
-							menu.innerHTML = "아이디검색<span class='fa fa-caret-down'></span>";
-							menu.value = "smem_id";
-						} else if (sel == "name") {
-							menu.innerHTML = "이름검색<span class='fa fa-caret-down'></span>";
-							menu.value = "smem_name";
-						}
+				function find(sel) {
+					var menu = document.getElementById("menu");
+					if (sel == "id") {
+						menu.innerHTML = "차량 보유 코드 검색<span class='fa fa-caret-down' value='car_i_code'></span>";
+						abc.value="car_i_code"
+					} else if (sel == "code") {
+						menu.innerHTML = "차량 명 코드 검색<span class='fa fa-caret-down' value='car_name_code'></span>";
+						abc.value="car_name_code"
+					} else if (sel == "number") {
+						menu.innerHTML = "차량 번호 검색<span class='fa fa-caret-down' value='car_i_num'></span>";
+						abc.value="car_i_num"
+					} else if (sel == "car") {
+						menu.innerHTML = "차량 별칭 검색<span class='fa fa-caret-down' value='car_nick'></span>";
+						abc.value="car_nick"
 					}
-					function search() {
-						var menu = document.getElementById("menu");
-						location.href = "<c:url value='/Member/IdSearch.do'/>?where="
-								+ menu.value
-								+ "&mem="
-								+ document.getElementById("searchtext").value;
-					}
+				}
+					
+					
+					
+					
 					function pushparent(id, name, car_land_price,
 							car_jeju_price, car_price_so_wd, car_price_so_we,
 							car_insurance_one_hour, car_insurance_one_day,
@@ -157,32 +160,29 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-xs-5 pull-right">
-			<div class="box-body">
-				<div class="input-group margin">
-					<div class="input-group-btn">
-						<button type="button" class="btn btn-info dropdown-toggle"
-							data-toggle="dropdown">
-							Action <span class="fa fa-caret-down"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-					</div>
-					<!-- /btn-group -->
-					<input type="text" class="form-control" /> <span
-						class="input-group-btn">
-						<button class="btn btn-success btn-info" type="button">검색</button>
-					</span>
-				</div>
-				<!-- /input-group -->
-			</div>
-			<!-- /.box-body -->
-		</div>
+		<form method="post">
+ 		<div class="col-xs-5 pull-right">
+ 	     <div class="box-body">
+             <div class="input-group margin">
+                 <div class="input-group-btn">
+                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
+                     <ul id="menu" class="dropdown-menu" name="searchColumn">
+                         <li><a onclick="find('id')" >차량 보유 코드 검색</a></li>
+                         <li><a onclick="find('code')">차량 명 코드 검색</a></li>
+                         <li><a onclick="find('number')">차량 번호 검색</a></li>
+                         <li><a onclick="find('car')">차량 별칭 검색</a></li>
+                     </ul>
+                 </div>
+                 <input type="text" class="form-control" name="searchWord"/>
+             	<span class="input-group-btn">
+             		<input type="hidden" name="searchColumn" id="abc"/>
+                     <button class="btn btn-success btn-info" type="submit" id="menu" value="검색">검색</button>
+            	 </span>
+             </div>
+         </div>
+	   </div>
+	   
+	   </form>
 		<table width="100%">
 			<tr align="center">
 				<td>${pagingString}</td>

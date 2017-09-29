@@ -45,7 +45,12 @@ public class SimpleMemberListController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getMemTotalRecordCount(map);
+				int totalRecordCount = 0;
+				try {
+					totalRecordCount = dao.getMemTotalRecordCount(map);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -61,7 +66,12 @@ public class SimpleMemberListController extends HttpServlet {
 				map.put("start", start);
 				map.put("end", end);
 		
-		List<SimpleMemDto> list = dao.selectSimpleMemlist(map);
+		List<SimpleMemDto> list = null;
+		try {
+			list = dao.selectSimpleMemlist(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Member/SimpleMemberList.do?");

@@ -40,6 +40,20 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/parallax-slider/modernizr.custom.28468.js">
     </script>
 
+	<script>
+	
+	function find(sel) {
+		var menu = document.getElementById("menu");
+		if (sel == "id") {
+			menu.innerHTML = "쏘카존 검색<span class='fa fa-caret-down' value='soz_name'></span>";
+			abc.value="soz_name"
+		} else if (sel == "name") {
+			menu.innerHTML = "위치 검색<span class='fa fa-caret-down' value='soz_loc'></span>";
+			abc.value="soz_loc"
+		}
+	}
+	</script>
+
   </head>
 
   <body>
@@ -100,23 +114,27 @@
             
         </div>
 
+ 		<form method="post">
  		<div class="col-xs-5 pull-right">
- 	    <div class="box-body">
+ 	     <div class="box-body">
              <div class="input-group margin">
                  <div class="input-group-btn">
-                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">-선택- <span class="fa fa-caret-down"></span></button>
-                     <ul class="dropdown-menu">
-                         <li><a href="#">아이디검색</a></li>
-                         <li><a href="#">이름검색</a></li>
+                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
+                     <ul id="menu" class="dropdown-menu" name="searchColumn">
+                         <li><a onclick="find('id')" >쏘카존 검색</a></li>
+                         <li><a onclick="find('name')">위치 검색</a></li>
                      </ul>
-                 </div><!-- /btn-group -->
-                 <input type="text" class="form-control" />
-             <span class="input-group-btn">
-                     <button class="btn btn-success btn-info" type="button">검색</button>
-             </span>
-             </div><!-- /input-group -->
-         </div><!-- /.box-body -->
+                 </div>
+                 <input type="text" class="form-control" name="searchWord"/>
+             	<span class="input-group-btn">
+             		<input type="hidden" name="searchColumn" id="abc"/>
+                     <button class="btn btn-success btn-info" type="submit" id="menu" value="검색">검색</button>
+            	 </span>
+             </div>
+         </div>
 	   </div>
+	   
+	   </form>
          <!-- <p>1 2 3 4 5 6 7 8 9</p> -->
           <!-- 페이징 -->
 		                      <table width="100%">

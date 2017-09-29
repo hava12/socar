@@ -1,12 +1,13 @@
 package reservation.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ReserveService {
 
 	
 	//예약 리스트 출력
-	public List<ReserveDto> selectReserveList(int start,int end) throws Exception;
+	public List<ReserveDto> selectReserveList(Map<String,Object> map) throws Exception;
 	
 	//예약 입력
 	public int insertReserve(ReserveDto dto) throws Exception;

@@ -23,7 +23,7 @@ public class MemberDetailController extends HttpServlet {
 		try {
 			dto =  dao.selectMemOne(req.getParameter("smem_id"));
 			dao = new MemberDao(req.getServletContext());
-			cardlist = dao.selectCardList(req.getParameter("smem_id"),1,2);
+			cardlist = dao.selectCardList(req.getParameter("smem_id"),null);
 		} catch (Exception e) {e.printStackTrace();}
 			
 		req.setAttribute("mem", dto);

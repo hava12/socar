@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.naming.Context;
@@ -33,18 +34,31 @@ public class ZoneDAO implements ZoneService{
 		}
 	}/////////////////////////ZoneDAO()
 	
-	public List<ZoneDTO> selectList(int start,int end){
+	public List<ZoneDTO> selectList(Map<String,Object> map){
 		
-		/*String sql = "SELECT S.*,(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0) AS COUNT FROM SO_ZONE S ORDER BY SOZ_CODE DESC";*/
-		String sql = "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT S.*,"
-				+ "(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND "
-				+ "(SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0)"
-				+ " AS COUNT FROM SO_ZONE S ORDER BY SOZ_CODE DESC) T) WHERE R BETWEEN ? AND ?";
+		String sql = "";
+		
+		//검색용 쿼리 추가
+				if(map.get("searchWord") !=null){
+					sql +="SELECT * FROM (";
+				}
+			   
+		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT S.*,(SELECT COUNT(*) FROM CAR_ISSUE"
+				+ " C WHERE C.SOZ_CODE=S.SOZ_CODE AND (SELECT COUNT(*) FROM CAR_WASTE CW "
+				+ "WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0) AS COUNT FROM SO_ZONE S ORDER BY "
+				+ "SOZ_CODE DESC) T) WHERE R BETWEEN ? AND ?";
+		
+		//검색용 쿼리 추가
+				if(map.get("searchWord") !=null){
+					sql+=") WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
+				}
+		
+		
 		List<ZoneDTO> list = new Vector<ZoneDTO>();
 		try{
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, start);
-			psmt.setInt(2, end);
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 			rs = psmt.executeQuery();
 			while(rs.next()){
 				ZoneDTO dto = new ZoneDTO();
@@ -183,9 +197,13 @@ public class ZoneDAO implements ZoneService{
 	}
 	
 	//총 레코드 수 얻기용]
-		public int getTotalRecordCount(){
+		public int getTotalRecordCount(Map<String,Object> map){
 			int total =0;
 			String sql="SELECT COUNT(*) FROM SO_ZONE";
+			//검색용 쿼리 추가
+			if(map.get("searchWord") !=null){
+				sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
+			}
 			try {
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();

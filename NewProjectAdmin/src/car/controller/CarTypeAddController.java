@@ -17,7 +17,7 @@ public class CarTypeAddController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CarDAO dao = new CarDAO(req.getServletContext());
 		try {
-			List<Car_ModelDto> list = dao.selectCar_TypeList(1,2);
+			List<Car_ModelDto> list = dao.selectCar_TypeList(null);
 			req.setAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();

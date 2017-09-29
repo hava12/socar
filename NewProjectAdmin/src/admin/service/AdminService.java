@@ -1,6 +1,7 @@
 package admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdminService {
 
@@ -10,7 +11,7 @@ public interface AdminService {
 	
 	
 	//부서 리스트 가져오기
-	public List<DeptDto> selectDeptList(int start,int end) throws Exception;
+	public List<DeptDto> selectDeptList(Map<String, Object> map) throws Exception;
 	
 	//부서 디테일 가져오기 
 	public DeptDto selectDeptOne(String dept_no) throws Exception;
@@ -26,7 +27,7 @@ public interface AdminService {
 	//어드민 입력하기
 	public int insertAdmin(AdminDto dto) throws Exception;
 	//어드민 리스트 가져오기
-	public List<AdminDto> selectAdminList(int start,int end) throws Exception;
+	public List<AdminDto> selectAdminList(Map<String, Object> map) throws Exception;
 	//어드민 하나 가져오기
 	public AdminDto selectAdminOne(String ad_id) throws Exception;
 	//어드민 수정하기

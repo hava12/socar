@@ -21,7 +21,7 @@ public class AdminInsertController extends HttpServlet {
 		AdminDao dao = new AdminDao(req.getServletContext());
 		List<DeptDto> list = null;
 		try {
-			list = dao.selectDeptList(1,2);
+			list = dao.selectDeptList(null);
 		} catch (Exception e) {e.printStackTrace();}
 		
 		req.setAttribute("list", list);

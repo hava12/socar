@@ -23,7 +23,7 @@ public class CardInsertController extends HttpServlet {
 		List<MemDto> list = null;
 		
 		try {
-			list = dao.selectMemList(1,2);
+			list = dao.selectMemList(null);
 		} catch (Exception e) {e.printStackTrace();}
 		
 		req.setAttribute("list", list);

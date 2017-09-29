@@ -20,7 +20,7 @@ public class CarAddController extends HttpServlet{
 		
 		List<Car_ModelDto> list = null;
 		CarDAO dao = new CarDAO(req.getServletContext());
-		try {list = dao.selectCar_TypeList(1,2);} 
+		try {list = dao.selectCar_TypeList(null);} 
 		catch (Exception e) {e.printStackTrace();}
 		
 		req.setAttribute("list", list);
