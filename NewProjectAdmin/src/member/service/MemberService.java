@@ -32,7 +32,7 @@ public interface MemberService {
 	//Card관련 메소드
 	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map) throws Exception;	
 	
-	public List<MemDto> searchCardList(String mem , String where,Map<String,Object> map) throws Exception;
+	public List<MemDto> searchMemberList(String mem , String where,Map<String,Object> map) throws Exception;
 	
 	public int insertCard(CardDto dto) throws Exception; 
 	

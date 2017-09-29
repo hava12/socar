@@ -49,6 +49,9 @@
 		} else if (sel == "name") {
 			menu.innerHTML = "이름 검색<span class='fa fa-caret-down' value='smem_name'></span>";
 			abc.value="smem_name"
+		}else if (sel == "tel") {
+			menu.innerHTML = "핸드폰번호 검색<span class='fa fa-caret-down' value='smem_tel'></span>";
+			abc.value="smem_tel"
 		}
 	}
 	
@@ -60,6 +63,14 @@
 		function inputsmem_id(smem_id,smem_name) {
 			document.getElementById("smem_id").value = smem_id;
 			document.getElementById("smem_name").value = smem_name;
+		}
+		
+		function idSearch() {
+ 			var where = document.getElementById("abc");
+			var mem = document.getElementById("mem");
+			alert(mem.value);
+ 			alert(where.value);
+			location.href="<c:url value='/Member/IdSearch.do?where="+where.value+"&mem="+mem.value+"'/>"
 		}
 	</script>
   </head>
@@ -116,7 +127,7 @@
             
         </div>
 
- 		<form method="post" action="<c:url value='/Member/IdSearch.do'/>">
+ 
  		<div class="col-xs-5 pull-right">
  	     <div class="box-body">
              <div class="input-group margin">
@@ -124,13 +135,14 @@
                      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="menu">-선택-<span class="fa fa-caret-down"></span></button>
                      <ul id="menu" class="dropdown-menu" name="searchColumn">
                          <li><a onclick="find('id')" >아이디 검색</a></li>
-                         <li><a onclick="find('name')">카드번호 검색</a></li>
+                         <li><a onclick="find('name')">이름 검색</a></li>
+                         <li><a onclick="find('tel')">핸드폰번호 검색</a></li>
                      </ul>
                  </div>
-                 <input type="text" class="form-control" name="searchWord"/>
+                 <input type="text" class="form-control" id="mem" name="searchWord"/>
              	<span class="input-group-btn">
              		<input type="hidden" name="searchColumn" id="abc"/>
-                     <button class="btn btn-success btn-info" type="submit" id="menu" value="검색">검색</button>
+                     <button class="btn btn-success btn-info" onclick="idSearch()" id="menu" value="검색">검색</button>
             	 </span>
              </div>
          </div>

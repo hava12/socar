@@ -245,7 +245,7 @@ public class MemberDao implements MemberService {
 		dto.setSmem_tel(rs.getString(13));
 		dto.setSmem_pwd(rs.getString(14));
 		dto.setSmem_date(rs.getString(15));
-		dto.setMs_change(rs.getInt(16));
+		dto.setMs_change(rs.getInt(17));
 		
 		close();
 		
@@ -369,7 +369,7 @@ public class MemberDao implements MemberService {
 	}//////////////////////////////////////////////멤버 정보 변경
 
 	@Override
-	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map){
+	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map) {
 		
 		List<CardDto> list = new Vector<CardDto>();
 		String sql = "";
@@ -434,29 +434,26 @@ public class MemberDao implements MemberService {
 	
 	
 	@Override
-	public List<MemDto> searchCardList(String mem, String where,Map<String,Object> map) {
+	public List<MemDto> searchMemberList(String mem, String where,Map<String,Object> map) {
+		//원래 sql문
+		/*sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE S."+where+"='"+mem+"') T) WHERE R BETWEEN ? AND ? ";*/
 		String sql = "";
 		if (map.get("searchWord") != null) {
 			sql +="SELECT * FROM (";
 		}
+		//so회원관리 sql문
+		/*sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT M.*,SMEM_NAME,SMEM_TEL,SMEM_PWD,SMEM_DATE FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID) T) WHERE R BETWEEN ? AND ?";*/
+		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT M.*,SMEM_NAME,SMEM_TEL,SMEM_PWD,SMEM_DATE FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE S."+where+" like '%"+mem+"%') T) WHERE R BETWEEN ? AND ?";
 		
-		sql += "SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE S."+where+"='"+mem+"'";
-		
-		// 검색용 쿼리 추가
-				if (map.get("searchWord") != null) {
-					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
-				}
-
-		
-		List<MemDto> list = new Vector<MemDto>();
+		List<MemDto> list = new Vector<>();
 		try {
 		psmt = conn.prepareStatement(sql);
 		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
 		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 		rs = psmt.executeQuery();
 		
+		
 		while(rs.next()) {
-			
 			MemDto dto = new MemDto();
 			dto.setSmem_id(rs.getString(1));
 			dto.setMem_addr_num(rs.getString(2));
@@ -467,13 +464,14 @@ public class MemberDao implements MemberService {
 			dto.setMem_c_num(rs.getString(7));
 			dto.setMem_c_expdate(rs.getDate(8));
 			dto.setMem_c_idate(rs.getDate(9));
-			dto.setMem_gender(rs.getString(10));
-			dto.setSmem_name(rs.getString(12));
-			dto.setSmem_tel(rs.getString(13));
-			dto.setSmem_pwd(rs.getString(14));
-			dto.setSmem_date(rs.getString(15));
+			/*dto.setMem_gender(rs.getString(10));*/
+			dto.setSmem_name(rs.getString(11));
+			dto.setSmem_tel(rs.getString(12));
+			dto.setSmem_pwd(rs.getString(13));
+			dto.setSmem_date(rs.getString(14));
 			list.add(dto);
 		}
+			close();
 		}catch (Exception e) {e.printStackTrace();
 		}
 		

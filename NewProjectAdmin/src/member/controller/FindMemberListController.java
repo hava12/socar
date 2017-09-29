@@ -26,19 +26,11 @@ public class FindMemberListController extends HttpServlet {
 		//한글처리]
 		req.setCharacterEncoding("UTF-8");
 		//검색과 관련된 파라미터 받기]
-		String 	searchColumn = req.getParameter("searchColumn");
-		String 	searchWord = req.getParameter("searchWord");/*.toUpperCase()*/
 		//검색후 페이징과 관련된 파라미터를 전달할 값을 저장할 변수]
 		String addQuery ="";
 				
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		
-		if(searchWord !=null){
-			addQuery+="searchColumn="+searchColumn+"&searchWord="+searchWord+"&";
-			map.put("searchColumn",searchColumn);
-			map.put("searchWord",searchWord);
-		}
 		
 		SimpleMemDto dto = new SimpleMemDto();
 		List list = null;
@@ -59,8 +51,8 @@ public class FindMemberListController extends HttpServlet {
 				int end = nowPage*pageSize;	
 				map.put("start", start);
 				map.put("end", end);
-		try {
-			list = dao.selectCardList(req.getParameter("mem"), map);
+		try {		 
+			list = dao.searchMemberList(req.getParameter("mem"), req.getParameter("where"), map);
 		} catch (Exception e) {	e.printStackTrace();}
 		
 		String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Member/FindId.do?");
