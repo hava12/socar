@@ -62,14 +62,12 @@
 
 
 <link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/reservation.css?v=20170731' />
-<link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/jquery-ui.css' />
+<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/jquery-ui.css' />
 <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" /> -->
-<link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/jquery.mCustomScrollbar.css' />
 
 
 <script src="${pageContext.request.contextPath}/template/js/jquery-ui.js"></script>
 <script src="//web-assets.socar.kr/template/reservation/../asset/js/jquery-collision.js?1505961969"></script>
-<script type="text/javascript" src="//web-assets.socar.kr/template/reservation/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="//web-assets.socar.kr/template/reservation/../asset/js/common_reservation.js?1505961969"></script>
 
 
@@ -94,9 +92,37 @@
 }
 
 
+
+
 </style>
 
 
+
+<script>
+$( function() {
+	$("div[name='slider-range']").each(function(){
+		
+	  $(this).slider({
+	    range: true,
+	    min: 0,
+	    max: 500,
+	    values: [ 75, 300 ],
+	    slide: function( event, ui ) {
+ 	      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	    },
+	    disabled: true
+
+	  });///////////////////////////////////////////////////////
+
+
+
+	
+	});
+
+
+	
+});
+  </script>
 
 
 
@@ -168,7 +194,7 @@ var $cur_pos_marker       = null;
 var $beforePos            = null;
 var $beforeLevel          = null;
 var $isLogin              = '';
-var $tmp_start_at         = '2017-09-21T12:00:00+09:00';
+var $tmp_start_at         = '2017-09-28T12:00:00+09:00';
 
 var timerGetRolling       = null;
 
@@ -463,186 +489,8 @@ function getCouponPrice(options, callback) {
 	});
 }
 
-function getPriceByTerm(options, callback) {
-	var way = options.way,
-		oneway_id = options.oneway_id,
-		zone_id = options.zone_id,
-		car_id = options.car_id,
-		start_at = options.start_at,
-		end_at = options.end_at,
-		member_state = options.member_state,
-		URL = "https://api.socar.kr/reserve/price";
-
-	if(member_state != null) {
-		URL = URL + "/" + member_state;
-	}
-
-	$.ajax({
-		type: 'POST',
-		url: URL,
-		crossDomain: true,
-		data: {
-			
-			way: way,
-			
-				zone_id: zone_id,
-			
-			car_id: car_id,
-			start_at: start_at,
-			end_at: end_at
-		},
-		dataType: 'jsonp',
-		success: function(json){
-			var retCode = json['retCode'];
-			if(retCode == 1){
-				var result = json['result'];
-				callback(result['price_dis']);
-			}
-			else{
-				alert(json['retMsg'] + ' 코드 : ' + json['retCode']);
-				callback(null);
-			}
-		},
-		error: function(){
-			alert('일시적인 오류입니다. 잠시 후 다시 시도해주세요');
-			callback(null);
-		}
-	});
-}
-
-//표시될 일 수에 따라 타임라인 길이 설정
-$step = 0.1666666666666667;
-// $step = 0.166667;
 
 
-	$timeline_width = 30;
-	$unit           = 350/$timeline_width;
-	;
-
-
-//able time 에서 unable time 구하기
-var unableArr = new Array();
-
-
-	
-		var base_s        = 3.0;
-		var count         = 0 ;
-		unableArr[0] = new Array();
-		
-
-			//from , time 값을 현재 타임라인 크기에 맞게 설정
-			$from = (0 / 10) * $step + 3;
-			$time = (60 / 10) * $step;
-
-			//소수점 이하 첫째 자리수로 고정
-			var from_fixed = $from.toFixed(1);
-			var time_fixed = $time.toFixed(1);
-
-			//소수점 + 연산 정상적으로 하기 위한 값
-			var T = Number('1e'+1);
-
-			//타임라인 idx 3 부터 시작
-			for(var i = 3; i <= $timeline_width - 3; i++){
-				// i 의 소수점 단위 루프
-				for(var j = i; j < i + 1; j = Math.round((j + 0.1)*T)/T){
-					// i 의 소수점 단위 값과 $from 이 일치하는지 확인
-					if(j == from_fixed){
-
-						unableArr[0][count++] = base_s;
-						unableArr[0][count++] = Math.round((j - base_s)*T)/T;
-
-						//base 값을 able time 끝지점으로 설정
-						base_s = Math.round((j + parseFloat(time_fixed))*T)/T;
-						break;
-					}
-					else{
-						if( i + (Math.round((j - parseInt(j))*T)/T) > $timeline_width - 3){
-							break;
-						}
-						unableArr[0][count] = base_s;
-						unableArr[0][count + 1] = Math.round((j - base_s)*T)/T;
-					}
-				}
-			}
-		
-
-			//from , time 값을 현재 타임라인 크기에 맞게 설정
-			$from = (580 / 10) * $step + 3;
-			$time = (860 / 10) * $step;
-
-			//소수점 이하 첫째 자리수로 고정
-			var from_fixed = $from.toFixed(1);
-			var time_fixed = $time.toFixed(1);
-
-			//소수점 + 연산 정상적으로 하기 위한 값
-			var T = Number('1e'+1);
-
-			//타임라인 idx 3 부터 시작
-			for(var i = 3; i <= $timeline_width - 3; i++){
-				// i 의 소수점 단위 루프
-				for(var j = i; j < i + 1; j = Math.round((j + 0.1)*T)/T){
-					// i 의 소수점 단위 값과 $from 이 일치하는지 확인
-					if(j == from_fixed){
-
-						unableArr[0][count++] = base_s;
-						unableArr[0][count++] = Math.round((j - base_s)*T)/T;
-
-						//base 값을 able time 끝지점으로 설정
-						base_s = Math.round((j + parseFloat(time_fixed))*T)/T;
-						break;
-					}
-					else{
-						if( i + (Math.round((j - parseInt(j))*T)/T) > $timeline_width - 3){
-							break;
-						}
-						unableArr[0][count] = base_s;
-						unableArr[0][count + 1] = Math.round((j - base_s)*T)/T;
-					}
-				}
-			}
-		
-		
-	
-		var base_s        = 3.0;
-		var count         = 0 ;
-		unableArr[1] = new Array();
-		
-
-			//from , time 값을 현재 타임라인 크기에 맞게 설정
-			$from = (0 / 10) * $step + 3;
-			$time = (1440 / 10) * $step;
-
-			//소수점 이하 첫째 자리수로 고정
-			var from_fixed = $from.toFixed(1);
-			var time_fixed = $time.toFixed(1);
-
-			//소수점 + 연산 정상적으로 하기 위한 값
-			var T = Number('1e'+1);
-
-			//타임라인 idx 3 부터 시작
-			for(var i = 3; i <= $timeline_width - 3; i++){
-				// i 의 소수점 단위 루프
-				for(var j = i; j < i + 1; j = Math.round((j + 0.1)*T)/T){
-					// i 의 소수점 단위 값과 $from 이 일치하는지 확인
-					if(j == from_fixed){
-
-						unableArr[1][count++] = base_s;
-						unableArr[1][count++] = Math.round((j - base_s)*T)/T;
-
-						//base 값을 able time 끝지점으로 설정
-						base_s = Math.round((j + parseFloat(time_fixed))*T)/T;
-						break;
-					}
-					else{
-						if( i + (Math.round((j - parseInt(j))*T)/T) > $timeline_width - 3){
-							break;
-						}
-						unableArr[1][count] = base_s;
-						unableArr[1][count + 1] = Math.round((j - base_s)*T)/T;
-					}
-				}
-			}
-		
 		
 	
 
@@ -1094,11 +942,7 @@ $(function(){
 		return false;
 	});
 
-	$('.section').bind('click', function() {
-		$(this).find('a.door').click();
 
-		return false;
-	});
 
 	//IE 7,8 에서 timeline 클릭시 $('.section').bind('click') 발생 막기
 	//안하면 타임라인 슬라이드 or 클릭때마다 접히고 열리고 반복
@@ -1106,249 +950,6 @@ $(function(){
 		return false;
 	});
 
-	//사용자가 선택한 시간을 타임라인에 맞게 변경
-	$select_from = (720 / 10) * $step + 3;
-	$select_time = (30 / 10) * $step;
-
-
-	for(var i in unableArr){
-
-		var rangeWrap    = $('#timeline' + i).find('.rangeWrap');
-		var count        = unableArr[i].length / 2;
-		var item_counter = 0;
-
-		rangeWrap.append('<em class="unable_count" style="display:none;">' + count + '</em>');
-		for(var j = 0; j < count; j++){
-			rangeWrap.append('<span class="unable' + j + '">예약불가</span>');
-			rangeWrap.append('<em style="display:none;"></em>');
-			rangeWrap.append('<em style="display:none;"></em>');
-
-			$('#timeline' + i).find('.unable' + j).css('left',unableArr[i][item_counter] * $unit);
-			$('#timeline' + i).find('.unable' + j).next().text(unableArr[i][item_counter++]);
-
-			$('#timeline' + i).find('.unable' + j).width(unableArr[i][item_counter] * $unit);
-			$('#timeline' + i).find('.unable' + j).next().next().text(unableArr[i][item_counter++]);
-		}
-
-		$('#slider-range' + i).slider({
-
-			range: true,
-			min: 0,
-			max: $timeline_width,
-			values: [ $select_from, $select_from + $select_time ],
-			step: $step,
-			stop: function( event, ui) {
-				if(!$(this).parent().parent().find('.door').hasClass('op') || ui.values[0] < 3 || ui.values[1] > $timeline_width - 3){
-					return false;
-				}
-				//해당 타임라인 id
-				var t_line = $(this).attr('id');
-
-				//기존 overlap span 제거
-				$(this).find('.overlap').css('display', 'none');
-
-				//collision 세팅
-				var collision_obj = $(this).find('.ui-slider-range').collision('#' + t_line + ' .rangeWrap span', {
-					as:"<div />",
-					relative: $(this).parent().find('.rangeWrap')
-				});
-
-				//collision 개수만큼 overlap 생성
-				//생성 대신 기존 overlap을 숨겨두고 속성 변경으로 처리 (IE 7,8 에서 element append시 드래그 끊김 문제)
-				for(var k = 0; k < collision_obj.length; k++){
-				   var l = $(collision_obj[k]).css('left');
-				   var w = $(collision_obj[k]).css('width');
-
-				   $(this).find('.'+k).css('display', 'block');
-				   $(this).find('.'+k).css('left', l);
-				   $(this).find('.'+k).css('width', w);
-				}
-
-				var btn_reserve_parent = $(this).parent().parent().find('.rvBtn');
-				if(collision_obj.length > 0){ //예약 불가능 설정
-					$(btn_reserve_parent).addClass('unable');
-					$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-					$(this).next().html('죄송합니다. 이미 다른 예약이 있거나 이용할 수 없는 시간입니다.');
-					$(this).next().removeClass('amount');
-					$(this).next().addClass('alert');
-				}
-				else{ //예약 가능 설정
-					var s = ui.values[0].toFixed(1);
-					var e = ui.values[1].toFixed(1);
-					var tmp_start = $tmp_start_at;
-
-					var start_at = new Date(tmp_start.substr(0,4), tmp_start.substr(5,2)-1, tmp_start.substr(8,2),
-										 0, 0, 0);;
-					var end_at   = new Date(tmp_start.substr(0,4), tmp_start.substr(5,2)-1, tmp_start.substr(8,2),
-										 0, 0, 0);
-
-					start_at.addHours(parseInt(s) - 3);
-					switch(s.substr(s.indexOf('.') + 1, 1)){
-						case '2':
-							start_at.addMinutes(10);
-							break;
-						case '3':
-							start_at.addMinutes(20);
-							break;
-						case '5':
-							start_at.addMinutes(30);
-							break;
-						case '7':
-							start_at.addMinutes(40);
-							break;
-						case '8':
-							start_at.addMinutes(50);
-							break;
-					}
-
-					end_at.addHours(parseInt(e) - 3);
-					switch(e.substr(e.indexOf('.') + 1, 1)){
-						case '2':
-							end_at.addMinutes(10);
-							break;
-						case '3':
-							end_at.addMinutes(20);
-							break;
-						case '5':
-							end_at.addMinutes(30);
-							break;
-						case '7':
-							end_at.addMinutes(40);
-							break;
-						case '8':
-							end_at.addMinutes(50);
-							break;
-					}
-					var now = new Date();
-
-					if(now.getTime() > start_at.getTime()){
-						$(btn_reserve_parent).addClass('unable');
-						$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-						$(this).next().html('죄송합니다. 현재 시간보다 이전 시간을 대여일로 지정할 수 없습니다.');
-						$(this).next().removeClass('amount');
-						$(this).next().addClass('alert');
-						return false;
-					}
-
-					if(getRentTime(start_at, end_at) < 30){
-						$(btn_reserve_parent).addClass('unable');
-						$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-						$(this).next().html('죄송합니다. 대여시간이 너무 짧습니다. 최소 대여시간은 30분입니다.');
-						$(this).next().removeClass('amount');
-						$(this).next().addClass('alert');
-						return false;
-					}
-
-					if(getRentTime(start_at, end_at) > 7200){
-						$(btn_reserve_parent).addClass('unable');
-						$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-						$(this).next().html('죄송합니다. 최대 사용시간은 120시간 입니다. 120시간 이상 예약은 고객센터(1661-3315)로 문의해 주세요.');
-						$(this).next().removeClass('amount');
-						$(this).next().addClass('alert');
-						return false;
-					}
-
-					$(btn_reserve_parent).removeClass('unable');
-					$(btn_reserve_parent).children('.btn_reserve').attr('href', $isLogin ? '#' : '#require_login');
-					$(this).next().removeClass('alert');
-					$(this).next().addClass('amount');
-
-					$(this).children('.timeline_start_at').text(makeTimeFormat(start_at));
-					$(this).children('.timeline_end_at').text(makeTimeFormat(end_at));
-
-					// slider 위치에 따라 총 대여요금, 정회원 할인가, SO회원 할인가 실시간 update
-					{
-						var $rsvBtn = $(btn_reserve_parent).children('.btn_reserve');
-						var set_way = $rsvBtn.attr('id');
-						
-						var set_oneway_id = '';
-						
-
-						var set_zone_id  = $rsvBtn.next().text();
-						var set_car_id   = $rsvBtn.next().next().text();
-						var set_start_at = $(this).children('.timeline_start_at').text();
-						var set_end_at   = $(this).children('.timeline_end_at').text();
-						var num = $(this).attr("num");
-
-						var options = {
-							way: set_way,
-							oneway_id: set_oneway_id,
-							zone_id: set_zone_id,
-							car_id: set_car_id,
-							start_at: set_start_at,
-							end_at: set_end_at,
-							member_state: null
-						};
-
-						options.member_state = 2;
-						getPriceByTerm(options,function(price){
-							
-							if(price !== null) {
-								$("#price-s"+num).text(number_format(price) + '원'); //SO회원 할인가
-							}
-							
-
-							return false;
-						});
-					}
-
-					$(this).next().html( "대여기간 : <strong>" +
-										 makeDateStringWithDay(start_at) + " ~ " +
-										 makeDateStringWithDay(end_at) + "</strong>" +
-										 '  (총 ' + makeRentTimeString(start_at, end_at) + ')');
-				}
-			},
-			slide: function( event, ui ) {
-				if(!$(this).parent().parent().find('.door').hasClass('op') || ui.values[0] < 3 || ui.values[1] > $timeline_width - 3){
-					return false;
-				}
-				//해당 타임라인 id
-				var t_line = $(this).attr('id');
-
-				//기존 overlap span 제거
-				$(this).find('.overlap').css('display', 'none');
-
-				//collision 세팅
-				var collision_obj = $(this).find('.ui-slider-range').collision('#' + t_line + ' .rangeWrap span', {
-					as:"<div />",
-					relative: $(this).parent().find('.rangeWrap')
-				});
-
-				//collision 개수만큼 overlap 생성
-				//생성 대신 기존 overlap을 숨겨두고 속성 변경으로 처리 (IE 7,8 에서 element append시 드래그 끊김 문제)
-				for(var k = 0; k < collision_obj.length; k++){
-				   var l = $(collision_obj[k]).css('left');
-				   var w = $(collision_obj[k]).css('width');
-
-				   $(this).find('.'+k).css('display', 'block');
-				   $(this).find('.'+k).css('left', l);
-				   $(this).find('.'+k).css('width', w);
-
-				}
-				// $(this).next().html( "대여기간 : <strong>" + ui.values[ 0 ] + " ~ " + ui.values[ 1 ] + "</strong>");
-			}
-		});
-		$('#amount' + i).html("대여기간 : <strong>2017.09.21 목 12:00 ~ " +
-							  "2017.09.21 목 12:30</strong>" +
-							  "  (총 0시간 30분)");
-
-		//collision 세팅
-		var collision_obj = $(".ui-slider-range").collision('#slider-range' + i + ' .rangeWrap span', {
-			as:"<div />",
-			relative: $('.rangeWrap')
-		});
-
-		//collision 개수만큼 overlap 생성
-		//생성 대신 기존 overlap을 숨겨두고 속성 변경으로 처리 (IE 7,8 에서 element append시 드래그 끊김 문제)
-		for(var k = 0; k < collision_obj.length; k++){
-			var l = $(collision_obj[k]).css('left');
-			var w = $(collision_obj[k]).css('width');
-
-			$('#slider-range' + i).find('.'+k).css('display', 'block');
-			$('#slider-range' + i).find('.'+k).css('left', l);
-			$('#slider-range' + i).find('.'+k).css('width', w);
-		}
-	}
 
 	$('#reservation .list .door').click(function(){
 		var timeline = $(this).next().text();
@@ -1356,12 +957,12 @@ $(function(){
 		$(this).toggleClass('op');
 
 		if($(this).hasClass('op')){
-			$unit = 590/$timeline_width;
+		
 			$(this).html('접기');
 			// $c_width = 590;
 			// $b_width = 350;
 		} else {
-			$unit = 350/$timeline_width;
+
 			$(this).html('자세히');
 			// $c_width = 350;
 			// $b_width = 590;
@@ -1486,19 +1087,10 @@ $(function(){
 									<div class="group">
 										<table cellspacing="0">
 										<tr>
-											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt1.gif' alt="여정" /></th>
+											<th></th>
 											<td>
-												<label for="type1">
-													<input id="radio_round" value="round" type="radio" name="type" id="type1" checked="checked" />
-													왕복
-												</label>
-												<label for="type2">
-													<input id="radio_oneway" value="oneway" type="radio" name="type" id="type2" />
-													<span style="font-size: 12px; background-color: rgb(255, 228, 0); color: rgb(255, 0, 0);">
-													</span>
-													편도
-													
-												</label>
+												<label for="type1"><input style="display: none;" id="radio_round" value="round" type="radio" name="type" id="type1" /></label>
+												<label for="type2"><input style="display: none;" id="radio_oneway" value="oneway" type="radio" name="type" id="type2" /></label>
 											</td>
 										</tr>
 										</table>
@@ -1648,7 +1240,7 @@ $(function(){
 			</div>
 			<!-- //map -->
 
-			
+			<c:if test="${not empty car_list}" >
 			<!-- list -->
 			<div id="search_result_table" class="list">
 				<form name="socar" method="post" action="">
@@ -1676,7 +1268,7 @@ $(function(){
 						</div>
 						
 						
-
+					
 							<c:forEach items="${car_list}" var="item" varStatus="loop">
 								<div class="section">
 									<div class="arti">
@@ -1696,43 +1288,18 @@ $(function(){
 												옵션 : ${item.car_trans},${item.car_i_safe_option},${item.car_i_add_option}
 												<!--<a href="#" class="more carDetail view_detail_car">더보기</a>-->
 											</div>
+											
+										<div id="slider-range" name="slider-range"></div>
+										
 										</div>
 									</div>
 
 									<!-- 타임라인 -->
-									<div id="timeline0" class="timelineWrap">
-										<p class="noti"><img src='//web-assets.socar.kr/template/asset/images/reservation/list_noti.gif' alt="" /></p>
-										<div id="slider-range0" num="0" class="timeline time24">
-											<div class="rangeWrap">
-												<a class="ui-slider-handle" href="#"></a>
-												<a class="ui-slider-handle next" href="#"></a>
-											</div>
-											
-												<span class="t1 time date">09.21</span>
-												<span class="t2 time">06:00</span>
-												<span class="t3 time">12:00</span>
-												<span class="t4 time">18:00</span>
-												<span class="t5 time date">09.22</span>
-											
-											<em class="timeline_start_at" style="display:none;">2017-09-21T12:00:00+09:00</em>
-											<em class="timeline_end_at" style="display:none;">2017-09-21T12:30:00+09:00</em>
-											<span class="overlap 0" style="display: none;"></span>
-											<span class="overlap 1" style="display: none;"></span>
-											<span class="overlap 2" style="display: none;"></span>
-											<span class="overlap 3" style="display: none;"></span>
-											<span class="overlap 4" style="display: none;"></span>
-											<span class="overlap 5" style="display: none;"></span>
-											<span class="overlap 6" style="display: none;"></span>
-											<span class="overlap 7" style="display: none;"></span>
-											<span class="overlap 8" style="display: none;"></span>
-											<span class="overlap 9" style="display: none;"></span>
-											<span class="overlap 10" style="display: none;"></span>
-											<span class="overlap 11" style="display: none;"></span>
-										</div>
 										
-											<p id="amount0" class="amount"></p>
 										
-									</div>
+										
+										
+										
 									<!-- //타임라인 -->
 
 									<!-- 대여요금 -->
@@ -1773,7 +1340,7 @@ $(function(){
 				</form>
 			</div>
 			<!-- //list -->
-			
+			</c:if>
 
 			<!-- TO-DO  2013.02.17
 				 페이지네이션 추가
@@ -1821,336 +1388,40 @@ div.aside ul :first-child a{border-top:1px solid #BBB;}
 div.aside ul :last-child a{border-bottom:1px solid #BBB;}  
 </style>
 <!-- quick -->
-<div class="aside">
-	<ul>
-		<li>
-			<a href="#" class="quick4" title="쏘카쿠폰 혜택">쏘카쿠폰 혜택</a>
-		</li>
-		
-		
-		
-		<li>
-			<a href="#" class="quick2" title="주행요금 계산하기">주행요금 계산하기</a>
-		</li>
-		<li>
-			<a href="#" class="quick3" title="쏘카존 신청하기">쏘카존 신청하기</a>
-		</li>
 
-	</ul>
-</div>
-
-<style type="text/css">
-	.aside_more {
-		position: fixed;
-		top: 111px;
-		right: 51px;
-		z-index: 10000;
-	}
-</style>
-
-<div class="aside_more"><img src='//web-assets.socar.kr/template/asset/images/common/banner_more.png' alt="더보기" />
-</div>
+	<jsp:include page="/template/Quick.jsp"/>
 
 <!-- //quick -->
 	</div>
 
-	<!-- footer -->
-<div id="footer">
-  <div class="gr">
-    <ul class="footer-menu">
-      <li><a href=https://www.socar.kr/about class="menu1" title="회사소개">회사소개</a></li>
-      <li><a href="https://goo.gl/Aqsjr5" title="채용안내" target="_blank" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='//web-assets.socar.kr/template/asset/images/common/footer_menu_recruit_new.png' alt="채용안내"></a></li>
-      <li><a href="https://www.dropbox.com/sh/qiypdh3xl3mmktf/AAAlXsdhOZUY3HTPcvcwPXfCa?dl=0" target="_blank" class="menu2" title="보도자료">보도자료</a></li>
-<!-- 2015.07.29 -->
-      <li><a href=https://www.socar.kr/terms title="회원이용약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='//web-assets.socar.kr/template/asset/images/common/footer_menu_member_n.png' alt="회원이용약관" /></a></li>
-      <li><a href=https://www.socar.kr/privacy class="menu5" title="개인정보처리방침">개인정보처리방침</a></li>
-      <li><a href=https://www.socar.kr/rent_terms title="자동차대여약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='//web-assets.socar.kr/template/asset/images/common/footer_menu_rental_n2.png' alt="자동차대여약관" /></a></li>
-      <li><a href=https://www.socar.kr/gis_terms title="위치기반서비스 이용약관" style="padding:3px 0 2px;background:none;text-indent:0;"><img src='//web-assets.socar.kr/template/asset/images/common/footer_menu_location_n.png' alt="위치기반서비스 이용약관" /></a></li>
+<!-- footer -->
+		<jsp:include page="/template/Footer.jsp"/>
 
-<!--// 2015.07.29 -->
-    </ul>
-    <address>
-			<img src='//web-assets.socar.kr/template/asset/images/common/footer_address.png?v=3' alt="(주) 쏘카 통신판매업 신고 : 제 2011-제주조천-0021호, 정보보호 담당자 : 김명훈, 사업자등록번호 : 616-81-90529  대표자 : 이재용
-Tel : 1661-3315, Fax : 02-6969-9333, 주소 : 제주특별자치도 제주시 도령로 129, 5층 (연동, 드림플라자) 63126" />
-		</address>
-    <p class="copyright"><img style="margin-top:15px;" src='//web-assets.socar.kr/template/asset/images/common/footer_copyright_n2.png' alt="Copyright © 2013 SOCAR  All rights reserved." /></p>
-    <div class="ccm"><a href="/impact"><img style="margin-top:15px;" src='//web-assets.socar.kr/template/asset/images/common/ccm.png' /></a></div>
-    <div class="eco"><a href="/impact"><img style="margin-top:15px;" src='//web-assets.socar.kr/template/asset/images/common/eco.png?v=4' /></a></div>
-    <div class="bcorp"><a href="/impact"><img style="margin-top:15px;" src='//web-assets.socar.kr/template/asset/images/common/bcorp.jpg' /></a></div>
-    <div class="csa"><a href="http://carsharing.org/" target="_blank"><img style="margin-top:15px;" src='//web-assets.socar.kr/template/asset/images/common/csa.png' /></a></div>
-  </div>
-
-  <ul class="sns">
-  	<li><a href="https://www.facebook.com/socarsharing" target="_blank" class="sns1" title="SOCAR Facebook">SOCAR Facebook</a></li>
-  	<li><a href="http://blog.socar.kr/" target="_blank" class="sns3" title="SOCAR Blog">SOCAR Blog</a></li>
-  	<li><a href="mailto:info@socar.kr" class="sns4" title="info@socar.kr">E-mail</a></li>
-  </ul>
-</div>
 <!-- //footer -->
 
 
 	<div class="mwLayer">
 		<div class="bg"></div>
 		<div id="mwCont">
-			<!-- login -->
-<div class="login mwCont">
-	<form name="login" method="post" action="https://www.socar.kr/user/login">
-		<input id="redirect" name="redirect" type="hidden" value=""/>
-		<input id="redirect_data" name="redirect_data" type="hidden" value=""/>
-		<fieldset>
-			<dl>
-				<dt><img alt="아이디" src='//web-assets.socar.kr/template/asset/images/common/new/id.png' /></dt>
-				<dd><input type="text" class="input" name="email" /></dd>
-				<dt><img alt="비밀번호" src='//web-assets.socar.kr/template/asset/images/common/new/pw.png' /></dt>
-				<dd><input type="password" class="input" name="password" /></dd>
-			</dl>
-			<input type="image" src='//web-assets.socar.kr/template/asset/images/common/new/btn_login.png' class="submit" id="login_btn" />
-
-		</fieldset>
-	</form>
-
-	<ul>
-		<li><a title="회원가입" class="lg1" href="https://www.socar.kr/join"><img src='//web-assets.socar.kr/template/asset/images/common/new/join.png' alt="회원가입" /></a></li>
-		<li><a title="아이디·비밀번호 찾기" class="lg2" href="#"><img src='//web-assets.socar.kr/template/asset/images/common/new/idpw.png' alt="아이디·비밀번호 찾기" /></a></li>
-	</ul>
-
-	<!-- SNS 로그인 -->
-	<div class="box_sns">
-		<a href="#" id="fb_login" class="left"><img src='//web-assets.socar.kr/template/asset/images/common/new/fb3_n.png' alt="페이스북" /></a>
-		<a href="#" id="naver_login" class="center"><img src='//web-assets.socar.kr/template/asset/images/common/new/nv3_n.png' alt="네이버" /></a>
-		<a href="#" id="kakao_login" class="right"><img src='//web-assets.socar.kr/template/asset/images/common/new/cco3.png' alt="카카오톡" /></a>
-	</div>
-</div>
+<!-- login -->
+<jsp:include page="/template/Login.jsp" />
 <!-- //login -->
 
 <!-- finding id -->
-<div class="findingId finding mwCont">
-	<ul>
-		<li><a href="#" class="lg1" title="아이디 찾기">아이디 찾기</a></li>
-		<li><a href="#" class="lg2" title="비밀번호 찾기">비밀번호 찾기</a></li>
-	</ul>
-
-	<form name="findingId" method="post" action="">
-		<fieldset>
-			<dl>
-				<dt><img src='//web-assets.socar.kr/template/asset/images/common/finding_txt3.gif' alt="이름" /></dt>
-				<dd><input id="find_email_name" type="text" class="input" /></dd>
-				<dt><img src='//web-assets.socar.kr/template/asset/images/common/finding_txt4.gif' alt="휴대폰" /></dt>
-				<dd>
-					<select id="find_email_num1" style="width:51px;">
-						<option selected="selected">010</option>
-						<option>011</option>
-						<option>016</option>
-						<option>017</option>
-						<option>018</option>
-						<option>019</option>
-					</select> -
-					<input id="find_email_num2" type="text" class="input" style="padding:0; width:41px; text-align:center;" /> -
-					<input id="find_email_num3" type="text" class="input" style="padding:0; width:41px; text-align:center;" />
-				</dd>
-			</dl>
-			<input id="btn_find_email" type="image" class="submit" src='//web-assets.socar.kr/template/asset/images/common/btn_confirm_b.gif' />
-		</fieldset>
-	</form>
-</div>
-<!-- //finding id -->
-
 <!-- finding pw -->
-<div class="findingPw finding mwCont">
-	<ul>
-		<li><a href="#" class="lg1" title="아이디 찾기">아이디 찾기</a></li>
-		<li><a href="#" class="lg2" title="비밀번호 찾기">비밀번호 찾기</a></li>
-	</ul>
 
-	<form name="findingPw" method="post" action="">
-		<fieldset>
-			<dl>
-				<dt><img src='//web-assets.socar.kr/template/asset/images/common/finding_txt2.gif' alt="아이디 (이메일)" /></dt>
-				<dd><input id="find_pw_email" type="text" class="input" /></dd>
-				<dt><img src='//web-assets.socar.kr/template/asset/images/common/finding_txt3.gif' alt="이름" /></dt>
-				<dd><input id="find_pw_name" type="text" class="input" /></dd>
-				<dt><img src='//web-assets.socar.kr/template/asset/images/common/finding_txt4.gif' alt="휴대폰" /></dt>
-				<dd>
-					<select id="find_pw_num1" style="width:51px;">
-					<option selected="selected">010</option>
-					<option>011</option>
-					<option>016</option>
-					<option>017</option>
-					<option>018</option>
-					<option>019</option>
-					</select> -
-					<input id="find_pw_num2" type="text" class="input" style="padding:0; width:41px; text-align:center;" /> -
-					<input id="find_pw_num3" type="text" class="input" style="padding:0; width:41px; text-align:center;" />
-				</dd>
-			</dl>
-			<input id="btn_find_pw" type="image" class="submit" src='//web-assets.socar.kr/template/asset/images/common/btn_confirm_b.gif' />
-		</fieldset>
-	</form>
-</div>
-<!-- //finding pw -->
+<jsp:include page="/template/FindingIdPw.jsp"/>
+
 
             <!-- 주행요금 계산기 -->
-            <div class="oilL mwCont">
-                <h4><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt1_n.gif' alt="주행요금 계산기" /></h4>
-                <form name="oil" method="post" action="">
-                    <fieldset>
-                        <div class="oilForm">
-                            <dl>
-                            <dt><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt2.gif' alt="차종" /></dt>
-                            <dd>
-                            	<select id="oil_carlist" class='oilSelect' style="width:165px;height:28px;font-size: 12px;border-color: #c6cace;">
-                            	<option selected='selected' value="">차종 선택</option>
-								</select>
-                            </dd>
-                            <dt><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt3.gif' alt="거리" /></dt>
-                            <dd>
-                                <input type="text" id="oilDistance" class="input" />
-                            </dd>
-                            </dl>
-                            <input type="image" src='//web-assets.socar.kr/template/asset/images/common/btn_calculate.gif' class="submit" alt="계산" />
-                        </div>
-                        <p class="oilTxt">
-                            <img src='//web-assets.socar.kr/template/asset/images/common/oil_txt4.gif' alt="차종과 거리를 선택해주세요" />
-                        </p>
-                        <p class="oilResult">
-                            <img src='//web-assets.socar.kr/template/asset/images/common/oil_txt15_n.gif' alt="예상 주행요금은" />
-                            <span>14,500</span>
-                            <img src='//web-assets.socar.kr/template/asset/images/common/oil_txt16.gif' alt="원 입니다." />
-                        </p>
-                    </fieldset>
-                </form>
-
-                <p class="txt">
-                    <img src='//web-assets.socar.kr/template/asset/images/common/oil_txt6_n.gif' alt="주행요금은 차량 이용 후 실제 이동거리에 따라 부과되므로, 예상 주행요금과 차이가 있을 수 있습니다." />
-                </p>
-
-                <div class="noti">
-                    <h5><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt7.gif' alt="계산기이용하기" /></h5>
-                    <ol>
-                    <li><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt8.gif' alt="1. 지도서비스에서 출발, 도착지를 설정후 자동차 길찾기를 하세요." /></li>
-                    <li><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt9.gif' alt="2. 길찾기 결과의 총거리를 확인하세요." /></li>
-                    <li><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt10_n.gif' alt="3. 차종과 총거리를 입력하고 주행요금을 미리 예상해보세요." /></li>
-                    </ol>
-
-                    <dl>
-                    <dt><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt11.gif' alt="지도서비스" /></dt>
-                    <dd><a href="http://map.daum.net/?target=car" target="_blank"><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt12.gif' alt="다음" /></a></dd>
-                    <dd><a href="http://map.naver.com/index.nhn?menu=route" target="_blank"><img src='//web-assets.socar.kr/template/asset/images/common/oil_txt13.gif' alt="네이버" /></a></dd>
-                    </dl>
-                </div>
-            </div>
+            <jsp:include page="/template/Faretem.jsp"/>
             <!-- //주행요금 계산기 -->
 			
 
-			<div id="askzone_div" class="requestL mwCont">
-				<h4 style="height:29px;margin-left:0;"><img src='//web-assets.socar.kr/template/asset/images/common/request_txt3.gif' alt="우리동네 쏘카존 신청하기!!" /></h4>
-				<p class="txt" style="height:50px;margin-left:0;">
-					<img src='//web-assets.socar.kr/template/asset/images/common/request_txt2.gif' alt="여러분의 의견을 듣고 함께하는 쏘카! 신청서를 작성해주시면 쏘카존을 만들때 참고하겠습니다." />
-					<span style="padding-left:33px;">
-					
-					</span>
-				</p>
-
-				<form name="request" method="post" action="">
-					<fieldset>
-						<div class="requestForm" style="padding-bottom:15px;">
-							
-							<input type="text" id="search_ask_address" name="search_ask_address" data-in="false" class="input" style="width:420px;height:30px;padding-left:10px;color:#999;" value="주소, 장소 이름으로 검색하세요!  ex) 합정동, 홍익대학교" onclick="alert('로그인 후 작성이 가능합니다.');return false;" />
-							<input type="hidden" id="search_lat" value="0" />
-							<input type="hidden" id="search_lng" value="0" />
-							
-							<div class="wrap_loSoting" style="display:none;" id="addr_layer">
-								<ul class="result"></ul>
-							</div>
-							<div class="wrap_loSoting" style="display:none;" id="search_none_addr_layer">
-								<ul>
-									<li><a href="#">검색된 결과가 없습니다.</a></li>
-								</ul>
-							</div>
-							<textarea id="layer_askzone_text" cols="" rows="" class="textarea" data-in="false" style="width:420px;height:64px;margin-top:10px;color:#999;" onclick="alert('로그인 후 작성이 가능합니다.');return false;">자세한 내용을 적어주세요. (선택사항)</textarea>
-							<div style="width:432px;padding-top:9px;margin-top:12px;border-top:1px solid #eaeaea;text-align:center;">
-								<input type="image" src='//web-assets.socar.kr/template/asset/images/common/btn_socarzone_submit.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" alt="신청하기">
-							</div>
-							
-						</div>
-					</fieldset>
-				</form>
-				<div class="box_titsoting">
-					<div class="tit"><img src='//web-assets.socar.kr/template/asset/images/common/txt_socarzone.gif' alt="쏘카존 신청현황" /></div>
-					<div class="soting">
-						
-						<a href="#" id="search_all">전체</a>
-						<span class="txt_bar">|</span>
-						<a href="#" id="search_region">지역별 찾기 <span style="font-size:11px;font-family:arial" id="search_arrow">▼</span></a>
-					</div>
-					<div class="lay_location" id="search_region_layer" style="display:none;">
-						<span class="lay_tit">다른지역 찾기</span>
-						<input type="text" id="search_address" name="search_address" data-in="false" class="input" style="width:263px;height:26px;padding-left:10px;border-right:0 none;color:#999" value="주소, 장소 이름으로 검색하세요!  ex) 합정동, 홍익대학교" />
-						<a href="#" id="search_askzone_submit"><img src='//web-assets.socar.kr/template/asset/images/common/btn_search.gif' /></a>
-					</div>
-					<div class="wrap_loSoting" id="addr_search_layer" style="display:none;">
-						<ul class="result"></ul>
-					</div>
-					<div class="wrap_loSoting" style="display:none;" id="search_none_addr_search_layer">
-						<ul>
-							<li><a href="#">검색된 결과가 없습니다.</a></li>
-						</ul>
-					</div>
-				</div>
-				<div id="requestList_wrap" style="margin-top:14px; width:466px; height:295px; border:1px solid #d3d3d3; overflow-y:scroll;overflow-x:hidden;">
-					<div id="requestList">
-						<div id="askzone_wrap" class="wrap">
-						</div>
-					</div>
-					<input type="hidden" name="last_id" id="last_id" value="" />
-				</div>
-				<p id="btn_askzone_close" class="centerBtn"><a href="#" class="close"><img src='//web-assets.socar.kr/template/asset/images/common/btn_close.gif' alt="닫기" title="닫기"></a></p>
-			</div>
+			<!-- 쏘카존 신청하기 -->
+			<jsp:include page="/template/Socarzon.jsp"/>
 			<!-- 친구추천 -->
-			<div class="inviteL mwCont">
-				<div class="inbox">
-					<h4><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt1.gif' alt="친구야! 쏘카같이타자!" /></h4>
-					<p class="txt">
-						<img src='//web-assets.socar.kr/template/asset/images/common/invite_txt2_20151015.png' alt="친구, 지인들에게 카셰어링 쏘카를 추천하시고, 추천 받은 분이 쏘카에 가입하면, 초대한 사람에게 1만원+1만원 무료 쿠폰을 드립니다." />
-					</p>
-					<ol>
-					<li><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt3_20151015.png' alt="Step1 함께 하는 마음 담아 쏘카 초대 메일 발송" /></li>
-					<li><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt4.gif' alt="Step2 친구가 받은 메일의 링크를 통해 회원가입하기" /></li>
-					<li><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt5_20151015.png' alt="Step3 친구가 SO회원 가입 완료하면 1만원+1만원 쿠폰 자동 발급" /></li>
-					</ol>
-					<form name="invite" method="post" action="">
-						<fieldset>
-							<div class="inviteForm">
-								<dl>
-								<dt><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt6.gif' alt="받는 사람" /></dt>
-								<dd>
-									<label for="inviteMail" class="i_label">여러명인 경우 쉼표(,)로 구분해주세요.</label>
-									<input type="text" id="inviteMail" class="input i_text" />
-								</dd>
-								</dl>
-								<p class="tip1">최대 5개의 메일주소 입력이 가능</p>
-								<dl>
-								<dt><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt7.gif' alt="초대 메세지" /></dt>
-								<dd>
-									<label for="inviteCont" class="i_label">메세지를 입력해주세요.</label>
-									<textarea id="inviteCont" class="textarea i_text" cols="" rows=""></textarea>
-								</dd>
-								</dl>
-								<!-- <p class="tip2"><em>1</em> / 100</p> -->
-							</div>
-							<p class="centerBtn">
-								<input id="inviteSubmit" type="image" src='//web-assets.socar.kr/template/asset/images/common/btn_send.gif' alt="발송하기" />
-							</p>
-						</fieldset>
-					</form>
-				</div>
-				<div class="info">
-					<h5><img src='//web-assets.socar.kr/template/asset/images/common/invite_txt8.gif' alt="알려드립니다." /></h5>
-					<ul>
-						<li>초대받은 친구가 결제카드 등록 및 면허승인을 완료하면, 두분 모두에게 친구초대 쿠폰을 드려요.</li>
-					</ul>
-				</div>
-			</div>
+			<jsp:include page="/template/Friend.jsp"/>
 			<!-- //친구추천 -->
 
 
@@ -4561,21 +3832,24 @@ function move_map(){
 
 
 <c:forEach items="${list}" var="item" varStatus="loop">
-	other_position[${loop.count}] = new daum.maps.LatLng(${item.soz_latitude}, ${item.soz_longitude});
-	other_marker[${loop.count}] = new daum.maps.Marker({position:other_position[${loop.count}], clickable:true});
-	other_marker[${loop.count}].setMap(map);
-	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	other_position['${loop.count}'] = new daum.maps.LatLng('${item.soz_latitude}', '${item.soz_longitude}');
+	other_marker['${loop.count}'] = new daum.maps.Marker({position:other_position['${loop.count}'], clickable:true});
+	other_marker['${loop.count}'].setMap(map);
+	other_iwContent['${loop.count}'] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>" ><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
 	iwRemoveable = true;
-	other_infowindow[${loop.count}] = new daum.maps.InfoWindow({content:other_iwContent[${loop.count}],removable:iwRemoveable});		
+	other_infowindow['${loop.count}'] = new daum.maps.InfoWindow({content:other_iwContent['${loop.count}'],removable:iwRemoveable});		
 		<c:if test="${item.soz_code eq zone_dto.soz_code}">
-			other_infowindow[${loop.count}].open(map,other_marker[${loop.count}]);
+			other_infowindow['${loop.count}'].open(map,other_marker['${loop.count}']);
 		</c:if>
-	daum.maps.event.addListener(other_marker[${loop.count}],'click',function(){
+	daum.maps.event.addListener(other_marker['${loop.count}'],'click',function(){
 		close_info();
-	    move_map(${item.soz_latitude},${item.soz_longitude});
-		other_infowindow[${loop.count}].open(map,other_marker[${loop.count}]);					
+	    move_map('${item.soz_latitude}','${item.soz_longitude}');
+		other_infowindow['${loop.count}'].open(map,other_marker['${loop.count}']);					
 	});	 			
 </c:forEach>
+
+
+
 
 </script>
 </html>

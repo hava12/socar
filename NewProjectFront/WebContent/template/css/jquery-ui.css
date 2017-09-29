@@ -4,7 +4,8 @@
 * Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */
 
 /* Layout helpers
-----------------------------------*/
+
+----------------------------------*/	
 .ui-helper-hidden {
 	display: none;
 }
@@ -624,8 +625,8 @@ button.ui-button::-moz-focus-inner {
 .ui-slider .ui-slider-handle {
 	position: absolute;
 	z-index: 2;
-	width: 1.2em;
-	height: 1.2em;
+	width: 0.1em;
+	height: 0.5em;
 	cursor: default;
 }
 .ui-slider .ui-slider-range {
@@ -635,6 +636,7 @@ button.ui-button::-moz-focus-inner {
 	display: block;
 	border: 0;
 	background-position: 0 0;
+
 }
 
 /* For IE8 - See #6727 */
@@ -644,10 +646,9 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-slider-horizontal {
-	height: .8em;
+	height: .5em;
 }
 .ui-slider-horizontal .ui-slider-handle {
-	top: -.3em;
 	margin-left: -.6em;
 }
 .ui-slider-horizontal .ui-slider-range {
@@ -831,10 +832,8 @@ body .ui-tooltip {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 1px solid #d3d3d3/*{borderColorDefault}*/;
-	background: #e6e6e6/*{bgColorDefault}*/ url(//web-assets.socar.kr/template/asset/images/jquery.ui/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #555555/*{fcDefault}*/;
+	border: 1px solid black;
+	background-color: black;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -848,10 +847,10 @@ body .ui-tooltip {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #999999/*{borderColorHover}*/;
-	background: #dadada/*{bgColorHover}*/ url(//web-assets.socar.kr///web-assets.socar.kr/template/asset/images/jquery.ui/ui-bg_glass_75_dadada_1x400.png)/*{bgImgUrlHover}*/ 50%/*{bgHoverXPos}*/ 50%/*{bgHoverYPos}*/ repeat-x/*{bgHoverRepeat}*/;
+	border: 1px solid black;/*{borderColorHover}*/;
 	font-weight: normal/*{fwDefault}*/;
-	color: #212121/*{fcHover}*/;
+	color: black/*{fcHover}*/;
+	background-color: black;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -863,10 +862,9 @@ body .ui-tooltip {
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	border: 1px solid #aaaaaa/*{borderColorActive}*/;
-	background: #ffffff/*{bgColorActive}*/ url(//web-assets.socar.kr/template/asset/images/jquery.ui/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #212121/*{fcActive}*/;
+	border: 1px solid black/*{borderColorActive}*/;
+
+	background-color: black;
 }
 .ui-state-active a,
 .ui-state-active a:link,

@@ -34,7 +34,7 @@ public class ReserveController {
 		List<ZoneDTO> list = dao.selectEveryList();
 		
 		model.addAttribute("list", list);
-		return "/reserve/Reserve"; 
+		return "/reserve/ReserveSearchResult"; 
 	}
 	@RequestMapping("/Reserve/SearchResult.do")
 	public String searchResult(@RequestParam("soz_code") String soz_code, Model model) throws Exception{
