@@ -108,18 +108,17 @@ $( function() {
 	    max: 500,
 	    values: [ 75, 300 ],
 	    slide: function( event, ui ) {
- 	      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 	    },
 	    disabled: true
 
 	  });///////////////////////////////////////////////////////
 
-
-
-	
+	  $(this).css("margin-top","15px");
+		
+	  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+	    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 	});
-
-
 	
 });
   </script>
@@ -955,14 +954,21 @@ $(function(){
 		var timeline = $(this).next().text();
 		$(this).parent('.section').toggleClass('open');
 		$(this).toggleClass('op');
-
-		if($(this).hasClass('op')){
 		
+		if($(this).hasClass('op')){
+			$(this).parent().find("div[name='slider-range']").slider( "option", "disabled", false );
 			$(this).html('접기');
+			$(this).parent().find("div[name='slider-range']").css("margin-top","45px").css("height","1.7em").css("width","600px");
+			$(this).parent().find("div[name='slider-range']").children("a").css("height","1.7em");
 			// $c_width = 590;
 			// $b_width = 350;
 		} else {
-
+			
+			$(this).parent().find("div[name='slider-range']").css("margin-top","15px").css("height",".5em");
+			$(this).parent().find("div[name='slider-range']").children("a").css("height",".5em");
+			
+			$(this).parent().find("div[name='slider-range']").slider( "option", "disabled", true );
+			
 			$(this).html('자세히');
 			// $c_width = 350;
 			// $b_width = 590;
@@ -1270,7 +1276,7 @@ $(function(){
 						
 					
 							<c:forEach items="${car_list}" var="item" varStatus="loop">
-								<div class="section">
+							<div class="section">
 									<div class="arti">
 										<h4 class="zone_info_popup" value="5237">${item.soz_name}</h4>
 										<em style="display:none;">5237</em>
