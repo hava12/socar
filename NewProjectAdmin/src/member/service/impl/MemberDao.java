@@ -68,7 +68,7 @@ public class MemberDao implements MemberService {
 
 	//기본 회원관리 리스트
 	@Override
-	public List<SimpleMemDto> selectSimpleMemlist(Map<String,Object> map){
+	public List<SimpleMemDto> selectSimpleMemlist(Map<String,Object> map) throws Exception{
 		/*String sql = "SELECT * FROM SIMPLE_MEM S WHERE NOT (SELECT COUNT(*) FROM MEM M WHERE M.SMEM_ID=S.SMEM_ID)=1";*/
 		String sql = "SELECT * FROM(SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT"
 				+ " * FROM SIMPLE_MEM S WHERE NOT (SELECT COUNT(*) FROM MEM M WHERE "
@@ -95,12 +95,12 @@ public class MemberDao implements MemberService {
 				list.add(dto);
 			}
 		} catch (Exception e) {e.printStackTrace();}
-		
+		close();
 		return list;
 	}/////////////////////////////////////////////////////////////
 	
 	//총 레코드 수 얻기용] 기본 회원관리
-		public int getMemTotalRecordCount(Map<String,Object> map){
+		public int getMemTotalRecordCount(Map<String,Object> map) throws Exception{
 			int total =0;
 			/*String sql="SELECT COUNT(*) FROM SIMPLE_MEM";*/
 			String sql="SELECT COUNT(*) FROM (SELECT * FROM SIMPLE_MEM S WHERE NOT(SELECT COUNT(*) FROM MEM M WHERE M.SMEM_ID=S.SMEM_ID)=1)";
@@ -146,7 +146,7 @@ public class MemberDao implements MemberService {
 
 	// so회원관리리스트
 	@Override
-	public List<MemDto> selectMemList(Map<String, Object> map) {
+	public List<MemDto> selectMemList(Map<String, Object> map) throws Exception {
 		List<MemDto> list = new Vector<MemDto>();
 		String sql = "";
 		if (map.get("searchWord") != null) {
@@ -186,14 +186,16 @@ public class MemberDao implements MemberService {
 				dto.setSmem_date(rs.getString(14));
 				list.add(dto);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		close();
 		return list;
 	}////////////////////////////////////////////////////////////////////////
 
 	// 총 레코드 수 얻기용] SO회원관리
-		public int getSOTotalRecordCount(Map<String, Object> map) {
+		public int getSOTotalRecordCount(Map<String, Object> map) throws Exception{
 			int total = 0;
 			String sql = "SELECT COUNT(*) FROM (SELECT M.*,SMEM_NAME,SMEM_TEL,SMEM_PWD,SMEM_DATE FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID)";
 			// 검색용 쿼리 추가
@@ -209,7 +211,7 @@ public class MemberDao implements MemberService {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
+			
 			return total;
 		}/////////////////// getTotalRecordCount
 	
@@ -254,7 +256,7 @@ public class MemberDao implements MemberService {
 
 	
 	@Override
-	public List<MembershipDto> selectMembershipList(Map<String,Object> map){
+	public List<MembershipDto> selectMembershipList(Map<String,Object> map) throws Exception{
 		String sql ="";
 				if (map.get("searchWord") != null) {
 				sql += "SELECT * FROM (";
@@ -282,11 +284,12 @@ public class MemberDao implements MemberService {
 			list.add(dto);
 		}
 		}catch (Exception e) {e.printStackTrace();}
+		close();
 		return list;
 	}
 	
 	//총 레코드 수 얻기용]
-		public int getShipTotalRecordCount(Map<String,Object> map){
+		public int getShipTotalRecordCount(Map<String,Object> map)throws Exception{
 			int total =0;
 			String sql="SELECT COUNT(*) FROM MEMBERSHIP";
 			// 검색용 쿼리 추가
@@ -369,7 +372,7 @@ public class MemberDao implements MemberService {
 	}//////////////////////////////////////////////멤버 정보 변경
 
 	@Override
-	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map) {
+	public List<CardDto> selectCardList(String smem_id,Map<String,Object> map) throws Exception {
 		
 		List<CardDto> list = new Vector<CardDto>();
 		String sql = "";
@@ -410,12 +413,12 @@ public class MemberDao implements MemberService {
 			list.add(dto);
 		}
 		}catch (Exception e) {e.printStackTrace();}
-		
+		close();
 		return list;
 	}//////////////////selectCardList();
 
 	//총 레코드 수 얻기용]
-		public int getCardTotalRecordCount(Map<String,Object> map){
+		public int getCardTotalRecordCount(Map<String,Object> map) throws Exception{
 			int total =0;
 			String sql="SELECT COUNT(*) FROM CARD";
 			// 검색용 쿼리 추가
@@ -434,7 +437,7 @@ public class MemberDao implements MemberService {
 	
 	
 	@Override
-	public List<MemDto> searchMemberList(String mem, String where,Map<String,Object> map) {
+	public List<MemDto> searchMemberList(String mem, String where,Map<String,Object> map) throws Exception {
 		//원래 sql문
 		/*sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM MEM M JOIN SIMPLE_MEM S ON M.SMEM_ID = S.SMEM_ID WHERE S."+where+"='"+mem+"') T) WHERE R BETWEEN ? AND ? ";*/
 		String sql = "";
@@ -471,10 +474,10 @@ public class MemberDao implements MemberService {
 			dto.setSmem_date(rs.getString(14));
 			list.add(dto);
 		}
-			close();
+			
 		}catch (Exception e) {e.printStackTrace();
 		}
-		
+		close();
 		return list;
 	}
 

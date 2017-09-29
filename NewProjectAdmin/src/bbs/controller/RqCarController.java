@@ -46,7 +46,13 @@ public class RqCarController extends HttpServlet{
 		
 		//페이징을 위한 로직 시작
 				//전체 레코드 수
-						int totalRecordCount=dao.getRqTotalRecordCount(map);
+						int totalRecordCount = 0;
+						try {
+							totalRecordCount = dao.getRqTotalRecordCount(map);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						//페이지 사이즈
 						int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 						//블락페이지
@@ -60,7 +66,13 @@ public class RqCarController extends HttpServlet{
 						int end = nowPage*pageSize;	
 						map.put("start", start);
 						map.put("end", end);
-			List<RqCarDTO> list = dao.select_RqCarList(map);
+			List<RqCarDTO> list = null;
+			try {
+				list = dao.select_RqCarList(map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Bbs/RqCarList.do?");
 			

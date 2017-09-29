@@ -49,7 +49,13 @@ public class RqLocController extends HttpServlet{
 		
 		//페이징을 위한 로직 시작
 				//전체 레코드 수
-						int totalRecordCount=dao.getRqlocTotalRecordCount(map);
+						int totalRecordCount = 0;
+						try {
+							totalRecordCount = dao.getRqlocTotalRecordCount(map);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						//페이지 사이즈
 						int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 						//블락페이지
@@ -64,7 +70,13 @@ public class RqLocController extends HttpServlet{
 						map.put("start", start);
 						map.put("end", end);
 		
-			List<RqLocDTO> list = dao.select_RqLocList(map);
+			List<RqLocDTO> list = null;
+			try {
+				list = dao.select_RqLocList(map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Bbs/RqLocList.do?");
 			
 			req.setAttribute("list", list);

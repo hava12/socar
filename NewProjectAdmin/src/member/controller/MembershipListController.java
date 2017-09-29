@@ -34,8 +34,6 @@ public class MembershipListController extends HttpServlet {
 						
 				Map<String,Object> map = new HashMap<String,Object>();
 				
-				System.out.println("searchColumn"+searchColumn);
-				System.out.println("searchWord"+searchWord);
 				if(searchWord !=null){
 					addQuery+="searchColumn="+searchColumn+"&searchWord="+searchWord+"&";
 					map.put("searchColumn",searchColumn);
@@ -46,7 +44,13 @@ public class MembershipListController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getShipTotalRecordCount(map);
+				int totalRecordCount = 0;
+				try {
+					totalRecordCount = dao.getShipTotalRecordCount(map);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -61,7 +65,12 @@ public class MembershipListController extends HttpServlet {
 				map.put("start",start);
 				map.put("end",end);
 				
-		List<MembershipDto> list = dao.selectMembershipList(map);
+		List<MembershipDto> list = null;
+		try {
+			list = dao.selectMembershipList(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Member/MemberShipList.do?");

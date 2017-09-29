@@ -20,7 +20,11 @@ public class NoticeDeleteController extends HttpServlet{
 		String no = req.getParameter("not_no");
 		BbsDao dao = new BbsDao(req.getServletContext());
 		
-		NoticeDto dto= dao.selectNoticeOne(no);
+		try {
+			NoticeDto dto= dao.selectNoticeOne(no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		dao.delete(no);
 		dao.close();

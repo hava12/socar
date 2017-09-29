@@ -48,7 +48,13 @@ public class CouponListController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getCouponTotalRecordCount(map);
+				int totalRecordCount = 0;
+				try {
+					totalRecordCount = dao.getCouponTotalRecordCount(map);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -63,7 +69,13 @@ public class CouponListController extends HttpServlet {
 				map.put("start", start);
 				map.put("end", end);
 				
-		List<CouponDto> list = dao.couponList(map);
+		List<CouponDto> list = null;
+		try {
+			list = dao.couponList(map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Coupon/CouponList.do?");

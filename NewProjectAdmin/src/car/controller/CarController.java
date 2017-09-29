@@ -45,7 +45,12 @@ public class CarController extends HttpServlet{
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getCarListTotalRecordCount(map);
+				int totalRecordCount = 0;
+				try {
+					totalRecordCount = dao.getCarListTotalRecordCount(map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -60,7 +65,12 @@ public class CarController extends HttpServlet{
 				map.put("start", start);
 				map.put("end", end);
 		
-		List<CarDTO> list = dao.selectList(map);
+		List<CarDTO> list = null;
+		try {
+			list = dao.selectList(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/CAR/CarList.do?");

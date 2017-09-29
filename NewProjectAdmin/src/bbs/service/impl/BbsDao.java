@@ -39,7 +39,7 @@ public class BbsDao implements BBSService {
 	
 	
 	@Override
-	public List<NoticeDto> selectNoticeList(Map<String, Object> map){
+	public List<NoticeDto> selectNoticeList(Map<String, Object> map) throws Exception{
 		/*String sql="SELECT * FROM NOTICE ORDER BY NOT_NO DESC" ;*/
 			String sql = "";
 		
@@ -70,6 +70,7 @@ public class BbsDao implements BBSService {
 				list.add(dto);
 			}
 		} catch (Exception e) {e.printStackTrace();}
+		close();
 		return list;
 	}
 
@@ -140,6 +141,7 @@ public class BbsDao implements BBSService {
 			dto.setNot_postdate(rs.getDate(5));
 			}
 		} catch (Exception e) {e.printStackTrace();}
+		
 		return dto;
 	}
 	
@@ -195,7 +197,7 @@ public class BbsDao implements BBSService {
 			}////////////////////update
 			
 			//총 레코드 수 얻기용]
-			public int getTotalRecordCount(Map<String, Object> map){
+			public int getTotalRecordCount(Map<String, Object> map) throws Exception{
 				int total =0;
 				String sql="SELECT COUNT(*) FROM NOTICE";
 				if (map.get("searchWord") != null) {
@@ -211,7 +213,7 @@ public class BbsDao implements BBSService {
 				return total;
 			}///////////////////getTotalRecordCount
 			@Override
-			public List<RqCarDTO> select_RqCarList(Map<String,Object> map){
+			public List<RqCarDTO> select_RqCarList(Map<String,Object> map) throws Exception{
 				List<RqCarDTO> list = new Vector<RqCarDTO>();
 				String sql ="";
 				// 검색용 쿼리 추가
@@ -246,11 +248,12 @@ public class BbsDao implements BBSService {
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
+				close();
 				return list;
 			}
 
 			//총 레코드 수 얻기용]
-			public int getRqTotalRecordCount(Map<String,Object> map){
+			public int getRqTotalRecordCount(Map<String,Object> map) throws Exception{
 				int total =0;
 				String sql="SELECT COUNT(*) FROM (SELECT R.*,(SELECT COUNT(*) FROM RQC_LIKE WHERE RQC_CODE=R.RQC_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQC_DIS WHERE RQC_CODE=R.RQC_CODE) AS DIS_COUNT FROM RQ_CAR R ORDER BY RQC_CODE)";
 				// 검색용 쿼리 추가
@@ -270,7 +273,7 @@ public class BbsDao implements BBSService {
 
 
 			@Override
-			public List<RqLocDTO> select_RqLocList(Map<String, Object> map){
+			public List<RqLocDTO> select_RqLocList(Map<String, Object> map) throws Exception{
 				List<RqLocDTO> list = new Vector<RqLocDTO>();
 				String sql = "";
 				if (map.get("searchWord") != null) {
@@ -303,11 +306,12 @@ public class BbsDao implements BBSService {
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
+				close();
 				return list;
 			}
 
 			//총 레코드 수 얻기용]
-			public int getRqlocTotalRecordCount(Map<String, Object> map){
+			public int getRqlocTotalRecordCount(Map<String, Object> map)throws Exception{
 				int total =0;
 				String sql="SELECT COUNT(*) FROM (SELECT R.*,(SELECT COUNT(*) FROM RQL_LIKE WHERE RQL_CODE=R.RQL_CODE) AS LIKE_COUNT,(SELECT COUNT(*) FROM RQL_DIS WHERE RQL_CODE=R.RQL_CODE) AS DIS_COUNT FROM RQ_LOC R ORDER BY RQL_CODE)";
 				// 검색용 쿼리 추가

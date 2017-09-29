@@ -44,7 +44,12 @@ public class FindCarController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 				//전체 레코드 수
-						int totalRecordCount=dao.getTotalRecordCount(req.getParameter("soz_code"),map);
+						int totalRecordCount = 0;
+						try {
+							totalRecordCount = dao.getTotalRecordCount(req.getParameter("soz_code"),map);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
 						//페이지 사이즈
 						int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 						//블락페이지

@@ -46,7 +46,13 @@ public class NoticeListController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getTotalRecordCount(map);
+				int totalRecordCount = 0;
+				try {
+					totalRecordCount = dao.getTotalRecordCount(map);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -61,7 +67,12 @@ public class NoticeListController extends HttpServlet {
 				map.put("start", start);
 				map.put("end", end);
 		
-		List<NoticeDto> list = dao.selectNoticeList(map);
+		List<NoticeDto> list = null;
+		try {
+			list = dao.selectNoticeList(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Bbs/Notice.do?");

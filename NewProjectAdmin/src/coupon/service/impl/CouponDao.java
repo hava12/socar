@@ -86,7 +86,7 @@ public class CouponDao implements CouponService {
 
 
 	@Override
-	public List<CouponDto> couponList(Map<String, Object> map){
+	public List<CouponDto> couponList(Map<String, Object> map) throws Exception{
 		List<CouponDto> list = new Vector<CouponDto>();
 		
 		String sql ="";
@@ -126,12 +126,12 @@ public class CouponDao implements CouponService {
 				list.add(dto);			
 			}		
 		} catch (Exception e) {e.printStackTrace();}
-	
+		close();
 		return list;
 	}//////////////////////////////////////////////////////////
 
 	//총 레코드 수 얻기용]
-		public int getCouponTotalRecordCount(Map<String, Object> map){
+		public int getCouponTotalRecordCount(Map<String, Object> map)throws Exception{
 			int total =0;
 			String sql="SELECT COUNT(*) FROM COUPON";
 			// 검색용 쿼리 추가

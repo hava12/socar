@@ -35,7 +35,7 @@ public class CarDAO implements CarService {
 		}
 	}///////////////////////// CarDAO()
 
-	public List<CarDTO> selectList(Map<String, Object> map) {
+	public List<CarDTO> selectList(Map<String, Object> map) throws Exception {
 		List<CarDTO> list = new Vector();
 		String sql = "";
 
@@ -77,12 +77,12 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		close();
 		return list;
 	}///////////////////////////////////////// selectList()
 
 	// 총 레코드 수 얻기용]
-	public int getCarListTotalRecordCount(Map<String, Object> map) {
+	public int getCarListTotalRecordCount(Map<String, Object> map) throws Exception{
 		int total = 0;
 		String sql = "SELECT COUNT(*) FROM CAR";
 		// 검색용 쿼리 추가
@@ -204,7 +204,7 @@ public class CarDAO implements CarService {
 	}
 
 	// 차량타입 리스트
-	public List<Car_ModelDto> selectCar_TypeList(Map<String, Object> map) {
+	public List<Car_ModelDto> selectCar_TypeList(Map<String, Object> map) throws Exception{
 
 		String sql = "";
 
@@ -238,11 +238,12 @@ public class CarDAO implements CarService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		close();
 		return list;
 	}
 
 	// 차량타입 총 레코드 수 얻기용]
-	public int getCarTyTotalRecordCount(Map<String, Object> map) {
+	public int getCarTyTotalRecordCount(Map<String, Object> map) throws Exception{
 		int total = 0;
 		String sql = "SELECT COUNT(*) FROM CAR_MODEL";
 		// 검색용 쿼리 추가
@@ -358,11 +359,12 @@ public class CarDAO implements CarService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		close();
 		return list;
 	}
 
 	// 총 레코드 수 얻기용]
-	public int getTotalRecordCount(String soz_code,Map<String,Object> map) {
+	public int getTotalRecordCount(String soz_code,Map<String,Object> map) throws Exception{
 		int total = 0;
 		String sql = "SELECT COUNT(*) FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,"
 				+ "CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI "
@@ -402,7 +404,7 @@ public class CarDAO implements CarService {
 	}
 
 	@Override
-	public List<Car_WasteDTO> car_waste_list(Map<String,Object> map) {
+	public List<Car_WasteDTO> car_waste_list(Map<String,Object> map) throws Exception {
 		
 		List<Car_WasteDTO> list = new Vector<Car_WasteDTO>();
 		String sql = "";
@@ -432,11 +434,12 @@ public class CarDAO implements CarService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		close();
 		return list;
 	}
 
 	// 총 레코드 수 얻기용]
-	public int getWasteTotalRecordCount(Map<String,Object> map) {
+	public int getWasteTotalRecordCount(Map<String,Object> map) throws Exception{
 		int total = 0;
 		String sql = "SELECT COUNT(*) FROM CAR_WASTE";
 		try {

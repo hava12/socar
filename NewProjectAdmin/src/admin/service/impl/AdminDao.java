@@ -202,7 +202,7 @@ public class AdminDao implements AdminService{
 
 
 	@Override
-	public List<AdminDto> selectAdminList(Map<String, Object> map){
+	public List<AdminDto> selectAdminList(Map<String, Object> map) throws Exception{
 
 		List<AdminDto> list = new Vector<AdminDto>();
 		String sql ="";
@@ -236,6 +236,7 @@ public class AdminDao implements AdminService{
 			list.add(dto);
 		}
 		}catch (Exception e) {e.printStackTrace();}
+		close();
 		return list;
 	}
 	

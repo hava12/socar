@@ -62,7 +62,12 @@ public class AdminListController extends HttpServlet {
 				map.put("start", start);
 				map.put("end", end);
 		
-		List<AdminDto> list = dao.selectAdminList(map);
+		List<AdminDto> list = null;
+		try {
+			list = dao.selectAdminList(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//페이지용 문자열 생성]
 				String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Admin/AdminList.do?");
