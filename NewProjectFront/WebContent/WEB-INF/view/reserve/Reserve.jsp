@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"> -->
@@ -32,7 +31,7 @@
 
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="icon">
 		<link href='//web-assets.socar.kr/template/asset/images/favicon.ico' type="image/x-icon" rel="shortcut icon">
-		<link href='${pageContext.request.contextPath}/template/image/header_logo.png' rel="image_src" />
+		<link href='//web-assets.socar.kr/template/asset/images/common/header_logo.png?v=20170428' rel="image_src" />
 
 		<!-- 2016/07/15 수정
 		<title>카셰어링 쏘카 - So Smart, SOCAR</title>
@@ -46,11 +45,11 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.banner.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505265015"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505265015"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505265015"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505265015"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505265015"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/ssun.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/json3.min.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/common.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/day-picker.js?1505961969"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/jquery.block.ui.min.js?1505961969"></script>
 		<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -61,18 +60,81 @@
 		ga('send', 'pageview');
 		</script>
 
-<%-- ${pageContext.request.contextPath}/template/js/maps3.json --%>
 
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/reservation.css' />
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/socarzone.list.css' />
+<link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/reservation.css?v=20170731' />
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/jquery-ui.css' />
-<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />-->
-<link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/jquery.mCustomScrollbar.css' />
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" /> -->
+
 
 <script src="${pageContext.request.contextPath}/template/js/jquery-ui.js"></script>
 <script src="//web-assets.socar.kr/template/reservation/../asset/js/jquery-collision.js?1505961969"></script>
-<script type="text/javascript" src="//web-assets.socar.kr/template/reservation/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="//web-assets.socar.kr/template/reservation/../asset/js/common_reservation.js?1505961969"></script>
+
+
+<style type="text/css">
+.list .section {cursor:pointer}
+.car_class_item {display:block; height: 35px; color: #333; line-height: 36px; padding-left: 13px}
+/*.oneway_item {display:block; height: 35px; color: #333; line-height: 36px; padding-left: 13px}*/
+.oneway_item {display:block; padding:7px 0 7px 13px; color: #333; line-height:18px;}
+#oneway_list {width: 280px;}
+
+.cliked{
+		margin-top:35px !important;
+		height:1.7em;
+		width:600px;
+}
+.clikedChild{
+		height:1.7em;
+		width:0.2em;
+}
+
+#rolling {
+	height: 20px;
+	padding-top:7px;
+	float:left;
+	color:#333;
+	overflow:hidden;
+}
+
+#rolling li {
+	height: 20px;
+	line-height:20px;
+}
+
+
+
+
+</style>
+
+
+
+<script>
+$( function() {
+	$("div[name='slider-range']").each(function(){
+		
+	  $(this).slider({
+	    range: true,
+	    min: 0,
+	    max: 500,
+	    values: [ 75, 300 ],
+	    slide: function( event, ui ) {
+	      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	    },
+	    disabled: true
+
+	  });///////////////////////////////////////////////////////
+
+	  $(this).css("margin-top","15px");
+		
+	  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+	    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	});
+	
+});
+  </script>
+
+
+
 <script type="text/javascript">
 //var $MAX_DAYS = '90';
 var $MAX_DAYS = '90';
@@ -436,186 +498,8 @@ function getCouponPrice(options, callback) {
 	});
 }
 
-function getPriceByTerm(options, callback) {
-	var way = options.way,
-		oneway_id = options.oneway_id,
-		zone_id = options.zone_id,
-		car_id = options.car_id,
-		start_at = options.start_at,
-		end_at = options.end_at,
-		member_state = options.member_state,
-		URL = "https://api.socar.kr/reserve/price";
-
-	if(member_state != null) {
-		URL = URL + "/" + member_state;
-	}
-
-	$.ajax({
-		type: 'POST',
-		url: URL,
-		crossDomain: true,
-		data: {
-			
-			way: way,
-			
-				zone_id: zone_id,
-			
-			car_id: car_id,
-			start_at: start_at,
-			end_at: end_at
-		},
-		dataType: 'jsonp',
-		success: function(json){
-			var retCode = json['retCode'];
-			if(retCode == 1){
-				var result = json['result'];
-				callback(result['price_dis']);
-			}
-			else{
-				alert(json['retMsg'] + ' 코드 : ' + json['retCode']);
-				callback(null);
-			}
-		},
-		error: function(){
-			alert('일시적인 오류입니다. 잠시 후 다시 시도해주세요');
-			callback(null);
-		}
-	});
-}
-
-//표시될 일 수에 따라 타임라인 길이 설정
-$step = 2;
-// $step = 0.166667;
 
 
-	$timeline_width = 30;
-	$unit           = 350/$timeline_width;
-	;
-
-
-//able time 에서 unable time 구하기
-var unableArr = new Array();
-
-
-	
-		var base_s        = 3.0;
-		var count         = 0 ;
-		unableArr[0] = new Array();
-		
-
-			//from , time 값을 현재 타임라인 크기에 맞게 설정
-			$from = (0 / 10) * $step + 3;
-			$time = (60 / 10) * $step;
-
-			//소수점 이하 첫째 자리수로 고정
-			var from_fixed = $from.toFixed(1);
-			var time_fixed = $time.toFixed(1);
-
-			//소수점 + 연산 정상적으로 하기 위한 값
-			var T = Number('1e'+1);
-
-			//타임라인 idx 3 부터 시작
-			for(var i = 3; i <= $timeline_width - 3; i++){
-				// i 의 소수점 단위 루프
-				for(var j = i; j < i + 1; j = Math.round((j + 0.1)*T)/T){
-					// i 의 소수점 단위 값과 $from 이 일치하는지 확인
-					if(j == from_fixed){
-
-						unableArr[0][count++] = base_s;
-						unableArr[0][count++] = Math.round((j - base_s)*T)/T;
-
-						//base 값을 able time 끝지점으로 설정
-						base_s = Math.round((j + parseFloat(time_fixed))*T)/T;
-						break;
-					}
-					else{
-						if( i + (Math.round((j - parseInt(j))*T)/T) > $timeline_width - 3){
-							break;
-						}
-						unableArr[0][count] = base_s;
-						unableArr[0][count + 1] = Math.round((j - base_s)*T)/T;
-					}
-				}
-			}
-		
-
-			//from , time 값을 현재 타임라인 크기에 맞게 설정
-			$from = (580 / 10) * $step + 3;
-			$time = (860 / 10) * $step;
-
-			//소수점 이하 첫째 자리수로 고정
-			var from_fixed = $from.toFixed(1);
-			var time_fixed = $time.toFixed(1);
-
-			//소수점 + 연산 정상적으로 하기 위한 값
-			var T = Number('1e'+1);
-
-			//타임라인 idx 3 부터 시작
-			for(var i = 3; i <= $timeline_width - 3; i++){
-				// i 의 소수점 단위 루프
-				for(var j = i; j < i + 1; j = Math.round((j + 0.1)*T)/T){
-					// i 의 소수점 단위 값과 $from 이 일치하는지 확인
-					if(j == from_fixed){
-
-						unableArr[0][count++] = base_s;
-						unableArr[0][count++] = Math.round((j - base_s)*T)/T;
-
-						//base 값을 able time 끝지점으로 설정
-						base_s = Math.round((j + parseFloat(time_fixed))*T)/T;
-						break;
-					}
-					else{
-						if( i + (Math.round((j - parseInt(j))*T)/T) > $timeline_width - 3){
-							break;
-						}
-						unableArr[0][count] = base_s;
-						unableArr[0][count + 1] = Math.round((j - base_s)*T)/T;
-					}
-				}
-			}
-		
-		
-	
-		var base_s        = 3.0;
-		var count         = 0 ;
-		unableArr[1] = new Array();
-		
-
-			//from , time 값을 현재 타임라인 크기에 맞게 설정
-			$from = (0 / 10) * $step + 3;
-			$time = (1440 / 10) * $step;
-
-			//소수점 이하 첫째 자리수로 고정
-			var from_fixed = $from.toFixed(1);
-			var time_fixed = $time.toFixed(1);
-
-			//소수점 + 연산 정상적으로 하기 위한 값
-			var T = Number('1e'+1);
-
-			//타임라인 idx 3 부터 시작
-			for(var i = 3; i <= $timeline_width - 3; i++){
-				// i 의 소수점 단위 루프
-				for(var j = i; j < i + 1; j = Math.round((j + 0.1)*T)/T){
-					// i 의 소수점 단위 값과 $from 이 일치하는지 확인
-					if(j == from_fixed){
-
-						unableArr[1][count++] = base_s;
-						unableArr[1][count++] = Math.round((j - base_s)*T)/T;
-
-						//base 값을 able time 끝지점으로 설정
-						base_s = Math.round((j + parseFloat(time_fixed))*T)/T;
-						break;
-					}
-					else{
-						if( i + (Math.round((j - parseInt(j))*T)/T) > $timeline_width - 3){
-							break;
-						}
-						unableArr[1][count] = base_s;
-						unableArr[1][count + 1] = Math.round((j - base_s)*T)/T;
-					}
-				}
-			}
-		
 		
 	
 
@@ -1079,262 +963,23 @@ $(function(){
 		return false;
 	});
 
-	//사용자가 선택한 시간을 타임라인에 맞게 변경
-	$select_from = (720 / 10) * $step + 3;
-	$select_time = (30 / 10) * $step;
-
-
-	for(var i in unableArr){
-
-		var rangeWrap    = $('#timeline' + i).find('.rangeWrap');
-		var count        = unableArr[i].length / 2;
-		var item_counter = 0;
-
-		rangeWrap.append('<em class="unable_count" style="display:none;">' + count + '</em>');
-		for(var j = 0; j < count; j++){
-			rangeWrap.append('<span class="unable' + j + '">예약불가</span>');
-			rangeWrap.append('<em style="display:none;"></em>');
-			rangeWrap.append('<em style="display:none;"></em>');
-
-			$('#timeline' + i).find('.unable' + j).css('left',unableArr[i][item_counter] * $unit);
-			$('#timeline' + i).find('.unable' + j).next().text(unableArr[i][item_counter++]);
-
-			$('#timeline' + i).find('.unable' + j).width(unableArr[i][item_counter] * $unit);
-			$('#timeline' + i).find('.unable' + j).next().next().text(unableArr[i][item_counter++]);
-		}
-
-		$('#slider-range' + i).slider({
-
-			range: true,
-			min: 0,
-			max: $timeline_width,
-			values: [ $select_from, $select_from + $select_time ],
-			step: $step,
-			stop: function( event, ui) {
-				if(!$(this).parent().parent().find('.door').hasClass('op') || ui.values[0] < 3 || ui.values[1] > $timeline_width - 3){
-					return false;
-				}
-				//해당 타임라인 id
-				var t_line = $(this).attr('id');
-
-				//기존 overlap span 제거
-				$(this).find('.overlap').css('display', 'none');
-
-				//collision 세팅
-				var collision_obj = $(this).find('.ui-slider-range').collision('#' + t_line + ' .rangeWrap span', {
-					as:"<div />",
-					relative: $(this).parent().find('.rangeWrap')
-				});
-
-				//collision 개수만큼 overlap 생성
-				//생성 대신 기존 overlap을 숨겨두고 속성 변경으로 처리 (IE 7,8 에서 element append시 드래그 끊김 문제)
-				for(var k = 0; k < collision_obj.length; k++){
-				   var l = $(collision_obj[k]).css('left');
-				   var w = $(collision_obj[k]).css('width');
-
-				   $(this).find('.'+k).css('display', 'block');
-				   $(this).find('.'+k).css('left', l);
-				   $(this).find('.'+k).css('width', w);
-				}
-
-				var btn_reserve_parent = $(this).parent().parent().find('.rvBtn');
-				if(collision_obj.length > 0){ //예약 불가능 설정
-					$(btn_reserve_parent).addClass('unable');
-					$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-					$(this).next().html('죄송합니다. 이미 다른 예약이 있거나 이용할 수 없는 시간입니다.');
-					$(this).next().removeClass('amount');
-					$(this).next().addClass('alert');
-				}
-				else{ //예약 가능 설정
-					var s = ui.values[0].toFixed(1);
-					var e = ui.values[1].toFixed(1);
-					var tmp_start = $tmp_start_at;
-
-					var start_at = new Date(tmp_start.substr(0,4), tmp_start.substr(5,2)-1, tmp_start.substr(8,2),
-										 0, 0, 0);;
-					var end_at   = new Date(tmp_start.substr(0,4), tmp_start.substr(5,2)-1, tmp_start.substr(8,2),
-										 0, 0, 0);
-
-					start_at.addHours(parseInt(s) - 3);
-					switch(s.substr(s.indexOf('.') + 1, 1)){
-						case '2':
-							start_at.addMinutes(10);
-							break;
-						case '3':
-							start_at.addMinutes(20);
-							break;
-						case '5':
-							start_at.addMinutes(30);
-							break;
-						case '7':
-							start_at.addMinutes(40);
-							break;
-						case '8':
-							start_at.addMinutes(50);
-							break;
-					}
-
-					end_at.addHours(parseInt(e) - 3);
-					switch(e.substr(e.indexOf('.') + 1, 1)){
-						case '2':
-							end_at.addMinutes(10);
-							break;
-						case '3':
-							end_at.addMinutes(20);
-							break;
-						case '5':
-							end_at.addMinutes(30);
-							break;
-						case '7':
-							end_at.addMinutes(40);
-							break;
-						case '8':
-							end_at.addMinutes(50);
-							break;
-					}
-					var now = new Date();
-
-					if(now.getTime() > start_at.getTime()){
-						$(btn_reserve_parent).addClass('unable');
-						$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-						$(this).next().html('죄송합니다. 현재 시간보다 이전 시간을 대여일로 지정할 수 없습니다.');
-						$(this).next().removeClass('amount');
-						$(this).next().addClass('alert');
-						return false;
-					}
-
-					if(getRentTime(start_at, end_at) < 30){
-						$(btn_reserve_parent).addClass('unable');
-						$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-						$(this).next().html('죄송합니다. 대여시간이 너무 짧습니다. 최소 대여시간은 30분입니다.');
-						$(this).next().removeClass('amount');
-						$(this).next().addClass('alert');
-						return false;
-					}
-
-					if(getRentTime(start_at, end_at) > 7200){
-						$(btn_reserve_parent).addClass('unable');
-						$(btn_reserve_parent).children('.btn_reserve').attr('href', '#unable');
-						$(this).next().html('죄송합니다. 최대 사용시간은 120시간 입니다. 120시간 이상 예약은 고객센터(1661-3315)로 문의해 주세요.');
-						$(this).next().removeClass('amount');
-						$(this).next().addClass('alert');
-						return false;
-					}
-
-					$(btn_reserve_parent).removeClass('unable');
-					$(btn_reserve_parent).children('.btn_reserve').attr('href', $isLogin ? '#' : '#require_login');
-					$(this).next().removeClass('alert');
-					$(this).next().addClass('amount');
-
-					$(this).children('.timeline_start_at').text(makeTimeFormat(start_at));
-					$(this).children('.timeline_end_at').text(makeTimeFormat(end_at));
-
-					// slider 위치에 따라 총 대여요금, 정회원 할인가, SO회원 할인가 실시간 update
-					{
-						var $rsvBtn = $(btn_reserve_parent).children('.btn_reserve');
-						var set_way = $rsvBtn.attr('id');
-						
-						var set_oneway_id = '';
-						
-
-						var set_zone_id  = $rsvBtn.next().text();
-						var set_car_id   = $rsvBtn.next().next().text();
-						var set_start_at = $(this).children('.timeline_start_at').text();
-						var set_end_at   = $(this).children('.timeline_end_at').text();
-						var num = $(this).attr("num");
-
-						var options = {
-							way: set_way,
-							oneway_id: set_oneway_id,
-							zone_id: set_zone_id,
-							car_id: set_car_id,
-							start_at: set_start_at,
-							end_at: set_end_at,
-							member_state: null
-						};
-
-						options.member_state = 2;
-						getPriceByTerm(options,function(price){
-							
-							if(price !== null) {
-								$("#price-s"+num).text(number_format(price) + '원'); //SO회원 할인가
-							}
-							
-
-							return false;
-						});
-					}
-
-					$(this).next().html( "대여기간 : <strong>" +
-										 makeDateStringWithDay(start_at) + " ~ " +
-										 makeDateStringWithDay(end_at) + "</strong>" +
-										 '  (총 ' + makeRentTimeString(start_at, end_at) + ')');
-				}
-			},
-			slide: function( event, ui ) {
-				if(!$(this).parent().parent().find('.door').hasClass('op') || ui.values[0] < 3 || ui.values[1] > $timeline_width - 3){
-					return false;
-				}
-				//해당 타임라인 id
-				var t_line = $(this).attr('id');
-
-				//기존 overlap span 제거
-				$(this).find('.overlap').css('display', 'none');
-
-				//collision 세팅
-				var collision_obj = $(this).find('.ui-slider-range').collision('#' + t_line + ' .rangeWrap span', {
-					as:"<div />",
-					relative: $(this).parent().find('.rangeWrap')
-				});
-
-				//collision 개수만큼 overlap 생성
-				//생성 대신 기존 overlap을 숨겨두고 속성 변경으로 처리 (IE 7,8 에서 element append시 드래그 끊김 문제)
-				for(var k = 0; k < collision_obj.length; k++){
-				   var l = $(collision_obj[k]).css('left');
-				   var w = $(collision_obj[k]).css('width');
-
-				   $(this).find('.'+k).css('display', 'block');
-				   $(this).find('.'+k).css('left', l);
-				   $(this).find('.'+k).css('width', w);
-
-				}
-				// $(this).next().html( "대여기간 : <strong>" + ui.values[ 0 ] + " ~ " + ui.values[ 1 ] + "</strong>");
-			}
-		});
-		$('#amount' + i).html("대여기간 : <strong>2017.09.21 목 12:00 ~ " +
-							  "2017.09.21 목 12:30</strong>" +
-							  "  (총 0시간 30분)");
-
-		//collision 세팅
-		var collision_obj = $(".ui-slider-range").collision('#slider-range' + i + ' .rangeWrap span', {
-			as:"<div />",
-			relative: $('.rangeWrap')
-		});
-
-		//collision 개수만큼 overlap 생성
-		//생성 대신 기존 overlap을 숨겨두고 속성 변경으로 처리 (IE 7,8 에서 element append시 드래그 끊김 문제)
-		for(var k = 0; k < collision_obj.length; k++){
-			var l = $(collision_obj[k]).css('left');
-			var w = $(collision_obj[k]).css('width');
-
-			$('#slider-range' + i).find('.'+k).css('display', 'block');
-			$('#slider-range' + i).find('.'+k).css('left', l);
-			$('#slider-range' + i).find('.'+k).css('width', w);
-		}
-	}
 
 	$('#reservation .list .door').click(function(){
 		var timeline = $(this).next().text();
 		$(this).parent('.section').toggleClass('open');
 		$(this).toggleClass('op');
-
+		
 		if($(this).hasClass('op')){
-			$unit = 590/$timeline_width;
+			$(this).parent().find("div[name='slider-range']").slider( "option", "disabled", false ).addClass("cliked");
+			$(this).parent().find("div[name='slider-range']").children().css("height","1.7em");
 			$(this).html('접기');
 			// $c_width = 590;
 			// $b_width = 350;
 		} else {
-			$unit = 350/$timeline_width;
+			
+		
+			$(this).parent().find("div[name='slider-range']").slider( "option", "disabled", true ).removeClass("cliked");
+			$(this).parent().find("div[name='slider-range']").children().css("height",".5em");
 			$(this).html('자세히');
 			// $c_width = 350;
 			// $b_width = 590;
@@ -1413,43 +1058,31 @@ $(function(){
 });
 
 </script>
-
-<style type="text/css">
-
-/*
-	reservation/reservation.html
-	리스트 아이템 오픈시 타임라인 제거 후 CSS 적용 코드
-*/
-.list .section {cursor:pointer}
-.list .section .timelineWrap .timeline{background: none;}
-.list .section.open .timelineWrap .timeline{background: none;}
-.list .section.open{height:122px; background:#fff;}
-.list .section.open .timelineWrap{position:absolute; top:105px; left:237px; padding-top:21px; width:714px; background: none;}
-
-.car_class_item {display:block; height: 35px; color: #333; line-height: 36px; padding-left: 13px}
-.oneway_item {display:block; padding:7px 0 7px 13px; color: #333; line-height:18px;}
-#oneway_list {width: 280px;}
-</style>
 </head>
 
 <body id="reservation" class="reservation">
+
+
 <div id="wrap">
-		<jsp:include page="/template/Header.jsp"/>
+
+<jsp:include page="/template/Header.jsp" />
+
 
 	<div id="container">
 		<div id="content">
-			<h2><img src='${pageContext.request.contextPath}/template/image/h222.gif' alt="쏘카예약" /></h2>
+			<h2><img src='//web-assets.socar.kr/template/asset/images/reservation/h2.gif' alt="쏘카예약" /></h2>
+			<!-- by smartNHW -->
 			<div id="zoneNavi">
 				<ul>
-					<li class="bar-short all">전국</li>
-					<li class="bar-short seoul">서울</li>
-					<li class="bar-short ggincheon">인천·경기</li>
-					<li class="bar-short gangwon">강원</li>
-					<li class="bar-short daejeon">대전·충청</li>
-					<li class="bar-short daegu">대구·경북</li>
-					<li class="bar-short gwangju">광주·전라</li>
-					<li class="bar-short busan">부산·경남</li>
-					<li class="bar-short jeju">제주</li>
+					<li class="bar-short"><a href="/reserve#all">전국</a></li>
+					<li class="bar-short"><a href="/reserve#seoul">서울</a></li>
+					<li class="bar-short"><a href="/reserve#ggincheon">인천·경기</a></li>
+					<li class="bar-short"><a href="/reserve#gangwon">강원</a></li>
+					<li class="bar-short"><a href="/reserve#daejeon">대전·충청</a></li>
+					<li class="bar-short"><a href="/reserve#daegu">대구·경북</a></li>
+					<li class="bar-short"><a href="/reserve#gwangju">광주·전라</a></li>
+					<li class="bar-short"><a href="/reserve#busan">부산·경남</a></li>
+					<li class="bar-short"><a href="/reserve#jeju">제주</a></li>
 				</ul>
 				<span class="navi-title">지역 바로가기</span>
 			</div>
@@ -1458,21 +1091,31 @@ $(function(){
 				<!-- 나눔카 링크 -->
 
 				<div id="NanumCar_btn" style="position:absolute;top:3px;right:99px;z-index:1000; display:'block';">
-					<a href="#" onclick="javascript:openNanumCar();return false;"><img src='${pageContext.request.contextPath}/template/image/btn_all.png' alt="나눔카 전체보기" /></a>
+					<a href="#" onclick="javascript:openNanumCar();return false;"><img src='//web-assets.socar.kr/template/asset/images/seoul/btn_all.png' alt="나눔카 전체보기" /></a>
 				</div>
 
 				<!-- 실시간 예약 -->
 				<div id="setting" class="open">
 					<div class="setting-box">
-						<h3><img src='${pageContext.request.contextPath}/template/image/setting_title.png' alt="실시간 예약" /></h3>
+						<h3><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_title.png' alt="실시간 예약" /></h3>
 						<div class="setting-option">
 							<form name="reservation" method="post" action="">
 								<fieldset>
-									
 									<div class="group">
 										<table cellspacing="0">
 										<tr>
-											<th><img src='${pageContext.request.contextPath}/template/image/setting_txt2.gif' alt="대여일" /></th>
+											<th></th>
+											<td>
+												<label for="type1"><input style="display: none;" id="radio_round" value="round" type="radio" name="type" id="type1" /></label>
+												<label for="type2"><input style="display: none;" id="radio_oneway" value="oneway" type="radio" name="type" id="type2" /></label>
+											</td>
+										</tr>
+										</table>
+									</div>
+									<div class="group">
+										<table cellspacing="0">
+										<tr>
+											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt2.gif' alt="대여일" /></th>
 											<td>
 												<!-- <input id="startDay" type="text" class="input calendar" style="width:103px;" value="" /> -->
 												<input id="startDay" type="text" class="input calendar" style="width:103px;" value="" readonly />
@@ -1482,7 +1125,7 @@ $(function(){
 											</td>
 										</tr>
 										<tr>
-											<th><img src='${pageContext.request.contextPath}/template/image/setting_txt3.gif' alt="반납일" /></th>
+											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt3.gif' alt="반납일" /></th>
 											<td>
 												<!-- <input id="endDay" type="text" class="input calendar" style="width:103px;" value="" /> -->
 												<input id="endDay" type="text" class="input calendar" style="width:103px;" value="" readonly />
@@ -1497,7 +1140,7 @@ $(function(){
 										<table cellspacing="0">
 										<!-- spock 왕복 설정 UI-->
 										<tr id="round_way_wrap">
-											<th rowspan="2"><img src='${pageContext.request.contextPath}/template/image/setting_txt4.gif' alt="지역" /></th>
+											<th rowspan="2"><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt4.gif' alt="지역" /></th>
 											<td>
 												<input id="input_location" type="text" class="input location" placeholder="쏘카존·지역·차종 검색" style="width:169px;" value="" />
 												<em id="input_location_zone_id" style="display:none;"></em>
@@ -1536,7 +1179,7 @@ $(function(){
 									<div class="group" id="select_car_wrap">
 										<table cellspacing="0">
 										<tr>
-											<th><img src='${pageContext.request.contextPath}/template/image/setting_txt5.gif' alt="차종" /></th>
+											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt5.gif' alt="차종" /></th>
 											<td>
 												<input id="input_car_class" type="text" class="input socar" style="width:169px;" value="전체차종" />
 												<em style="display:none;"></em>
@@ -1545,25 +1188,23 @@ $(function(){
 										</table>
 									</div>
 									<p class="btn">
-										<input id="btn_search_socar" type="image" src='${pageContext.request.contextPath}/template/image/btn_setting_socar.gif' alt="쏘카찾기" onclick="return false;" />
+										<input id="btn_search_socar" type="image" src='//web-assets.socar.kr/template/asset/images/reservation/btn_setting_socar.gif' alt="쏘카찾기" onclick="return false;" />
 									</p>
 
 									<!-- 왕복 지역 -->
 									<div id="socarzone" class="option-layer">
 										<div class="search">
 											<label for="input_loc" class="i_label">지역명, 쏘카존</label>
-											<input type="text" id="input_loc" class="input i_text" style="width:225px" value="" /><input id="btn_search_loc" type="image" class="submit" src='${pageContext.request.contextPath}/template/image/btn_location_search.gif' alt="검색" />
+											<input type="text" id="input_loc" class="input i_text" style="width:225px" value="" /><input id="btn_search_loc" type="image" class="submit" src='//web-assets.socar.kr/template/asset/images/reservation/btn_location_search.gif' alt="검색" />
 										</div>
 										<h4><a><span>최근 이용한 쏘카존</span></a></h4>
 										<div id="recently_list_wrapper" class="result">
 											<ul id="recently_list">
-											<!-- <li><a href="#">강남역 교보빌딩 주차장</a></li> -->
 											</ul>
-											<!-- <p>최근 이용한 쏘카존이 없습니다.</p> -->
 										</div>
 										<div id="autoComplete">
 											<ul id="ul_search_result">
-<!-- 											<li class="exact"><a href="#"><em>구로</em> 디지털단지역 공영주차장</a></li> -->
+												<!-- 자동완성 영역 -->
 											</ul>
 										</div>
 									</div>
@@ -1574,7 +1215,6 @@ $(function(){
 										<h4><a><span>편도 노선선택</span></a></h4>
 										<div class="list">
 											<ul id="ul_oneway_search_result">
-<!--                                            <li class="car2"><a href="#"><img src='${pageContext.request.contextPath}/template/image/car_title2.png' alt="쏘나타 하이브리드" /></a></li> -->
 											</ul>
 										</div>
 									</div>
@@ -1585,7 +1225,6 @@ $(function(){
 										<h4><a><span>차종선택</span></a></h4>
 										<div class="list">
 											<ul id="ul_car_search_result">
-<!-- 											<li class="car2"><a href="#"><img src='${pageContext.request.contextPath}/template/image/car_title2.png' alt="쏘나타 하이브리드" /></a></li> -->
 											</ul>
 										</div>
 									</div>
@@ -1594,21 +1233,21 @@ $(function(){
 							</form>
 						</div>
 						<div class="ico-desc">
-						<!--
-							<img src='${pageContext.request.contextPath}/template/image/ico_desc.png' alt="" />
+						<!-- by smartNHW
+							<img src='//web-assets.socar.kr/template/asset/images/reservation/ico_desc.png' alt="" />
 						-->
-							<img src='${pageContext.request.contextPath}/template/image/ico_desc_n.png' alt="" />
+						<img src='//web-assets.socar.kr/template/asset/images/reservation/ico_desc_n.png' alt="" />
 						</div>
 						<div class="setting-refresh">
-							<a id="btn_refresh" href="#"><img src='${pageContext.request.contextPath}/template/image/btn_refresh.png' alt="새로고침" /></a>
+							<a id="btn_refresh" href="#"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_refresh.png' alt="새로고침" /></a>
 						</div>
 						<div class="setting-hidden">
-							<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_minus.png' alt="실시간 예약 접기" /></a>
+							<a href="#"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_minus.png' alt="실시간 예약 접기" /></a>
 						</div>
 					</div>
 
 					<div class="setting-show">
-						<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_plus.png' alt="실시간 예약 펼치기" /></a>
+						<a href="#"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_plus.png' alt="실시간 예약 펼치기" /></a>
 					</div>
 				</div>
 				<!-- //실시간 예약 -->
@@ -1617,11 +1256,128 @@ $(function(){
 				</div>
 			</div>
 			<!-- //map -->
-			<!-- 쏘카풀 배너 -->
-			<!-- <div class="ban" style="padding:24px 0 11px;"><a href="http://www.socarpool.kr/" target="_blank"><img src='${pageContext.request.contextPath}/template/image/banner_socarpool_20150511.png' alt="편하고 믿을 수 있는 카풀앱 같이 가자 쏘카풀!"></a></div> -->
-			<div style="height: 99px;"></div>
 
-			
+			<c:if test="${not empty car_list}" >
+			<!-- list -->
+			<div id="search_result_table" class="list">
+				<form name="socar" method="post" action="">
+					<fieldset>
+						<div class="list-header">
+							<h3 class="blind">쏘카목록</h3>
+<!-- spock 낮은 주목도로 인한 제거
+<ul id='rolling'><li><a href='http://goo.gl/SXf8B6' target='_blank'><span style='color:#0E99DC; font-weight:bold;'>[쿠폰북]</span> 신나게 밤새놀자. 9 to 9 올나잇! 모닝이 12시간 동안 9,900원!! <span style='color:red; font-size:11px; text-decoration:underline;'>자세히 보기</span></a></li><li><a href='http://goo.gl/rOHJbd' target='_blank'><span style='color:#0E99DC; font-weight:bold;'>[쿠폰북]</span> 아침부터 점심까지 끝없는 쏘카 할인! 최대 56% 할인쿠폰을 받아보세요! (4/23~) <span style='color:red; font-size:11px; text-decoration:underline;'>자세히 보기</span></a></li></ul>
+-->
+							<p class="select">
+								<select>
+									<option selected="selected">전체 쏘카보기</option>
+								</select>
+							</p><br>
+							<table cellspacing="0">
+							<colgroup><col width="137" /><col width="478" /><col width="200" /><col width="84" /><col /></colgroup>
+							<tr>
+								<th><a href="#">쏘카존</a></th>
+								<th>차량</th>
+								<th><a href="#">대여요금</a></th>
+								<th>주행요금</th>
+								<th>&nbsp;</th>
+							</tr>
+							</table>
+						</div>
+						
+						
+					
+							<c:forEach items="${car_list}" var="item" varStatus="loop">
+							<div class="section">
+									<div class="arti">
+										<h4 class="zone_info_popup" value="5237">${item.soz_name}</h4>
+										<em style="display:none;">5237</em>
+										<!-- <span>0.4km</span> -->
+									</div>
+									<div class="carInfo">
+										<p class="thumb"><a href="#" class="carDetail"><img src='//web-assets.socar.kr/template/asset/images/car_image/car046.png' /></a></p>
+										<div class="desc">
+											
+												<h5>${item.car_name}<strong>${item.car_nick}</strong> </h5>
+											
+											<em style="display:none;">8471</em>
+											<div class="spec">
+												유종 : <em>${item.car_fuel}</em><br />
+												옵션 : ${item.car_trans},${item.car_i_safe_option},${item.car_i_add_option}
+												<!--<a href="#" class="more carDetail view_detail_car">더보기</a>-->
+											</div>
+											
+										<div id="slider-range" name="slider-range"></div>
+										
+										</div>
+									</div>
+
+									<!-- 타임라인 -->
+										
+										
+										
+										
+										
+									<!-- //타임라인 -->
+
+									<!-- 대여요금 -->
+									<div class="price price_info">
+									<!-- 기준요금이  할인가보다  클  경우에만  기준요금  표시 -->
+									
+										<dl>
+											<dt>SO회원 할인가</dt>
+											<dd><strong id="price-s0">${item.car_price_so_wd} 원</strong></dd>
+										</dl>
+									
+									</div>
+									<!-- //대여요금 -->
+
+									<!-- 주행요금 -->
+									
+									<div class="oil">${item.car_drive_price}원/km</div>
+									
+									<!-- //주행요금 -->
+
+									<div class='rvBtn '>
+										
+										<a id="round" class="btn_reserve" title='' href="#">
+											<img src='//web-assets.socar.kr/template/asset/images/reservation/btn_list_reservation.gif' alt="예약" />
+										</a>
+										<em style="display:none;">5237</em>
+										<em style="display:none;">8471</em>
+									</div>
+
+									<a href="#" class="door">자세히</a>
+									<em style="display:none;">timeline0</em>
+								</div>								
+							
+							</c:forEach>
+						
+
+					</fieldset>
+				</form>
+			</div>
+			<!-- //list -->
+			</c:if>
+
+			<!-- TO-DO  2013.02.17
+				 페이지네이션 추가
+			-->
+			<!-- paginate -->
+<!-- 			<div class="paginate">
+				<a href="#" class="direction prev"><img src='//web-assets.socar.kr/template/asset/images/common/btn_board_prev.gif' alt="첫 페이지" /></a>
+				<strong>1</strong>
+				<a href="#">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<a href="#">6</a>
+				<a href="#">7</a>
+				<a href="#">8</a>
+				<a href="#">9</a>
+				<a href="#">10</a>
+				<a href="#" class="direction next"><img src='//web-assets.socar.kr/template/asset/images/common/btn_board_next.gif' alt="끝 페이지" /></a>
+			</div> -->
+			<!-- //paginate -->
 		</div>
 
 
@@ -1630,7 +1386,7 @@ $(function(){
 
 /* aside */
 div.aside{position:fixed; top:111px; right:0; width:51px; height:150px; border-bottom:1px solid #dadada; z-index:10000;} /*height:225px*/
-div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('${pageContext.request.contextPath}/template/image/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
+div.aside ul a{display:block; width:51px; height:73px; overflow:hidden; text-indent:-9999em; background:url('//web-assets.socar.kr/template/asset/images/common/quick_side_menu_141111.gif') no-repeat;border-bottom:1px dotted #BBB;border-left:1px solid #BBB; }
 div.aside a.quick1{background-position:-1px -76px;}
 div.aside a.quick2{background-position:-1px -151px;}
 div.aside a.quick3{background-position:-1px -226px;} 
@@ -1687,31 +1443,31 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 
 
 		<div id="askcar_div" class="car_requestL mwCont" style="display: block;">
-			<h4 style="height:57px;padding-bottom:40px"><img src='${pageContext.request.contextPath}/template/image/pop_tit.jpg' alt="쏘카로 원하는 차종 신청하기 !!" title="쏘카로 원하는 차종 신청하기 !!"></h4>
+			<h4 style="height:57px;padding-bottom:40px"><img src='//web-assets.socar.kr/template/asset/images/garage/pop_tit.jpg' alt="쏘카로 원하는 차종 신청하기 !!" title="쏘카로 원하는 차종 신청하기 !!"></h4>
 			<form name="request" method="post" action="">
 				<fieldset>
 					<div class="requestForm">
 						
-						<textarea id="layer_askcar_text" cols="" rows="" class="textarea"></textarea>
-						<input id="layer_askcar_submit" type="image" src='${pageContext.request.contextPath}/template/image/btn_request.gif' onclick="return false;" class="submit" alt="신청">
+						<textarea id="layer_askcar_text" cols="" rows="" class="textarea" onclick="alert('로그인 후 작성이 가능합니다.');return false;"></textarea>
+						<input type="image" src='//web-assets.socar.kr/template/asset/images/common/btn_request.gif' onclick="alert('로그인 후 작성이 가능합니다.');return false;" class="submit" alt="신청">
 						
 					</div>
 				</fieldset>
 			</form>
-			<p id="btn_askcar_close" class="centerBtn"><a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/btn_close.gif' alt="닫기" title="닫기"></a></p>
+			<p id="btn_askcar_close" class="centerBtn"><a href="#" class="close"><img src='//web-assets.socar.kr/template/asset/images/common/btn_close.gif' alt="닫기" title="닫기"></a></p>
 		</div>
 
 
 			<div class="socarcardLayer mwCont">
-				<div class="tit"><img src='${pageContext.request.contextPath}/template/image/socarcardLayer_tit.gif' alt="쏘카카드 발급 신청하기" /></div>
+				<div class="tit"><img src='//web-assets.socar.kr/template/asset/images/mypage/socarcardLayer_tit.gif' alt="쏘카카드 발급 신청하기" /></div>
 				<p class="txt">쏘카카드 발급 신청과 동시에 1,500원이 결제됩니다.</p>
 				<p class="more">※ 기본정보에서 우편 수취가 가능한 주소인지 확인해주세요.</p>
 				<div class="centerBtn">
-					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_confirm.gif' id="socarcard_request" alt="확인" /></a>
-					<a href="#"><img src='${pageContext.request.contextPath}/template/image/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
+					<a href="#"><img src='//web-assets.socar.kr/template/asset/images/customer/btn_confirm.gif' id="socarcard_request" alt="확인" /></a>
+					<a href="#"><img src='//web-assets.socar.kr/template/asset/images/customer/btn_cancel.gif' id="socarcard_request_cancel" alt="취소" /></a>
 				</div>
 				<div id="member_card_regist_indicator" style="display:none;
-					background:url('${pageContext.request.contextPath}/template/image/loading.gif') no-repeat 50% 50%;
+					background:url('//web-assets.socar.kr/template/asset/images/common/loading.gif') no-repeat 50% 50%;
 					background-size:auto 32px;
 					position:absolute;
 					top:0;bottom:0;left:0;right:0;
@@ -1777,7 +1533,7 @@ $(function(){
 
 	//SNS 로그인 by tary 2014-02-05
 	var options = {
-		auth_token : '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+		auth_token : '',
 		currentURL : (document.URL.split('?')[0]).split('#')[0],
 		fb_init : true,
 		naver_init : true,
@@ -1873,7 +1629,7 @@ $(function(){
 		}
 
 		var invite = '';
-		//친구추천 URL
+	//친구추천 URL
 	
 
 		//제휴코드를 직접 입력했을 경우
@@ -2030,11 +1786,29 @@ $(function(){
 		var writer = null, password=null;
 
 
+		writer = $.trim($('#layer_askzone_email').val());
+		password = $.trim($('#layer_askzone_password').val());
+
+		if(writer == '' || writer == null){
+			alert('이메일을 입력해 주세요.');
+			return false;
+		}
+
+		if(!is_email(writer)){
+			alert('이메일 형식이 잘못되었습니다. 다시 입력해주세요.');
+			return false;
+		}
+
+		if(password == '' || password == null){
+			alert('비밀번호를 입력해 주세요. 글 삭제시 필요합니다.');
+			return false;
+		}
+
 		$.ajax({
 			type: 'POST',
 			url: "https://api.socar.kr/zone/candidate_ex/create",
 			data: {
-				auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+				auth_token: '',
 				address : address,
 				lat : lat,
 				lng : lng,
@@ -2052,6 +1826,9 @@ $(function(){
 				$('#search_ask_address').val('').focusout();
 				$('#layer_askzone_text').val('').focusout();
 
+
+				$('#layer_askzone_email').val('');
+				$('#layer_askzone_password').val('');
 
 				$('#search_region_layer').hide();
 				$("#addr_search_layer").hide();
@@ -2252,7 +2029,7 @@ function build_list(init){
 		url : "https://api.socar.kr/zone/candidate_ex",
 		crossDomain: true,
 		data: {
-			auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+			auth_token: '',
 			last_id: last_id,
 			address : address,
 			my_request : $(document).data('my_request')
@@ -2260,7 +2037,7 @@ function build_list(init){
 		dataType: 'jsonp',
 		beforeSend: function(xhr) {
 			$list.data("disabled-vscroll",true);
-			output.append('<div id="list-indicator" style="width:auto;height:32px;background:url(\'${pageContext.request.contextPath}/template/image/loading.gif\') 50% 50% no-repeat;"></div>');
+			output.append('<div id="list-indicator" style="width:auto;height:32px;background:url(\'//web-assets.socar.kr/template/asset/images/common/loading.gif\') 50% 50% no-repeat;"></div>');
 
 			$list.append(output.toString());
 			output.clear();
@@ -2285,10 +2062,10 @@ function build_list(init){
 
 						output.append('<p class="txt">' + result[i].contents + '</p>');
 						output.append('<p class="date">' + result[i].created_at + '<a href="#" style="margin-left: 5px;" class="deleteBtn" data-id="' + result[i].id + '" data-mine="' + result[i].is_mine + '">');
-						output.append('<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제"></a></p>');
+						output.append('<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제"></a></p>');
 						output.append('<div class="pw" id="pw_' + result[i].id + '">비밀번호&nbsp;<input type="password" class="input" name="delitem_' + result[i].id + '" id="delitem_' + result[i].id + '" value="" />');
-						output.append('<input type="image" class="deleteOk" data-id="' + result[i].id + '" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인">&nbsp;');
-						output.append('<input type="image" class="deleteCancel" data-id="' + result[i].id + '" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소"> </div>');
+						output.append('<input type="image" class="deleteOk" data-id="' + result[i].id + '" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인">&nbsp;');
+						output.append('<input type="image" class="deleteCancel" data-id="' + result[i].id + '" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소"> </div>');
 
 						var agree_class = "agree_count",
 							disagree_class = "disagree_count";
@@ -2338,7 +2115,7 @@ function vote(id, type){
 		url: "https://api.socar.kr/zone/candidate_ex/vote",
 		crossDomain: true,
 		data: {
-			auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+			auth_token: '',
 			candidate_id: id,
 			type: type
 		},
@@ -2382,7 +2159,7 @@ function removeItem(id,passwd){
 		url: "https://api.socar.kr/zone/candidate_ex/remove",
 		crossDomain: true,
 		data: {
-			auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+			auth_token: '',
 			candidate_id: id,
 			password: passwd
 		},
@@ -2608,11 +2385,7 @@ $('.require_login').click(function(){
 
 $(".aside .quick1").click(function(){
 	
-		$('.mwLayer').addClass('open');
-		$('.mwLayer #mwCont').removeClass();
-		$('.mwLayer #mwCont').addClass('inviteLy');
-		$('.mwLayer .mwCont').css('display','none');
-		$('.mwLayer .inviteL').css('display','block');
+				showLoginLayer(true,window.location.pathname+window.location.search+'#quick1');
 	
 
 	return false;
@@ -2764,6 +2537,7 @@ $(".aside .quick3").click(function(){
 
 /* coupon book */
 
+
 $(".aside .quick5").click(function(){
 	$('.mwLayer').addClass('open');
 	$('.mwLayer #mwCont').removeClass();
@@ -2797,7 +2571,7 @@ var init_askzone = function(json) {
 		'<p class="txt">' + r.contents + '</p>' +
 		'<p class="date">' + r.created_at +
 			'<a href="#" style="margin-left: 5px;" class="deleteBtn">' +
-				'<img src=\'${pageContext.request.contextPath}/template/image/btn_delete.gif\' alt="삭제" />' +
+				'<img src=\'//web-assets.socar.kr/template/asset/images/common/btn_delete.gif\' alt="삭제" />' +
 			'</a>' +
 		'</p>' +
 
@@ -2805,8 +2579,8 @@ var init_askzone = function(json) {
 			'비밀번호' +
 			'<input type="text" class="input" />' +
 			'<em style="display:none;">' + r.id + '</em>' +
-			'<input type="image" class="deleteOk" src=\'${pageContext.request.contextPath}/template/image/btn_request_delete.gif\' alt="확인" />' +
-			'<input type="image" class="deleteCancel" src=\'${pageContext.request.contextPath}/template/image/btn_request_cancel.gif\' alt="취소" /> ' +
+			'<input type="image" class="deleteOk" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_delete.gif\' alt="확인" />' +
+			'<input type="image" class="deleteCancel" src=\'//web-assets.socar.kr/template/asset/images/common/btn_request_cancel.gif\' alt="취소" /> ' +
 		'</div>' +
 
 		'<ul>' +
@@ -2837,7 +2611,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/vote',
-				auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+				auth_token: '',
 				type: 'agree',
 				candidate_id: $(this).prev().text()
 			},
@@ -2868,7 +2642,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/vote',
-				auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+				auth_token: '',
 				type: 'disagree',
 				candidate_id: $(this).prev().text()
 			},
@@ -2900,7 +2674,7 @@ var init_askzone = function(json) {
 			type : "POST",
 			data: {
 				url: 'zone/candidate/remove',
-				auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+				auth_token: '',
 				password: pass,
 				candidate_id: $(this).prev().text()
 			},
@@ -2935,7 +2709,7 @@ $('#layer_askzone_submit').bind('click', function () {
 		type : "POST",
 		data: {
 			url: 'zone/candidate/create',
-			auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
+			auth_token: '',
 			writer: name,
 			contents: text,
 			password: pass
@@ -2960,8 +2734,8 @@ $("#requestList .deleteCancel").click(function(){
 });
 */
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/kakao.min.js?1505265015" charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/template/js/sns_interlocking.js?1505265015" charset="utf-8"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/./asset/js/kakao.min.js?1505961969" charset="utf-8"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/./asset/js/sns_interlocking.js?1505961969" charset="utf-8"></script>
 
 
 			<!-- 쏘카존 -->
@@ -3002,16 +2776,16 @@ $("#requestList .deleteCancel").click(function(){
 			<div id="map_small" style="width:479px; height:231px"></div>
 		</div>
 	</div>
-	<p class="centerBtn"><a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/btn_confirm.gif' alt="확인" /></a></p>
+	<p class="centerBtn"><a href="#" class="close"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_confirm.gif' alt="확인" /></a></p>
 </div>
 <!-- //쏘카존 -->
 
 
 			<!-- 쏘카보기 -->
 <div class="socarDetail mwCont">
-  <h4><img src="/template/${pageContext.request.contextPath}/template/image/socar_detail.gif" alt="쏘카정보" /></h4>
+  <h4><img src="/template///web-assets.socar.kr/template/asset/images/reservation/socar_detail.gif" alt="쏘카정보" /></h4>
   <div class="socarInfo">
-    <p class="thumb"><img id="layer_car_img" width="250" height="124" src="/template/${pageContext.request.contextPath}/template/image/socar_detail1.png"/></p>
+    <p class="thumb"><img id="layer_car_img" width="250" height="124" src="/template///web-assets.socar.kr/template/asset/images/reservation/socar_detail1.png"/></p>
     <h5 id="layer_car_name"></h5>
     <dl>
       <dt>기본요금</dt>
@@ -4028,69 +3802,29 @@ $("#requestList .deleteCancel").click(function(){
   </div>
 
   <div class="clear"></div>
-  <p class="centerBtn"><a href="#" class="close"><img src="/template/${pageContext.request.contextPath}/template/image/btn_confirm.gif" alt="확인" /></a></p>
+  <p class="centerBtn"><a href="#" class="close"><img src="/template///web-assets.socar.kr/template/asset/images/reservation/btn_confirm.gif" alt="확인" /></a></p>
 </div>
 <!-- //쏘카보기 -->
 
 
-			<!--
-<div class="listateL mwCont">
-		<section class='listateForm'>
-			<h1>회원님은 운전면허 갱신이 필요합니다.</h1>
-			<section>
-					<ul>
-						<li style='color:red;'>운전면허 만료일로부터 1년 경과 후부터는 예약이 불가합니다.<br/><br/>
-						<li>마이페이지에서 운전면허 정보를 수정하여 주세요.<br/><br/>
-						<li>면허 정보 수정은 PC 홈페이지에서만 가능합니다.<br/><br/>
-						<a href='/mypage'><em style='color:red; text-decoration: underline'>☞ 운전면허정보 수정하기</em></a>
-					</ul>
-					<br/>
-					<h2>만료일 정보</h2>
-					<ul>
-						<li><em style='color:#00b7ff;'>갱신 기간 및 적성검사 기간: </em> ~ <span id='expiration_date'></span><br />
-					</ul>
-			</section>
-		</section>
-</div>
--->
-<div class="renewal" style="display:none;">
-	<div class="tit"><img src='${pageContext.request.contextPath}/template/image/tit_renewal.gif' alt="" /></div>
-	<div class="txt"><img src='${pageContext.request.contextPath}/template/image/txt_renewal.gif' alt="" /></div>
-	<div class="txt_num"><img src='${pageContext.request.contextPath}/template/image/txt_renewal2.gif' alt="" /><span id='expiration_date'></span></div>
-	<div class="btn"><a href="/mypage#li_pos"><img src='${pageContext.request.contextPath}/template/image/btn_renewal.gif' alt="" /></a></div>
-</div>
-
 			<a href="#" class="close">닫기</a>
 		</div>
-		<!-- 카드 등록 -->
-<div id="cardAdd">
-	<form name="request" method="post" action="">
-		<fieldset>
-			<div class="cardForm">
-				<input id="input_reg_card_num" type="text" class="input" />
-				<input id="btn_reg_card" type="image" src='${pageContext.request.contextPath}/template/image/btn_card_add.png' class="submit" alt="등록" />
-			</div>
-		</fieldset>
-	</form>
-	<p class="txt"><img src='${pageContext.request.contextPath}/template/image/card_reg_required_txt.png' alt="회원번호를 입력해주세요!" /></p>
-	<a href="#" class="close"><img src='${pageContext.request.contextPath}/template/image/card_close.png' alt="다음에 등록" /></a>
-</div>
-<!-- //카드 등록 -->
 	</div>
 </div>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 
+</body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b0979573216988a82c1321345b2297a"></script>	
 <script>
 var mapContainer = document.getElementById('map'),
 
 //지도 옵션
-mapOption = {center: new daum.maps.LatLng(37.478683, 126.878633),//센터 위치
+mapOption = {center: new daum.maps.LatLng(37.478683, 126.878633, 37.478683, 126.878633),//센터 위치
 			level:9 //확대 레벨
 			};
 //지도 생성
 var map = new daum.maps.Map(mapContainer,mapOption);
+
+
 
 //모든 마커들 표시
 var other = [];
@@ -4115,23 +3849,25 @@ function move_map(){
 
 
 <c:forEach items="${list}" var="item" varStatus="loop">
-	other_position[${loop.count}] = new daum.maps.LatLng(${item.soz_latitude}, ${item.soz_longitude});
-	other_marker[${loop.count}] = new daum.maps.Marker({position:other_position[${loop.count}], clickable:true});
-	other_marker[${loop.count}].setMap(map);
-	other_iwContent[${loop.count}] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	other_position['${loop.count}'] = new daum.maps.LatLng('${item.soz_latitude}', '${item.soz_longitude}');
+	other_marker['${loop.count}'] = new daum.maps.Marker({position:other_position['${loop.count}'], clickable:true});
+	other_marker['${loop.count}'].setMap(map);
+	other_iwContent['${loop.count}'] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>" ><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
 	iwRemoveable = true;
-	other_infowindow[${loop.count}] = new daum.maps.InfoWindow({content:other_iwContent[${loop.count}],removable:iwRemoveable});		
-	
-	daum.maps.event.addListener(other_marker[${loop.count}],'click',function(){
+	other_infowindow['${loop.count}'] = new daum.maps.InfoWindow({content:other_iwContent['${loop.count}'],removable:iwRemoveable});		
+		<c:if test="${item.soz_code eq zone_dto.soz_code}">
+			other_infowindow['${loop.count}'].open(map,other_marker['${loop.count}']);
+		</c:if>
+	daum.maps.event.addListener(other_marker['${loop.count}'],'click',function(){
 		close_info();
-	    move_map(${item.soz_latitude},${item.soz_longitude});
-		other_infowindow[${loop.count}].open(map,other_marker[${loop.count}]);					
+	    move_map('${item.soz_latitude}','${item.soz_longitude}');
+		other_infowindow['${loop.count}'].open(map,other_marker['${loop.count}']);					
 	});	 			
 </c:forEach>
 
+
+
+
 </script>
-</script>
-<script type="text/javascript" src="/template/reservation/../asset/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="/template/reservation/../asset/js/common_reservation.js?1505265015"></script>
 </html>
 
