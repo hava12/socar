@@ -48,13 +48,22 @@ public class ReserveInsertController extends HttpServlet {
 							    Integer.parseInt(req.getParameter("re_time").split(":")[0]),
 							    Integer.parseInt(req.getParameter("re_time").split(":")[1]),
 							    0);
+			System.out.println(req.getParameter("rs_time").split(":")[0]);
+			System.out.println(req.getParameter("re_time").split(":")[0]);
+			System.out.println(req.getParameter("rs_time").split(":")[1]);
+			System.out.println(req.getParameter("re_time").split(":")[1]);
+			
+			System.out.println(res_date_start.getTime().getTime());
+			System.out.println(res_date_end.getTime().getTime());
+			
 			String res_instype = req.getParameter("res_instype");
 			String res_inscost = req.getParameter("res_inscost");
-			
 			String res_price = req.getParameter("res_price");
 			String res_cardkey = req.getParameter("res_cardkey");
 			String pay_article = req.getParameter("pay_article");
 			String cou_c_code = req.getParameter("cou_c_code");
+			
+			
 			
 			ReserveDto dto = new ReserveDto();
 			dto.setSmem_id(smem_id);

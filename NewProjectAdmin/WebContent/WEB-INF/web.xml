@@ -406,6 +406,14 @@
     <url-pattern>/Reserve/RentEnd.do</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>RENTTIMESELECT</servlet-name>
+    <servlet-class>reservation.controller.ReserveTimeSelectController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RENTTIMESELECT</servlet-name>
+    <url-pattern>/Reservation/SelectTime.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>CarController</servlet-name>
     <servlet-class>car.controller.CarController</servlet-class>
   </servlet>

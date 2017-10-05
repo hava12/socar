@@ -125,8 +125,9 @@ public class FindMemberController extends HttpServlet {
 		List<CardDto> list = null;
 		int point = 0;
 		String op = "";
-		
+		dao = new MemberDao(req.getServletContext());
 		try {list = dao.selectCardList(req.getParameter("smem_id"),map);
+		dao = new MemberDao(req.getServletContext());
 			point = dao.selectMemOne(req.getParameter("smem_id")).getMs_change();
 		} catch (Exception e) {e.printStackTrace();
 		e.getMessage();

@@ -279,22 +279,22 @@
 			st.innerHTML += que;
 			
 		}
-// 		function checkpoint() {
+		function checkpoint() {
 			
-// 			var val = (parseInt(document.getElementById("res_price").value)+parseInt(document.getElementById("res_inscost").value))/10;
-// 			if( val < parseInt(document.getElementById("point").value)){
-// 				document.getElementById("checkpoint").innerHTML="포인트 사용 불가 : 최대 사용가능값 초과";
-// 				return false;
-// 			}
-// 			else if( parseInt(document.getElementById("point_h").value) < parseInt(document.getElementById("point").value)){
-// 				document.getElementById("checkpoint").innerHTML="포인트 사용 불가 : 포인트 부족";
-// 				return false;
-// 			}
-// 			else{
-// 				document.getElementById("checkpoint").innerHTML="";
-// 				return true;
-// 			}
-// 		}
+			var val = (parseInt(document.getElementById("res_price").value)+parseInt(document.getElementById("res_inscost").value))/10;
+			if( val < parseInt(document.getElementById("point").value)){
+				document.getElementById("checkpoint").innerHTML="포인트 사용 불가 : 최대 사용가능값 초과";
+				return false;
+			}
+			else if( parseInt(document.getElementById("point_h").value) < parseInt(document.getElementById("point").value)){
+				document.getElementById("checkpoint").innerHTML="포인트 사용 불가 : 포인트 부족";
+				return false;
+			}
+			else{
+				document.getElementById("checkpoint").innerHTML="";
+				return true;
+			}
+		}
 		
 		
 		function checkpoint(){
@@ -316,7 +316,7 @@
 		
 		
 		function findcoupon(){
-			window.open("<c:url value='/Coupon/CouponFind.do'/>?soz_code="+document.getElementById("soz_code").value,"get","height=500,width=1200");
+			window.open("<c:url value='/Coupon/CouponFind.do'/>?soz_code="+document.getElementById("soz_code"),"get","height=500,width=1200");
 		}
 	</script>
 	
@@ -339,16 +339,6 @@
 
 	function goList() {
 		location.href="<c:url value='/Reservation/ReserveList.do'/>";
-	}
-	function selectTime(){
-// 		var soz_code = document.getElementById("soz_code").value;
-		var car_i_code = document.getElementById("car_i_code").value;
-		
-// 		alert(soz_code);
-		alert(car_i_code);
-		
-		window.open("<c:url value='/Reservation/SelectTime.do'/>?car_i_code="+car_i_code,"get","height=500,width=1400");
-		
 	}
 	</script>
 	
@@ -424,11 +414,6 @@
 					      	  				
 					      	  			</select>
 					      	  		</div></td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>렌트일자 선택</label></td>
-				      	  			<td><button type="button" onclick="selectTime()" style="margin-left: 20px;" class="btn btn-info">날짜 선택</button></td>		      	  			
-					      	  		
 					      	  </tr>
 					      	  <tr>
 					      	  		<td><label>렌트시작일</label></td>

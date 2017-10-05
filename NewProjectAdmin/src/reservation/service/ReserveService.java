@@ -29,6 +29,8 @@ public interface ReserveService {
 	//렌트 종료 리스트
 	public List<Rent_E_Dto> selectRent_EList() throws Exception;
 	
+	//예약 시간 가져오는 dto
+	public List<ReserveDto> SelectReserveListForTimeSelect(String car_i_code) throws Exception;
 	
 	//클로즈
 	public void close() throws Exception;

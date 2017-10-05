@@ -29,6 +29,7 @@ public class ReserveController {
 	@Resource(name="carDAO")
 	private CarDAO car_dao;
 	
+	
 	@RequestMapping("/Reserve/Reserve.do")
 	public String reserve(Model model) throws Exception{
 		List<ZoneDTO> list = dao.selectEveryList();
@@ -41,7 +42,9 @@ public class ReserveController {
 		List<ZoneDTO> list = dao.selectEveryList();
 
 		List<CarSearchResultDTO> car_list = car_dao.car_search_result(soz_code);
-
+		
+		
+		
 		ZoneDTO zone_dto = dao.selectOne(soz_code);
 		
 		model.addAttribute("zone_dto",zone_dto);

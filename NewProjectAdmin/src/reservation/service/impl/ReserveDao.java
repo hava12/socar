@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -150,8 +151,13 @@ public class ReserveDao implements ReserveService{
 		psmt.setString(2, dto.getCar_i_code());
 		psmt.setString(3, dto.getCard_code());
 		psmt.setString(4, dto.getRes_price());
-		psmt.setDate(5, new java.sql.Date(dto.getRes_date_start().getTime()));
-		psmt.setDate(6, new java.sql.Date(dto.getRes_date_end().getTime()));
+		
+		System.out.println(dto.getRes_date_start().getTime());
+		System.out.println(dto.getRes_date_end().getTime());
+		
+	
+		psmt.setTimestamp(5, new java.sql.Timestamp(dto.getRes_date_start().getTime()));
+		psmt.setTimestamp(6, new java.sql.Timestamp(dto.getRes_date_end().getTime()));
 		psmt.setString(7, dto.getReserve_type());
 		psmt.setString(8, dto.getRes_instype());
 		psmt.setString(9, dto.getRes_inscost());
@@ -312,6 +318,31 @@ public class ReserveDao implements ReserveService{
 			dto.setRent_e_ectsale(rs.getString(8));
 			list.add(dto);
 			
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<ReserveDto> SelectReserveListForTimeSelect(String car_i_code) throws Exception {
+		
+		String sql ="SELECT RES_DATE_START,RES_DATE_END FROM RESERVE WHERE CAR_I_CODE=? AND RES_DATE_START>SYSDATE-1 AND RES_DATE_END < SYSDATE+10";
+		
+		psmt = conn.prepareStatement(sql);
+		
+		psmt.setString(1, car_i_code);
+		
+		rs = psmt.executeQuery();
+		
+		List<ReserveDto> list = new Vector<ReserveDto>();
+		
+		while(rs.next()) {
+			ReserveDto dto = new ReserveDto();
+			
+			dto.setRes_date_start(rs.getTimestamp(1));
+			dto.setRes_date_end(rs.getTimestamp(2));
+			System.out.println(rs.getTimestamp(1).getTime());
+			list.add(dto);
 		}
 		
 		return list;
