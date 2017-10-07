@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import reserve.service.CarSearchResultDTO;
+import reserve.service.ReserveDto;
 import reserve.service.ZoneDTO;
 import reserve.service.impl.CarDAO;
+import reserve.service.impl.ReserveServiceImpl;
 import reserve.service.impl.ZoneDAO;
 
 @Controller
@@ -29,6 +32,8 @@ public class ReserveController {
 	@Resource(name="carDAO")
 	private CarDAO car_dao;
 	
+	@Resource(name="reserveServiceImpl")
+	private ReserveServiceImpl res_service;
 	
 	@RequestMapping("/Reserve/Reserve.do")
 	public String reserve(Model model) throws Exception{
@@ -43,6 +48,7 @@ public class ReserveController {
 
 		List<CarSearchResultDTO> car_list = car_dao.car_search_result(soz_code);
 		
+		List<ReserveDto> res_list = res_service.select_soz_res(soz_code);
 		
 		
 		ZoneDTO zone_dto = dao.selectOne(soz_code);
@@ -50,10 +56,18 @@ public class ReserveController {
 		model.addAttribute("zone_dto",zone_dto);
 		model.addAttribute("car_list",car_list);
 		model.addAttribute("list", list);
+		model.addAttribute("res_list",res_list);
 		return "/reserve/Reserve";
 	}
 	
-	
+	@RequestMapping("/Reserve/ReserveConfirm.do")
+	public String reserveConfirm(HttpServletRequest req,Model model) throws Exception{
+		
+		
+		
+		
+		return "";
+	};
 }
 
 

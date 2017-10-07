@@ -63,7 +63,7 @@
 
 <link rel="stylesheet" type="text/css" href='//web-assets.socar.kr/template/asset/css/reservation.css?v=20170731' />
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/template/css/jquery-ui.css' />
-<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" /> -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 
 
 <script src="${pageContext.request.contextPath}/template/js/jquery-ui.js"></script>
@@ -100,7 +100,14 @@
 	height: 20px;
 	line-height:20px;
 }
-
+.ui-slider-handle{
+	width:0.1em !important;
+	top:0 !important;
+	background : black !important;
+	color : black !important;
+	border : none !important;
+	
+}
 
 
 
@@ -109,35 +116,114 @@
 
 
 <script>
+
+
 $( function() {
+	
+
+	var maxVal = 1000*60*60*24;
+	
+		<c:if test="${not empty param.startTime}" var="emptyTimeVar" >
+	 		var before_start_at = '${param.startDay}';
+	 		var before_end_at = '${param.endDay}';
+	 		var start_Time = '${param.startTime}';
+	 		var end_Time = '${param.endTime}';
+	 		var stDate = new Date(  before_start_at.substr(0,4),
+					before_start_at.substr(5,2)-1,
+					before_start_at.substr(8,2)
+					);
+	 		
+	 		var startDate = new Date(  before_start_at.substr(0,4),
+									before_start_at.substr(5,2)-1,
+									before_start_at.substr(8,2),
+				 				 	start_Time.split(":")[0],start_Time.split(":")[1]
+				  		 		  );
+	  		 var endDate = new Date(  before_end_at.substr(0,4),
+						before_end_at.substr(5,2)-1,
+						before_end_at.substr(8,2),
+	 				 	end_Time.split(":")[0],end_Time.split(":")[1]
+	  		 		  );
+	  		 
+	  		 maxVal = (endDate.getDate()+1 - startDate.getDate())*60*1000*60*24;
+		</c:if>
+	
 	$("div[name='slider-range']").each(function(){
-		
+
 	  $(this).slider({
 	    range: true,
 	    min: 0,
-	    max: 1000,
-	    values: [ 75, 300 ],
-	    create:function(event,ui){
-	    	$(".slider-range-div").css("left",7.5+"%");
- 	     	$(".slider-range-div").css("width",30-7.5+"%");
-	    },
-	    slide: function( event, ui ) {
-	    	
- 	     	$(this).children(".slider-range-div").css("left",(ui.values[0]/10)+"%");
- 	     	$(this).children(".slider-range-div").css("width",((ui.values[1]-ui.values[0])/10)+"%");
-	     	
-	    },
+	    max: maxVal,
+	    values: [ startDate.getTime()-stDate.getTime(),endDate.getTime()-stDate.getTime()],
+	    create:slider_change,
+	    slide:slider_change,
+	    change:slider_change,
 	    disabled: true
 
 	  });///////////////////////////////////////////////////////
 
 	  $(this).css("margin-top","15px");
 		
-	  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 	});
-
 	
+	function slider_change(){
+		
+		var values_one = $(this).slider( "option", "values")[0];
+		var values_two = $(this).slider( "option", "values")[1];
+		
+		$(this).children("#banned-range").remove();
+		var start_per = (values_one)/maxVal*100;
+		var end_per = (values_two)/maxVal*100;
+		var parent_px = $(this).width();
+		
+	     	$(this).children(".slider-range-div").css("left",(values_one/maxVal*100)+"%");
+	     	$(this).children(".slider-range-div").css("width",((values_two-values_one)/maxVal*100)+"%");
+	 	
+	     	$(this).children("a[name='reserved-range']").each(function(){
+				
+					var left_per = $(this).css("left").replace("px","")/parent_px*100;
+					var width_per = $(this).css("width").replace("px","")/parent_px*100;
+	     			var right_per = left_per+width_per;
+					
+				
+	     			if(start_per > left_per && start_per <right_per && end_per > right_per){
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+start_per+"%; width:"+(right_per-start_per)+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");
+	     			}
+	     			if(start_per < left_per && end_per  > right_per){
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+left_per+"%; width:"+width_per+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");	
+	     			}
+	     			if(end_per > left_per && end_per < right_per && start_per < left_per ){
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+left_per+"%; width:"+(end_per-left_per)+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");		
+	     			}
+	     			if(start_per > left_per && end_per < right_per){
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+start_per+"%; width:"+(end_per-start_per)+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");			
+	     			}
+	     	});	
+	     	
+	     	if($(this).children("#banned-range").length != 0){
+	     		$(this).parent().children("#reserveMessage").css("color","red").html("이미 예약이 있습니다. 다른 시간을 선택해주세요");
+	     	}
+	     	else{
+	     		$(this).parent().children("#reserveMessage").html("");
+	     		
+	     			var term = Math.round(($(this).slider( "option", "values")[1] - $(this).slider( "option", "values")[0])/600000);
+	     		for(var i = 0 ; i < 2 ; i++){
+	     			var res_time = new Date();
+	     			res_time.setTime(stDate.getTime()+$(this).slider( "option", "values")[i]);
+	     			var status = i==0?"부터":"까지";
+	     			
+					var res_minute = Math.round(res_time.getMinutes()/10)*10;
+					$(this).parent().children("#reserveMessage").css("color","blue").append(res_time.getFullYear()+"년 "+(res_time.getMonth()+1)+"월 "+res_time.getDate()+"일 "+res_time.getHours()+"시 "+res_minute+"분"+status+"&nbsp;&nbsp;");	
+					
+		    	}
+	     			console.log(term);
+					console.log($(this).parent().parent().parent().find("#car_price_so_wd_sample").html());
+  	   				$(this).parent().parent().parent().find("#car_price_so_wd").html($(this).parent().parent().parent().find("#car_price_so_wd_sample").html()*term);
+ 	   	
+	     	};
+
+		
+	}///////////////////////////////////////////////////////////////////////////////////
+
 	
 });
   </script>
@@ -507,8 +593,6 @@ function getCouponPrice(options, callback) {
 	});
 }
 
-
-
 		
 	
 
@@ -605,28 +689,80 @@ $(function(){
 	});
 
 	//사용자가 선택한 start_at, end_at, 검색 지역 표시
-	var before_start_at = '2017-09-21';
-	var before_end_at   = '2017-09-21';
 
-	$('#startDay').datepicker('setDate', new Date(  before_start_at.substr(0,4),
-													before_start_at.substr(5,2)-1,
-													before_start_at.substr(8,2),
-													0,
-													0,
-													0
-												));
-	$('#endDay').datepicker('setDate', new Date(  before_end_at.substr(0,4),
-												  before_end_at.substr(5,2)-1,
-												  before_end_at.substr(8,2),
-												  0,
-												  0,
-												  0
-												));
+ 	<c:if test="${not empty param.startTime}" var="emptyTimeVar" >
+ 		var before_start_at = '${param.startDay}';
+ 		var before_end_at = '${param.endDay}';
+ 		
+ 		$('#startDay').datepicker('setDate', new Date(  before_start_at.substr(0,4),
+							before_start_at.substr(5,2)-1,
+							before_start_at.substr(8,2),
+							0,
+							0,
+							0
+			));
+		$('#endDay').datepicker('setDate', new Date(  before_end_at.substr(0,4),
+						  before_end_at.substr(5,2)-1,
+						  before_end_at.substr(8,2),
+						  0,
+						  0,
+						  0
+			));
+		
+  		$('#selbox_startTime').val('${param.startTime}');
+  		$('#selbox_endTime').val('${param.endTime}');
+		
+ 	</c:if>
+	
+ 	<c:if test="${not emptyTimeVar}" >
+ 					var before_start_at = new Date();
+					var before_end_at   = new Date();
+					before_end_at.setTime(before_start_at.getTime()+1000*60*30);
+					
+					$('#startDay').datepicker('setDate', new Date(  before_start_at.getFullYear(),
+																	before_start_at.getMonth(),
+																	before_start_at.getDate(),
+																	0,
+																	0,
+																	0
+																));
+					$('#endDay').datepicker('setDate', new Date(  before_end_at.getFullYear(),
+																  before_end_at.getMonth(),
+																  before_end_at.getDate(),
+																  0,
+																  0,
+																  0
+																));
+					
+					var minutes=Math.ceil(before_start_at.getMinutes()/10)*10;
+					var hours = before_start_at.getHours()
+					if(minutes==60){
+						if(hours=="00"){hours=0;}
+						hours = hours + 1;
+						if(hours==24){hours="00";}
+						minutes="00";
+					}
+					if(minutes==0){minutes="00";}
+					
+					$('#selbox_startTime').val(hours+":"+minutes);
+					
+					if(minutes == "00"){
+						minutes = 0;
+					}
+					minutes = minutes + 30;
+					
+					if(minutes >= 60){
+						if(hours=="00"){hours=0;}
+						hours = hours + 1;
+						if(hours==24){hours="00";}
+						minutes = minutes - 60;
+						if(minutes==0){minutes="00";}
+					}
+					
+				$('#selbox_endTime').val(hours+":"+minutes);
 
-	$('#selbox_startTime').val('12:00');
-	$('#selbox_endTime').val('12:30');
-
-	$('#input_location').val($.cookie('tmp_loc'));
+	</c:if>
+// 	$('#input_location').val($.cookie('tmp_loc'));
 
 	$('#startDay').change(function() {
 		var type = $(':radio[name="type"]:checked').val();
@@ -911,52 +1047,28 @@ $(function(){
 		return false;
 	});
 
-
+	//예약 버튼 눌렀을때!
 	$('.btn_reserve').bind('click', function () {
-	
-	
-		var way      = $(this).attr('id');
-		var zone_id  = $(this).next().text();
-		var car_id   = $(this).next().next().text();
-		var start_at = $(this).parent().parent().find('.timeline_start_at').text();
-		var end_at   = $(this).parent().parent().find('.timeline_end_at').text();
-
-		if (zone_id === '4458') {
-			location.assign('/notice/650');
-			return false;
-		}
-
+		var startDayString = '${param.startDay}';
+		var defaultTime=  new Date(  before_start_at.substr(0,4),
+									startDayString.substr(5,2)-1,
+									startDayString.substr(8,2),
+									0,
+									0,
+									0);
 		
-			var oneway_id = '';
+		var startTime = $(this).parent().parent().find("#slider-range").slider( "values", 0 )+defaultTime.getTime();
+		var endTime = $(this).parent().parent().find("#slider-range").slider( "values", 1 )+defaultTime.getTime();
+		var car_i_code = $(this).parent().parent().find("#car_i_code").html()
 		
-
-		if($(this).attr('href') == '#unable'){
-						alert($(this).attr('title')?$(this).attr('title'):'죄송합니다. 이미 다른 예약이 있거나 이용할 수 없는 시간입니다.');
-			return false;
-		}
-		else if($(this).attr('href') == '#require_login'){
-
-			// alert('로그인이 필요합니다.');
-			showLoginLayer(true, '/reserve/flash_confirm', {way:'round',
-															start_at:start_at,
-															end_at: end_at,
-															
-																zone_id: zone_id,
-															
-															car_id: car_id});
-			return false;
-		}
-
-		$.doPost('https://www.socar.kr/reserve/confirm', {
-			way: way,
+		
+ 		$.doPost('<c:url value="/Reserve/ReserveConfirm.do"/>', {
+			startTime : startTime,
+			endTime : endTime,
+			car_i_code : car_i_code,
 			
-				zone_id: zone_id,
-			
-			car_id: car_id,
-			start_at: start_at,
-			end_at: end_at
-		});
-
+ 		});
+	
 		return false;
 	});
 
@@ -979,18 +1091,21 @@ $(function(){
 		$(this).toggleClass('op');
 		
 		if($(this).hasClass('op')){
-			$(this).parent().find("div[name='slider-range']").slider( "option", "disabled", false ).addClass("cliked");
-			$(this).parent().find("div[name='slider-range']").children().css("height","1.7em");
-			$("#reservation_image").css("display","block");
+			$(this).siblings().find("div[name='slider-range']").slider( "option", "disabled", false ).addClass("cliked");
+			$(this).siblings().find("div[name='slider-range']").children().css("height","1.7em");
+			$(this).siblings().find("#reservation_image").css("display","block");
+			$(this).siblings().find("#reserveMessage").css("display","block");
+			
 			$(this).html('접기');
 			// $c_width = 590;
 			// $b_width = 350;
 		} else {
 			
-		
-			$(this).parent().find("div[name='slider-range']").slider( "option", "disabled", true ).removeClass("cliked");
-			$(this).parent().find("div[name='slider-range']").children().css("height",".5em");
-			$("#reservation_image").css("display","none");
+			$(this).siblings().find("div[name='slider-range']").slider( "option", "disabled", true ).removeClass("cliked");
+			$(this).siblings().find("div[name='slider-range']").children().css("height",".5em");
+			$(this).siblings().find("#reservation_image").css("display","none");
+			$(this).siblings().find("#reserveMessage").css("display","none");
+			
 			$(this).html('자세히');
 			// $c_width = 350;
 			// $b_width = 590;
@@ -1053,20 +1168,31 @@ $(function(){
 
 
 		
-			$('#selbox_endTime').empty().data('options');
-			for(var i = 0; i < 24; i++){
-				var option;
-				for(var j = 0; j < 60; j += 10){
-					option = '<option value=' + i.zeroPad(10) + ':' + j.zeroPad(10) + '>' +
-							 i.zeroPad(10) + ':' + j.zeroPad(10) + '</option>';
-					$('#selbox_endTime').append(option);
-				}
-			}
+// 			$('#selbox_endTime').empty().data('options');
+// 			for(var i = 0; i < 24; i++){
+// 				var option;
+// 				for(var j = 0; j < 60; j += 10){
+// 					option = '<option value=' + i.zeroPad(10) + ':' + j.zeroPad(10) + '>' +
+// 							 i.zeroPad(10) + ':' + j.zeroPad(10) + '</option>';
+// 					$('#selbox_endTime').append(option);
+// 				}
+// 			}
 //		}
 		
-		$('#selbox_endTime').val('12:30');
+// 		$('#selbox_endTime').val('12:30');
 	//}
 });
+
+
+function goSearchResult(soz_code){
+	$(function(){
+		var startDay = $("#startDay").val();
+		var endDay = $("#endDay").val();
+		var startTime = $("#selbox_startTime option:selected").val();
+		var endTime = $("#selbox_endTime option:selected").val();
+ 		location.href = '<c:url value="/Reserve/SearchResult.do?soz_code='+soz_code+'&startDay='+startDay+'&endDay='+endDay+'&startTime='+startTime+'&endTime='+endTime+'"/>';
+	})
+}
 
 </script>
 </head>
@@ -1307,7 +1433,7 @@ $(function(){
 									<div class="carInfo">
 										<p class="thumb"><a href="#" class="carDetail"><img src='//web-assets.socar.kr/template/asset/images/car_image/car046.png' /></a></p>
 										<div class="desc">
-											
+												<span id="car_i_code" style="display: none">${item.car_i_code}</span>
 												<h5>${item.car_name}<strong>${item.car_nick}</strong> </h5>
 											
 											<em style="display:none;">8471</em>
@@ -1319,10 +1445,35 @@ $(function(){
 											
 											<img id="reservation_image" src="https://web-assets.socar.kr/template/asset/images/reservation/list_noti.gif" style="display: none; margin-top: 35px;" />
 											
-										<div id="slider-range" name="slider-range">
+										<div id="slider-range" name="slider-range" class="slider-range ${loop.count}">
 											<a href="#" class="slider-range-div" style="height:.5em; margin-left:-.6em; border:1px solid black; position:absolute; background-color: deepskyblue; " ></a>
+											<c:forEach items="${res_list}" var="res_item">
+													<c:if test="${res_item.car_i_code eq item.car_i_code}">
+														<script>
+
+															$(function(){
+																var maxVal = $( "#slider-range" ).slider( "option", "max");
+																var before_start_at = '${param.startDay}';
+														 		
+															 		var start_day = new Date(before_start_at.substr(0,4),
+																						before_start_at.substr(5,2)-1,
+																						before_start_at.substr(8,2),
+																						0,
+																						0,
+																						0
+																					)
+																var left_per = ('${res_item.res_date_start.time}' - start_day.getTime())/maxVal*100;
+															 	var width_per = (('${res_item.res_date_end.time}' - start_day.getTime())/maxVal*100)-left_per;
+																if(left_per + width_per > 0){
+														 			$("."+'${loop.count}').append("<a href='#' id='reserved-range' name='reserved-range' style='left:"+left_per+"%; width:"+width_per+"%; height:.5em; border:1px solid lightgray; margin-left:-.6em; position:absolute; background-color: lightgray;'>");
+																}
+															});
+														</script>
+													</c:if>
+											</c:forEach>
+											
 										</div>
-										
+										<div id="reserveMessage" style="display:none; margin-top: 0.7em;"></div>
 										</div>
 									</div>
 
@@ -1340,7 +1491,8 @@ $(function(){
 									
 										<dl>
 											<dt>SO회원 할인가</dt>
-											<dd><strong id="price-s0">${item.car_price_so_wd} 원</strong></dd>
+											<dd style="display: none;" id="car_price_so_wd_sample">${item.car_price_so_wd}</dd>
+											<dd><strong id="car_price_so_wd">${item.car_price_so_wd}</strong><strong>원</strong></dd>
 										</dl>
 									
 									</div>
@@ -2864,7 +3016,7 @@ function move_map(){
 	other_position['${loop.count}'] = new daum.maps.LatLng('${item.soz_latitude}', '${item.soz_longitude}');
 	other_marker['${loop.count}'] = new daum.maps.Marker({position:other_position['${loop.count}'], clickable:true});
 	other_marker['${loop.count}'].setMap(map);
-	other_iwContent['${loop.count}'] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="<c:url value="/Reserve/SearchResult.do?soz_code=${item.soz_code}"/>" ><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	other_iwContent['${loop.count}'] = '<div style="padding:5px;"><b>${item.soz_name}</b></div><div>${item.soz_loc}</div><div>운영차량: <span style="color:blue">${item.soz_i_car}</span>대/${item.soz_maxcar}대</div><div><a href="#" onclick="goSearchResult(\'${item.soz_code}\')" ><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
 	iwRemoveable = true;
 	other_infowindow['${loop.count}'] = new daum.maps.InfoWindow({content:other_iwContent['${loop.count}'],removable:iwRemoveable});		
 		<c:if test="${item.soz_code eq zone_dto.soz_code}">
