@@ -38,7 +38,11 @@ public class ZoneDAO implements ZoneService{
 		
 		String sql = "";
 		
-		//검색용 쿼리 추가
+		if(map==null) {
+			sql="SELECT SOZ_CODE,SOZ_NAME FROM SO_ZONE ORDER BY SOZ_CODE DESC";
+		}
+		else {
+				//검색용 쿼리 추가
 				if(map.get("searchWord") !=null){
 					sql +="SELECT * FROM (";
 				}
@@ -52,11 +56,12 @@ public class ZoneDAO implements ZoneService{
 				if(map.get("searchWord") !=null){
 					sql+=") WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
 				}
-		
+		}
 		
 		List<ZoneDTO> list = new Vector<ZoneDTO>();
 		try{
 			psmt = conn.prepareStatement(sql);
+			if(map!=null) {
 			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
 			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 			rs = psmt.executeQuery();
@@ -71,6 +76,16 @@ public class ZoneDAO implements ZoneService{
 				dto.setSoz_longitude(rs.getString(7));
 				dto.setSoz_i_car(rs.getString(8));
 				list.add(dto);
+			}
+		}
+			else {
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					ZoneDTO dto = new ZoneDTO();
+					dto.setSoz_code(rs.getString(1));
+					dto.setSoz_name(rs.getString(2));
+					list.add(dto);
+				}
 			}
 		}
 		catch(SQLException e){

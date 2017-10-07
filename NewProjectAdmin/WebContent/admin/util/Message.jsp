@@ -97,6 +97,7 @@
 		<c:when test="${WHERE eq 'CARD_INSERT'}">
 		<c:set var="SUC_MSG" value="등록 성공"/>
 		<c:set var="FAIL_MSG" value="등록 실패"/>
+		<c:set var="FAIL_MSG_FILE" value="파일 용량 초과"/>
 		<c:set var="SUC_URL" value="/Member/CardList.do"/>
 	</c:when>
 		<c:when test="${WHERE eq 'CAR_TYPE_INSERT'}">
@@ -158,6 +159,10 @@
 		<c:when test="${SUC_FAIL ==0}">
 			alert("${FAIL_MSG}");
 			history.back();
-		</c:when>		
+		</c:when>
+		<c:when test="${SUC_FAIL ==-1}">
+			alert("${FAIL_MSG_FILE}");
+			history.back();
+		</c:when>
 	</c:choose>
 </script>

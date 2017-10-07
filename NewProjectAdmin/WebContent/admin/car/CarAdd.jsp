@@ -46,6 +46,7 @@
 	</script>
 	
 	<script>
+	
 	function goListInsert(){
 		
 // 		if(document.getElementById("car_code_id").value == ""){
@@ -185,8 +186,8 @@
    
       		<div class="container">
    				  <div class="bs-example" style="font-size: 1.2em">
-				  <h2>쿠폰 입력</h2><br/><br/>
-				    <form action="<c:url value='/CAR/CarAdd.do'/>" method="post">
+				  <h2>차량 등록</h2><br/><br/>
+				    <form action="<c:url value='/CAR/CarAdd.do'/>" method="post" enctype="multipart/form-data">
 				    
 				      	  <table class="table table-bordered table-striped">
 				      	  
@@ -209,7 +210,7 @@
 					      	  					</c:when>
 					      	  					<c:otherwise>
 					      	  						<c:forEach items="${list}" var="item">
-					      	  							<option value="${item.car_type_code}">${item.car_type_code} - ${item.car_type}</option>
+					      	  							<option value="${item.car_type_code}">${item.car_type_code} - ${item.car_type}</option>					      	  							
 					      	  						</c:forEach>
 					      	  					</c:otherwise>
 					      	  				</c:choose>

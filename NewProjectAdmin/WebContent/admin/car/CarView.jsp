@@ -60,7 +60,7 @@
        
       		<div class="container">
    				  <div class="bs-example" style="font-size: 1.2em">
-				  <h2>쿠폰 입력</h2><br/><br/>
+				  <h2>차량상세보기</h2><br/><br/>
 				    
 				      	  <table class="table table-bordered table-striped">
 				      	  
@@ -93,7 +93,7 @@
 					      	  <tr>
 					      	  		<td><label>차량 이미지</label></td>
 					      	  		<td>
-					      	  				${dto.car_img}
+					      	  		<img src="<c:url value='/Upload/${dto.car_img}'/>" alt="이미지에러"/>					      	  							  
 					      	  		</td>
 					      	  </tr>
 					      	  <tr>
