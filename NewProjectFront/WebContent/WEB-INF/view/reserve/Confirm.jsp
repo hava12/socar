@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,19 +52,19 @@
 
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script> -->
 <script type="text/javascript"
-	src="/template/asset/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="/template/asset/js/jquery.banner.js"></script>
-<script type="text/javascript" src="/template/asset/js/jquery.cookie.js"></script>
+	src="//web-assets.socar.kr/template/asset/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.banner.js"></script>
+<script type="text/javascript" src="//web-assets.socar.kr/template/asset/js/jquery.cookie.js"></script>
 <script type="text/javascript"
-	src="/template/asset/js/ssun.js?1505974111"></script>
+	src="//web-assets.socar.kr/template/asset/js/ssun.js?1505974111"></script>
 <script type="text/javascript"
-	src="/template/asset/js/json3.min.js?1505974111"></script>
+	src="//web-assets.socar.kr/template/asset/js/json3.min.js?1505974111"></script>
 <script type="text/javascript"
-	src="/template/asset/js/common.js?1505974111"></script>
+	src="//web-assets.socar.kr/template/asset/js/common.js?1505974111"></script>
 <script type="text/javascript"
-	src="/template/asset/js/day-picker.js?1505974111"></script>
+	src="//web-assets.socar.kr/template/asset/js/day-picker.js?1505974111"></script>
 <script type="text/javascript"
-	src="/template/asset/js/jquery.block.ui.min.js?1505974111"></script>
+	src="//web-assets.socar.kr/template/asset/js/jquery.block.ui.min.js?1505974111"></script>
 <script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -85,6 +87,20 @@ var $protectionFeePrice = null;
 var discountType = 'coupon';
 
 $(function(){
+	
+	
+	var innerTime = ${endTime.time - startTime.time};
+	
+ 	var insurance_hour  = parseInt( (innerTime%(1000*60*60*24))/(1000*60*60) );
+ 	var insurance_day = parseInt(innerTime/(1000*60*60*24));
+ 	var car_insurance_one_hour = ${car_i_dto.car_insurance_one_hour};
+ 	var car_insurance_one_day = ${car_i_dto.car_insurance_one_day};
+	var price = ${price};
+ 		
+ 	$("#js-protection-fee-price").html(car_insurance_one_hour*insurance_hour + car_insurance_one_day*insurance_day+"원");
+	$(".total_price").html(price + parseInt($("#js-protection-fee-price").html()))
+	
+	
 	$(window).unload(function() {
 		if(winOpen != null) winOpen.close();
 	});
@@ -103,7 +119,6 @@ $(function(){
 
 		if (selected == '') {
 			var dis_price = parseInt($org_price) + parseInt($price_ret);
-			$('.total_price').text(number_format(dis_price + protectionFee));
 			return;
 		} else {
 			if(!option_selected.hasClass('applicable')) {
@@ -116,7 +131,6 @@ $(function(){
 			var dis_price = parseInt($org_price) - parseInt(data[1]) + parseInt($price_ret) + protectionFee - discountedProtectionFee;
 			
 			$('#js-t-membership-value').show().text('-' + number_format(parseInt(data[1]) + discountedProtectionFee) + '원');
-			$('.total_price').text(number_format(dis_price));
 		}
 	});
 
@@ -165,16 +179,7 @@ $(function(){
 					}
 				}
 
-				set_cookie('complete_way', 'round');
-				set_cookie('complete_start_at', '2017.09.21 목 18:30');
-				set_cookie('complete_end_at', '2017.09.21 목 19:00');
-				set_cookie('complete_car_name', '레이');
-				set_cookie('complete_car_num', '20호8341');
-				set_cookie('complete_rent_time', '0시간 30분');
-				set_cookie('complete_zone_name', '서울경수초교 뒤');
-				set_cookie('complete_zone_address', '서울시 성동구 성수동2가 255-7');
-				set_cookie('complete_zone_props', '0');
-				
+
 
 				$.doPost('https://www.socar.kr/reserve/complete', {
 					way: 'round',
@@ -377,7 +382,7 @@ function remakeCardList() {
 <body id="reservation" class="payment">
 	<div id="wrap">
 		<!-- header -->
-				<jsp:include page="/template/Header.jsp" >
+				<jsp:include page="/template/Header.jsp" />
 		<!-- //header -->
 
 		<div id="container">
@@ -403,7 +408,7 @@ function remakeCardList() {
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt1.gif'
 										alt="차량" /></th>
 
-									<td>레이 <strong>월리</strong>
+									<td>${car_i_dto.car_name} <strong>${car_i_dto.car_nick}</strong>
 									<!-- <a href="#" class="carDetail">상세정보</a> --></td>
 
 								</tr>
@@ -411,26 +416,29 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt2.gif'
 										alt="일정" /></th>
-									<td>왕복 / 2017.09.21 목 18:30 - 2017.09.21 목 19:00</td>
+									<td>왕복 / <fmt:formatDate value="${startTime}" pattern="yyyy.MM.dd E HH:mm"/> - <fmt:formatDate value="${endTime}" pattern="yyyy.MM.dd E HH:mm"/> </td>
+<!-- 									2017.09.21 목 18:30 - 2017.09.21 목 19:00 -->
 								</tr>
 								<tr>
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt3.gif'
 										alt="이용시간" /></th>
-									<td>총 0시간 30분</td>
+										<td>총 <fmt:parseNumber value="${((endTime.time - startTime.time)/(1000*60))/60}" integerOnly="true" />시간 
+										<fmt:formatNumber value="${((endTime.time - startTime.time)/60000)%60}" maxFractionDigits="0" />분 </td>
+<!-- 									<td>총 0시간 30분</td> -->
 								</tr>
 
 								<tr>
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt4.gif'
 										alt="쏘카존" /></th>
-									<td>서울경수초교 뒤 <!-- <a href="#" class="socarzoneDetail">상세정보</a> --></td>
+									<td>${car_i_dto.soz_name}</td>
 								</tr>
 								<tr>
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt5.gif'
 										alt="위치" /></th>
-									<td>서울시 성동구 성수동2가 255-7</td>
+									<td>${car_i_dto.soz_loc}</td>
 								</tr>
 
 							</table>
@@ -446,8 +454,7 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt6.gif'
 										alt="대여요금" /></th>
-									<td><strike>3,750원</strike> → <strong>1,870</strong>원&nbsp;(50.1%↓)
-
+									<td><strong>${price}</strong>원
 
 									</td>
 								</tr>
@@ -469,7 +476,7 @@ function remakeCardList() {
 											</select>
 										</div>
 										<!-- PROTECTION FEE SELECTIONS --> <strong
-										id="js-protection-fee-price">-</strong> <span>※ 대여시간 비례
+										id="js-protection-fee-price"></strong> <span>※ 대여시간 비례
 											부과</span> <a href="https://www.socar.kr/fare#windowopen"
 										target="_blank">더보기</a>
 									</td>
@@ -480,10 +487,10 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/text_discount.png'
 										alt="할인" /></th>
-									<td><input type="radio" name="discount" value="coupon"
-										checked /> 쿠폰 <input type="radio" name="discount"
-										value="t-membership" /> T멤버십 <input type="radio"
-										name="discount" value="" /> 미적용 <span
+									<td>
+										<input type="radio" name="discount" value="coupon"checked /> 쿠폰 
+										<input type="radio" name="discount" value="t-membership" /> 포인트 
+										<input type="radio" name="discount" value="" /> 미적용 <span
 										id="js-t-membership-value" class="t-membership-value"></span>
 
 										<!-- COUPON DISOCUNT -->
@@ -516,26 +523,20 @@ function remakeCardList() {
 											id="js-discount-option-t-membership"
 											style="display: none; position: relative;">
 
-											<input type="text"
-												class="input input-four-digit js-input-four-digit"
-												maxlength="4" /> <input type="text"
-												class="input input-four-digit js-input-four-digit"
-												maxlength="4" /> <input type="text"
-												class="input input-four-digit js-input-four-digit"
-												maxlength="4" /> <input type="text"
-												class="input input-four-digit js-input-four-digit"
-												maxlength="4" /> <a href="#" class="btnS mobileB"
-												id="js-t-membership-edit"> <span
-												style="margin-left: 0px;">수정</span>
-											</a> <a href="#" class="btnS mobileB" id="js-t-membership-save"
-												style="display: none;"> <span style="margin-left: 0px;">저장</span>
-											</a>
+											<input type="text" name="sale_price_point"/>
+											<a class="btnS mobileB" href="#">
+											<span style="margin-left: 0px;">적용</span>
+						                	</a>
+						                    <span id="point_message"></span>
+
+											
+										<div id="ms_change" style="margin-top: 0.4em;font-size: 1.1em; color: blue;">보유 금액 : ${ms_change} , 최대 사용 가능 금액 : <fmt:parseNumber value="${price/10}" integerOnly="true" /></div>
+										
 										</div>
 										<!-- T-MEMBERSHIP DISOCUNT -->
-										<div id="js-t-membership-loading"
-											style="margin-top: 5px; display: none;">포인트 조회 중입니다.</div>
-										<div id="js-t-membership-error"
-											style="margin-top: 5px; display: none; color: red;"></div> <script
+										
+										
+										<script
 											type="text/javascript">
                   function applyTPoint(point) {
                     if (point <= 0) {
@@ -566,18 +567,29 @@ function remakeCardList() {
 										var protectionFee = getProtectionFee();
 										var price = discountedPrice + protectionFee;
 
-                    $('.total_price').text(number_format(price));
                   }
 
 									/** protection-fee */
 									function getProtectionFee() {
 									  var deductibleType = $protectionFeeSelect && $protectionFeeSelect.val();
 									  var deductibleItems = {};
+										var innerTime = ${endTime.time - startTime.time};
+									 	var insurance_hour  = parseInt( (innerTime%(1000*60*60*24))/(1000*60*60) );
+									 	var insurance_day = parseInt(innerTime/(1000*60*60*24));
+									 	var car_insurance_one_hour = ${car_i_dto.car_insurance_one_hour};
+									 	var car_insurance_one_day = ${car_i_dto.car_insurance_one_day};
+										var car_insurance_two_hour = ${car_i_dto.car_insurance_two_hour};
+									 	var car_insurance_two_day = ${car_i_dto.car_insurance_two_day};
+									 	var price = ${price};
+									 	
+									  	
 									  
-									    deductibleItems[30] = parseInt(350, 10);
+									    deductibleItems[30] = parseInt(car_insurance_one_hour*insurance_hour + car_insurance_one_day*insurance_day, 10);
 									  
-									    deductibleItems[70] = parseInt(240, 10);
-									  
+									    deductibleItems[70] = parseInt(car_insurance_two_hour*insurance_hour + car_insurance_two_day*insurance_day, 10);
+									   
+									    $(".total_price").html(price + parseInt(deductibleItems[deductibleType]));
+										
 									  return deductibleType ? deductibleItems[deductibleType] : 0;
 									}
                 </script> <script type="text/javascript">
@@ -849,7 +861,7 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt8_n.gif'
 										alt="주행요금" /></th>
-									<td>170원 /1km당 <span>※ 반납 후 주행거리에 따라 부과</span>
+									<td>${car_i_dto.car_drive_price}원 /1km당 <span>※ 반납 후 주행거리에 따라 부과</span>
 
 
 									</td>
@@ -883,7 +895,7 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt9.gif'
 										alt="결제요금" /></th>
-									<td><strong class="total_price">2,220</strong> <img
+									<td><strong class="total_price"></strong> <img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt10.gif'
 										alt="원" /></td>
 								</tr>

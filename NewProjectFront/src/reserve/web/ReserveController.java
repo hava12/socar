@@ -1,5 +1,6 @@
 package reserve.web;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import member.service.MemDto;
+import mypage.service.impl.MyPageDao;
 import reserve.service.CarSearchResultDTO;
+import reserve.service.Car_IssueDTO;
 import reserve.service.ReserveDto;
 import reserve.service.ZoneDTO;
 import reserve.service.impl.CarDAO;
@@ -34,6 +38,9 @@ public class ReserveController {
 	
 	@Resource(name="reserveServiceImpl")
 	private ReserveServiceImpl res_service;
+	
+	@Resource(name="myPageDao")
+	private MyPageDao my_service;
 	
 	@RequestMapping("/Reserve/Reserve.do")
 	public String reserve(Model model) throws Exception{
@@ -63,10 +70,27 @@ public class ReserveController {
 	@RequestMapping("/Reserve/ReserveConfirm.do")
 	public String reserveConfirm(HttpServletRequest req,Model model) throws Exception{
 		
+		Car_IssueDTO car_i_dto = res_service.selectIssue_CarIssue(req.getParameter("car_i_code"));
+	
+		
+		Date startTime = new Date();
+		startTime.setTime(Long.parseLong(req.getParameter("startTime")));
+		
+		Date endTime = new Date();
+		endTime.setTime(Long.parseLong((req.getParameter("endTime"))));
 		
 		
+		int ms_change =  my_service.gomypage(req.getSession().getAttribute("smem_id").toString()).getMs_change();
 		
-		return "";
+		
+		model.addAttribute("price",req.getParameter("price"));
+		model.addAttribute("startTime",startTime);
+		model.addAttribute("endTime",endTime);
+		model.addAttribute("car_i_dto",car_i_dto);
+		model.addAttribute("ms_change",ms_change);
+		
+		
+		return "/reserve/Confirm";
 	};
 }
 

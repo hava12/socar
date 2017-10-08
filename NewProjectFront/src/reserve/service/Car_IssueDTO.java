@@ -13,6 +13,7 @@ public class Car_IssueDTO {
 	
 	
 	//효율성을 위한 변수
+	private String car_name;
 	private String car_land_price;
 	private String car_jeju_price;
 	private String car_price_so_wd;
@@ -21,10 +22,40 @@ public class Car_IssueDTO {
 	private String car_insurance_one_day;
 	private String car_insurance_two_hour;
 	private String car_insurance_two_day;
+	private String soz_loc;
+	private String soz_name;
+	private String car_drive_price;
 	
 	
 	
 	
+	
+	
+	
+	public String getCar_drive_price() {
+		return car_drive_price;
+	}
+	public void setCar_drive_price(String car_drive_price) {
+		this.car_drive_price = car_drive_price;
+	}
+	public String getSoz_name() {
+		return soz_name;
+	}
+	public void setSoz_name(String soz_name) {
+		this.soz_name = soz_name;
+	}
+	public String getSoz_loc() {
+		return soz_loc;
+	}
+	public void setSoz_loc(String soz_loc) {
+		this.soz_loc = soz_loc;
+	}
+	public String getCar_name() {
+		return car_name;
+	}
+	public void setCar_name(String car_name) {
+		this.car_name = car_name;
+	}
 	public String getCar_insurance_one_hour() {
 		return car_insurance_one_hour;
 	}

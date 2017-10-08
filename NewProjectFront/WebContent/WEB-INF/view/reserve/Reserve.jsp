@@ -212,6 +212,11 @@ $( function() {
 	     			var status = i==0?"부터":"까지";
 	     			
 					var res_minute = Math.round(res_time.getMinutes()/10)*10;
+					res_time.getHours();
+					if(res_minute==60){
+						res_time.setHours(res_time.getHours()+1);
+						res_minute =0;
+					}
 					$(this).parent().children("#reserveMessage").css("color","blue").append(res_time.getFullYear()+"년 "+(res_time.getMonth()+1)+"월 "+res_time.getDate()+"일 "+res_time.getHours()+"시 "+res_minute+"분"+status+"&nbsp;&nbsp;");	
 					
 		    	}
@@ -1059,14 +1064,36 @@ $(function(){
 		
 		var startTime = $(this).parent().parent().find("#slider-range").slider( "values", 0 )+defaultTime.getTime();
 		var endTime = $(this).parent().parent().find("#slider-range").slider( "values", 1 )+defaultTime.getTime();
-		var car_i_code = $(this).parent().parent().find("#car_i_code").html()
+		var car_i_code = $(this).parent().parent().find("#car_i_code").html();
+		var price = $(this).parent().parent().find("#car_price_so_wd").html();
 		
+		var datemodify = new Date(startTime);
+		datemodify.setSeconds(0);
+		if(datemodify.getMinutes>=55){
+			if(datemodify.getHours==23){
+				datemodify.setDate(datemodify.getDate()+1);
+			}
+			datemodify.setHours(datemodify.getHours()+1);
+		}
+		datemodify.setMinutes(Math.round(datemodify.getMinutes()/10)*10);
+		startTime = datemodify.getTime();
+		
+		datemodify.setTime(endTime);
+		datemodify.setSeconds(0);
+		if(datemodify.getMinutes>=55){
+			if(datemodify.getHours==23){
+				datemodify.setDate(datemodify.getDate()+1);
+			}
+			datemodify.setHours(datemodify.getHours()+1);
+		}
+		datemodify.setMinutes(Math.round(datemodify.getMinutes()/10)*10);
+		endTime = datemodify.getTime();
 		
  		$.doPost('<c:url value="/Reserve/ReserveConfirm.do"/>', {
 			startTime : startTime,
 			endTime : endTime,
 			car_i_code : car_i_code,
-			
+			price : price
  		});
 	
 		return false;

@@ -9,7 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="select_soz_res" parameterType="java.lang.String" resultType="ReserveDto">
 		<![CDATA[ SELECT R.* FROM RESERVE R JOIN CAR_ISSUE CI ON R.CAR_I_CODE=CI.CAR_I_CODE WHERE SOZ_CODE=#{soz_code} AND R.RES_DATE_END > SYSDATE-1 ]]>
 	</select>
-
+	<select id="selectOne_CarIssue" parameterType="java.lang.String" resultType="CarIssueDTO">
+		SELECT * FROM CAR_ISSUE CI JOIN CAR C ON CI.CAR_NAME_CODE = C.CAR_NAME_CODE JOIN CAR_MODEL CM ON C.CAR_TYPE_CODE = CM.CAR_TYPE_CODE JOIN SO_ZONE SZ ON CI.SOZ_CODE=SZ.SOZ_CODE WHERE CAR_I_CODE=#{car_i_code} 
+	</select>
 
 
 	
