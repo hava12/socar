@@ -100,63 +100,41 @@ $(function(){
 </ul>
 <!-- //lnb -->
 				<div class="section">
-					<h3><img src='${pageContext.request.contextPath}/template/image/h3_notice.gif' alt="공지사항" /></h3>
-					<!-- TO-DO  2013.02.17
-						검색 기능 연동
-					-->
+					<h3><img src='//web-assets.socar.kr/template/asset/images/customer/h3_notice.gif' alt="공지사항" /></h3>
 					<!-- search -->
-					<div class="notice-search">
+<!-- 					<div class="notice-search">
 						<form name="search" method="post" action="">
 							<fieldset>
 								<input type="text" class="input" />
-								<input id="btn_search" type="image" src='${pageContext.request.contextPath}/template/image/btn_notice_search.gif' alt="검색" />
+								<input type="image" src='//web-assets.socar.kr/template/asset/images/customer/btn_notice_search.gif' alt="검색" />
 							</fieldset>
 						</form>
-					</div>
+					</div> -->
 					<!-- //search -->
-					
-					<!-- list -->
+					<!-- view -->
 					<table cellspacing="0" summary="공지사항" class="cols">
-						<colgroup><col width="65" /><col /><col width="105" /></colgroup>
-						<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성일</th>
-						</tr>
-						</thead>
-						<tbody>
-							<c:if test="${empty list}" var="havenot">
-								<tr><td colspan="3"> 등록된 글이 없습니다  </td></tr>
-							</c:if>
-							<c:if test="${not havenot}">
-								<c:forEach items="${list}" var="item">
-									<tr >
-										<td>${item.not_no}</td>
-										<td align="center"><a href="<c:url value='/Notice/NoticeView.do' />?not_no=${item.not_no}">${item.not_title}</a></td>
-										<td>${item.not_postdate}</td><%-- <a href="/notice/${item.not_no}"> --%>
-									</tr>
-								</c:forEach>
-							</c:if>
-						</tbody>
-						</table>
-					
-					<!-- //list -->
-					<!-- paginate -->
-					<div class="paginate">
-						<tr align="center">
-     						<td>${pagingString}</td>
-   						</tr>
+					<colgroup><col /><col width="105" /></colgroup>
+					<thead>
+					<tr>
+						<th>제목</th>
+						<th>작성일</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td align="center">${dto.not_title}</td>
+						<td align="center">${dto.not_postdate}</td>
+					</tr>
+					</tbody>
+					</table>
+					<div class="viewCont">
+						<td align="center">
+							${dto.not_content}
+						</td>
 					</div>
-					<!-- //paginate -->
-					<!-- banner -->
-<!-- 					<ul class="banner">
-					<li class="first"><a href="#"><img src='${pageContext.request.contextPath}/template/image/banner1.gif' alt="" /></a></li>
-					<li><a href="#"><img src='${pageContext.request.contextPath}/template/image/banner2.gif' alt="" /></a></li>
-					<li><a href="#"><img src='${pageContext.request.contextPath}/template/image/banner1.gif' alt="" /></a></li>
-					<li><a href="#"><img src='${pageContext.request.contextPath}/template/image/banner2.gif' alt="" /></a></li>
-					</ul> -->
-					<!-- //banner -->
+					<!-- //view -->
+					<p class="centerBtn"><a href="/notice"><img src='//web-assets.socar.kr/template/asset/images/common/btn_list.gif' alt="목록보기" /></a></p>
+
 				</div>
 			</div>
 		</div>

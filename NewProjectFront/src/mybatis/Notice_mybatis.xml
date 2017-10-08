@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="Noticeone" parameterType="java.util.Map" resultType="Noti_ModelDto">
-		SELECT RE.*,NAME FROM NOTICE WHERE NOT_NO=#{not_no}
+		SELECT * FROM NOTICE WHERE NOT_NO=#{not_no}
 		
 		
 	</select> 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -47,24 +48,29 @@ public class NoticeController {
 		map.put("start", start);
 		map.put("end", end);		
 			
-			
 		//서비스 호출]
 		List<Noti_ModelDto> list = service.selectNoti_ModelList(map);
 		
-		
-		System.out.println(totalRecordCount);
-		System.out.println(nowPage);
-		
-		
 		String pagingString=PagingUtil.pagingText(totalRecordCount, Integer.parseInt(pageSize),Integer.parseInt(blockPage), nowPage,req.getContextPath()+"/Notice/Notice.do?");
-		
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pagingString", pagingString);
 		
-		
 		return "/notice/Notice";
 	}//////////////////////////////////////////////
+	
+		//상세보기
+		@RequestMapping("/Notice/NoticeView.do")
+		public String view(ModelMap model,@RequestParam Map map) throws Exception{
+			
+			Noti_ModelDto dto = service.selectOne(map);
+			
+			dto.setNot_content(dto.getNot_content().replace("\r\n", "<br/>"));
+			model.addAttribute("dto",dto);
+			
+			return "/notice/NoticeView";
+		}//////////////////////////////
+	
 	/*
 	   @RequestMapping("/Notice/Notice.do")
 	   public String notice(Model model) throws Exception{

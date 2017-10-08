@@ -38,7 +38,13 @@ public class CarDAO implements CarService {
 	public List<CarDTO> selectList(Map<String, Object> map) throws Exception {
 		List<CarDTO> list = new Vector();
 		String sql = "";
-
+		
+		if(map==null) {
+			sql="SELECT CAR_NAME_CODE,CAR_NAME FROM CAR ORDER BY CAR_NAME_CODE DESC";
+		}
+		else {
+			
+		
 		// 검색용 쿼리 추가
 		if (map.get("searchWord") != null) {
 			sql += "SELECT * FROM (";
@@ -50,11 +56,14 @@ public class CarDAO implements CarService {
 		if (map.get("searchWord") != null) {
 			sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
-
+		
+		}
 		try {
 			psmt = conn.prepareStatement(sql);
+			if(map!=null) {
 			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
 			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				CarDTO dto = new CarDTO();
@@ -74,11 +83,22 @@ public class CarDAO implements CarService {
 				dto.setCar_max_per(rs.getString(14));
 				list.add(dto);
 			}
+			}
+			else {
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					CarDTO dto = new CarDTO();
+					dto.setCar_name_code(rs.getString(1));
+					dto.setCar_name(rs.getString(2));
+					list.add(dto);
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		close();
 		return list;
+
 	}///////////////////////////////////////// selectList()
 
 	// 총 레코드 수 얻기용]
@@ -207,24 +227,34 @@ public class CarDAO implements CarService {
 	public List<Car_ModelDto> selectCar_TypeList(Map<String, Object> map) throws Exception{
 
 		String sql = "";
-
+		
+		
+		if(map==null) {
+			sql="SELECT * FROM CAR_MODEL";
+		}
+		else {///////주석필요~~ 검색용 쿼리 추가에 똑같은 if문 두개 있음
 		// 검색용 쿼리 추가
 		if (map.get("searchWord") != null) {
 			sql += "SELECT * FROM (";
 		}
 
 		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CAR_MODEL) T) WHERE R BETWEEN ? AND ?";
+		
 		// 검색용 쿼리 추가
 		if (map.get("searchWord") != null) {
 			sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
+		
+		}////////////else
+				
 		List<Car_ModelDto> list = new Vector<Car_ModelDto>();
 		try {
 			psmt = conn.prepareStatement(sql);
+			if(map!=null) {			
 			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
 			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			}
 			rs = psmt.executeQuery();
-
 			while (rs.next()) {
 				Car_ModelDto dto = new Car_ModelDto();
 				dto.setCar_type_code(rs.getString(1));
