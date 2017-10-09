@@ -53,16 +53,16 @@
 		
 		window.onload = function(){
 			
-			var rs_year = document.getElementById("rs_year");
-			var rs_month = document.getElementById("rs_month");
-			var rs_date = document.getElementById("rs_date");
-			var re_year = document.getElementById("re_year");
-			var re_month = document.getElementById("re_month");
-			var re_date = document.getElementById("re_date");
+			var rs_year = document.getElementById("rs_year_val");
+			var rs_month = document.getElementById("rs_month_val");
+			var rs_date = document.getElementById("rs_date_val");
+			var re_year = document.getElementById("re_year_val");
+			var re_month = document.getElementById("re_month_val");
+			var re_date = document.getElementById("re_date_val");
 			
 			
-			var re_time = document.getElementById("re_time");
-			var rs_time = document.getElementById("rs_time");
+			var re_time = document.getElementById("re_time_val");
+			var rs_time = document.getElementById("rs_time_val");
 
 			var now = new Date();
 			var year = now.getFullYear();
@@ -279,22 +279,7 @@
 			st.innerHTML += que;
 			
 		}
-// 		function checkpoint() {
-			
-// 			var val = (parseInt(document.getElementById("res_price").value)+parseInt(document.getElementById("res_inscost").value))/10;
-// 			if( val < parseInt(document.getElementById("point").value)){
-// 				document.getElementById("checkpoint").innerHTML="포인트 사용 불가 : 최대 사용가능값 초과";
-// 				return false;
-// 			}
-// 			else if( parseInt(document.getElementById("point_h").value) < parseInt(document.getElementById("point").value)){
-// 				document.getElementById("checkpoint").innerHTML="포인트 사용 불가 : 포인트 부족";
-// 				return false;
-// 			}
-// 			else{
-// 				document.getElementById("checkpoint").innerHTML="";
-// 				return true;
-// 			}
-// 		}
+
 		
 		
 		function checkpoint(){
@@ -316,7 +301,7 @@
 		
 		
 		function findcoupon(){
-			window.open("<c:url value='/Coupon/CouponFind.do'/>?soz_code="+document.getElementById("soz_code").value,"get","height=500,width=1200");
+			window.open("<c:url value='/Coupon/CouponFind.do'/>?smem_id="+document.getElementById("smem_id").value,"get","height=500,width=1200");
 		}
 	</script>
 	
@@ -434,50 +419,58 @@
 					      	  		<td><label>렌트시작일</label></td>
 					      	  		<td>
 					      	  			<div class="col-xs-2" >
-								        <select class="form-control" id="rs_year" name="rs_year">
+								        <select class="form-control" id="rs_year_val" name="rs_year_val" disabled="disabled">
 								        </select>
 								        </div>
 								        <p class="col-xs-1">년</p>
 					      	  			<div class="col-xs-2" >
-								        <select class="form-control" id="rs_month"  onchange="changeSMonth()" name="rs_month">
+								        <select class="form-control" id="rs_month_val"  onchange="changeSMonth()" name="rs_month_val" disabled="disabled">
 								        </select> 
 								        </div>
 								        <p class="col-xs-1">월</p>
 								        <div class="col-xs-2">
-								        <select class="form-control" id="rs_date"  onchange="changePrice()" name="rs_date">
+								        <select class="form-control" id="rs_date_val"  onchange="changePrice()" name="rs_date_val" disabled="disabled">
 								        </select> 
 								        </div>
 								        <p class="col-xs-1">일</p>
 								        <div class="col-xs-2">
-								        <select class="form-control" onchange="changePrice()" id="rs_time" name="rs_time">
+								        <select class="form-control" onchange="changePrice()" id="rs_time_val" name="rs_time_val" disabled="disabled">
 								        </select> 
 								        </div>
-					      	  			
+										<input type="hidden" id="rs_year" name="rs_year" />
+										<input type="hidden" id="rs_month" name="rs_month" />
+										<input type="hidden" id="rs_date" name="rs_date" />
+										<input type="hidden" id="rs_time" name="rs_time" />
+										
 					      	  		</td>
 					      	  </tr>
 					      	  <tr>
 					      	  		<td><label>렌트종료일</label></td>
 					      	  		<td>
 					      	  			<div class="col-xs-2" >
-									        <select class="form-control" id="re_year" name="re_year">
+									        <select class="form-control" id="re_year_val" name="re_year_val" disabled="disabled">
 									        </select>
 								        </div>
 								        <p class="col-xs-1">년</p>
 					      	  			<div class="col-xs-2" >
-									        <select class="form-control" id="re_month" onchange="changeEMonth()" name="re_month">
+									        <select class="form-control" id="re_month_val" onchange="changeEMonth()" name="re_month_val" disabled="disabled">
 									        </select> 
 								        </div>
 								        <p class="col-xs-1">월</p>
 								        <div class="col-xs-2">
-									        <select class="form-control" onchange="changePrice()"  id="re_date" name="re_date">
+									        <select class="form-control" onchange="changePrice()"  id="re_date_val" name="re_date_val" disabled="disabled">
 									        </select> 
 								        </div>
 								        <p class="col-xs-1">일</p>
 								        <div class="col-xs-2">
-									        <select class="form-control" onchange="changePrice()" id="re_time" name="re_time">
+									        <select class="form-control" onchange="changePrice()" id="re_time_val" name="re_time_val" disabled="disabled">
 									        </select> 
 								        </div>
 								        <br/>
+								        <input type="hidden" id="re_year" name="re_year" />
+										<input type="hidden" id="re_month" name="re_month" />
+										<input type="hidden" id="re_date" name="re_date" />
+										<input type="hidden" id="re_time" name="re_time" />
 								        
 					      	  		</td>
 					      	  </tr>

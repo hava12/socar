@@ -16,10 +16,8 @@ public class CouponFindController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 			CouponDao c_dao = new CouponDao(req.getServletContext());
-			ZoneDAO z_dao = new ZoneDAO(req.getServletContext());
 			
-			z_dao.selectOne(req.getParameter("soz_code"));
-			
+			req.getParameter("smem_id");
 			
 			
 			req.getRequestDispatcher("/admin/coupon/CouponFind.jsp").forward(req, resp);

@@ -89,6 +89,8 @@ var discountType = 'coupon';
 $(function(){
 	
 	
+	
+	
 	var innerTime = ${endTime.time - startTime.time};
 	
  	var insurance_hour  = parseInt( (innerTime%(1000*60*60*24))/(1000*60*60) );
@@ -96,9 +98,9 @@ $(function(){
  	var car_insurance_one_hour = ${car_i_dto.car_insurance_one_hour};
  	var car_insurance_one_day = ${car_i_dto.car_insurance_one_day};
 	var price = ${price};
- 		
+
  	$("#js-protection-fee-price").html(car_insurance_one_hour*insurance_hour + car_insurance_one_day*insurance_day+"원");
-	$(".total_price").html(price + parseInt($("#js-protection-fee-price").html()))
+	$(".total_price").html(price + parseInt($("#js-protection-fee-price").html()));
 	
 	
 	$(window).unload(function() {
@@ -117,29 +119,26 @@ $(function(){
 			? protectionFee * (pfDiscountPercent/100)
 			: 0;
 
-		if (selected == '') {
-			var dis_price = parseInt($org_price) + parseInt($price_ret);
-			return;
-		} else {
-			if(!option_selected.hasClass('applicable')) {
-				alert("죄송합니다. 이 예약에는 사용할 수 없는 쿠폰입니다.\n쿠폰의 사용조건을 확인해 주세요.");
-				$(this).val('').change();
-				return;
-			}
-
-			
-			var dis_price = parseInt($org_price) - parseInt(data[1]) + parseInt($price_ret) + protectionFee - discountedProtectionFee;
-			
-			$('#js-t-membership-value').show().text('-' + number_format(parseInt(data[1]) + discountedProtectionFee) + '원');
+ 		if (selected == '') {
+ 			$("#sale_price").val(0);
+ 			var dis_price = parseInt($org_price) + parseInt($price_ret);	
 		}
+ 		else{
+ 			var cou_val = $('#selbox_coupon option:selected');
+ 			var cou_sale_price = cou_val.attr("class");
+ 			$("#sale_price").val(cou_sale_price);
+ 			
+ 			$(".total_price").html(price+parseInt($("#js-protection-fee-price").html())-cou_sale_price);
+			
+ 		}
 	});
 
+	
   $('#btn_reserve').bind('click', function (event) {
 		
 			
 				var isRsrvAgreed = $('#js-reserve-confirm').is(':checked');
-				var isEvCar = 'GASOLINE' === 'EV';
-				var isEvCarAgreed = $('#js-ev-confirm').is(':checked');
+			var isEvCarAgreed = $('#js-ev-confirm').is(':checked');
 
 				if(!isRsrvAgreed) {
 					alert('쏘카대여약관과 이용약관을 숙지한것에 동의 해야합니다.');
@@ -147,11 +146,6 @@ $(function(){
 					return false;
 				}
 
-				if (isEvCar && !isEvCarAgreed) {
-					alert('전기차 반납 주의사항을 읽고 동의해 주세요.');
-					$('#js-ev-confirm').focus();
-					return false;
-				}
 
 				var zone_id = $(this).next().text();
 				var car_id = $(this).next().next().text();
@@ -160,43 +154,43 @@ $(function(){
 
         $('input.js-input-four-digit').each(function() { membership.push(this.value); });
         var t_membership = membership.join('');
+				
 
-				// spock 쿠폰 코드 632일때 얼럿창 발생
-				if(632 == selected[2] || 664 == selected[2]){
-					var msg = "얼리쏘친 예약의 경우 다음날 오전 12시에 선결제되며\n결제 이후 취소하면 위약금 30%가 부과됩니다.\n위 내용에 동의하시면 [확인] 버튼을 눌러주세요.";
-					var result = confirm(msg);
-					if(false == result){
+				if(!confirm('예약과 동시에 결제가 진행됩니다.\n지금 바로 쏘카이용을 원하신다면 [확인]을 눌러주세요.')) {
 						return false;
-					}
 				}
-
-				var now_time = new Date().getTime();
-				var start_time = new Date('2017-09-21T18:30:00+09:00').getTime();
-
-				if(start_time - now_time < 60 * 10 * 1000){
-					if(!confirm('예약과 동시에 결제가 진행됩니다.\n지금 바로 쏘카이용을 원하신다면 [확인]을 눌러주세요.')) {
-						return false;
-					}
-				}
-
-
-
-				$.doPost('https://www.socar.kr/reserve/complete', {
-					way: 'round',
 				
-					zone_id: zone_id,
-				
-					start_at: '2017-09-21T18:30:00+09:00',
-					end_at: '2017-09-21T19:00:00+09:00',
-					coupon_code: selected[0],
-          discount_type: discountType,
-				
-          deductible_type: $protectionFeeSelect.val(),
-				
-					car_id: car_id,
-				  
-					billing_id: $("#selbox_card").val()
-				  
+
+					var sale_price = $("#sale_price").val();
+					var car_i_code = $("#car_i_code").val();
+					var card_code  = $("#selbox_card option:selected").val()
+					var res_price  = ${price};
+					var res_date_start = '${startTime.time}';
+					var res_date_end = '${endTime.time}';
+
+					var reserve_type = 'n';
+					var radioVal =  $("#sale_radio_val").html();
+					
+					if(radioVal == "c" && $("#selbox_coupon option:selected").val() != ""){	reserve_type = 'c';	}
+					else if(radioVal == "p"){ reserve_type ='p'}
+					
+					var res_instype =  $("#js-protection-fee-select option:selected").val() =='30' ? "type_one":"type_two";
+					
+					var res_inscost = parseInt($("#js-protection-fee-price").html());
+
+					var cou_i_code = $("#selbox_coupon option:selected").val();
+					
+				$.doPost('<c:url value="/Reserve/ReserveComplete.do" />', {
+					car_i_code : car_i_code,
+				  	card_code : card_code,
+				  	res_price : res_price,
+				  	res_date_start : res_date_start,
+				  	res_date_end : res_date_end,
+				  	reserve_type : reserve_type,
+				  	res_instype : res_instype,
+				  	res_inscost : res_inscost,
+					cou_i_code  : cou_i_code,
+					sale_price : sale_price
 				});
 			
 		
@@ -204,6 +198,24 @@ $(function(){
 		return false;
 	});
 
+  	$(".inputPoint").click(function(){
+  		var price = ${price};
+  		var ms_change = ${ms_change};
+  		var sale_price_point = $("input[name='sale_price_point']").val();
+  		$("#sale_price").val(sale_price_point);
+  		
+  		if(ms_change < sale_price_point || parseInt(price/10) < sale_price_point){
+  			$("#point_message").css("color","red").html("요금 초과");
+  			$("input[name='sale_price_point']").val(0);
+  		}
+  		else{
+  			$("#point_message").css("color","blue").html(sale_price_point+"p 사용");
+  		}
+  		$(".total_price").html(price-sale_price_point+parseInt($("#js-protection-fee-price").html()));
+  		
+  		return false;
+  	});
+  
 	/* oil */
 	$(".oil").click(function(){
 		$.ajax({
@@ -407,7 +419,7 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt1.gif'
 										alt="차량" /></th>
-
+									
 									<td>${car_i_dto.car_name} <strong>${car_i_dto.car_nick}</strong>
 									<!-- <a href="#" class="carDetail">상세정보</a> --></td>
 
@@ -468,7 +480,7 @@ function remakeCardList() {
 										<!-- PROTECTION FEE SELECTIONS -->
 										<div class="" id="">
 											<select id="js-protection-fee-select" style="width: 218px;">
-
+											
 												<option value="30">자기부담금 최대 30만원</option>
 
 												<option value="70">자기부담금 최대 70만원</option>
@@ -488,33 +500,23 @@ function remakeCardList() {
 										src='//web-assets.socar.kr/template/asset/images/reservation/text_discount.png'
 										alt="할인" /></th>
 									<td>
-										<input type="radio" name="discount" value="coupon"checked /> 쿠폰 
+										<input type="radio" name="discount" value="coupon" checked /> 쿠폰 
 										<input type="radio" name="discount" value="t-membership" /> 포인트 
 										<input type="radio" name="discount" value="" /> 미적용 <span
 										id="js-t-membership-value" class="t-membership-value"></span>
-
+										<span style="display: none;" id="sale_radio_val">c</span>
 										<!-- COUPON DISOCUNT -->
 										<div class="js-discount-options"
 											id="js-discount-option-coupon">
 
 											<select id="selbox_coupon" style="width: 218px;">
 												<option value="" selected="selected">쿠폰선택</option>
-
-
-
-
-
-
-												<option value="SCK365NPA3, 1870, 3328, 0, 0.0000000000"
-													class='applicable'>매너 서약해주신 쏘친 전원에게 드리는 쿠폰 - 2천원 할인</option>
-
-
-
-
-
-												<option value="SC45QYE5YE, 0, 1113, 0" class='inapplicable'>굿쏘친님께 드리는 할인쿠폰 - 3천원 할인</option>
-
-
+												<c:if test="${not empty my_coupon}" >
+													<c:forEach items="${my_coupon}" var="item_cou">
+														<option value="${item_cou.cou_i_code}" class="${item_cou.cou_sale}">${item_cou.cou_name} - ${item_cou.cou_sale}원 할인  </option>
+											
+													</c:forEach>
+												</c:if>
 											</select>
 
 										</div>
@@ -523,9 +525,11 @@ function remakeCardList() {
 											id="js-discount-option-t-membership"
 											style="display: none; position: relative;">
 
-											<input type="text" name="sale_price_point"/>
-											<a class="btnS mobileB" href="#">
-											<span style="margin-left: 0px;">적용</span>
+											<input type="text" value="0" name="sale_price_point"/>
+											
+											
+											<a class="btnS mobileB inputPoint" href="#">
+												<span style="margin-left: 0px;">적용</span>
 						                	</a>
 						                    <span id="point_message"></span>
 
@@ -581,15 +585,14 @@ function remakeCardList() {
 										var car_insurance_two_hour = ${car_i_dto.car_insurance_two_hour};
 									 	var car_insurance_two_day = ${car_i_dto.car_insurance_two_day};
 									 	var price = ${price};
-									 	
 									  	
 									  
 									    deductibleItems[30] = parseInt(car_insurance_one_hour*insurance_hour + car_insurance_one_day*insurance_day, 10);
-									  
 									    deductibleItems[70] = parseInt(car_insurance_two_hour*insurance_hour + car_insurance_two_day*insurance_day, 10);
 									   
 									    $(".total_price").html(price + parseInt(deductibleItems[deductibleType]));
-										
+									    $("#js-protection-fee-price").html(parseInt(deductibleItems[deductibleType])+"원");
+									    
 									  return deductibleType ? deductibleItems[deductibleType] : 0;
 									}
                 </script> <script type="text/javascript">
@@ -617,19 +620,26 @@ function remakeCardList() {
                   
 
                   var befDiscountType = 'coupon';
-                    $radioButtons.click(function () {
+                    
+                  	$radioButtons.click(function () {
                       var val = $(this).val();
                       discountType = val;
-
-                      if (val !== 'coupon') resetCouponBox();
-                      if (val === 't-membership') {
-                        if (isPeakSeason()) {
-                          alert("아래 기간 동안 쏘카 예약시, T멤버십 할인이 불가합니다. \n(2016년 7월 15일 ~ 8월 21일)");
-                          $('input[type="radio"][name="discount"]:input[value='+ befDiscountType +']').attr("checked", true);
-                          return;
-                        }
+                      $("#sale_price").val(0);
+                      $("input[name='sale_price_point']").val(0);
+                      $("#point_message").css("color","blue").html("");
+  					
+                      getProtectionFee();
+                      
+                      if (val === 'coupon') {  
+                      	$("#sale_radio_val").html("c");
+                      }
+                      else if (val === 't-membership') {
+                    	  resetCouponBox();	
+                    	$("#sale_radio_val").html("p");
+                              	
                       } else {
-                        resetTMembership();
+                    	  resetCouponBox();	
+                      	$("#sale_radio_val").html("n");	
                       }
                       befDiscountType = val;
 
@@ -873,8 +883,11 @@ function remakeCardList() {
 										alt="결제카드" /></th>
 									<td><select id="selbox_card">
 
-											<option value='1008837' selected='selected'>현대카드 (2015.12.06)</option>
-
+											<c:forEach items="${card_list}" var="item_card">
+														<option value="${item_card.card_code}">
+																${item_card.card_type == 'p'?"개인카드":"법인카드"} (${item_card.card_code})
+														</option>
+											</c:forEach>
 									</select>
 										<div class="txt_cop_more">
 											결제카드 <span>3장까지</span> 등록가능!
@@ -931,6 +944,11 @@ function remakeCardList() {
 				<div class="confirm">
 					<form name="reservation" method="post" action="">
 						<fieldset>
+							<input type="hidden" name="sale_price" id="sale_price" />
+							<input type="hidden" value="${car_i_dto.car_i_code}" id="car_i_code"/>
+											
+						
+						
 							<label for="confirm"> <input class="agree-checkbox"
 								id="js-reserve-confirm" type="checkbox" />
 								<div class="agree-container">

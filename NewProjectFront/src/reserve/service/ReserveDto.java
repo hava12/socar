@@ -19,6 +19,7 @@ public class ReserveDto {
 	private String ms_code;
 	private String sale_price;
 	private String cou_i_code;
+	
 	public String getRes_code() {
 		return res_code;
 	}

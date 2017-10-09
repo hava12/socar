@@ -428,7 +428,7 @@
         </form>
 
             	
-                     <button class="btn btn-success btn-info pull-right" id="menu" style="margin-right: 30px !important; margin-top: 30px !important;">선택 완료</button>
+                     <button class="btn btn-success btn-info pull-right" id="choice" onclick="choice()" style="margin-right: 30px !important; margin-top: 30px !important;">선택 완료</button>
         </div>
 
  
@@ -451,7 +451,72 @@
 
     
     <script>
-
+		function choice(){
+			$(function(){
+					var resTime = new Date($("#rs_year").val(),$("#rs_month").val(),$("#rs_date").val());
+		    		resTime.setTime(resTime.getTime()+$("#slider-range").slider("values",0));
+		    		var minuteSet = Math.round(resTime.getMinutes()/10)*10;
+		    		if(minuteSet == 60){
+		    			resTime.setTime(resTime.getTime()+1000*60*5);
+		    			minuteSet = Math.round(resTime.getMinutes()/10)*10;
+		    		}
+					opener.document.getElementById("rs_year_val").value = resTime.getFullYear(); 
+					opener.document.getElementById("rs_year").value = resTime.getFullYear(); 
+					
+ 					opener.document.getElementById("rs_month_val").value = resTime.getMonth()<10?"0"+resTime.getMonth():resTime.getMonth(); 
+					opener.document.getElementById("rs_month").value = resTime.getMonth()<10?"0"+resTime.getMonth():resTime.getMonth(); 
+					
+					
+ 					opener.document.getElementById("rs_date_val").value = resTime.getDate()<10?"0"+resTime.getDate():resTime.getDate(); 
+					opener.document.getElementById("rs_date").value = resTime.getDate()<10?"0"+resTime.getDate():resTime.getDate(); 
+					
+					
+					var hour = resTime.getHours()<10?"0"+resTime.getHours():resTime.getHours();
+					minuteSet = minuteSet < 10 ? "0"+minuteSet : minuteSet;
+ 					opener.document.getElementById("rs_time_val").value = hour + ":" + minuteSet;
+					opener.document.getElementById("rs_time").value = hour + ":" + minuteSet;
+								
+					alert(opener.document.getElementById("rs_time").value);
+					
+					//////////////////////////끝시간
+					
+					
+					resTime = new Date($("#rs_year").val(),$("#rs_month").val(),$("#rs_date").val());
+					resTime.setTime(resTime.getTime()+$("#slider-range").slider("values",1));
+		    		var minuteSet = Math.round(resTime.getMinutes()/10)*10;
+		    		if(minuteSet == 60){
+		    			resTime.setTime(resTime.getTime()+1000*60*5);
+		    			minuteSet = Math.round(resTime.getMinutes()/10)*10;
+		    		}
+		    		
+ 					opener.document.getElementById("re_year_val").value = resTime.getFullYear(); 
+					opener.document.getElementById("re_year").value = resTime.getFullYear(); 
+					
+					
+ 					opener.document.getElementById("re_month_val").value = resTime.getMonth()<10?"0"+resTime.getMonth():resTime.getMonth(); 
+					opener.document.getElementById("re_month").value = resTime.getMonth()<10?"0"+resTime.getMonth():resTime.getMonth(); 
+					
+					
+ 					opener.document.getElementById("re_date_val").value = resTime.getDate()<10?"0"+resTime.getDate():resTime.getDate(); 
+					opener.document.getElementById("re_date").value = resTime.getDate()<10?"0"+resTime.getDate():resTime.getDate(); 
+					
+					
+					hour = resTime.getHours()<10?"0"+resTime.getHours():resTime.getHours();
+					minuteSet = minuteSet < 10 ? "0"+minuteSet : minuteSet;
+					
+ 					opener.document.getElementById("re_time_val").value = hour + ":" + minuteSet;
+					opener.document.getElementById("re_time").value = hour + ":" + minuteSet;
+								
+					alert(opener.document.getElementById("re_time").value);
+					opener.location.href="javascript:changePrice();"; // 일반적인 방법
+		
+					window.close();
+					
+					
+			});
+		}
+    
+    
         $( function() {
 	
     	  $("#slider-range").slider({
@@ -539,6 +604,7 @@
             		}
             		var status = i==0?"부터":"까지";
             		$("#resmessage").append(resTime.getFullYear()+"년 "+resTime.getMonth() +"월 "+resTime.getDate()+ "일 "+resTime.getHours()+"시 "+Math.round(resTime.getMinutes()/10)*10+"분 "+status+" ");	
+            		
             		
         		}
         			

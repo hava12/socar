@@ -12,7 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOne_CarIssue" parameterType="java.lang.String" resultType="CarIssueDTO">
 		SELECT * FROM CAR_ISSUE CI JOIN CAR C ON CI.CAR_NAME_CODE = C.CAR_NAME_CODE JOIN CAR_MODEL CM ON C.CAR_TYPE_CODE = CM.CAR_TYPE_CODE JOIN SO_ZONE SZ ON CI.SOZ_CODE=SZ.SOZ_CODE WHERE CAR_I_CODE=#{car_i_code} 
 	</select>
-
-
-	
+	<insert id="insertReserve" parameterType="ReserveDto">
+		INSERT INTO RESERVE VALUES('RES_'||LPAD(RES_CODE_SEQ.NEXTVAL,10,'0'),#{smem_id},#{car_i_code},#{card_code},#{res_price},#{res_date_start},#{res_date_end},#{reserve_type},SYSDATE,#{res_instype},#{res_inscost},'n','none',#{ms_code},#{sale_price},#{cou_i_code})
+	</insert>
+	<insert id="insert_ms_change" parameterType="hashmap">
+		INSERT INTO MEMBERSHIP VALUES(MS_CODE_SEQ.NEXTVAL,#{smem_id},#{sale_price},SYSDATE)
+	</insert>
+	<select id="getms_code_lastNum" resultType="java.lang.String">
+		SELECT MS_CODE_SEQ.CURRVAL FROM DUAL
+	</select>
+	<insert id="insertCou_use" parameterType="java.lang.String">
+		INSERT INTO COU_USE VALUES('C_U_'||LPAD(C_U_CODE_SEQ.NEXTVAL,10,'0'),#{cou_i_code},'RES_'||LPAD(RES_CODE_SEQ.CURRVAL,10,'0'))
+	</insert>
 </mapper>

@@ -73,8 +73,8 @@ public class ReserveDao implements ReserveService{
 			dto.setCar_i_code(rs.getString(3));
 			dto.setCard_code(rs.getString(4));
 			dto.setRes_price(rs.getString(5));
-			dto.setRes_date_start(rs.getDate(6));
-			dto.setRes_date_end(rs.getDate(7));
+			dto.setRes_date_start(rs.getTimestamp(6));
+			dto.setRes_date_end(rs.getTimestamp(7));
 			dto.setReserve_type(rs.getString(8));
 			dto.setRes_date(rs.getDate(9));
 			dto.setRes_instype(rs.getString(10));
@@ -82,8 +82,8 @@ public class ReserveDao implements ReserveService{
 			dto.setRes_cardkey(rs.getString(12));
 			dto.setRes_article(rs.getString(13));
 			dto.setMs_code(rs.getString(14));
-			dto.setCou_c_code(rs.getString(15));
-			dto.setSale_price(rs.getString(16));
+			dto.setSale_price(rs.getString(15));
+			dto.setCou_c_code(rs.getString(16));
 			
 			list.add(dto);
 		}
@@ -133,7 +133,7 @@ public class ReserveDao implements ReserveService{
 			
 			affected = psmt.executeUpdate();
 				if(affected == 1) {
-					sql="SELECT LAST_NUMBER-1 FROM USER_SEQUENCES WHERE SEQUENCE_NAME='MS_CODE_SEQ'";
+					sql="SELECT MS_CODE_SEQ.CURRVAL FROM DUAL";
 					
 					psmt = conn.prepareStatement(sql);
 					rs = psmt.executeQuery();
@@ -152,9 +152,11 @@ public class ReserveDao implements ReserveService{
 		psmt.setString(3, dto.getCard_code());
 		psmt.setString(4, dto.getRes_price());
 		
-		System.out.println(dto.getRes_date_start().getTime());
-		System.out.println(dto.getRes_date_end().getTime());
-		
+		System.out.println(dto.getSmem_id());
+		System.out.println(dto.getCar_i_code());
+		System.out.println(dto.getCard_code());
+		System.out.println(dto.getMs_code());
+	
 	
 		psmt.setTimestamp(5, new java.sql.Timestamp(dto.getRes_date_start().getTime()));
 		psmt.setTimestamp(6, new java.sql.Timestamp(dto.getRes_date_end().getTime()));
@@ -164,8 +166,8 @@ public class ReserveDao implements ReserveService{
 		psmt.setString(10, dto.getRes_cardkey());
 		psmt.setString(11, dto.getRes_article());
 		psmt.setString(12, dto.getMs_code());
-		psmt.setString(13, dto.getCou_c_code());
-		psmt.setString(14, dto.getSale_price());
+		psmt.setString(13, dto.getSale_price());
+		psmt.setString(14, dto.getCou_c_code());
 		affected = psmt.executeUpdate();
 		
 		conn.commit();

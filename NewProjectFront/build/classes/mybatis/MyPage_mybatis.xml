@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 마이페이지 쿠폰 얻어오기 -->
 	<select id="selectMyCouponBook" parameterType="java.lang.String" resultType="CouponDto">
-		SELECT * FROM COU_CREATE CC JOIN COU_ISSUE CI ON CC.COU_C_CODE = CI.COU_C_CODE JOIN COUPON C ON C.COU_CODE=CC.COU_CODE WHERE CI.SMEM_ID=#{smem_id} 
+		SELECT * FROM COU_CREATE CC JOIN COU_ISSUE CI ON CC.COU_C_CODE = CI.COU_C_CODE JOIN COUPON C ON C.COU_CODE=CC.COU_CODE WHERE CI.SMEM_ID=#{smem_id} AND COU_I_E_DATE > SYSDATE
 	</select>
 	
 	

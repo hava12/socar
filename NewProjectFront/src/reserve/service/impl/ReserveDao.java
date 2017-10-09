@@ -1,6 +1,7 @@
 package reserve.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -24,6 +25,26 @@ public class ReserveDao implements ReserveService {
 	@Override
 	public Car_IssueDTO selectIssue_CarIssue(String car_i_code) throws Exception {
 		return template.selectOne("selectOne_CarIssue",car_i_code);
+	}
+
+	@Override
+	public int insertReserve(ReserveDto dto) throws Exception {
+		return template.insert("insertReserve",dto);
+	}
+
+	@Override
+	public int insert_ms_change(Map<String,String> map) throws Exception {
+		return template.insert("insert_ms_change",map);
+	}
+
+	@Override
+	public String getms_code_lastNum() throws Exception {
+		return template.selectOne("getms_code_lastNum");
+	}
+
+	@Override
+	public int insertCou_use(String cou_i_code) throws Exception {
+		return template.insert("insertCou_use",cou_i_code);
 	}
 
 	
