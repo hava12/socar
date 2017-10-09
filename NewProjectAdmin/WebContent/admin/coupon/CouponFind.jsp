@@ -42,8 +42,12 @@
 	<script>
 		
 		
-		function pushparent(id,name,car_land_price,car_jeju_price,car_price_so_wd,car_price_so_we,car_insurance_one_hour,car_insurance_one_day,car_insurance_two_hour,car_insurance_two_day) {
+		function pushparent(cou_i_code,cou_name,cou_sale) {
 			
+			opener.document.getElementById("sale_price").value=cou_sale;
+			opener.document.getElementById("cou_i_code").value=cou_i_code;
+			opener.document.getElementById("cou_info").innerHTML=cou_name +" - " +cou_sale +" 원 할인";
+			opener.location.href="javascript:changePrice();";
 			
 			window.close();
 		}
@@ -64,37 +68,32 @@
               <thead>
 
                 <tr>
-                  <th style="text-align: center; width: 10%">차량보유코드</th>
-                  <th style="text-align: center; width: 10%">차량명코드</th>
-                  <th style="text-align: center; width: 10%">쏘카존코드</th>
-                  <th style="text-align: center; width: 10%">차량발급일</th>
-                  <th style="text-align: center; width: 10%">차량번호</th>
-                  <th style="text-align: center; width: 20%">차량안전옵션</th>
-                  <th style="text-align: center; width: 10%">차량부가옵션</th>
-                  <th style="text-align: center; width: 10%">차량별칭</th>
-                  <th style="text-align: center; width: 10%">차량선택</th>
+                  <th style="text-align: center; width: 20%">쿠폰코드</th>
+                  <th style="text-align: center; width: 20%">쿠폰명</th>
+                  <th style="text-align: center; width: 10%">할인금액</th>
+                  <th style="text-align: center; width: 20%">쿠폰 발급일</th>
+                  <th style="text-align: center; width: 20%">쿠폰 만료일</th>
+                  <th></th>
                 </tr>
 
               </thead>
               <tbody>
                 
-				<c:if test="${empty list}" var="listSimpleMem">
-						<tr><td colspan="9">등록된 차량이 없습니다.</td></tr>
+				<c:if test="${empty list}" var="listCou">
+						<tr><td colspan="5">등록된 쿠폰이 없습니다.</td></tr>
 				</c:if>
-                <c:if test="${not listSimpleMem}">
+                <c:if test="${not listCou}">
                 		<c:forEach items="${list}" var="item">
 	                		<tr>
-	                				<td>${item.car_i_code}</td>	           	                					
-					                <td>${item.car_name_code}</td>
-					                <td>${item.soz_code}</td>
-					                <td>${item.car_i_date}</td>
-					                <td>${item.car_i_num}</td>
-					                <td>${item.car_i_safe_option}</td>
-					                <td>${item.car_i_add_option}</td>
-					                <td>${item.car_nick}</td>
+	                				<td>${item.cou_i_code}</td>	           	                					
+					                <td>${item.cou_name}</td>
+					                <td>${item.cou_sale}</td>
+					                <td>${item.cou_i_date}</td>
+					                <td>${item.cou_i_e_date}</td>
+					                
 	                				<td style="text-align: center">
-	                					<button class="btn btn-default btn-sm" onclick="pushparent('${item.car_i_code}','${item.car_nick}','${item.car_land_price}','${item.car_jeju_price}','${item.car_price_so_wd}','${item.car_price_so_we}','${item.car_insurance_one_hour}','${item.car_insurance_one_day}','${item.car_insurance_two_hour}','${item.car_insurance_two_day}')">
-	                					선택
+	                					<button class="btn btn-default btn-sm" onclick="pushparent('${item.cou_i_code}','${item.cou_name}','${item.cou_sale}')">
+	                						선택
 	                					</button>
 	                				</td>
 	                		

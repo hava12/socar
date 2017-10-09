@@ -61,7 +61,6 @@ public class ReserveInsertController extends HttpServlet {
 			String res_price = req.getParameter("res_price");
 			String res_cardkey = req.getParameter("res_cardkey");
 			String pay_article = req.getParameter("pay_article");
-			String cou_c_code = req.getParameter("cou_c_code");
 			
 			
 			
@@ -73,13 +72,14 @@ public class ReserveInsertController extends HttpServlet {
 			dto.setRes_price(res_price);
 			dto.setRes_date_start(res_date_start.getTime());
 			dto.setRes_date_end(res_date_end.getTime());
-			dto.setReserve_type("c");
+			dto.setReserve_type(req.getParameter("res_sale_type"));
 			dto.setRes_instype(res_instype);
 			dto.setRes_inscost(res_inscost);
 			dto.setRes_cardkey(res_cardkey);
 			dto.setRes_article(pay_article);
 			if(req.getParameter("res_sale_type").equals("c")) {
-				dto.setCou_c_code(cou_c_code);
+				dto.setSale_price(req.getParameter("sale_price"));
+				dto.setCou_i_code(req.getParameter("cou_i_code"));
 			}
 			else if(req.getParameter("res_sale_type").equals("p")) {
 				dto.setMs_code("입력");

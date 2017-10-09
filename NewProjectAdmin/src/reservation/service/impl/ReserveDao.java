@@ -122,6 +122,7 @@ public class ReserveDao implements ReserveService{
 	public int insertReserve(ReserveDto dto) throws Exception {
 		affected = 0;
 		conn.setAutoCommit(false);
+		
 		if(dto.getMs_code()!=null) {
 			String sql="INSERT INTO MEMBERSHIP VALUES(MS_CODE_SEQ.NEXTVAL,?,?,sysdate)";
 			
@@ -138,7 +139,6 @@ public class ReserveDao implements ReserveService{
 					psmt = conn.prepareStatement(sql);
 					rs = psmt.executeQuery();
 					rs.next();
-					System.out.println(rs.getString(1));
 					dto.setMs_code(rs.getString(1));
 					affected = 0;
 				}
@@ -151,11 +151,6 @@ public class ReserveDao implements ReserveService{
 		psmt.setString(2, dto.getCar_i_code());
 		psmt.setString(3, dto.getCard_code());
 		psmt.setString(4, dto.getRes_price());
-		
-		System.out.println(dto.getSmem_id());
-		System.out.println(dto.getCar_i_code());
-		System.out.println(dto.getCard_code());
-		System.out.println(dto.getMs_code());
 	
 	
 		psmt.setTimestamp(5, new java.sql.Timestamp(dto.getRes_date_start().getTime()));
@@ -167,8 +162,18 @@ public class ReserveDao implements ReserveService{
 		psmt.setString(11, dto.getRes_article());
 		psmt.setString(12, dto.getMs_code());
 		psmt.setString(13, dto.getSale_price());
-		psmt.setString(14, dto.getCou_c_code());
+		psmt.setString(14, dto.getCou_i_code());
 		affected = psmt.executeUpdate();
+		
+		if(dto.getCar_i_code()!=null) {
+			sql ="INSERT INTO COU_USE VALUES('C_U_'||LPAD(C_U_CODE_SEQ.NEXTVAL,10,'0'),?,'RES_'||LPAD(RES_CODE_SEQ.CURRVAL,10,'0'))";
+		
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, dto.getCar_i_code());
+				affected = psmt.executeUpdate();
+				
+		}
+		
 		
 		conn.commit();
 		close();

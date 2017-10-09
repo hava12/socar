@@ -80,7 +80,7 @@
 
 .cliked{
 /* 		margin-top:35px !important; */
-		height:1.7em;
+		height:1.7em !important;
 		width:600px;
 }
 .clikedChild{
@@ -108,7 +108,9 @@
 	border : none !important;
 	
 }
-
+.ui-slider-handle{
+	margin-left:0 !important;
+}
 
 
 </style>
@@ -175,7 +177,7 @@ $( function() {
 		var end_per = (values_two)/maxVal*100;
 		var parent_px = $(this).width();
 		
-	     	$(this).children(".slider-range-div").css("left",(values_one/maxVal*100)+"%");
+			$(this).children(".slider-range-div").css("left",(values_one/maxVal*100)+"%");
 	     	$(this).children(".slider-range-div").css("width",((values_two-values_one)/maxVal*100)+"%");
 	 	
 	     	$(this).children("a[name='reserved-range']").each(function(){
@@ -186,16 +188,16 @@ $( function() {
 					
 				
 	     			if(start_per > left_per && start_per <right_per && end_per > right_per){
-	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+start_per+"%; width:"+(right_per-start_per)+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' class='cliked' style='z-index:3;left:"+start_per+"%; width:"+(right_per-start_per)+"%; height:0.8em; margin-left:0; border:1px solid red; position:absolute; background-color: red;'>");
 	     			}
 	     			if(start_per < left_per && end_per  > right_per){
-	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+left_per+"%; width:"+width_per+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");	
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' class='cliked' style='z-index:3;left:"+left_per+"%; width:"+width_per+"%; height:.8em; margin-left:0; border:1px solid red; position:absolute; background-color: red;'>");	
 	     			}
 	     			if(end_per > left_per && end_per < right_per && start_per < left_per ){
-	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+left_per+"%; width:"+(end_per-left_per)+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");		
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' class='cliked' style='z-index:3;left:"+left_per+"%; width:"+(end_per-left_per)+"%; height:.8em; margin-left:0; border:1px solid red; position:absolute; background-color: red;'>");		
 	     			}
 	     			if(start_per > left_per && end_per < right_per){
-	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' style='left:"+start_per+"%; width:"+(end_per-start_per)+"%; height:.5em; border:1px solid red; margin-left:-.6em; position:absolute; background-color: red;'>");			
+	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' class='cliked' style='z-index:3;left:"+start_per+"%; width:"+(end_per-start_per)+"%; height:.8em; margin-left:0; border:1px solid red; position:absolute; background-color: red;'>");			
 	     			}
 	     	});	
 	     	
@@ -1119,7 +1121,8 @@ $(function(){
 		
 		if($(this).hasClass('op')){
 			$(this).siblings().find("div[name='slider-range']").slider( "option", "disabled", false ).addClass("cliked");
-			$(this).siblings().find("div[name='slider-range']").children().css("height","1.7em");
+// 			$(this).siblings().find("div[name='slider-range']").children().css("height","1.7em");
+			$(this).siblings().find("div[name='slider-range']").children("a").addClass("cliked");
 			$(this).siblings().find("#reservation_image").css("display","block");
 			$(this).siblings().find("#reserveMessage").css("display","block");
 			
@@ -1129,7 +1132,8 @@ $(function(){
 		} else {
 			
 			$(this).siblings().find("div[name='slider-range']").slider( "option", "disabled", true ).removeClass("cliked");
-			$(this).siblings().find("div[name='slider-range']").children().css("height",".5em");
+// 			$(this).siblings().find("div[name='slider-range']").children().css("height",".5em");
+			$(this).siblings().find("div[name='slider-range']").children("a").removeClass("cliked");
 			$(this).siblings().find("#reservation_image").css("display","none");
 			$(this).siblings().find("#reserveMessage").css("display","none");
 			
@@ -1473,7 +1477,7 @@ function goSearchResult(soz_code){
 											<img id="reservation_image" src="https://web-assets.socar.kr/template/asset/images/reservation/list_noti.gif" style="display: none; margin-top: 35px;" />
 											
 										<div id="slider-range" name="slider-range" class="slider-range ${loop.count}">
-											<a href="#" class="slider-range-div" style="height:.5em; margin-left:-.6em; border:1px solid black; position:absolute; background-color: deepskyblue; " ></a>
+											<a href="#" class="slider-range-div" style="height:.8em; z-index:2; margin-left:0; border:1px solid black; position:absolute; background-color: deepskyblue; " ></a>
 											<c:forEach items="${res_list}" var="res_item">
 													<c:if test="${res_item.car_i_code eq item.car_i_code}">
 														<script>
@@ -1492,7 +1496,14 @@ function goSearchResult(soz_code){
 																var left_per = ('${res_item.res_date_start.time}' - start_day.getTime())/maxVal*100;
 															 	var width_per = (('${res_item.res_date_end.time}' - start_day.getTime())/maxVal*100)-left_per;
 																if(left_per + width_per > 0){
-														 			$("."+'${loop.count}').append("<a href='#' id='reserved-range' name='reserved-range' style='left:"+left_per+"%; width:"+width_per+"%; height:.5em; border:1px solid lightgray; margin-left:-.6em; position:absolute; background-color: lightgray;'>");
+																	
+														 			$("."+'${loop.count}').append("<a href='#' id='reserved-range' class='cliked' name='reserved-range' style='z-index:1;left:"+left_per+"%; width:"+width_per+"%; height:.8em; margin-left:0; border:1px solid lightgray; position:absolute; background-color: lightgray;'>");
+																}
+																
+																if('${loop.count}'!=0){
+																	$("."+'${loop.count}').children("reserved-range").removeClass("cliked");
+																		
+																	$("."+'${loop.count}').children("banned-range").removeClass("cliked");
 																}
 															});
 														</script>

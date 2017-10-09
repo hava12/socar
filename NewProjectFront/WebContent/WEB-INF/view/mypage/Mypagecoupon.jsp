@@ -178,7 +178,7 @@ $(function(){
 											</ul>
 										</div>
 										<td class="expire"><fmt:formatDate value="${item.cou_i_date}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item.cou_i_e_date}" pattern="yyyy-MM-dd"/></td>
-										<td class="status">사용가능</td>
+										${item.cou_status}
 									</tr>
 									
 								</tbody>

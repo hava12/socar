@@ -21,7 +21,9 @@ public class CouponDto {
 	
 		private int cou_create_count;
 		
+		private String cou_status;
 		
+	private String smem_id;
 	private String cou_c_code;
 	private String cou_i_code;
 	private java.util.Date cou_i_date;
@@ -38,6 +40,18 @@ public class CouponDto {
 		
 	public String getCou_code() {
 		return cou_code;
+	}
+	public String getSmem_id() {
+		return smem_id;
+	}
+	public void setSmem_id(String smem_id) {
+		this.smem_id = smem_id;
+	}
+	public String getCou_status() {
+		return cou_status;
+	}
+	public void setCou_status(String cou_status) {
+		this.cou_status = cou_status;
 	}
 	public String getCou_c_code() {
 		return cou_c_code;

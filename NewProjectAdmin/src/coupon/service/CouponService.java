@@ -23,7 +23,9 @@ public interface CouponService {
 	//쿠폰 발급 관련 메소드
 	
 	
+	public List<CouponDto> selectCouponList(String smem_id) throws Exception;
 	
 	//CLOSE
 	public void close() throws Exception;
+	
 }

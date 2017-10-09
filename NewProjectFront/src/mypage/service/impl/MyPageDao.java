@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import member.service.MemDto;
 import member.service.Simple_MemDto;
 import mypage.service.Cou_createDto;
+import mypage.service.Cou_useDto;
 import mypage.service.CouponDto;
 import mypage.service.MyPageService;
 
@@ -50,10 +51,11 @@ public class MyPageDao implements MyPageService {
 		
 		List<CouponDto> list = null;
 				list = template.selectList("selectMyCouponBook",smem_id);
-		
 		return list;
 	}
-
+	
+	
+	
 
 	@Override
 	public int couponIssueToMem(Map map) throws Exception {
@@ -84,6 +86,12 @@ public class MyPageDao implements MyPageService {
 	@Override
 	public String smem_Verify(String smem_id) throws Exception {
 		return template.selectOne("smem_verify", smem_id);
+	}
+
+
+	@Override
+	public List<Cou_useDto> cou_use_List(String smem_id) throws Exception {
+		return template.selectList("cou_use_list",smem_id);
 	}
 	
 }

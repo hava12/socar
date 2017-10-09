@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import mypage.service.CouponDto;
 import reserve.service.Car_IssueDTO;
 import reserve.service.ReserveDto;
 import reserve.service.ReserveService;
@@ -45,6 +46,11 @@ public class ReserveDao implements ReserveService {
 	@Override
 	public int insertCou_use(String cou_i_code) throws Exception {
 		return template.insert("insertCou_use",cou_i_code);
+	}
+
+	@Override
+	public List<CouponDto> reserve_CouponList(String smem_id) throws Exception {
+		return template.selectList("reserve_couponlist",smem_id);
 	}
 
 	

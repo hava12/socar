@@ -25,5 +25,7 @@ public interface MyPageService {
 	
 	//본인인증 되었는지 여부 묻는 메소드
 	public String smem_Verify(String smem_id) throws Exception;
+
+	public List<Cou_useDto> cou_use_List(String smem_id) throws Exception;
 	
 }

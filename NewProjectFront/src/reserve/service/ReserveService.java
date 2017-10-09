@@ -3,6 +3,8 @@ package reserve.service;
 import java.util.List;
 import java.util.Map;
 
+import mypage.service.CouponDto;
+
 public interface ReserveService {
 	
 	public List<ReserveDto> select_soz_res(String soz_code) throws Exception;
@@ -16,4 +18,6 @@ public interface ReserveService {
 	public String getms_code_lastNum() throws Exception;
 	
 	public int insertCou_use(String cou_i_code) throws Exception;
+	
+	public List<CouponDto> reserve_CouponList(String smem_id) throws Exception;
 }

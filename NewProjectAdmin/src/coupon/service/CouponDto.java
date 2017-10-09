@@ -21,12 +21,49 @@ public class CouponDto {
 	
 	private int cou_create_count;
 	
+	private String cou_i_code;
+	private String cou_c_code;
+	private String smem_id;
+	private java.util.Date cou_i_date;
+	private java.util.Date cou_i_e_date;
+	
+	
 	
 	//게터 세터
 	
 
 	public String getCou_code() {
 		return cou_code;
+	}
+	public String getCou_i_code() {
+		return cou_i_code;
+	}
+	public void setCou_i_code(String cou_i_code) {
+		this.cou_i_code = cou_i_code;
+	}
+	public String getCou_c_code() {
+		return cou_c_code;
+	}
+	public void setCou_c_code(String cou_c_code) {
+		this.cou_c_code = cou_c_code;
+	}
+	public String getSmem_id() {
+		return smem_id;
+	}
+	public void setSmem_id(String smem_id) {
+		this.smem_id = smem_id;
+	}
+	public java.util.Date getCou_i_date() {
+		return cou_i_date;
+	}
+	public void setCou_i_date(java.util.Date cou_i_date) {
+		this.cou_i_date = cou_i_date;
+	}
+	public java.util.Date getCou_i_e_date() {
+		return cou_i_e_date;
+	}
+	public void setCou_i_e_date(java.util.Date cou_i_e_date) {
+		this.cou_i_e_date = cou_i_e_date;
 	}
 	public String getCou_c_start() {
 		return cou_c_start;

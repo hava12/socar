@@ -20,6 +20,8 @@ public class ReserveDto {
 	
 	private String ms_code;
 	private String cou_c_code;
+	private String cou_i_code;
+	
 	
 	private String sale_price;
 	
@@ -36,6 +38,12 @@ public class ReserveDto {
 	
 	public String getStatus() {
 		return status;
+	}
+	public String getCou_i_code() {
+		return cou_i_code;
+	}
+	public void setCou_i_code(String cou_i_code) {
+		this.cou_i_code = cou_i_code;
 	}
 	public String getStatus_color() {
 		return status_color;

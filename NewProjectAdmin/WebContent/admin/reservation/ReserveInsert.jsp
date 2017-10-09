@@ -149,7 +149,7 @@
 		function changePrice() {
 			var price = 0;
 			var insprice = 0;
-			var point = document.getElementById("point");
+			var sale_price = document.getElementById("sale_price");
 			
 			var rs_year = document.getElementById("rs_year");
 			var rs_month = document.getElementById("rs_month");
@@ -249,31 +249,24 @@
 			}//////다른날일떄
 			//alert(insprice);
 
-				if(document.getElementById("point")!=null){
-					document.getElementById("price").value = parseInt(price)+parseInt(insprice)-parseInt(document.getElementById("point").value==""?0:document.getElementById("point").value)
-				}
-				else{
-					document.getElementById("price").value = parseInt(price)+parseInt(insprice)
-				};
+				document.getElementById("price").value = parseInt(price)+parseInt(insprice)-parseInt(document.getElementById("sale_price").value==""?0:document.getElementById("sale_price").value)
+				
 				
 				document.getElementById("res_price").value = price;
 				document.getElementById("res_inscost").value = insprice;
 
-				document.getElementById("res_price").value = price;
-				if(point!=null){document.getElementById("price").value = parseInt(price)+parseInt(insprice)-parseInt(point.value==""?0:point.value);}
-				else{document.getElementById("price").value = parseInt(price)+parseInt(insprice);}
-				document.getElementById("res_inscost").value = insprice;
 				
 		}////////////////////////////////////////////////////////////////////////////////////
 		
 		
 		function saletype(type){
+			document.getElementById("sale_price").value=0;
 			var st = document.getElementById("saletype");
 			st.innerHTML="";	
 			var que;
 			switch(type){
-				case 'c': que = "<td></td><td><button type='button' onclick='findcoupon()' style='margin-left:15px;color: #000000 !important;' class='btn btn-default btn-sm'/>검색</button></td>";break;
-				case 'p': que = "<td></td><td><div class='col-xs-3'><input type='text' onkeyup='if(checkpoint())changePrice();' id='point' class='form-control' name='point' /></div> 보유 포인트 : "+document.getElementById("point_h").value+"원, 최대 : "+parseInt(document.getElementById("price").value)/10+" 원 <p id='pointwarning' value='' style='color:red !important'></p></td>";break;
+				case 'c': que = "<td></td><td><button type='button' onclick='findcoupon()' style='margin-left:15px;color: #000000 !important;' class='btn btn-default btn-sm'/>검색</button><span id='cou_info' style='hont-size:1.3px;'></span></td>";break;
+				case 'p': que = "<td></td><td><div class='col-xs-3'><input type='text' onkeyup='checkpoint();changePrice();' id='point' class='form-control' name='point' /></div> 보유 포인트 : "+document.getElementById("point_h").value+"원, 최대 : "+parseInt(document.getElementById("price").value)/10+" 원 <p id='pointwarning' value='' style='color:red !important'></p></td>";break;
 				case 'n': que = "";
 			}
 			st.innerHTML += que;
@@ -286,10 +279,12 @@
 			var val = (parseInt(document.getElementById("res_price").value)+parseInt(document.getElementById("res_inscost").value))/10;
 			if(val < document.getElementById("point").value){
 				document.getElementById("pointwarning").innerHTML="포인트 사용 불가 : 최대 사용 가능 금액 초과";
+				document.getElementById("sale_price").value=0;
 				return false;
 			}
 			else if(document.getElementById("point").value > parseInt(document.getElementById("point_h").value)){
 				document.getElementById("pointwarning").innerHTML="포인트 사용 불가 : 보유 포인트 초과";
+				document.getElementById("sale_price").value=0;
 				return false;
 			}
 			else{
@@ -358,7 +353,7 @@
 				    <input type="hidden" value=0  Id="car_insurance_two_day"/>
 				    <input type="hidden" value=0  Id="point_h"/>
 				    <input type="hidden" value=0  Id="sale_price" name="sale_price"/>
-				    
+				    <input type="hidden" id="cou_i_code" name="cou_i_code"/>
 				    
 				      	  <table class="table table-bordered table-striped">
 				      	  

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import mypage.service.CouponDto;
 import reserve.service.Car_IssueDTO;
 import reserve.service.ReserveDto;
 import reserve.service.ReserveService;
@@ -45,6 +46,11 @@ public class ReserveServiceImpl implements ReserveService {
 	@Override
 	public int insertCou_use(String cou_i_code) throws Exception {
 		return dao.insertCou_use(cou_i_code);
+	}
+
+	@Override
+	public List<CouponDto> reserve_CouponList(String smem_id) throws Exception {
+		return dao.reserve_CouponList(smem_id);
 	}
 
 	

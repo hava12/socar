@@ -20,6 +20,7 @@ import member.service.MemDto;
 import member.service.Simple_MemDto;
 import member.service.impl.Simple_MemServiceImpl;
 import mypage.service.Cou_createDto;
+import mypage.service.Cou_useDto;
 import mypage.service.CouponDto;
 import mypage.service.impl.MyPageServiceImpl;
 
@@ -37,9 +38,6 @@ public class MyPageController {
 	public String mypage(HttpServletRequest req,Model model) throws Exception{
 		
 		MemDto dto = null;
-		
-		
-		
 		
 		
 		int couponCount = 0;
@@ -78,6 +76,7 @@ public class MyPageController {
 		
 		return "/mypage/Mypagereserve";
 	}
+	
 	@RequestMapping("/Mypage/Mypagepayment.do")
 	public String mypagepayment(HttpServletRequest req,Model model) throws Exception{
 		
@@ -101,7 +100,18 @@ public class MyPageController {
 		List<CouponDto> list = null;
 		
 		list = service.myPageCouponBook(req.getSession().getAttribute("smem_id").toString());
+		List<Cou_useDto> use_list= null;
+		use_list = service.cou_use_List(req.getSession().getAttribute("smem_id").toString());
 		
+		for(CouponDto dto : list) {
+				dto.setCou_status("<td class='status' style='color:blue'>사용 가능</td>");
+				for(Cou_useDto use_dto:use_list) {
+					if(dto.getCou_i_code().equals(use_dto.getCou_i_code())) {
+							dto.setCou_status("<td class='status' style='color:red;'>쿠폰 사용됨</td>");
+							break;
+					}
+				}
+		}
 		
 		
 		model.addAttribute("list",list);

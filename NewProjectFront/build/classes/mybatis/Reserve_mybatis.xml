@@ -24,4 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertCou_use" parameterType="java.lang.String">
 		INSERT INTO COU_USE VALUES('C_U_'||LPAD(C_U_CODE_SEQ.NEXTVAL,10,'0'),#{cou_i_code},'RES_'||LPAD(RES_CODE_SEQ.CURRVAL,10,'0'))
 	</insert>
+	
+	<select id="reserve_couponlist" parameterType="java.lang.String" resultType="CouponDto">
+		SELECT * FROM COU_CREATE CC JOIN COU_ISSUE CI ON CC.COU_C_CODE = CI.COU_C_CODE JOIN COUPON C ON C.COU_CODE=CC.COU_CODE WHERE CI.SMEM_ID=#{smem_id} AND COU_I_E_DATE > SYSDATE AND (SELECT COUNT(*) FROM COU_USE CU WHERE CI.COU_I_CODE=CU.COU_I_CODE)=0
+	</select>
+	
 </mapper>

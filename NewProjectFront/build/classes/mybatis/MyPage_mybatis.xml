@@ -45,4 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM COU_ISSUE CI JOIN COU_CREATE CC ON CI.COU_C_CODE=CC.COU_C_CODE WHERE CI.SMEM_ID=#{smem_id} AND CC.COU_CODE=#{cou_code}
 	</select>
 	
+	<select  id="cou_use_list" parameterType="java.lang.String" resultType="Cou_useDto">
+		SELECT CU.* FROM COU_USE CU JOIN COU_ISSUE CI ON CU.COU_I_CODE=CI.COU_I_CODE WHERE CI.SMEM_ID=#{smem_id}
+	</select>
+	
 </mapper>

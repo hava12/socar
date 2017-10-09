@@ -229,6 +229,47 @@ public class CouponDao implements CouponService {
 		return count;
 	}///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	@Override
+	public List<CouponDto> selectCouponList(String smem_id) throws Exception {
+		
+		String sql = "SELECT * FROM COU_ISSUE CI JOIN COU_CREATE CC ON CC.COU_C_CODE = CI.COU_C_CODE JOIN COUPON C ON C.COU_CODE=CC.COU_CODE WHERE CI.SMEM_ID=?";
+		
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, smem_id);
+		
+		List<CouponDto> list = new Vector<CouponDto>();
+		
+		rs = psmt.executeQuery();
+		
+		while(rs.next()){
+			CouponDto dto = new CouponDto();
+			
+			dto.setCou_i_code(rs.getString(1));
+			dto.setCou_c_code(rs.getString(2));
+			dto.setSmem_id(rs.getString(3));
+			dto.setCou_i_date(rs.getTimestamp(4));
+			dto.setCou_i_e_date(rs.getTimestamp(5));
+			dto.setCou_code(rs.getString(7));
+			dto.setCou_name(rs.getString(9));
+			dto.setCou_desc(rs.getString(10));
+			dto.setCou_sale(rs.getString(11));
+			dto.setCou_mintime(rs.getString(12));
+			dto.setCou_maxtime(rs.getString(13));
+			dto.setCou_minage(rs.getString(14));
+			dto.setCou_minuse(rs.getString(15));
+			dto.setCou_exp(rs.getTimestamp(16));
+			dto.setMax_sale_per(rs.getString(17));
+			dto.setCou_only_new(rs.getString(18));
+			dto.setCou_c_start(rs.getString(19));
+			dto.setCou_c_end(rs.getString(20));
+			
+			list.add(dto);
+		}
+		
+		close();
+		return list;
+	}
+
 
 
 

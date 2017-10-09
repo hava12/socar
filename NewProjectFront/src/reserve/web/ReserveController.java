@@ -91,7 +91,7 @@ public class ReserveController {
 		
 		int ms_change =  my_service.gomypage(req.getSession().getAttribute("smem_id").toString()).getMs_change();
 		
-		List<CouponDto> my_coupon = my_service.myPageCouponBook(req.getSession().getAttribute("smem_id").toString());
+		List<CouponDto> my_coupon = res_service.reserve_CouponList(req.getSession().getAttribute("smem_id").toString());
 		List<CardDto> card_list = mem_service.selectOneMemCard(req.getSession().getAttribute("smem_id").toString());
 		
 		model.addAttribute("my_coupon",my_coupon);
@@ -141,16 +141,16 @@ public class ReserveController {
 		}
 		dto.setMs_code(ms_code);
 		
-		System.out.println(req.getParameter("car_i_code"));
-		System.out.println(req.getParameter("card_code"));
-		System.out.println(req.getParameter("res_price"));
-		System.out.println(req.getParameter("res_date_start"));
-		System.out.println(req.getParameter("res_date_end"));
-		System.out.println(req.getParameter("reserve_type"));
-		System.out.println(req.getParameter("res_instype"));
-		System.out.println(req.getParameter("res_inscost"));
-		System.out.println(req.getParameter("cou_i_code"));
-		System.out.println(req.getParameter("sale_price"));
+//		System.out.println(req.getParameter("car_i_code"));
+//		System.out.println(req.getParameter("card_code"));
+//		System.out.println(req.getParameter("res_price"));
+//		System.out.println(req.getParameter("res_date_start"));
+//		System.out.println(req.getParameter("res_date_end"));
+//		System.out.println(req.getParameter("reserve_type"));
+//		System.out.println(req.getParameter("res_instype"));
+//		System.out.println(req.getParameter("res_inscost"));
+//		System.out.println(req.getParameter("cou_i_code"));
+//		System.out.println(req.getParameter("sale_price"));
 		
 		if(affected==1 || dto.getReserve_type().equals("c")) {
 			affected = res_service.insertReserve(dto);

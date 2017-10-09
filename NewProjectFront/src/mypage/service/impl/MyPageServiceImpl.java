@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import member.service.MemDto;
 import mypage.service.Cou_createDto;
+import mypage.service.Cou_useDto;
 import mypage.service.CouponDto;
 import mypage.service.MyPageService;
 
@@ -65,6 +66,12 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public String smem_Verify(String smem_id) throws Exception {
 		return dao.smem_Verify(smem_id);
+	}
+
+
+	@Override
+	public List<Cou_useDto> cou_use_List(String smem_id) throws Exception {
+		return dao.cou_use_List(smem_id);
 	}
 
 }
