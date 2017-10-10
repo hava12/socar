@@ -342,28 +342,35 @@ public class CarDAO implements CarService {
 		List<Car_IssueDTO> list = new Vector<Car_IssueDTO>();
 		
 		String sql = "";
-		
-		//검색용 쿼리 추가
-				if(map.get("searchWord") !=null){
-					sql +="SELECT * FROM (";
-				}
-		
-		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,"
-				+ "CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI "
-				+ " JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE "
-				+ " JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE "
-				+ " WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0) T) WHERE R BETWEEN ? AND ?";
-		
-		//검색용 쿼리 추가
-		if(map.get("searchWord") !=null){
-			sql+=") WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
+		//검색이 있는경우
+		if(map!=null) {
+			//검색용 쿼리 추가
+			if(map.get("searchWord") !=null){
+						sql +="SELECT * FROM (";
+			}
+			
+			sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,"
+					+ "CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI "
+					+ " JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE "
+					+ " JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE "
+					+ " WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0) T) WHERE R BETWEEN ? AND ?";
+			
+			//검색용 쿼리 추가
+			if(map.get("searchWord") !=null){
+				sql+=") WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
+			}
+			
 		}
-		
+		else {
+			sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT CI.*,CA.CAR_LAND_PRICE,CA.CAR_JEJU_PRICE,CA.CAR_PRICE_SO_WD,CA.CAR_PRICE_SO_WE,CM.CAR_INSURANCE_ONE_HOUR,CM.CAR_INSURANCE_ONE_DAY,CM.CAR_INSURANCE_TWO_HOUR,CM.CAR_INSURANCE_TWO_DAY FROM CAR_ISSUE CI JOIN CAR CA ON CA.CAR_NAME_CODE=CI.CAR_NAME_CODE JOIN CAR_MODEL CM ON CA.CAR_TYPE_CODE=CM.CAR_TYPE_CODE WHERE SOZ_CODE=? AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=CI.CAR_I_CODE)=0) T)";
+		}
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, soz_code);
+			if(map!=null) {
 			psmt.setInt(2, Integer.parseInt(map.get("start").toString()));
 			psmt.setInt(3, Integer.parseInt(map.get("end").toString()));
+			}
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				Car_IssueDTO dto = new Car_IssueDTO();
@@ -375,6 +382,7 @@ public class CarDAO implements CarService {
 				dto.setCar_i_safe_option(rs.getString(6));
 				dto.setCar_i_add_option(rs.getString(7));
 				dto.setCar_nick(rs.getString(8));
+				
 				dto.setCar_land_price(rs.getString(9));
 				dto.setCar_jeju_price(rs.getString(10));
 				dto.setCar_price_so_wd(rs.getString(11));
@@ -389,6 +397,7 @@ public class CarDAO implements CarService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		close();
 		return list;
 	}
