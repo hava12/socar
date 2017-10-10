@@ -37,12 +37,22 @@ public class ReserveDto {
 	private String rent_e_ectprice;
 	private String rent_e_ectsale;
 	
+	private String car_img;
+	
+	private String car_img;
+	
 	//////////////////////////////////////////////////
 	
 	
 	
 	
 	
+	public String getCar_img() {
+		return car_img;
+	}
+	public void setCar_img(String car_img) {
+		this.car_img = car_img;
+	}
 	public String getCar_i_num() {
 		return car_i_num;
 	}
