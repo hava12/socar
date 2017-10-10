@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -91,33 +90,33 @@ $(function(){
 				<p class="txt2"><img src='//web-assets.socar.kr/template/asset/images/reservation/complete_txt2.gif' alt="차량 반납은 반드시 대여한 쏘카존으로 하셔야 합니다. 다음 사용자를 위해 반납시간을 꼭 지켜주세요. 차량 반납 전에는 연료가 50%이상 남아있는지 확인해주세요." /></p>
 				
 				<div class="btn">
-					<a href="<c:url value='/Main/Main.do'/>"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_home.gif' alt="메인으로" /></a>
-					<a href="<c:url value='/Mypage/Mypagereserve.do'/>"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_check.gif' alt="예약확인" /></a>
+					<a href="/"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_home.gif' alt="메인으로" /></a>
+					<a href="/mypage/reserve"><img src='//web-assets.socar.kr/template/asset/images/reservation/btn_check.gif' alt="예약확인" /></a>
 				</div>
 				<div class="group">
 					<table cellspacing="0">
 					<tr>
 						<th><img src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt1.gif' alt="차량" /></th>
 						
-						<td>${res_car_info}</td>
+						<td><strong>넥스트스파크</strong> (69호9810)</td>
 						
 					</tr>
 					<tr>
 						<th><img src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt2.gif' alt="일정" /></th>
-						<td>${reservedInnerTime}</td>
+						<td>왕복 / 2017.09.21 목 18:00 - 2017.09.21 목 18:30</td>
 					</tr>
 					<tr>
 						<th><img src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt3.gif' alt="이용시간" /></th>
-						<td>${reserveTotalTime}</td>
+						<td>총 0시간 30분</td>
 					</tr>
 					
 					<tr>
 						<th><img src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt4.gif' alt="쏘카존" /></th>
-						<td>${soz_name }</td>
+						<td>양재시민의숲역(샛별어린이공원)</td>
 					</tr>
 					<tr>
 						<th><img src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt5.gif' alt="위치" /></th>
-						<td>${soz_loc}</td>
+						<td>서울시 서초구 양재동 370-5</td>
 					</tr>
 					
 					</table>

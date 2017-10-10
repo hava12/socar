@@ -28,6 +28,9 @@
 		<c:set var="SUC_MSG"  value="문의 접수되었습니다."/>
 		<c:set var="FAIL_MSG"  value="문의 접수 실패하였습니다."/>
 	</c:when>
+	<c:when test="${WHERE eq 'FAIL_RESERVE' }">
+		<c:set var="FAIL_MSG"  value="예약 실패하였습니다."/>
+	</c:when>
 	
 </c:choose>
 

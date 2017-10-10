@@ -101,11 +101,7 @@
 			document.getElementById("desc_id").focus();
 			return false;
 		}
-		else if(document.getElementById("desc_id").value.length >= 50){
-			alert("부가설명을 50이내로 입력해주세요");
-			document.getElementById("desc_id").focus();
-			return false;
-		}
+
 		else if(document.getElementById("sale_id").value == ""){
 			alert("할인금액을 입력해주세요");
 			document.getElementById("sale_id").focus();
@@ -118,26 +114,6 @@
 			return false;
 		}	
 		
-		else if(document.getElementById("mintime_id").value == ""){
-			alert("최소 사용시간을 입력해주세요");
-			document.getElementById("mintime_id").focus();
-			return false;
-		}
-		else if(document.getElementById("mintime_id").value < 1){
-			alert("최소사용시간을 1시간이상으로해주셔야합니다");
-			document.getElementById("mintime_id").focus();
-			return false;
-		}
-		else if(document.getElementById("maxtime_id").value == ""){
-			alert("최대사용시간을 입력해주세요");
-			document.getElementById("maxtime_id").focus();
-			return false;
-		}
-		else if(document.getElementById("maxtime_id").value < 1){
-			alert("최대사용시간은 1시간이상으로해주셔야합니다");
-			document.getElementById("maxtime_id").focus();
-			return false;
-		}	
 		else if(document.getElementById("minage_id").value == ""){
 			alert("나이를 입력해주세요");
 			document.getElementById("minage_id").focus();
@@ -165,22 +141,6 @@
 			document.getElementById("minuse_id").focus();
 			return false;
 		}
-		else if(document.getElementById("minuse_id").value > 50){
-			alert("제대로 입력해주세요");
-			document.getElementById("minuse_id").focus();
-			return false;
-		}
-		
-		else if(document.getElementById("sqle_id").value == ""){
-			alert("할인률을 입력해주세요.");
-			document.getElementById("sqle_id").focus();
-			return false;
-		}
-		else if(document.getElementById("sqle_id").value > 100){
-			alert("100%를 넘어갈수없습니다.");
-			document.getElementById("sqle_id").focus();
-			return false;
-		}	
 		
 	}
 	
@@ -231,42 +191,7 @@
 								     	<p class="col-xs-1">원</p>
 					      	  		</td>
 					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최소사용가능시간</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control" id="mintime_id" name="cou_mintime"/>
-								     	</div>
-								     	<p class="col-xs-1">시간</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최대사용가능시간</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control" id="maxtime_id" name="cou_maxtime"/>
-								     	</div>
-								     	<p class="col-xs-1">시간</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최소나이</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control" id="minage_id"  name="cou_minage"/>
-								     	</div>
-								     	<p class="col-xs-1">살</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최소탑승수</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control" id="minuse_id" name="cou_minuse"/>
-								     	</div>
-								     	<p class="col-xs-1">번</p>
-					      	  		</td>
-					      	  </tr>
+					      	  
 					      	  <tr>
 					      	  		<td><label>쿠폰유효기간</label></td>
 					      	  		<td>
@@ -288,46 +213,11 @@
 					      	  			
  					      	  		</td>
 					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최대할인율</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control" id="sqle_id" name="max_sale_per"/>
-								     	</div>
-								     	<p class="col-xs-1">%</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>신규존 전용</label></td>
-					      	  		<td>
-					      	  			
-					      	  			<input type="radio" name="cou_only_new" style="margin-left: 20px;" value="y">예</input> 
-					        			<input type="radio" name="cou_only_new" style="margin-left: 50px;" value="n">아니오</input>
-					      	  		</td>
-					      	  </tr>	
-					      	  <tr>
-					      	  		<td><label>쿠폰발급가능시간</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control"  name="cou_c_start" id="cou_start"/>
-								     	</div>
-								     	<p class="col-xs-1">시</p>
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>쿠폰발급끝시간</label></td>
-					      	  		<td>
-					      	  			<div class="col-xs-5">
-								        <input type="text" class="form-control"  name="cou_c_end" id="cou_end"/>
-								     	</div>
-								     	<p class="col-xs-1">시</p>
-					      	  		</td>
-					      	  </tr>
-					      	  
+					      	 
 					      </tbody>
-					    
+					    <br/><br/>
 					       </table>
-				    
+				    <br/><br/><br/>
 				      <button type="submit" class="btn btn-info" onclick="return checkval()">입력하기</button>
 				      <button type="button" class="btn btn-info" onclick="goCouponList()">리스트 보기</button>
 			

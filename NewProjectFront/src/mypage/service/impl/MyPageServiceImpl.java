@@ -99,5 +99,17 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 
+	@Override
+	public List<ReserveDto> selectpaymemt_rent_s(String smem_id) throws Exception {
+		return dao.selectpaymemt_rent_s(smem_id);
+	}
+
+
+	@Override
+	public List<ReserveDto> selectpaymemt_reserve(String smem_id) throws Exception {
+		return dao.selectpaymemt_reserve(smem_id);
+	}
+
+
 
 }

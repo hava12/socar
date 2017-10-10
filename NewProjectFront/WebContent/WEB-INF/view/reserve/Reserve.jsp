@@ -1057,6 +1057,41 @@ $(function(){
 
 	//예약 버튼 눌렀을때!
 	$('.btn_reserve').bind('click', function () {
+		var smem_id = '${sessionScope.smem_id}';
+		if(smem_id==""){
+			alert("로그인 먼저 해주세요");
+			return false;
+		}
+		
+		var verify = true;
+		$.ajax({
+			url:"<c:url value='/Member/VerifyToMyPage.do'/>",
+			data:{smem_id : smem_id },
+			dataType:"json",
+			async: false,
+			success:function(json){
+				if(json.verify=="N"){
+					alert("본인인증 후 사용 가능합니다.");
+					verify = false;
+				}
+				
+			},
+			error:function(){
+				alert("에러 발생");
+				verify =  false;
+			}
+		});
+		
+		if(verify==false){
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+		
 		var startDayString = '${param.startDay}';
 		var defaultTime=  new Date(  before_start_at.substr(0,4),
 									startDayString.substr(5,2)-1,

@@ -275,11 +275,11 @@ public class MemberController {
 	public String VerifyToMyPage(@RequestParam Map map) throws Exception{
 		
 		String verify = "N";
-		
+		System.out.println(map.get("smem_id").toString());
 		verify = service.verifyToMyPage(map.get("smem_id").toString());
 		JSONObject json = new JSONObject();
 		json.put("verify", verify);
-		
+		System.out.println(verify);
 		return json.toJSONString();
 	}/////////////////////////////////////////////////////////////////////////
 	

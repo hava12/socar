@@ -119,5 +119,17 @@ public class MyPageDao implements MyPageService {
 	}
 
 
+	@Override
+	public List<ReserveDto> selectpaymemt_reserve(String smem_id) throws Exception {
+		return template.selectList("selectpaymemt_reserve",smem_id);
+	}
+
+
+	@Override
+	public List<ReserveDto> selectpaymemt_rent_s(String smem_id) throws Exception {
+		return template.selectList("selectpaymemt_rent_s",smem_id);
+	}
+
+
 
 }

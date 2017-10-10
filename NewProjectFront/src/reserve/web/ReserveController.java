@@ -107,11 +107,12 @@ public class ReserveController {
 	
 	
 	@RequestMapping("/Reserve/ReserveComplete.do")
-	public String reserveComplete(HttpServletRequest req) throws Exception{
+	public String reserveComplete(HttpServletRequest req,Model model) throws Exception{
 		int affected = 0;
 		
 		ReserveDto dto = new ReserveDto();
 		String ms_code="";
+		
 		dto.setSmem_id(req.getSession().getAttribute("smem_id").toString());
 		dto.setCar_i_code(req.getParameter("car_i_code"));
 		dto.setCard_code(req.getParameter("card_code"));
@@ -159,12 +160,20 @@ public class ReserveController {
 						affected = res_service.insertCou_use(dto.getCou_i_code());
 				}
 		}
+		if(affected == 0) {
+			model.addAttribute("WHERE","FAIL_RESERVE");
+			model.addAttribute("SUC_FAIL",0);
+			return "/message/Message";
+		}
 		
+		model.addAttribute("dto",dto);
+		model.addAttribute("reservedInnerTime",req.getParameter("reservedInnerTime"));
+		model.addAttribute("reserveTotalTime",req.getParameter("reserveTotalTime"));
+		model.addAttribute("soz_name",req.getParameter("soz_name"));
+		model.addAttribute("soz_loc",req.getParameter("soz_loc"));
+		model.addAttribute("res_car_info",req.getParameter("res_car_info"));
 		
-		
-		
-		
-		return "/main/Main";
+		return "/reserve/Complete";
 	}
 	
 	

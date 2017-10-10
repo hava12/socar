@@ -46,23 +46,16 @@ public class CouponDao implements CouponService {
 	@Override
 	public int insertCoupon(CouponDto dto) throws Exception {
 		
-		String sql ="INSERT INTO COUPON VALUES('C_C_'||LPAD(COU_CODE_SEQ.NEXTVAL,10,'0'),?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql ="INSERT INTO COUPON VALUES('C_C_'||LPAD(COU_CODE_SEQ.NEXTVAL,10,'0'),?,?,?,'0','0','0','0',?,'0','0','0','0')";
 		int affected = 0;
 		
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, dto.getCou_name());
 		psmt.setString(2, dto.getCou_desc());
 		psmt.setString(3, dto.getCou_sale());
-		psmt.setString(4, dto.getCou_mintime());
-		psmt.setString(5, dto.getCou_maxtime());
-		psmt.setString(6, dto.getCou_minage());
-		psmt.setString(7, dto.getCou_minuse());
-		
-		psmt.setDate(8, new java.sql.Date(dto.getCou_exp().getTime()));
-		psmt.setString(9, dto.getMax_sale_per());
-		psmt.setString(10, dto.getCou_only_new());
-		psmt.setString(11, dto.getCou_c_start());
-		psmt.setString(12, dto.getCou_c_end());
+
+		psmt.setDate(4, new java.sql.Date(dto.getCou_exp().getTime()));
+
 		
 		affected = psmt.executeUpdate();
 		

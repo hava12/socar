@@ -180,6 +180,12 @@ $(function(){
 
 					var cou_i_code = $("#selbox_coupon option:selected").val();
 					
+					var reservedInnerTime = $("#reservedInnerTime").html();
+					var reserveTotalTime  = $("#reserveTotalTime").html();
+					var reserveTotalTime  = $("#reserveTotalTime").html();
+					var soz_name  = $("#soz_name").html();
+					var soz_loc  = $("#soz_loc").html();
+					var res_car_info = $("#res_car_info").html()
 				$.doPost('<c:url value="/Reserve/ReserveComplete.do" />', {
 					car_i_code : car_i_code,
 				  	card_code : card_code,
@@ -190,7 +196,13 @@ $(function(){
 				  	res_instype : res_instype,
 				  	res_inscost : res_inscost,
 					cou_i_code  : cou_i_code,
-					sale_price : sale_price
+					sale_price : sale_price,
+					reservedInnerTime : reservedInnerTime,
+					reserveTotalTime : reserveTotalTime,
+					soz_name : soz_name,
+					soz_loc : soz_loc,
+					res_car_info:res_car_info
+					
 				});
 			
 		
@@ -420,7 +432,7 @@ function remakeCardList() {
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt1.gif'
 										alt="차량" /></th>
 									
-									<td>${car_i_dto.car_name} <strong>${car_i_dto.car_nick}</strong>
+									<td id="res_car_info">${car_i_dto.car_name} <strong>${car_i_dto.car_nick}</strong>
 									<!-- <a href="#" class="carDetail">상세정보</a> --></td>
 
 								</tr>
@@ -428,14 +440,14 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt2.gif'
 										alt="일정" /></th>
-									<td>왕복 / <fmt:formatDate value="${startTime}" pattern="yyyy.MM.dd E HH:mm"/> - <fmt:formatDate value="${endTime}" pattern="yyyy.MM.dd E HH:mm"/> </td>
+									<td id='reservedInnerTime'>왕복 / <fmt:formatDate value="${startTime}" pattern="yyyy.MM.dd E HH:mm"/> - <fmt:formatDate value="${endTime}" pattern="yyyy.MM.dd E HH:mm"/> </td>
 <!-- 									2017.09.21 목 18:30 - 2017.09.21 목 19:00 -->
 								</tr>
 								<tr>
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt3.gif'
 										alt="이용시간" /></th>
-										<td>총 <fmt:parseNumber value="${((endTime.time - startTime.time)/(1000*60))/60}" integerOnly="true" />시간 
+										<td id="reserveTotalTime">총 <fmt:parseNumber value="${((endTime.time - startTime.time)/(1000*60))/60}" integerOnly="true" />시간 
 										<fmt:formatNumber value="${((endTime.time - startTime.time)/60000)%60}" maxFractionDigits="0" />분 </td>
 <!-- 									<td>총 0시간 30분</td> -->
 								</tr>
@@ -444,13 +456,13 @@ function remakeCardList() {
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt4.gif'
 										alt="쏘카존" /></th>
-									<td>${car_i_dto.soz_name}</td>
+									<td id="soz_name">${car_i_dto.soz_name}</td>
 								</tr>
 								<tr>
 									<th><img
 										src='//web-assets.socar.kr/template/asset/images/reservation/payment_txt5.gif'
 										alt="위치" /></th>
-									<td>${car_i_dto.soz_loc}</td>
+									<td id="soz_loc">${car_i_dto.soz_loc}</td>
 								</tr>
 
 							</table>

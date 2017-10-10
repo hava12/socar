@@ -96,64 +96,20 @@
 					      	  			 	<span>${dto.cou_sale}</span> 원		
 					      	  		</td>
 					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최소사용가능시간</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_mintime }</span> 시간
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최대사용가능시간</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_maxtime }</span> 시간
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최소나이</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_minage }</span> 살
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최소탑승수</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_minuse }</span> 명
-					      	  		</td>
-					      	  </tr>
+					     
+					      	 
 					      	  <tr>
 					      	  		<td><label>쿠폰유효기간</label></td>
 					      	  		<td>
 					      	  			<span>${dto.cou_exp }</span> 까지
 					      	  		</td>
 					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>최대할인율</label></td>
-					      	  		<td>
-					      	  			<span>${dto.max_sale_per }</span> %
-					      	  		</td>
-					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>신규존 전용</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_only_new }</span>	
-					      	  		</td>
-					      	  </tr>	
-					      	  <tr>
-					      	  		<td><label>쿠폰 발급 시작 시간</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_c_start}</span>	
-					      	  		</td>
-					      	  </tr>	
-					      	  <tr>
-					      	  		<td><label>쿠폰 발급 끝 시간</label></td>
-					      	  		<td>
-					      	  			<span>${dto.cou_c_end }</span>	
-					      	  		</td>
-					      	  </tr>	
+					      	 
+					      	 
 					      </tbody>
 					    
 					       </table>
-				    
+				    <br/><br/>
 				      <button type="submit" class="btn btn-info" onclick="goEditCoupon()">수정하기</button>
 				      <button type="button" class="btn btn-info" onclick="goCouponList()">리스트 보기</button>
  				      <button type="button" class="btn btn-info" onclick="createCoupon()">쿠폰 생성하기</button>

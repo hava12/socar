@@ -39,6 +39,7 @@ public interface MyPageService {
 
 	public int select_e_Count(String res_code) throws Exception;
 
-
+	public List<ReserveDto> selectpaymemt_reserve(String smem_id) throws Exception;
+	public List<ReserveDto> selectpaymemt_rent_s(String smem_id) throws Exception;
 	
 }

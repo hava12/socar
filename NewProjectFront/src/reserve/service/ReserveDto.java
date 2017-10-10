@@ -26,6 +26,17 @@ public class ReserveDto {
 	private String soz_name;
 	private String res_status;
 	
+	private String car_drive_price;
+	
+	//////////////////////////////////////////////////
+	//렌트 끝 정보
+	private java.util.Date rent_e_date;
+	private String rent_e_km;
+	private String rent_e_hipass;
+	private String rent_e_panalty;
+	private String rent_e_ectprice;
+	private String rent_e_ectsale;
+	
 	//////////////////////////////////////////////////
 	
 	
@@ -34,6 +45,48 @@ public class ReserveDto {
 	
 	public String getCar_i_num() {
 		return car_i_num;
+	}
+	public java.util.Date getRent_e_date() {
+		return rent_e_date;
+	}
+	public void setRent_e_date(java.util.Date rent_e_date) {
+		this.rent_e_date = rent_e_date;
+	}
+	public String getCar_drive_price() {
+		return car_drive_price;
+	}
+	public void setCar_drive_price(String car_drive_price) {
+		this.car_drive_price = car_drive_price;
+	}
+	public String getRent_e_km() {
+		return rent_e_km;
+	}
+	public void setRent_e_km(String rent_e_km) {
+		this.rent_e_km = rent_e_km;
+	}
+	public String getRent_e_hipass() {
+		return rent_e_hipass;
+	}
+	public void setRent_e_hipass(String rent_e_hipass) {
+		this.rent_e_hipass = rent_e_hipass;
+	}
+	public String getRent_e_panalty() {
+		return rent_e_panalty;
+	}
+	public void setRent_e_panalty(String rent_e_panalty) {
+		this.rent_e_panalty = rent_e_panalty;
+	}
+	public String getRent_e_ectprice() {
+		return rent_e_ectprice;
+	}
+	public void setRent_e_ectprice(String rent_e_ectprice) {
+		this.rent_e_ectprice = rent_e_ectprice;
+	}
+	public String getRent_e_ectsale() {
+		return rent_e_ectsale;
+	}
+	public void setRent_e_ectsale(String rent_e_ectsale) {
+		this.rent_e_ectsale = rent_e_ectsale;
 	}
 	public String getRes_status() {
 		return res_status;

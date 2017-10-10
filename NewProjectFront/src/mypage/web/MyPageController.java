@@ -1,9 +1,12 @@
 package mypage.web;
 
 import java.lang.ref.ReferenceQueue;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -105,13 +108,41 @@ public class MyPageController {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+	
+	
+	
 	@RequestMapping("/Mypage/Mypagepayment.do")
 	public String mypagepayment(HttpServletRequest req,Model model) throws Exception{
 		
 		int couponCount = 0;
 		int reserveCount = service.countReserve(req.getSession().getAttribute("smem_id").toString());
-		
 		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		
+
+		List <ReserveDto> res_list = service.selectpaymemt_reserve(req.getSession().getAttribute("smem_id").toString());
+		List <ReserveDto> re_list = service.selectpaymemt_rent_s(req.getSession().getAttribute("smem_id").toString());
+		for(ReserveDto res_dto : res_list) {
+			res_dto.setRes_status("예약");
+		}
+		for(ReserveDto re_dto : re_list ) {
+			re_dto.setRes_status("완료");
+			res_list.add(re_dto);
+		}
+		
+		for(int i = 0 ; i < res_list.size() ; i++) {
+				for(int j=i+i ; j < res_list.size() ; j++) {
+						if(res_list.get(i).getRes_date().getTime() < res_list.get(j).getRes_date().getTime()) {
+								ReserveDto temp = null;
+								temp = res_list.get(i);
+								res_list.set(i, res_list.get(j));
+								res_list.set(j, temp);
+							}
+				}
+		}
+		
+		
+		model.addAttribute("res_list",res_list);
 		model.addAttribute("couponCount",couponCount);
 		model.addAttribute("reserveCount",reserveCount);
 		
@@ -119,6 +150,12 @@ public class MyPageController {
 		return "/mypage/Mypagepayment";
 	}
 		
+	
+	
+	
+	
+	
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("/Mypage/Mypagecoupon.do")
 	public String mypagecoupon(HttpServletRequest req,Model model) throws Exception{

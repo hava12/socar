@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -81,17 +82,9 @@
 					<div class="group">
 						<h3 class="tit_corp">
 							<img src='${pageContext.request.contextPath}/template/image/payment_txt1.gif' alt="결제내역" />
-							<a href="/mypage/export_xls/payment" target="_blank" class="btn"><img src='${pageContext.request.contextPath}/template/image/btn_reser1.gif' alt="결제내역 다운로드" /></a>
 						</h3>
-						<p class="my-credit">내 크레딧 <em>0</em>원</p>
 						<div class="gbx">
-							<ul>
-							<li>요금 결제 시 보유 크레딧이 있으면 크레딧으로 결제 후 부족 금액만 결제카드로 청구합니다.</li>
-							<li>
-								결제카드 변경은 내 정보 페이지에서 할 수 있습니다.
-								<a href="/mypage"><img src='${pageContext.request.contextPath}/template/image/btn_info.gif' alt="내 정보 바로가기" /></a>
-							</li>
-							</ul>
+							
 						</div>
 						
 							<table cellspacing="0" class="cols">
@@ -103,58 +96,50 @@
 								<th>내역</th>
 								<th>결제수단</th>
 								<th>금액</th>
-								<th>매출전표</th>
 							</tr>
 							</thead>
 							<tbody>
 								
-									<tr>
-										<td>과금</td>
-										<td>2016-12-28</td>
-										<td class="detail">강남역 11번출구 (2016-12-28 17:00)</td>
-										<td class="method">신용카드</td>
-										<td class="price">
-											<!-- <a>10,230원</a> -->
-											<a class="btn_payment_detail" href="#" value='uizyp'>10,230원</a>
-											<em style="display:none;">uizyp</em>
-										</td>
-										<td class="chit">
-											
-												<a href="https://office.easypay.co.kr/mcht/receipt/CardReceiptAction.do?controlNo=52684216122801802744" onclick="window.open(this.href,'receipt','width=410,height=770, scrollbars=yes'); return false;">출력</a>
-											
-										</td>
-									</tr>
+								<c:if test="${empty res_list }" var="existRes">
+									<tr><td>과금 내역이 없습니다.</td></tr>
+								</c:if>
+								<c:if test="${not existRes}">
+									<c:forEach items="${res_list}" var="items">
+									
+										<c:if test="${items.res_status eq '예약'}" var="itisres">			
+												<tr>
+													<td>과금</td>
+													<td><fmt:formatDate value="${items.res_date}" pattern="yyyy-MM-dd HH:mm"/></td>
+													<td class="detail">${items.soz_name} (<fmt:formatDate value="${items.res_date_start}" pattern="yyyy-MM-dd HH:mm"/>})</td>
+													<td class="method">신용카드</td>
+													<td class="price">
+														<!-- <a>10,230원</a> -->
+														<a class="btn_payment_detail" href="#" value='uizyp'>${items.res_price + items.res_inscost - items.sale_price}원</a>
+														<em style="display:none;">uizyp</em>
+													</td>
+													
+												</tr>
+										</c:if>
+										<c:if test="${not itisres}">
+													<tr>
+															<td>과금</td>
+															<td><fmt:formatDate value="${items.rent_e_date}" pattern="yyyy-MM-dd HH:mm"/></td>
+															<td class="detail">${items.soz_name} (<fmt:formatDate value="${items.res_date_start}" pattern="yyyy-MM-dd HH:mm"/>})</td>
+															<td class="method">신용카드</td>
+															<td class="price">
+																<!-- <a>15,530원</a> -->
+																<a class="btn_payment_detail" href="#" value='uizyp'>${items.rent_e_km*items.car_drive_price + items.rent_e_hipass + items.rent_e_panalty + items.rent_e_ectprice - items.rent_e_ectsale }원</a>
+																<em style="display:none;">uizyp</em>
+															</td>
+													</tr>
+																	
+										</c:if>
+									</c:forEach>
 								
-									<tr>
-										<td>과금</td>
-										<td>2016-12-28</td>
-										<td class="detail">강남역 11번출구 (2016-12-28 17:00)</td>
-										<td class="method">신용카드</td>
-										<td class="price">
-											<!-- <a>15,530원</a> -->
-											<a class="btn_payment_detail" href="#" value='uizyp'>15,530원</a>
-											<em style="display:none;">uizyp</em>
-										</td>
-										<td class="chit">
-											
-												<a href="https://pg.nicepay.co.kr/issue/CardIssue.jsp?TID=socar0001m01161612281650352288" onclick="window.open(this.href,'receipt','width=410,height=770, scrollbars=yes'); return false;">출력</a>
-											
-										</td>
-									</tr>
+								</c:if>
 								
-
-							<!--<tr>
-								<td>차감</td>
-								<td>2012.10.25</td>
-								<td class="detail">요금결제</td>
-								<td class="method">결제카드</td>
-								<td class="price">
-									<a href="popup_payment_detail.html" onclick="window.open(this.href,'payment','width=380,height=500, scrollbars=yes'); return false;">98,900원</a>
-								</td>
-								<td class="chit">
-									<a href="#">출력</a>
-								</td>
-							</tr> -->
+								
+							
 							</tbody>
 							</table>
 						
