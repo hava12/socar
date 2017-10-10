@@ -1462,7 +1462,7 @@ function goSearchResult(soz_code){
 										<!-- <span>0.4km</span> -->
 									</div>
 									<div class="carInfo">
-										<p class="thumb"><a href="#" class="carDetail"><img src='//web-assets.socar.kr/template/asset/images/car_image/car046.png' /></a></p>
+										<p class="thumb"><img src="/NewProjectAdmin/Upload/${item.car_img}" alt="이미지에러"/></p>
 										<div class="desc">
 												<span id="car_i_code" style="display: none">${item.car_i_code}</span>
 												<h5>${item.car_name}<strong>${item.car_nick}</strong> </h5>
