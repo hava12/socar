@@ -84,21 +84,29 @@ public class CouponDao implements CouponService {
 		
 		String sql ="";
 
-		if (map.get("searchWord") != null) {
-			sql += "SELECT * FROM (";
+		if(map !=null) {
+				if (map.get("searchWord") != null) {
+					sql += "SELECT * FROM (";
+				}
+		}
+		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT C.*,(SELECT COUNT(*) FROM COU_CREATE WHERE COU_CODE=C.COU_CODE) FROM COUPON C ORDER BY COU_CODE DESC) T)";
+		
+		if(map.get("cou_create")==null) {
+			sql += "WHERE R BETWEEN ? AND ?";
 		}
 		
-		sql += "SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT C.*,(SELECT COUNT(*) FROM COU_CREATE WHERE COU_CODE=C.COU_CODE) FROM COUPON C ORDER BY COU_CODE DESC) T) WHERE R BETWEEN ? AND ?";
-		
 		// 검색용 쿼리 추가
+		if(map !=null) {
 				if (map.get("searchWord") != null) {
 					sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
 				}
+		}
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
-			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
-
+			if(map.get("cou_create")==null) {
+				psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+				psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			}
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CouponDto dto = new CouponDto();
@@ -137,7 +145,7 @@ public class CouponDao implements CouponService {
 				rs.next();
 				total = rs.getInt(1);
 			} catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return total;
 		}///////////////////getTotalRecordCount
 
@@ -168,7 +176,7 @@ public class CouponDao implements CouponService {
 		dto.setCou_only_new(rs.getString(11));
 		dto.setCou_c_start(rs.getString(12));
 		dto.setCou_c_end(rs.getString(13));
-		
+		close();
 		return dto;
 	}
 

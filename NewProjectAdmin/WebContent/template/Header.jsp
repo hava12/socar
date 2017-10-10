@@ -109,12 +109,7 @@
                           <li>
                               <a href="<c:url value='/Bbs/Inquiry.do' />">1:1문의 관리</a>
                           </li>
-                          <li>
-                              <a href="<c:url value='/Bbs/RqCarList.do' />">차량신청 게시판 관리</a>
-                          </li>
-                          <li>
-                              <a href="<c:url value='/Bbs/RqLocList.do' />">지역신청 게시판 관리</a>
-                          </li>
+                         
                    
                           
                       </ul>

@@ -266,7 +266,7 @@
 	marker.setMap(map);
 	
 	//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성
-	var iwContent = '<div style="padding:5px;"><b>${dto.soz_name}</b></div><div>${dto.soz_loc}</div><div><a href="https://www.naver.com"><img src="//web-assets.socar.kr/template/asset/images/reservation/btn_able_socar.png" alt="예약가능 쏘카 보기"/></a></div>',
+	var iwContent = '<div style="padding:10px;"><b>${dto.soz_name}</b><br/><p>${dto.soz_loc}</p></div><div></div>',
 	iwRemoveable = true;
 	
 	//인포윈도우를 생성

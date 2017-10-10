@@ -14,8 +14,10 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 
 import member.service.CardDto;
 import member.service.MemDto;
@@ -32,6 +34,7 @@ import reserve.service.ZoneDTO;
 import reserve.service.impl.CarDAO;
 import reserve.service.impl.ReserveServiceImpl;
 import reserve.service.impl.ZoneDAO;
+import sun.print.resources.serviceui;
 
 @Controller
 public class ReserveController {
@@ -75,6 +78,7 @@ public class ReserveController {
 		model.addAttribute("res_list",res_list);
 		return "/reserve/Reserve";
 	}
+
 	
 	@RequestMapping("/Reserve/ReserveConfirm.do")
 	public String reserveConfirm(HttpServletRequest req,Model model) throws Exception{
@@ -174,6 +178,19 @@ public class ReserveController {
 		model.addAttribute("res_car_info",req.getParameter("res_car_info"));
 		
 		return "/reserve/Complete";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/Reserve/FindSoz_id.do",produces="text/html;charset=UTF-8")
+	public String findSoz_id(HttpServletRequest req) throws Exception{
+		
+		String soz_code = res_service.getSoz_code(req.getParameter("soz_name")).getSoz_code();
+		
+		JSONObject json = new JSONObject();
+		json.put("soz_code", soz_code);
+		
+		return json.toJSONString();
 	}
 	
 	

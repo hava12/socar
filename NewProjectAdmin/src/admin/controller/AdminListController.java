@@ -47,7 +47,10 @@ public class AdminListController extends HttpServlet {
 		
 		//페이징을 위한 로직 시작
 		//전체 레코드 수
-				int totalRecordCount=dao.getadminTotalRecordCount(map);
+			
+				int totalRecordCount=0;
+				try {totalRecordCount = dao.getadminTotalRecordCount(map);
+				} catch (Exception e1) {e1.printStackTrace();}
 				//페이지 사이즈
 				int pageSize  =Integer.parseInt(req.getServletContext().getInitParameter("PAGE_SIZE"));
 				//블락페이지
@@ -64,6 +67,7 @@ public class AdminListController extends HttpServlet {
 		
 		List<AdminDto> list = null;
 		try {
+			 dao = new AdminDao(req.getServletContext());
 			list = dao.selectAdminList(map);
 		} catch (Exception e) {
 			e.printStackTrace();

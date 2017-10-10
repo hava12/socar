@@ -119,7 +119,7 @@
 					      	  		<td><label>쏘카존 코드</label></td>
 					      	  		<td>
 								      	<div class="col-xs-5">
-								        <input type="text" class="form-control"  value="${dto.soz_code}" name="soz_code" id="esoz_code_id"/>
+								        <input type="text" class="form-control"  value="${dto.soz_code}" name="soz_code" id="esoz_code_id" disabled="disabled"/>
 								     	</div>
 					      	  		</td>
 					      	  </tr>

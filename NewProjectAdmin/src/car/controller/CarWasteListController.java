@@ -69,7 +69,8 @@ public class CarWasteListController extends HttpServlet{
 				
 		
 		List<Car_WasteDTO> list = null;
-		try {
+		try {	
+			dao = new CarDAO(req.getServletContext());
 			list = dao.car_waste_list(map);
 		} catch (Exception e) {
 			e.printStackTrace();

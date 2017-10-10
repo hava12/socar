@@ -249,7 +249,6 @@
 				      
 				
 				      <button type="submit" class="btn btn-info" onclick="return memUpdate()">수정하기</button>
-				      <button type="submit" class="btn btn-info">이용 내역 보기</button>
 				      <a href="<c:url value='/Member/MemberList.do' />"><button type="button" class="btn btn-info">뒤로가기</button></a>
 				      
 				    </form>

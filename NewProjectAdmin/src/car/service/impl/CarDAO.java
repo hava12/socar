@@ -147,6 +147,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		close();
 		return dto;
 	}////////////////////// selectOne()
 
@@ -174,7 +175,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		close();
 		return affected;
 	}//////////////////////////// insert()
 
@@ -205,7 +206,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		close();
 		return affected;
 
 	}////////////////////////////////// edit()
@@ -220,6 +221,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		close();
 		return affected;
 	}
 
@@ -288,7 +290,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		close();
 		return total;
 	}/////////////////// getTotalRecordCount
 
@@ -315,7 +317,7 @@ public class CarDAO implements CarService {
 		psmt.setString(5, dto.getCar_insurance_two_day());
 
 		int affected = psmt.executeUpdate();
-
+		close();
 		return affected;
 	}
 
@@ -333,7 +335,7 @@ public class CarDAO implements CarService {
 		psmt.setString(6, dto.getCar_i_add_option());
 		psmt.setString(7, dto.getCar_nick());
 		affected = psmt.executeUpdate();
-
+		close();
 		return affected;
 	}
 
@@ -425,7 +427,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		close();
 		return total;
 	}/////////////////// getTotalRecordCount
 
@@ -489,7 +491,7 @@ public class CarDAO implements CarService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		close();
 		return total;
 	}/////////////////// getTotalRecordCount
 
@@ -505,6 +507,7 @@ public class CarDAO implements CarService {
 			dto.setCar_w_date(rs.getDate(2));
 			dto.setCar_w_reason(rs.getString(3));
 		}
+		close();
 		return dto;
 	}
 

@@ -115,7 +115,7 @@ public class MemberDao implements MemberService {
 				rs.next();
 				total = rs.getInt(1);
 			} catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return total;
 		}///////////////////getTotalRecordCount
 	
@@ -211,7 +211,7 @@ public class MemberDao implements MemberService {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+			close();
 			return total;
 		}/////////////////// getTotalRecordCount
 	
@@ -302,7 +302,7 @@ public class MemberDao implements MemberService {
 				rs.next();
 				total = rs.getInt(1);
 			} catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return total;
 		}///////////////////getTotalRecordCount
 	
@@ -431,7 +431,7 @@ public class MemberDao implements MemberService {
 				rs.next();
 				total = rs.getInt(1);
 			} catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return total;
 		}///////////////////getTotalRecordCount
 	
@@ -498,7 +498,7 @@ public class MemberDao implements MemberService {
 		psmt.setString(7, dto.getCard_c_num());
 		affected = psmt.executeUpdate();
 		
-		
+		close();
 		return affected;
 	}
 

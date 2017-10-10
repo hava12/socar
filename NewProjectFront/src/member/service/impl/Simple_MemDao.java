@@ -89,7 +89,11 @@ public class Simple_MemDao implements Simple_MemService {
 	public String verifyToMyPage(String smem_id) throws Exception {
 		return template.selectOne("VerifyToMyPage",smem_id);
 	}
-
+	
+	@Override
+	public int insertCard(CardDto c_dto) throws Exception {
+		return template.insert("insertCard",c_dto);
+	}
 
 
 }

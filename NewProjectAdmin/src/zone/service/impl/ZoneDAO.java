@@ -23,7 +23,7 @@ public class ZoneDAO implements ZoneService{
 	private PreparedStatement psmt;
 	private ResultSet rs;
 	
-	public ZoneDAO(ServletContext context){
+	public ZoneDAO(ServletContext context) throws Exception {
 		try{
 			Context ctx = new InitialContext();
 			DataSource source = (DataSource)ctx.lookup(context.getInitParameter("TOMCAT_JNDI_ROOT")+"/jdbc/socar");
@@ -34,7 +34,7 @@ public class ZoneDAO implements ZoneService{
 		}
 	}/////////////////////////ZoneDAO()
 	
-	public List<ZoneDTO> selectList(Map<String,Object> map){
+	public List<ZoneDTO> selectList(Map<String,Object> map) throws Exception {
 		
 		String sql = "";
 		
@@ -91,10 +91,11 @@ public class ZoneDAO implements ZoneService{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		close();
 		return list;
 	}////////////////////////////////selectList()
 	
-	public int insert(ZoneDTO dto){
+	public int insert(ZoneDTO dto) throws Exception{
 		String sql = "INSERT INTO SO_ZONE VALUES('SOZ_'||LPAD(SO_ZONE_SEQ.NEXTVAL,5,'0'),?,?,?,SYSDATE,?,?)";
 		int affected = 0;
 		try{
@@ -109,11 +110,11 @@ public class ZoneDAO implements ZoneService{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		
+		close();
 		return affected;
 	}////////////////////////insert()
 	
-	public ZoneDTO selectOne(String soz_code){
+	public ZoneDTO selectOne(String soz_code) throws Exception{
 		String sql = "SELECT S.*,(SELECT COUNT(*) FROM CAR_ISSUE C WHERE C.SOZ_CODE=S.SOZ_CODE AND (SELECT COUNT(*) FROM CAR_WASTE CW WHERE CW.CAR_I_CODE=C.CAR_I_CODE)=0) AS COUNT FROM SO_ZONE S WHERE SOZ_CODE=?";
 		ZoneDTO dto= null;
 		try{
@@ -135,6 +136,7 @@ public class ZoneDAO implements ZoneService{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		close();
 		return dto;
 	}
 	@Override
@@ -161,10 +163,11 @@ public class ZoneDAO implements ZoneService{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		close();
 		return list;
 	}
 	
-	public int delete(String soz_code){
+	public int delete(String soz_code) throws Exception{
 		int affected=0;
 		String sql="DELETE SO_ZONE WHERE SOZ_CODE = ?";
 		try{
@@ -175,10 +178,11 @@ public class ZoneDAO implements ZoneService{
 		catch(SQLException e){
 			e.printStackTrace();
 		}	
+		close();
 		return affected;
 	}//////////////////////////////delete()
 	
-	public int edit(ZoneDTO dto){
+	public int edit(ZoneDTO dto) throws Exception{
 		int affected = 0;
 		System.out.println(dto.getSoz_name());
 		System.out.println(dto.getSoz_loc());
@@ -201,6 +205,7 @@ public class ZoneDAO implements ZoneService{
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		close();
 		return affected;
 	}
 
@@ -212,7 +217,7 @@ public class ZoneDAO implements ZoneService{
 	}
 	
 	//총 레코드 수 얻기용]
-		public int getTotalRecordCount(Map<String,Object> map){
+		public int getTotalRecordCount(Map<String,Object> map)throws Exception {
 			int total =0;
 			String sql="SELECT COUNT(*) FROM SO_ZONE";
 			//검색용 쿼리 추가
@@ -225,7 +230,7 @@ public class ZoneDAO implements ZoneService{
 				rs.next();
 				total = rs.getInt(1);
 			} catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return total;
 		}///////////////////getTotalRecordCount
 	

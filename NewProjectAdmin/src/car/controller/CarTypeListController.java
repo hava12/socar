@@ -68,7 +68,9 @@ public class CarTypeListController extends HttpServlet{
 		
 		List<Car_ModelDto> list = null;
 		try {
+			dao = new CarDAO(req.getServletContext());
 			list = dao.selectCar_TypeList(map);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

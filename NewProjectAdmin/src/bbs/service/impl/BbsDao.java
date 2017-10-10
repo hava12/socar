@@ -125,7 +125,7 @@ public class BbsDao implements BBSService {
 
 
 	@Override
-	public NoticeDto selectNoticeOne(String no){
+	public NoticeDto selectNoticeOne(String no) throws Exception{
 
 		NoticeDto dto = null;
 		String sql="SELECT * FROM NOTICE WHERE NOT_NO=?";
@@ -142,7 +142,7 @@ public class BbsDao implements BBSService {
 			dto.setNot_postdate(rs.getDate(5));
 			}
 		} catch (Exception e) {e.printStackTrace();}
-		
+		close();
 		return dto;
 	}
 	
@@ -176,7 +176,8 @@ public class BbsDao implements BBSService {
 					psmt = conn.prepareStatement(sql);
 					psmt.setString(1, no);			
 					affected = psmt.executeUpdate();			
-				} catch (SQLException e) {e.printStackTrace();}		
+				} catch (SQLException e) {e.printStackTrace();}	
+				close();
 				return affected;
 			}
 	//수정용
@@ -193,7 +194,7 @@ public class BbsDao implements BBSService {
 					affected = psmt.executeUpdate();
 					
 				} catch (SQLException e) {e.printStackTrace();}
-				
+				close();
 				return affected;
 			}////////////////////update
 			
@@ -210,7 +211,7 @@ public class BbsDao implements BBSService {
 					rs.next();
 					total = rs.getInt(1);
 				} catch (SQLException e) {e.printStackTrace();}
-				
+				close();
 				return total;
 			}///////////////////getTotalRecordCount
 			@Override
@@ -267,7 +268,7 @@ public class BbsDao implements BBSService {
 					rs.next();
 					total = rs.getInt(1);
 				} catch (SQLException e) {e.printStackTrace();}
-				
+				close();
 				return total;
 			}///////////////////getTotalRecordCount
 
@@ -325,7 +326,7 @@ public class BbsDao implements BBSService {
 					rs.next();
 					total = rs.getInt(1);
 				} catch (SQLException e) {e.printStackTrace();}
-				
+				close();
 				return total;
 			}///////////////////getTotalRecordCount
 			
@@ -338,6 +339,7 @@ public class BbsDao implements BBSService {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, rqc_code);
 				int affected = psmt.executeUpdate();
+				close();
 				return affected;
 			}
 
@@ -350,6 +352,7 @@ public class BbsDao implements BBSService {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, rql_code);
 				int affected = psmt.executeUpdate();
+				close();
 				return affected;
 			}
 
@@ -373,7 +376,7 @@ public class BbsDao implements BBSService {
 					dto.setDate(rs.getDate(7));
 					list.add(dto);
 				}
-				
+				close();
 				return list;
 			}
 
@@ -396,6 +399,7 @@ public class BbsDao implements BBSService {
 					dto.setImage(rs.getString(6));
 					dto.setDate(rs.getDate(7));
 				}
+				close();
 				return dto;
 			}
 
@@ -409,6 +413,7 @@ public class BbsDao implements BBSService {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, i_no);
 				affected = psmt.executeUpdate();
+				close();
 				return affected;
 			}
 

@@ -169,7 +169,7 @@ public class MemberController {
 		c_dto.setCard_code(map.get("card_code").toString());
 		c_dto.setSmem_id(map.get("smem_id").toString());
 		Calendar card_expdate = Calendar.getInstance();
-		card_expdate.set(Integer.parseInt(map.get("card_expdate_y").toString()),Integer.parseInt(map.get("card_expdate_m").toString()),1);
+		card_expdate.set(Integer.parseInt(map.get("card_expdate_y").toString()),Integer.parseInt(map.get("card_expdate_m").toString())-1,1);
 		c_dto.setCard_expdate(card_expdate.getTime());
 		c_dto.setCard_type(map.get("card_type").toString());
 		c_dto.setCard_birth(map.get("card_birth").toString());
@@ -294,16 +294,18 @@ public class MemberController {
 		c_dto.setCard_code(req.getParameter("card_code"));
 		c_dto.setSmem_id(req.getSession().getAttribute("smem_id").toString());
 		Calendar card_expdate = Calendar.getInstance();
-		card_expdate.set(Integer.parseInt(req.getParameter("exp_y").toString()),Integer.parseInt(req.getParameter("exp_m")),1);
+		card_expdate.set(Integer.parseInt(req.getParameter("exp_y").toString()),Integer.parseInt(req.getParameter("exp_m"))-1,1);
 		c_dto.setCard_expdate(card_expdate.getTime());
 		c_dto.setCard_type(req.getParameter("card_type"));
 		c_dto.setCard_birth(req.getParameter("card_birth"));
+		c_dto.setCard_default("N");
 		
+		int affected = service.insertCard(c_dto);
 		
 		JSONObject json = new JSONObject();
-
+		json.put("affected", affected);
 		
-		return "";
+		return json.toJSONString();
 	}
 
 	

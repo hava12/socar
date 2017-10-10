@@ -41,7 +41,10 @@ public class FindZoneController extends HttpServlet {
 					map.put("searchWord",searchWord);
 				}
 		
-		ZoneDAO dao = new ZoneDAO(req.getServletContext());
+		ZoneDAO dao;
+		try {
+			dao = new ZoneDAO(req.getServletContext());
+		
 
 		// 페이징을 위한 로직 시작
 		// 전체 레코드 수
@@ -59,25 +62,29 @@ public class FindZoneController extends HttpServlet {
 		int end = nowPage * pageSize;
 		map.put("start", start);
 		map.put("end", end);
+		
+		
+		dao = new ZoneDAO(req.getServletContext());
+		
+				List<ZoneDTO> list = new Vector<ZoneDTO>();
 
-		List<ZoneDTO> list = new Vector<ZoneDTO>();
-		try {
 			list = dao.selectList(map);
+
+			//페이지용 문자열 생성]
+			String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Zone/FindZone.do?");
+			
+			
+			//라]결과값이 있으면 리퀘스트 영역에 저장
+			req.setAttribute("list", list);
+			req.setAttribute("pagingString", pagingString);
+			req.setAttribute("nowPage", nowPage);
+			req.setAttribute("totalPage", totalPage);
+			req.setAttribute("totalRecordCount", totalRecordCount);
+			req.setAttribute("pageSize", pageSize);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		//페이지용 문자열 생성]
-		String pagingString=PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage,req.getServletContext().getContextPath()+"/Zone/FindZone.do?");
-		
-		
-		//라]결과값이 있으면 리퀘스트 영역에 저장
-		req.setAttribute("list", list);
-		req.setAttribute("pagingString", pagingString);
-		req.setAttribute("nowPage", nowPage);
-		req.setAttribute("totalPage", totalPage);
-		req.setAttribute("totalRecordCount", totalRecordCount);
-		req.setAttribute("pageSize", pageSize);
 		
 		
 		req.getRequestDispatcher("/admin/zone/ZoneFind.jsp").forward(req, resp);

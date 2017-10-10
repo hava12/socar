@@ -46,7 +46,7 @@
     </script>
 	
 	<script>
-		function urlChange(state) {
+		function urlChange(state,res_code) {
 			
 			if(confirm("정말 변경하시겠습니까?")){
 						if(state=='rent_start'){
@@ -55,7 +55,15 @@
 						}
 						else if(state=='rent_end'){
 							//document.getElementById("f").action="<c:url value='/Reserve/RentStart.do'/>"
-							window.open("<c:url value='/admin/reservation/RentEnd.jsp'/>?res_code="+document.getElementsByName("res_codes")[0].value,"get","height=500,width=1200");
+							var checked="";
+							for(var i=0;i<document.getElementsByName("res_codes").length ; i++){
+								if(document.getElementsByName("res_codes")[i].checked==true){
+									checked = document.getElementsByName("res_codes")[i].value;
+									
+								}
+							}
+							
+							window.open("<c:url value='/admin/reservation/RentEnd.jsp'/>?res_code="+checked,"get","height=500,width=1200");
 						}
 						else{	
 							document.getElementById("f").action="<c:url value='/Reserve/RentCancel.do'/>"

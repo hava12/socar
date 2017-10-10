@@ -51,7 +51,9 @@ public class NoticeEditController extends HttpServlet {
 			String nowPage = req.getParameter("nowPage");
 			//모델 호출 및 결과 값 받기]
 			BbsDao dao = new BbsDao(req.getServletContext());
-			NoticeDto dto= dao.selectNoticeOne(no);
+			NoticeDto dto=null;
+			try {dto = dao.selectNoticeOne(no);} 
+			catch (Exception e) {e.printStackTrace();}
 			dao.close();
 			//리퀘스트 영역에 저장]
 			req.setAttribute("dto", dto);

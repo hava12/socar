@@ -325,7 +325,6 @@
 		var car_i_code = document.getElementById("car_i_code").value;
 		
 // 		alert(soz_code);
-		alert(car_i_code);
 		
 		window.open("<c:url value='/Reservation/SelectTime.do'/>?car_i_code="+car_i_code,"get","height=500,width=1400");
 		
@@ -503,14 +502,7 @@
 								     	<p class="col-xs-1">원</p>
 					      	  		</td>
 					      	  </tr>
-					      	  <tr>
-					      	  		<td><label>카드키 사용</label></td>
-					      	  		<td>
-					      	  			
-					      	  			<input type="radio" name="res_cardkey" style="margin-left: 20px;" value="y">예</input> 
-					        			<input type="radio" name="res_cardkey" checked="checked" style="margin-left: 50px;" value="n">아니오</input>
-					      	  		</td>
-					      	  </tr>	
+					      	 
 					      	  <tr>
 					      	  		<td><label>결제 특이사항</label></td>
 					      	  		<td>

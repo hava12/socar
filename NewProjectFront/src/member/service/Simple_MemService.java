@@ -28,5 +28,5 @@ public interface Simple_MemService {
 	//마이페이지 연결 시 확인
 	public String verifyToMyPage(String smem_id) throws Exception;
 	
-
+	public int insertCard(CardDto c_dto) throws Exception;
 }

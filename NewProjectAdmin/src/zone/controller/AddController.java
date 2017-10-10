@@ -21,7 +21,11 @@ public class AddController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		ZoneDAO dao = new ZoneDAO(req.getServletContext());
+		ZoneDAO dao;
+		try {
+			dao = new ZoneDAO(req.getServletContext());
+		} catch (Exception e) {e.printStackTrace();
+		}
 		ZoneDTO dto = new ZoneDTO();
 		dto.setSoz_code(req.getParameter("soz_code"));
 		dto.setSoz_name(req.getParameter("soz_name"));
@@ -29,8 +33,12 @@ public class AddController extends HttpServlet{
 		dto.setSoz_maxcar(req.getParameter("soz_maxcar"));
 		dto.setSoz_latitude(req.getParameter("soz_latitude"));
 		dto.setSoz_longitude(req.getParameter("soz_longitude"));
-		
-		int flag = dao.insert(dto);
+		int flag=0;
+		try {
+			dao = new ZoneDAO(req.getServletContext());
+			flag = dao.insert(dto);
+		} catch (Exception e) {e.printStackTrace();
+		}
 		req.setAttribute("WHERE","PARKING_INSERT");
 		req.setAttribute("SUC_FAIL", flag);
 		req.getRequestDispatcher("/admin/util/Message.jsp").forward(req, resp);

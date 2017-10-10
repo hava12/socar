@@ -3,7 +3,9 @@ package coupon.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +25,9 @@ public class CouponCreateController extends HttpServlet {
 			CouponDao dao = new CouponDao(req.getServletContext());
 			List<CouponDto> list = null;
 			try {
-				list = dao.couponList(null);
+				Map<String,Object> map = new HashMap<String,Object>();
+				map.put("cou_create", "cou_create");
+				list = dao.couponList(map);
 			} catch (Exception e) {e.printStackTrace();}
 			
 

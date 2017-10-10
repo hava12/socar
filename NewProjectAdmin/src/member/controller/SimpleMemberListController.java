@@ -68,6 +68,7 @@ public class SimpleMemberListController extends HttpServlet {
 		
 		List<SimpleMemDto> list = null;
 		try {
+			dao = new MemberDao(req.getServletContext());
 			list = dao.selectSimpleMemlist(map);
 		} catch (Exception e) {
 			e.printStackTrace();

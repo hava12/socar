@@ -62,6 +62,10 @@ public class Simple_MemServiceImpl implements Simple_MemService{
 	public String verifyToMyPage(String smem_id) throws Exception {
 		return dao.verifyToMyPage(smem_id);
 	}
+	@Override
+	public int insertCard(CardDto c_dto) throws Exception {
+		return dao.insertCard(c_dto);
+	}
 
 
 }

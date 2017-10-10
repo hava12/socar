@@ -67,6 +67,7 @@ public class MembershipListController extends HttpServlet {
 				
 		List<MembershipDto> list = null;
 		try {
+			dao = new MemberDao(req.getServletContext());
 			list = dao.selectMembershipList(map);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -66,6 +66,7 @@ public class FindMemberController extends HttpServlet {
 		
 		List<MemDto> list = null;
 		try {
+			dao = new MemberDao(req.getServletContext());
 			list = dao.selectMemList(map);
 		} catch (Exception e) {e.printStackTrace();}
 		

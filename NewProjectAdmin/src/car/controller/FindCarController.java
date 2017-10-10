@@ -65,6 +65,7 @@ public class FindCarController extends HttpServlet {
 						map.put("end", end);
 		
 		try {
+			dao = new CarDAO(req.getServletContext());
 			list = dao.car_issue_view(req.getParameter("soz_code"),map);
 		} catch (Exception e) {
 			e.printStackTrace();

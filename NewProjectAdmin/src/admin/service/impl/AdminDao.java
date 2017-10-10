@@ -60,6 +60,7 @@ public class AdminDao implements AdminService{
 		List<DeptDto> list = new Vector<DeptDto>();
 		
 		String sql = "";
+		if(map!=null) {
 		if (map.get("searchWord") != null) {
 		sql += "SELECT * FROM (";
 		}
@@ -70,12 +71,16 @@ public class AdminDao implements AdminService{
 					if (map.get("searchWord") != null) {
 						sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
 					}
-		
+		}
+		else {
+			sql="SELECT * FROM DEPT ORDER BY DEPT_NO";
+		}
 		try {
 		psmt = conn.prepareStatement(sql);
+		if(map!=null) {
 		psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
 		psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
-
+		}
 		rs = psmt.executeQuery();
 		
 		while(rs.next()) {
@@ -106,6 +111,7 @@ public class AdminDao implements AdminService{
 			total = rs.getInt(1);
 		} catch (SQLException e) {e.printStackTrace();}
 		
+		close();
 		return total;
 	}///////////////////getTotalRecordCount
 
@@ -196,6 +202,7 @@ public class AdminDao implements AdminService{
 		psmt.setString(4, dto.getAd_pwd());
 		
 		affected = psmt.executeUpdate();
+		close();
 		return affected;
 	}
 
@@ -241,7 +248,7 @@ public class AdminDao implements AdminService{
 	}
 	
 	//총 레코드 수 얻기용]
-	public int getadminTotalRecordCount(Map<String,Object> map){
+	public int getadminTotalRecordCount(Map<String,Object> map)throws Exception{
 		int total =0;
 		String sql="SELECT COUNT(*) FROM (SELECT T.*,ROWNUM R FROM (SELECT A.*,D.DEPT_NAME FROM AD A JOIN DEPT D ON A.DEPT_NO=D.DEPT_NO ORDER BY AD_REGIDATE DESC) T)";
 		// 검색용 쿼리 추가
@@ -255,7 +262,7 @@ public class AdminDao implements AdminService{
 			rs.next();
 			total = rs.getInt(1);
 		} catch (SQLException e) {e.printStackTrace();}
-		
+		close();
 		return total;
 	}///////////////////getTotalRecordCount
 

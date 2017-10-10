@@ -69,6 +69,7 @@ public class NoticeListController extends HttpServlet {
 		
 		List<NoticeDto> list = null;
 		try {
+			 dao = new BbsDao(req.getServletContext());
 			list = dao.selectNoticeList(map);
 		} catch (Exception e) {
 			e.printStackTrace();

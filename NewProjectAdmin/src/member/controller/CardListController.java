@@ -67,6 +67,7 @@ public class CardListController extends HttpServlet {
 		
 		List<CardDto> list = null;
 		try {
+			dao = new MemberDao(req.getServletContext());
 			list = dao.selectCardList(null,map);
 		} catch (Exception e) {
 			e.printStackTrace();

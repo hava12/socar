@@ -21,4 +21,5 @@ public interface ReserveService {
 	
 	public List<CouponDto> reserve_CouponList(String smem_id) throws Exception;
 
+	public ZoneDTO getSoz_code(String soz_name) throws Exception;
 }

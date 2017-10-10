@@ -144,7 +144,7 @@ public class ReserveDao implements ReserveService{
 				}
 		}
 		
-		String sql="INSERT INTO RESERVE VALUES('RES_'||LPAD(RES_CODE_SEQ.NEXTVAL,10,'0'),?,?,?,?,?,?,?,SYSDATE,?,?,?,?,?,?,?)";
+		String sql="INSERT INTO RESERVE VALUES('RES_'||LPAD(RES_CODE_SEQ.NEXTVAL,10,'0'),?,?,?,?,?,?,?,SYSDATE,?,?,'N',?,?,?,?)";
 		
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1, dto.getSmem_id());
@@ -158,11 +158,11 @@ public class ReserveDao implements ReserveService{
 		psmt.setString(7, dto.getReserve_type());
 		psmt.setString(8, dto.getRes_instype());
 		psmt.setString(9, dto.getRes_inscost());
-		psmt.setString(10, dto.getRes_cardkey());
-		psmt.setString(11, dto.getRes_article());
-		psmt.setString(12, dto.getMs_code());
-		psmt.setString(13, dto.getSale_price());
-		psmt.setString(14, dto.getCou_i_code());
+		//psmt.setString(10, dto.getRes_cardkey());
+		psmt.setString(10, dto.getRes_article());
+		psmt.setString(11, dto.getMs_code());
+		psmt.setString(12, dto.getSale_price());
+		psmt.setString(13, dto.getCou_i_code());
 		affected = psmt.executeUpdate();
 		
 		if(dto.getCar_i_code()!=null) {

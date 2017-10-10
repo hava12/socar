@@ -22,12 +22,13 @@ public class CarIssueController extends HttpServlet{
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       //
       CarDAO car_dao = new CarDAO(req.getServletContext());
-      ZoneDAO zone_dao = new ZoneDAO(req.getServletContext());
       try {
+     	 ZoneDAO zone_dao = new ZoneDAO(req.getServletContext());
          List<CarDTO> car_list =  car_dao.selectList(null);
          
          List<ZoneDTO> zone_list = zone_dao.selectList(null);
          
+         zone_dao = new ZoneDAO(req.getServletContext());
          ZoneDTO dto = zone_dao.selectOne(req.getParameter("soz_code"));
          req.setAttribute("car_list", car_list);
          req.setAttribute("zone_list", zone_list);

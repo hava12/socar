@@ -12,6 +12,7 @@ import mypage.service.CouponDto;
 import reserve.service.Car_IssueDTO;
 import reserve.service.ReserveDto;
 import reserve.service.ReserveService;
+import reserve.service.ZoneDTO;
 @Repository
 public class ReserveDao implements ReserveService {
 	
@@ -51,6 +52,11 @@ public class ReserveDao implements ReserveService {
 	@Override
 	public List<CouponDto> reserve_CouponList(String smem_id) throws Exception {
 		return template.selectList("reserve_couponlist",smem_id);
+	}
+
+	@Override
+	public ZoneDTO getSoz_code(String soz_name) throws Exception {
+		return template.selectOne("getsoz_code",soz_name);
 	}
 
 

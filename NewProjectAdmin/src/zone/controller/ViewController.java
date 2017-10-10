@@ -15,17 +15,17 @@ public class ViewController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ZoneDAO dao = new ZoneDAO(req.getServletContext());
-		ZoneDTO dto = dao.selectOne(req.getParameter("soz_code"));
 		try {
+			ZoneDAO dao = new ZoneDAO(req.getServletContext());
+			ZoneDTO dto = dao.selectOne(req.getParameter("soz_code"));
 			//하드콛
 			List<ZoneDTO> list = dao.selectEveryList();			
 			req.setAttribute("list", list);
+			req.setAttribute("dto", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("/admin/zone/ZoneView.jsp").forward(req, resp);
 	}
 }

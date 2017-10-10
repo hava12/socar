@@ -494,16 +494,15 @@ $(function(){
 
 		var card_code = $("#card_num_01").val()+"-"+$("#card_num_02").val()+"-"+$("#card_num_03").val()+"-"+$("#card_num_04").val();
 		
-		var card_type= $("input[name:'card_type'] option:selected").val()=="0"?"p":"b";
-		
+		var card_type= $("input:radio[name='card_type']:checked").val()=="0"?"p":"b";
+		alert($("input:radio[name='card_type']:checked").val())
 		var card_birth = $("#rear_ssn_card").val();
 		
 		var card_c_num = $("#corp_num_01").val()+"-"+$("#corp_num_02").val()+"-"+$("#corp_num_03").val();
 		
-		alert(card_type)
 		$.ajax({
 			type: 'GET',
-			url: "https://api.socar.kr/user/add_billing/",
+			url: "<c:url value='/Member/InsertCard.do'/>",
 			data: {
 				card_code:card_code,
 				exp_y:exp_y,
@@ -512,29 +511,22 @@ $(function(){
 				card_birth:card_birth,	
 				card_c_num:card_c_num
 			},
-			crossDomain: true,
-			dataType: 'jsonp',
-			beforeSend: function(){
-				$(document).data('disabled',true);
-			},
+			dataType: 'json',
 			success: function(res){
-				if(res.retCode == 1){
+				if(res.affected == 1){
 					
 					alert('결제카드가 정상적으로 등록되었습니다.');
-
 					$("#btnClose").click();
+					location.reload();
 
 				}
 				else{
-					alert(res.retMsg);
+					alert("등록 실패");
 				}
 			},
 			error: function(xhr){
 				$(document).data('disabled',false);
-				alert('일시적인 오류입니다. 잠시 후 다시 시도해 주세요. 코드 : ' + xhr.status);
-			},
-			complete: function(){
-				$(document).data('disabled',false);
+				alert('일시적인 오류입니다. 잠시 후 다시 시도해 주세요.');
 			}
 		});
 
@@ -579,47 +571,7 @@ $(function(){
 			return false;
 		}
 
-		var cardName = $(this).parent().parent('li').data("card"),
-			billingID = $(this).parent().parent('li').attr('id');
-
-		if(confirm(cardName + "카드를 기본 결제카드로 지정하시겠습니까?")){
-			$.ajax({
-				type: 'GET',
-				url: "https://api.socar.kr/user/set_default_card",
-				data: {
-					auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
-					id: billingID
-				},
-				crossDomain: true,
-				dataType: 'jsonp',
-				beforeSend: function(){
-					$(document).data('disabled',true);
-				},
-				success: function(res){
-					if(res.retCode == 1){
-						$('#list_card > li:first')
-							.removeClass('fst on')
-							.children().find("input:radio[name='card_default']").removeAttr('checked');
-
-						$("#" + billingID)
-							.addClass("fst on")
-							.children().find("input:radio[name='card_default']").attr("checked",true);
-
-						$("#" + billingID).insertBefore("#list_card > li:first");
-					}
-					else{
-						alert(res.retMsg + '[' +  res.retCode + ']');
-					}
-				},
-				error: function(xhr){
-					$(document).data('disabled',false);
-					alert('일시적인 오류입니다. 잠시 후 다시 시도해 주세요. 코드 : ' + xhr.status);
-				},
-				complete: function(){
-					$(document).data('disabled',false);
-				}
-			});
-		}
+	
 
 		return false;
 	});

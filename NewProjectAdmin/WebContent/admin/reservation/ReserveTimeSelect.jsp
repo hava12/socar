@@ -476,7 +476,6 @@
  					opener.document.getElementById("rs_time_val").value = hour + ":" + minuteSet;
 					opener.document.getElementById("rs_time").value = hour + ":" + minuteSet;
 								
-					alert(opener.document.getElementById("rs_time").value);
 					
 					//////////////////////////끝시간
 					
@@ -507,7 +506,6 @@
  					opener.document.getElementById("re_time_val").value = hour + ":" + minuteSet;
 					opener.document.getElementById("re_time").value = hour + ":" + minuteSet;
 								
-					alert(opener.document.getElementById("re_time").value);
 					opener.location.href="javascript:changePrice();"; // 일반적인 방법
 		
 					window.close();

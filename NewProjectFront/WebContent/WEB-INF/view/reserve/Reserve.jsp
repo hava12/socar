@@ -1027,30 +1027,28 @@ $(function(){
 											 endTime.slice(3,5),
 											 0));
 
-		if(way == 'round'){
-			/* TO-DO  2013.02.15
-			 * 편도일땐 class_id 불필요, way 필드 동적 처리 */
-			$.doPost('https://www.socar.kr/reserve/search', {
-				way: way,
-				start_at: start_at,
-				end_at: end_at,
-				loc_type: $.cookie('loc_type'),
-				class_id: $('#input_car_class').next().text(),
-				lat: $('#input_location_lat').text(),
-				lng: $('#input_location_lng').text(),
-				zone_id: $('#input_location_zone_id').text(),
-				region_name: $('#input_location').val(),
-				distance: 1.5
-			});
-		}
-		else{
-			$.doPost('https://www.socar.kr/reserve/search_oneway', {
-				way: way,
-				oneway_id: $('#select_one_way_end').val(),
-				start_at: start_at,
-				end_at: end_at
-			});
-		}
+		
+		var startDay = $("#startDay").val();
+		var endDay = $("#endDay").val();
+		var startTime = $("#selbox_startTime option:selected").val();
+		var endTime = $("#selbox_endTime option:selected").val();
+	
+		var input_location = $('#input_location').val();
+		
+		$.ajax({
+			type:'GET',
+			url : "<c:url value='/Reserve/FindSoz_id.do'/>",
+			data : {soz_name:input_location},
+			dataType : 'json',
+			success: function(res){
+				
+				location.href = '<c:url value="/Reserve/SearchResult.do?soz_code='+res.soz_code+'&startDay='+startDay+'&endDay='+endDay+'&startTime='+startTime+'&endTime='+endTime+'"/>';
+			},
+			error:function(){
+				alert("오류 발생 - 다시 검색해주세요");
+			}
+		})
+		
 
 		return false;
 	});
@@ -1275,21 +1273,7 @@ function goSearchResult(soz_code){
 	<div id="container">
 		<div id="content">
 			<h2><img src='//web-assets.socar.kr/template/asset/images/reservation/h2.gif' alt="쏘카예약" /></h2>
-			<!-- by smartNHW -->
-			<div id="zoneNavi">
-				<ul>
-					<li class="bar-short"><a href="/reserve#all">전국</a></li>
-					<li class="bar-short"><a href="/reserve#seoul">서울</a></li>
-					<li class="bar-short"><a href="/reserve#ggincheon">인천·경기</a></li>
-					<li class="bar-short"><a href="/reserve#gangwon">강원</a></li>
-					<li class="bar-short"><a href="/reserve#daejeon">대전·충청</a></li>
-					<li class="bar-short"><a href="/reserve#daegu">대구·경북</a></li>
-					<li class="bar-short"><a href="/reserve#gwangju">광주·전라</a></li>
-					<li class="bar-short"><a href="/reserve#busan">부산·경남</a></li>
-					<li class="bar-short"><a href="/reserve#jeju">제주</a></li>
-				</ul>
-				<span class="navi-title">지역 바로가기</span>
-			</div>
+			
 			<!-- map -->
 			<div id="mapArea">
 				<!-- 나눔카 링크 -->
@@ -1304,138 +1288,61 @@ function goSearchResult(soz_code){
 						<h3><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_title.png' alt="실시간 예약" /></h3>
 						<div class="setting-option">
 						
-							<form name="reservation" method="post" action="">
-								<fieldset>
-									<div class="group">
-										<table cellspacing="0">
-										<tr>
-											<th></th>
-											<td>
-												<label for="type1"><input style="display: none;" id="radio_round" value="round" type="radio" name="type" id="type1" /></label>
-												<label for="type2"><input style="display: none;" id="radio_oneway" value="oneway" type="radio" name="type" id="type2" /></label>
-											</td>
-										</tr>
-										</table>
-									</div>
-									<div class="group">
-										<table cellspacing="0">
-										<tr>
-											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt2.gif' alt="대여일" /></th>
-											<td>
-												<!-- <input id="startDay" type="text" class="input calendar" style="width:103px;" value="" /> -->
-												<input id="startDay" type="text" class="input calendar" style="width:103px;" value="" readonly />
-												<select id="selbox_startTime">
-													<!-- <option selected="selected">10:30</option> -->
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt3.gif' alt="반납일" /></th>
-											<td>
-												<!-- <input id="endDay" type="text" class="input calendar" style="width:103px;" value="" /> -->
-												<input id="endDay" type="text" class="input calendar" style="width:103px;" value="" readonly />
-												<select id="selbox_endTime">
-													<!-- <option selected="selected">10:30</option> -->
-												</select>
-											</td>
-										</tr>
-										</table>
-									</div>
-									<div class="group">
-										<table cellspacing="0">
-										<!-- spock 왕복 설정 UI-->
-										<tr id="round_way_wrap">
-											<th rowspan="2"><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt4.gif' alt="지역" /></th>
-											<td>
-												<input id="input_location" type="text" class="input location" placeholder="쏘카존·지역·차종 검색" style="width:169px;" value="" />
-												<em id="input_location_zone_id" style="display:none;"></em>
-												<em id="input_location_oneway_id" style="display:none;"></em>
-												<em id="input_location_lat" style="display:none;"></em>
-												<em id="input_location_lng" style="display:none;"></em>
-											</td>
-										</tr>
-										<tr id="cur_pos_wrap">
-											<td>
-												<label style="display:none;" for="currentPosition" class="currentPosition">
-													<input type="checkbox" id="currentPosition" />
-													현재 접속위치 사용
-												</label>
-											</td>
-										</tr>
-										<!-- spock 편도 설정 UI -->
-										<tr id="one_way_start_wrap" style="display:none;">
-											<th>
-												<label style="margin-right: -5px">대여존</label>
-											</th>
-											<td>
-												<select id="select_one_way_start" style="width: 169px;"></select>
-											</td>
-										</tr>
-										<tr id="one_way_end_wrap" style="display:none;">
-											<th>
-												<label style="margin-right: -5px">반납존</label>
-											</th>
-											<td>
-												<select id="select_one_way_end" style="width: 169px;"></select>
-											</td>
-										</tr>
-										</table>
-									</div>
-									<div class="group" id="select_car_wrap">
-										<table cellspacing="0">
-										<tr>
-											<th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt5.gif' alt="차종" /></th>
-											<td>
-												<input id="input_car_class" type="text" class="input socar" style="width:169px;" value="전체차종" />
-												<em style="display:none;"></em>
-											</td>
-										</tr>
-										</table>
-									</div>
-									<p class="btn">
-										<input id="btn_search_socar" type="image" src='//web-assets.socar.kr/template/asset/images/reservation/btn_setting_socar.gif' alt="쏘카찾기" onclick="return false;" />
-									</p>
+						<fieldset>
+                           <div class="group">
+                              <table cellspacing="0">
+                              <tr>
+                                 <th></th>
+                                 <td>
+                                    <label for="type1"><input style="display: none;" id="radio_round" value="round" type="radio" name="type" id="type1" /></label>
+                                    <label for="type2"><input style="display: none;" id="radio_oneway" value="oneway" type="radio" name="type" id="type2" /></label>
+                                 </td>
+                              </tr>
+                              </table>
+                           </div>
+                           <div class="group">
+                              <table cellspacing="0">
+                              <tr>
+                                 <th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt2.gif' alt="대여일" /></th>
+                                 <td>
+                                    <!-- <input id="startDay" type="text" class="input calendar" style="width:103px;" value="" /> -->
+                                    <input id="startDay" type="text" class="input calendar" style="width:103px;" value="" readonly />
+                                    <select id="selbox_startTime">
+                                       <!-- <option selected="selected">10:30</option> -->
+                                    </select>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt3.gif' alt="반납일" /></th>
+                                 <td>
+                                    <!-- <input id="endDay" type="text" class="input calendar" style="width:103px;" value="" /> -->
+                                    <input id="endDay" type="text" class="input calendar" style="width:103px;" value="" readonly />
+                                    <select id="selbox_endTime">
+                                       <!-- <option selected="selected">10:30</option> -->
+                                    </select>
+                                 </td>
+                              </tr>
+                              </table>
+                           </div>
+                           <div class="group">
+                              <table cellspacing="0">
+                              <!-- spock 왕복 설정 UI-->
+                              <tr id="round_way_wrap">
+                                 <th rowspan="2"><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_txt4.gif' alt="지역" /></th>
+                                 <td>
+                                    <input id="input_location" type="text" class="input location" placeholder="쏘카존·지역·차종 검색" style="width:169px;" value="" />                                    
+                                 </td>
+                              </tr>                           
+                              </table>
+                           </div>
+                           
+                           <p class="btn">
+                              <input id="btn_search_socar" type="image" src='//web-assets.socar.kr/template/asset/images/reservation/btn_setting_socar.gif' alt="쏘카찾기" />
+                           </p>
 
-									<!-- 왕복 지역 -->
-									<div id="socarzone" class="option-layer">
-										<div class="search">
-											<label for="input_loc" class="i_label">지역명, 쏘카존</label>
-											<input type="text" id="input_loc" class="input i_text" style="width:225px" value="" /><input id="btn_search_loc" type="image" class="submit" src='//web-assets.socar.kr/template/asset/images/reservation/btn_location_search.gif' alt="검색" />
-										</div>
-										<h4><a><span>최근 이용한 쏘카존</span></a></h4>
-										<div id="recently_list_wrapper" class="result">
-											<ul id="recently_list">
-											</ul>
-										</div>
-										<div id="autoComplete">
-											<ul id="ul_search_result">
-												<!-- 자동완성 영역 -->
-											</ul>
-										</div>
-									</div>
-									<!-- //왕복 지역 -->
-
-									<!-- 편도 노선 -->
-									<div id="oneway_list" class="option-layer">
-										<h4><a><span>편도 노선선택</span></a></h4>
-										<div class="list">
-											<ul id="ul_oneway_search_result">
-											</ul>
-										</div>
-									</div>
-									<!-- 편도 노선 -->
-
-									<!-- 차종 -->
-									<div id="socar" class="option-layer">
-										<h4><a><span>차종선택</span></a></h4>
-										<div class="list">
-											<ul id="ul_car_search_result">
-											</ul>
-										</div>
-									</div>
-									<!-- //차종 -->
-								</fieldset>
-							</form>
+                           
+                        </fieldset>
+                 
 							
 							
 						</div>

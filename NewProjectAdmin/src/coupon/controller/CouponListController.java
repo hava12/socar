@@ -71,6 +71,7 @@ public class CouponListController extends HttpServlet {
 				
 		List<CouponDto> list = null;
 		try {
+			dao = new CouponDao(req.getServletContext());
 			list = dao.couponList(map);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -45,4 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT COUNT(*) FROM SO_ZONE
 	</select>
 	
+	<select id="searchSozCode" parameterType="String" resultType="String">
+	SELECT SOZ_CODE FROM SO_ZONE WHERE SOZ_NAME=#{input_location}
+	</select>
+	
 </mapper>
