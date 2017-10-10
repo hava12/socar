@@ -51,7 +51,7 @@ private JavaMailSenderImpl mailSender;
 		
 		req.setCharacterEncoding("UTF-8");
 		InetAddress addr = InetAddress.getLocalHost();
-		
+		String i_no = req.getParameter("i_no");
 	    String setfrom = "jpark4653@gmail.com";         
 	    String tomail  =  req.getParameter("receiver");    // 받는 사람 이메일
 	    String title   = req.getParameter("title");      // 제목
@@ -89,8 +89,7 @@ private JavaMailSenderImpl mailSender;
 	    }
 	   
 		
-		
-		
+	    req.getRequestDispatcher("/admin/bbs/Inquiry.jsp").forward(req, resp);		
 	
 	}
 	
