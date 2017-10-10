@@ -135,6 +135,12 @@
 		<c:set var="SUC_URL" value="/Reservation/ReserveList.do"/>
 	</c:when>
 	
+	<c:when test="${WHERE eq 'DELETEINQUIRY'}">
+		<c:set var="SUC_MSG" value="1:1문의 삭제성공"/>
+		<c:set var="FAIL_MSG" value="1:1문의 삭제실패"/>
+		<c:set var="SUC_URL" value="/Bbs/Inquiry.do"/>
+	</c:when>
+	
 </c:choose>
 
 

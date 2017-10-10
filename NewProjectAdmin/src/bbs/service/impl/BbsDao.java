@@ -399,6 +399,19 @@ public class BbsDao implements BBSService {
 				return dto;
 			}
 
+
+
+
+			@Override
+			public int deleteInquiry(String i_no) throws Exception {
+				String sql = "DELETE INQUIRY WHERE I_NO=?";
+				int affected;
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, i_no);
+				affected = psmt.executeUpdate();
+				return affected;
+			}
+
 			
 
 

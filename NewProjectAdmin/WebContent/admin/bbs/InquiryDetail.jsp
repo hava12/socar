@@ -64,7 +64,7 @@ function categoryConvert(category){
     		location.href="<c:url value='/Bbs/InquiryReply.do?i_no=${dto.i_no}'/>";
 		}
     	var goDelete = function() {
-    		location.href="<c:url value='/Bbs/Inquiry.do?i_no=${dto.i_no}'/>";
+    		location.href="<c:url value='/Bbs/InquiryDelete.do?i_no=${dto.i_no}'/>";
 		}
     </script>
 

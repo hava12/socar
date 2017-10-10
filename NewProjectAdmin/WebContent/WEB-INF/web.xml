@@ -149,7 +149,14 @@
     <servlet-name>INQUIRYREPLY</servlet-name>
     <url-pattern>/Bbs/InquiryReply.do</url-pattern>
   </servlet-mapping>
-  
+    <servlet>
+    <servlet-name>INQUIRYDELETE</servlet-name>
+    <servlet-class>bbs.controller.InquiryDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>INQUIRYDELETE</servlet-name>
+    <url-pattern>/Bbs/InquiryDelete.do</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>RqCarController</servlet-name>
     <servlet-class>bbs.controller.RqCarController</servlet-class>

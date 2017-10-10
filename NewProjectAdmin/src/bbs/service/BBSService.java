@@ -31,6 +31,9 @@ public interface BBSService {
 	//1:1상세보기
 	public InquiryDTO selectInquiryDetail(String i_no) throws Exception;
 	
+	//1:1삭제
+	public int deleteInquiry(String i_no) throws Exception;
+	
 	public void close() throws Exception;
 	
 }
