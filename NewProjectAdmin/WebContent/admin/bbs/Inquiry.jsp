@@ -47,11 +47,11 @@
 		function insertNotice() {
 			location.href="<c:url value='/Bbs/InsertNotice.do'/>";
 		}
-		function isDelete(not_no){
-			if(confirm("정말로 삭제 할래?")){
+		function isReply(i_no){
+			/* if(confirm("정말로 삭제 할래?")){
 				location.href="<c:url value='/Bbs/NoticeDelete.do'/>?not_no="+not_no;
-			}//////////////////			
-			
+			}//////////////////			 */
+			location.href="<c:url value='/Bbs/InquiryReply.do?i_no=${dto.i_no}'/>";
 		}/////////////////////	
 		
 		function categoryConvert(category){
@@ -93,9 +93,6 @@
              <h2 id="tables-contextual-classes">
             	1:1문의 관리
           </h2><br/><br/>
-			<span class="input-group-btn pull-right" style="margin-right:60px;">
-	                     <button class="btn btn-success btn-info" type="button" onclick="insertNotice()">글쓰기</button>
-	             </span>
           <div class="table-responsive">
             <table class="table table-bordered table-striped">
               
@@ -127,7 +124,7 @@
 	                		<td align="center">${dto.smem_id}</td>
 	                		<td align="center">${dto.i_date}</td>
 	                		<%-- <td style="text-align: center;"><a href="<c:url value='/Bbs/NoticeEdit.do?not_no=${dto.not_no}'/>"><button class="btn btn-info btn-sm">수정하기</button></a></td> --%>
-	                		<td style="text-align: center;"><a href='javascript:isDelete(${dto.i_no})'><button class="btn btn-warning btn-sm">처리하기</button></a></td>
+	                		<td style="text-align: center;"><a href='javascript:isReply(${dto.i_no})'><button class="btn btn-warning btn-sm">처리하기</button></a></td>
                 		</tr>
                 		</c:forEach>
                 	</c:otherwise>
