@@ -95,7 +95,6 @@
 <!-- //lnb -->
 				<div class="section">
 					<h3><img src='${pageContext.request.contextPath}/template/image/h3_inquiry.gif' alt="1:1 문의하기" /></h3>
-					---------------------------------!!!!!----------------------------
 					<form action="<c:url value='/Notice/Inquiry.do'/>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<input type="hidden" name="smem_id" value="${smem_id}"/>
 						<fieldset>
