@@ -1268,6 +1268,7 @@ function goSearchResult(soz_code){
 					<div class="setting-box">
 						<h3><img src='//web-assets.socar.kr/template/asset/images/reservation/setting_title.png' alt="실시간 예약" /></h3>
 						<div class="setting-option">
+						
 							<form name="reservation" method="post" action="">
 								<fieldset>
 									<div class="group">
@@ -1400,6 +1401,8 @@ function goSearchResult(soz_code){
 									<!-- //차종 -->
 								</fieldset>
 							</form>
+							
+							
 						</div>
 						<div class="ico-desc">
 						<!-- by smartNHW
