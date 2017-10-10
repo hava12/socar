@@ -517,7 +517,7 @@ $(function(){
 										<p class="thumb">
 											<em class="car_id" style="display:none;">7268</em>
 											<a href="#" class="carDetail">
-												<img src='${pageContext.request.contextPath}/template/image/car22.png' />
+												<img src="/NewProjectAdmin/Upload/${item.car_img}" alt="이미지에러"/>												
 											</a>
 										</p>
 									</td>

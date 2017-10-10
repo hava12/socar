@@ -26,12 +26,20 @@ public class ReserveDto {
 	private String soz_name;
 	private String res_status;
 	
+	private String car_img;
+	
 	//////////////////////////////////////////////////
 	
 	
 	
 	
 	
+	public String getCar_img() {
+		return car_img;
+	}
+	public void setCar_img(String car_img) {
+		this.car_img = car_img;
+	}
 	public String getCar_i_num() {
 		return car_i_num;
 	}
