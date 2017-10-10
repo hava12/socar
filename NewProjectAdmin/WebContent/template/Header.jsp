@@ -107,6 +107,9 @@
                               <a href="<c:url value='/Bbs/Notice.do' />">공지사항 관리</a>
                           </li>
                           <li>
+                              <a href="<c:url value='/Bbs/Inquiry.do' />">1:1문의 관리</a>
+                          </li>
+                          <li>
                               <a href="<c:url value='/Bbs/RqCarList.do' />">차량신청 게시판 관리</a>
                           </li>
                           <li>

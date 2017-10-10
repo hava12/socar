@@ -25,6 +25,12 @@ public interface BBSService {
 	//주차장 신청 게시판 게시글 삭제
 	public int delete_RqLocList(String rql_code) throws Exception;
 	
+	//1:1받아오기
+	public List<InquiryDTO> selectInquiryList() throws Exception;
+	
+	//1:1상세보기
+	public InquiryDTO selectInquiryDetail(String i_no) throws Exception;
+	
 	public void close() throws Exception;
 	
 }

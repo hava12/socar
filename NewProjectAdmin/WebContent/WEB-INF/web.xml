@@ -126,6 +126,31 @@
     <url-pattern>/Bbs/NoticeEdit.do</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>INQUIRY</servlet-name>
+    <servlet-class>bbs.controller.InquiryController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>INQUIRY</servlet-name>
+    <url-pattern>/Bbs/Inquiry.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>INQUIRYDETAIL</servlet-name>
+    <servlet-class>bbs.controller.InquiryDetailController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>INQUIRYDETAIL</servlet-name>
+    <url-pattern>/Bbs/InquiryDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>INQUIRYREPLY</servlet-name>
+    <servlet-class>bbs.controller.InquiryReplyController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>INQUIRYREPLY</servlet-name>
+    <url-pattern>/Bbs/InquiryReply.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>RqCarController</servlet-name>
     <servlet-class>bbs.controller.RqCarController</servlet-class>
   </servlet>

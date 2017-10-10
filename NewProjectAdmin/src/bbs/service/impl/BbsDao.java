@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import bbs.service.BBSService;
+import bbs.service.InquiryDTO;
 import bbs.service.Not_imgDto;
 import bbs.service.NoticeDto;
 import bbs.service.NoticeService;
@@ -353,6 +354,52 @@ public class BbsDao implements BBSService {
 			}
 
 
+
+
+			@Override
+			public List<InquiryDTO> selectInquiryList() throws Exception {
+				String sql="SELECT * FROM INQUIRY";
+				psmt = conn.prepareStatement(sql);
+				rs=psmt.executeQuery();
+				List<InquiryDTO> list = new Vector<InquiryDTO>();
+				while(rs.next()) {
+					InquiryDTO dto = new InquiryDTO();
+					dto.setI_no(rs.getString(1));
+					dto.setSmem_id(rs.getString(2));
+					dto.setCategory(rs.getString(3));
+					dto.setTitle(rs.getString(4));
+					dto.setContent(rs.getString(5));
+					dto.setImage(rs.getString(6));
+					dto.setDate(rs.getDate(7));
+					list.add(dto);
+				}
+				
+				return list;
+			}
+
+
+
+
+			@Override
+			public InquiryDTO selectInquiryDetail(String i_no) throws Exception {
+				String sql ="SELECT * FROM INQUIRY WHERE I_NO=?";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, i_no);
+				rs = psmt.executeQuery();
+				InquiryDTO dto = new InquiryDTO();
+				while(rs.next()) {
+					dto.setI_no(rs.getString(1));
+					dto.setSmem_id(rs.getString(2));
+					dto.setCategory(rs.getString(3));
+					dto.setTitle(rs.getString(4));
+					dto.setContent(rs.getString(5));
+					dto.setImage(rs.getString(6));
+					dto.setDate(rs.getDate(7));
+				}
+				return dto;
+			}
+
+			
 
 
 
