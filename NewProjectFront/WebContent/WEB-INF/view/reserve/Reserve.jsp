@@ -186,6 +186,7 @@ $( function() {
 					var width_per = $(this).css("width").replace("px","")/parent_px*100;
 	     			var right_per = left_per+width_per;
 					
+	     			
 				
 	     			if(start_per > left_per && start_per <right_per && end_per > right_per){
 	     				$(this).parent().append("<a href='#' id='banned-range' name='banned-range' class='cliked' style='z-index:3;left:"+start_per+"%; width:"+(right_per-start_per)+"%; height:0.8em; margin-left:0; border:1px solid red; position:absolute; background-color: red;'>");
@@ -1500,10 +1501,10 @@ function goSearchResult(soz_code){
 														 			$("."+'${loop.count}').append("<a href='#' id='reserved-range' class='cliked' name='reserved-range' style='z-index:1;left:"+left_per+"%; width:"+width_per+"%; height:.8em; margin-left:0; border:1px solid lightgray; position:absolute; background-color: lightgray;'>");
 																}
 																
-																if('${loop.count}'!=0){
-																	$("."+'${loop.count}').children("reserved-range").removeClass("cliked");
-																		
-																	$("."+'${loop.count}').children("banned-range").removeClass("cliked");
+																if('${loop.count}'!=1){
+																	$("."+'${loop.count}').children("#reserved-range").removeClass("cliked");
+																	
+																	$("."+'${loop.count}').children("#banned-range").removeClass("cliked");
 																}
 															});
 														</script>

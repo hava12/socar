@@ -12,6 +12,8 @@ import mypage.service.Cou_createDto;
 import mypage.service.Cou_useDto;
 import mypage.service.CouponDto;
 import mypage.service.MyPageService;
+import reserve.service.Rent_sDto;
+import reserve.service.ReserveDto;
 
 @Repository
 public class MyPageServiceImpl implements MyPageService {
@@ -73,5 +75,29 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<Cou_useDto> cou_use_List(String smem_id) throws Exception {
 		return dao.cou_use_List(smem_id);
 	}
+	
+	@Override
+	public int countReserve(String smem_id) throws Exception {
+		return dao.countReserve(smem_id);
+	}
+
+	@Override
+	public List<ReserveDto> selectReserve_smem(String smem_id) throws Exception{
+		return dao.selectReserve_smem(smem_id);
+	}
+
+
+	@Override
+	public int selectRent_s_Count(String res_code) throws Exception {
+		return dao.selectRent_s_Count(res_code);
+	}
+
+
+	@Override
+	public int select_e_Count(String res_code) throws Exception {
+		return dao.select_e_Count(res_code);
+	}
+
+
 
 }

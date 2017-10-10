@@ -1,8 +1,11 @@
 package mypage.service;
 
 import java.util.List;
+import java.util.Map;
 
 import member.service.MemDto;
+import reserve.service.Rent_sDto;
+import reserve.service.ReserveDto;
 
 public interface MyPageService {
 
@@ -27,5 +30,15 @@ public interface MyPageService {
 	public String smem_Verify(String smem_id) throws Exception;
 
 	public List<Cou_useDto> cou_use_List(String smem_id) throws Exception;
+	
+	public int countReserve(String smem_id) throws Exception;
+	
+	public List<ReserveDto> selectReserve_smem(String smem_id) throws Exception;
+	
+	public int selectRent_s_Count(String res_code) throws Exception;
+
+	public int select_e_Count(String res_code) throws Exception;
+
+
 	
 }

@@ -425,10 +425,6 @@ $(function(){
 
 	//INICIS 카드등록
 	$('#register_card').bind('click', function() {
-		if( $(document).data('disabled') ){
-			alert("카드등록 진행중입니다.");
-			return false;
-		}
 
 		var cnum01 = $.trim($("#card_num_01").val()),
 			cnum02 = $.trim($("#card_num_02").val()),
@@ -439,12 +435,7 @@ $(function(){
 			alert('카드번호를 입력해 주세요.');
 			return false;
 		}
-/*
-		if ( !/\d{4}/.test(cnum01) || !/\d{4}/.test(cnum02) || !/\d{4}/.test(cnum03) || !/\d{4}/.test(cnum04) ) {
-			alert('카드번호는 숫자만 입력가능합니다.');
-			return false;
-		}
-*/
+
 		var reg = /^\d+$/;
 		var card_num = cnum01 + '' + cnum02 + '' + cnum03 + '' + cnum04;
 
@@ -494,12 +485,6 @@ $(function(){
 				return false;
 			}
 
-			rear_ssn = corp_num01 + '' + corp_num02 + '' + corp_num03;
-
-			if( false == checkBizID(rear_ssn) ){
-				alert('잘못된 사업자등록번호입니다');
-				return false;
-			}
 		}
 
 		if(! $("input:checkbox[id='is_card_agree']").is(":checked")){
@@ -899,54 +884,9 @@ $(function(){
 
 	//기본정보 업데이트 버튼
 	$('#btn_update_basic').bind('click', function () {
-		if($address == true && $('#addr2').val() == ''){
-			alert('세부 주소를 입력해주세요');
-			$('#addr2').focus();
-			return false;
-		}
-
-		if($('input:radio[name="loc"]:checked').length == 0){
-			alert('주 사용지역을 선택해주세요.');
-			return false;
-		}
-
-		//var zip = $('#zip1').val() + '-' + $('#zip2').val();
-		var zip = $('#zip').val();
-
-		if(undefined == $('#zip').val()){
-			// 잘못된 zip 이면 일단 입력하지 않음.
-			zip  = '';
-		}
-
-		$.ajax({
-			
-				url : "https://www.socar.kr/user/update_basic_info",
-			
-			type : "POST",
-			data : {
-				zipcode: $address ? zip : '',
-				address: $address ? $('#addr1').val() : '',
-				address_detail: $address ? $('#addr2').val() : '',
-				password: $passwd ? $('#user_passwd').val() : '',
-				phone_num: $phone ? $('#user_phone').val() : '',
-				confirm_num: $phone ? $('#confirm_num').val() : '',
-				confirm_id: $phone ? $('#confirm_id').val() : '',
-				primary_area: $primary_area ? $('input:radio[name="loc"]:checked').val() : ''
-			},
-			dataType: "json",
-			success : function(data){
-				if(data.retCode == '1'){
-					alert('기본정보 변경사항이 적용되었습니다.');
-					window.location.href = '/mypage';
-				}
-				else{
-					alert(data.retMsg);
-				}
-			},
-			error : function(){
-				alert('일시적인 오류로 회원 정보 변경을 하지 못했습니다. 잠시 후 다시 시도해 주세요.');
-			}
-		});
+		
+		
+		
 		return false;
 	});
 
@@ -1334,7 +1274,7 @@ function auth_confirm(res) {
 				                <!-- lnb -->
                 <ul class="lnb">
                 <li><a href="<c:url value='/Mypage/Mypage.do'/>" title="내 정보" class="lnb1">내 정보</a></li>
-                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>${reserveCount}</span></a></li>
                 <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>${couponCount}</span></a></li>
                 <li><a href="<c:url value='/Mypage/Mypagepayment.do'/>" title="결제내역" class="lnb5">결제내역</a></li>
                 </ul>
@@ -1386,7 +1326,7 @@ function auth_confirm(res) {
 										<input id="user_phone" type="text" class="input" style="width:115px" value="${dto.smem_tel}" readonly />
 										<input id="confirm_id" type="text" style="display:none;" value="" readonly />
 										<input id="confirm_num" type="text" style="display:none;" value="" readonly />
-										<a href="#" class="btnS btn_auth"><span>변경</span></a>
+								
 									</td>
 								</tr>
 							

@@ -20,4 +20,5 @@ public interface ReserveService {
 	public int insertCou_use(String cou_i_code) throws Exception;
 	
 	public List<CouponDto> reserve_CouponList(String smem_id) throws Exception;
+
 }

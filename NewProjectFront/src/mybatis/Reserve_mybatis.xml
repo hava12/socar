@@ -28,5 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reserve_couponlist" parameterType="java.lang.String" resultType="CouponDto">
 		SELECT * FROM COU_CREATE CC JOIN COU_ISSUE CI ON CC.COU_C_CODE = CI.COU_C_CODE JOIN COUPON C ON C.COU_CODE=CC.COU_CODE WHERE CI.SMEM_ID=#{smem_id} AND COU_I_E_DATE > SYSDATE AND (SELECT COUNT(*) FROM COU_USE CU WHERE CI.COU_I_CODE=CU.COU_I_CODE)=0
 	</select>
+
 	
 </mapper>

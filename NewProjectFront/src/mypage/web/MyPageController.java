@@ -23,6 +23,8 @@ import mypage.service.Cou_createDto;
 import mypage.service.Cou_useDto;
 import mypage.service.CouponDto;
 import mypage.service.impl.MyPageServiceImpl;
+import reserve.service.Rent_sDto;
+import reserve.service.ReserveDto;
 
 @Controller
 public class MyPageController {
@@ -38,7 +40,7 @@ public class MyPageController {
 	public String mypage(HttpServletRequest req,Model model) throws Exception{
 		
 		MemDto dto = null;
-		
+		int reserveCount = service.countReserve(req.getSession().getAttribute("smem_id").toString());
 		
 		int couponCount = 0;
 		
@@ -60,7 +62,7 @@ public class MyPageController {
 		
 		card_list = s_service.selectOneMemCard(req.getSession().getAttribute("smem_id").toString());
 		model.addAttribute("card_list",card_list);
-		
+		model.addAttribute("reserveCount",reserveCount);
 		model.addAttribute("dto",dto);
 		
 		return "/mypage/Mypage";
@@ -71,30 +73,63 @@ public class MyPageController {
 	public String mypagereserve(HttpServletRequest req,Model model) throws Exception{
 		
 		int couponCount = 0;
+		int reserveCount = service.countReserve(req.getSession().getAttribute("smem_id").toString());
+		
 		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		
+		List<ReserveDto> res_list = null;
+			
+		res_list = service.selectReserve_smem(req.getSession().getAttribute("smem_id").toString());
+		
+		for(ReserveDto r_dto : res_list) {
+				r_dto.setRes_status("이용 전");
+				int affected = service.selectRent_s_Count(r_dto.getRes_code());
+						if(affected >= 1) {
+							r_dto.setRes_status("이용 중");
+								affected = 0;
+								affected = service.select_e_Count(r_dto.getRes_code());
+								if(affected == 1) {
+									r_dto.setRes_status("완료");
+									affected = 0;
+								}
+						}
+						
+		}
+		
 		model.addAttribute("couponCount",couponCount);
+		model.addAttribute("reserveCount",reserveCount);
+		model.addAttribute("res_list",res_list);
 		
 		return "/mypage/Mypagereserve";
 	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/Mypage/Mypagepayment.do")
 	public String mypagepayment(HttpServletRequest req,Model model) throws Exception{
 		
 		int couponCount = 0;
+		int reserveCount = service.countReserve(req.getSession().getAttribute("smem_id").toString());
+		
 		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
 		model.addAttribute("couponCount",couponCount);
+		model.addAttribute("reserveCount",reserveCount);
 		
 		
 		return "/mypage/Mypagepayment";
 	}
 		
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("/Mypage/Mypagecoupon.do")
 	public String mypagecoupon(HttpServletRequest req,Model model) throws Exception{
 		
 		int couponCount = 0;
 		couponCount = service.selectCouponCount(req.getSession().getAttribute("smem_id").toString());
+		int reserveCount = service.countReserve(req.getSession().getAttribute("smem_id").toString());
+		
+		
 		model.addAttribute("couponCount",couponCount);
+		model.addAttribute("reserveCount",reserveCount);
 		
 		
 		List<CouponDto> list = null;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -472,7 +473,7 @@ $(function(){
 				                <!-- lnb -->
                 <ul class="lnb">
                 <li><a href="<c:url value='/Mypage/Mypage.do'/>" title="내 정보" class="lnb1">내 정보</a></li>
-                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>0</span></a></li>
+                <li><a href="<c:url value='/Mypage/Mypagereserve.do'/>" title="예약내역" class="lnb3">예약내역 <span>${reserveCount}</span></a></li>
                 <li><a href="<c:url value='/Mypage/Mypagecoupon.do'/>" title="내 쿠폰" class="lnb4">내 쿠폰 <span>${couponCount}</span></a></li>
                 <li><a href="<c:url value='/Mypage/Mypagepayment.do'/>" title="결제내역" class="lnb5">결제내역</a></li>
                 </ul>
@@ -501,11 +502,16 @@ $(function(){
 								<th colspan="2">예약</th>
 								<th>총 요금</th>
 								<th>상태</th>
-								<th>변경/취소</th>
+								
 							</tr>
 							</thead>
 							<tbody>
 							
+							<c:if test="${empty res_list }" var="existRes">
+								<tr><td colspan="5">예약이 없습니다.</td></tr>
+							</c:if>
+							<c:if test="${not existRes }">
+								<c:forEach items="${res_list}" var="item">
 								<tr class="over">
 									<td>
 										<p class="thumb">
@@ -518,44 +524,30 @@ $(function(){
 									<td class="info">
 										<h4>
 											<em id="7292917_car_id" class="car_id" style="display:none;">7268</em>
-											<a href="#" class="carDetail">아반떼AD</a> (40하9862)
+											<a href="#" class="carDetail">${item.car_name}</a> (${item.car_i_num})
 										</h4>
 										<div class="desc">
-											2016.12.28 수 17:00 - 2016.12.28 수 21:30 <br />
-											총 4시간 30분 <br />
+											<fmt:formatDate value="${item.res_date_start}" pattern="yyyy.MM.dd E HH:mm"/> - <fmt:formatDate value="${item.res_date_end}" pattern="yyyy.MM.dd E HH:mm"/> <br />
+											총<fmt:parseNumber value="${((item.res_date_end.time - item.res_date_start.time)/(1000*60))/60}" integerOnly="true" />시간 
+											  <fmt:formatNumber value="${((item.res_date_end.time - item.res_date_start.time)/60000)%60}" maxFractionDigits="0" />분  <br />
 											<em id="7292917_zone_id" style="display:none;">665</em>
 												
-													<a href="#" class="socarzoneDetail">강남역 11번출구</a>
+													<a href="#" class="socarzoneDetail">${item.soz_name}</a>
 													
 										</div>
 									</td>
 									<td class="price">
-										<a class="btn_payment_detail" href="#" value='uizyp'>30,870원</a><em style="display:none;">7292917</em>
+										<a class="btn_payment_detail" href="#" value='uizyp'>${item.res_price + item.res_inscost - item.sale_price }원</a><em style="display:none;">7292917</em>
 										
 										
 										<br />
-										<a class="btn_reserve_print" href="#" value='uizyp'><img src="${pageContext.request.contextPath}/template/image/btn_statement.gif" alt="" /></a>
 										
 									</td>
-									<td class="status">완료</td>
-									<td>
-										<!-- spock 연장시 연장금액 출력을 위해 부가정보 저장 -->
-										<em id="7292917_reserve_id" class="reserve_id" style="display:none;">7292917</em>
-										<em id="7292917_reserve_start_at" class="reserve_start_at" style="display:none;">2016-12-28T17:00:00+09:00</em>
-										<em id="7292917_reserve_end_at" class="reserve_end_at" style="display:none;">2016-12-28T21:30:00+09:00</em>
-										<em id="7292917_car_class" class="car_class" style="display:none;">22</em>
-										<em id="7292917_reserve_way" style="display:none;">round</em>
-										<em id="7292917_oneway_id" style="display:none;">0</em>
-										
-										
-											
-										
-	<!--									 <a href="#" class="btnS rvChangeB"><span>변경</span></a>
-										<a href="#" class="btnS rvCancelB"><span>취소</span></a>
-										<a href="#" class="btnS rvExtendB"><span>반납연장</span></a>
-									-->
-									</td>
+									<td class="status">${item.res_status}</td>
+									
 								</tr>
+								</c:forEach>
+							</c:if>
 							
 							</tbody>
 							</table>

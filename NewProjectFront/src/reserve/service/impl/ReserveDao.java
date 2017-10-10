@@ -53,5 +53,6 @@ public class ReserveDao implements ReserveService {
 		return template.selectList("reserve_couponlist",smem_id);
 	}
 
+
 	
 }

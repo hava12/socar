@@ -20,6 +20,42 @@ public class ReserveDto {
 	private String sale_price;
 	private String cou_i_code;
 	
+	
+	private String car_name;
+	private String car_i_num;
+	private String soz_name;
+	private String res_status;
+	
+	//////////////////////////////////////////////////
+	
+	
+	
+	
+	
+	public String getCar_i_num() {
+		return car_i_num;
+	}
+	public String getRes_status() {
+		return res_status;
+	}
+	public void setRes_status(String res_status) {
+		this.res_status = res_status;
+	}
+	public String getSoz_name() {
+		return soz_name;
+	}
+	public void setSoz_name(String soz_name) {
+		this.soz_name = soz_name;
+	}
+	public String getCar_name() {
+		return car_name;
+	}
+	public void setCar_name(String car_name) {
+		this.car_name = car_name;
+	}
+	public void setCar_i_num(String car_i_num) {
+		this.car_i_num = car_i_num;
+	}
 	public String getRes_code() {
 		return res_code;
 	}

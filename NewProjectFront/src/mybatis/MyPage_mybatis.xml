@@ -49,4 +49,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT CU.* FROM COU_USE CU JOIN COU_ISSUE CI ON CU.COU_I_CODE=CI.COU_I_CODE WHERE CI.SMEM_ID=#{smem_id}
 	</select>
 	
+	
+		
+	<select id="countReserve" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(*) FROM RESERVE R WHERE (SELECT COUNT(*) FROM RENT_S RS WHERE R.RES_CODE = RS.RES_CODE )=0 AND SMEM_ID=#{smem_id} 
+	</select>
+	
+	<select id="selectReserve_smem" parameterType="java.lang.String" resultType="ReserveDto">
+		SELECT R.*,CAR_I_NUM,CAR_NAME,SOZ_NAME FROM RESERVE R JOIN CAR_ISSUE CI ON R.CAR_I_CODE=CI.CAR_I_CODE JOIN CAR C ON C.CAR_NAME_CODE=CI.CAR_NAME_CODE JOIN SO_ZONE SZ ON CI.SOZ_CODE=SZ.SOZ_CODE WHERE SMEM_ID=#{smem_id} ORDER BY RES_DATE_START DESC
+	</select>
+	
+	<select id="selectRent_s_Count" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(*) FROM RENT_S WHERE RES_CODE=#{res_code}
+	</select>
+	
+	<select id="select_e_Count" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(*) FROM RENT_E WHERE RES_CODE=#{res_code}
+	</select>
+	
+	
+	
 </mapper>
