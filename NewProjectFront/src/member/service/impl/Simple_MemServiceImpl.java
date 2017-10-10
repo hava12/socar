@@ -63,4 +63,5 @@ public class Simple_MemServiceImpl implements Simple_MemService{
 		return dao.verifyToMyPage(smem_id);
 	}
 
+
 }

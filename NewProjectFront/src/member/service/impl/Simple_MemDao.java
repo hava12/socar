@@ -90,4 +90,6 @@ public class Simple_MemDao implements Simple_MemService {
 		return template.selectOne("VerifyToMyPage",smem_id);
 	}
 
+
+
 }

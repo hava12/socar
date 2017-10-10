@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sun.net.httpserver.HttpServer;
+
 import member.service.CardDto;
 import member.service.MemDto;
 import member.service.Simple_MemDto;
@@ -283,6 +285,26 @@ public class MemberController {
 		return json.toJSONString();
 	}/////////////////////////////////////////////////////////////////////////
 	
+	
+	@ResponseBody
+	@RequestMapping(value="/Member/InsertCard.do",produces="text/html;charset=UTF-8")
+	public String InsertCard(HttpServletRequest req) throws Exception{
+		
+		CardDto c_dto = new CardDto();
+		c_dto.setCard_code(req.getParameter("card_code"));
+		c_dto.setSmem_id(req.getSession().getAttribute("smem_id").toString());
+		Calendar card_expdate = Calendar.getInstance();
+		card_expdate.set(Integer.parseInt(req.getParameter("exp_y").toString()),Integer.parseInt(req.getParameter("exp_m")),1);
+		c_dto.setCard_expdate(card_expdate.getTime());
+		c_dto.setCard_type(req.getParameter("card_type"));
+		c_dto.setCard_birth(req.getParameter("card_birth"));
+		
+		
+		JSONObject json = new JSONObject();
+
+		
+		return "";
+	}
 
 	
 	

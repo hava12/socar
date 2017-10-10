@@ -492,16 +492,25 @@ $(function(){
 			return false;
 		}
 
+		var card_code = $("#card_num_01").val()+"-"+$("#card_num_02").val()+"-"+$("#card_num_03").val()+"-"+$("#card_num_04").val();
+		
+		var card_type= $("input[name:'card_type'] option:selected").val()=="0"?"p":"b";
+		
+		var card_birth = $("#rear_ssn_card").val();
+		
+		var card_c_num = $("#corp_num_01").val()+"-"+$("#corp_num_02").val()+"-"+$("#corp_num_03").val();
+		
+		alert(card_type)
 		$.ajax({
 			type: 'GET',
 			url: "https://api.socar.kr/user/add_billing/",
 			data: {
-				auth_token: '8253898f5c54f177f2157eb70e488c3ac425c8eamipkc',
-				card_num: card_num,
-				exp_y : exp_y,
-				exp_m : exp_m,
-				rear_ssn : rear_ssn,
-				card_pw : card_pw
+				card_code:card_code,
+				exp_y:exp_y,
+				exp_m:exp_m,
+				card_type:card_type,
+				card_birth:card_birth,	
+				card_c_num:card_c_num
 			},
 			crossDomain: true,
 			dataType: 'jsonp',
@@ -510,45 +519,11 @@ $(function(){
 			},
 			success: function(res){
 				if(res.retCode == 1){
-					var card_id = res.result.billing_id,
-						cardInfo = res.result.card_name,
-						card_approval_date = res.result.card_approval_date,
-						card_count = $("#card_count").val(),
-						output = new StringBuffer();
-
-					card_approval_date = card_approval_date.split("-");
-
-					output.append("<li class='fst on' id='" + card_id + "' data-card='" + cardInfo + "'>");
-					output.append("<div class='box_radio'><input type='radio' name='card_default' id='radio" + card_count + "' class='default inp_radio' checked='checked' />");
-					output.append("<label for='radio" + card_count + "' class='default'>" + cardInfo + "카드 (" + card_approval_date.join('.') + ")</label></div><a href='#' class='card_del btn_del'>삭제하기</a></li>");
-
-					$('#list_card > li:first')
-						.removeClass('fst on')
-						.children().find("input:radio[name='card_default']").removeAttr('checked');
-
-					$(output.toString()).insertBefore('#list_card > li:first');
-					output.clear();
-
-					if($("#no_card").length > 0) {
-						$("#no_card").remove();
-					}
-
-					$("#card_count").val(parseInt(Number(card_count)+1,10));
-
-					if($("#card_count").val() == 3) {
-						$("#open_register_card_layer_li").remove();
-					}
-
+					
 					alert('결제카드가 정상적으로 등록되었습니다.');
 
 					$("#btnClose").click();
-/*
-					if(window.opener !== null && window.opener !== undefined) {
-						if(typeof window.opener.remakeCardList === 'function') {
-							window.opener.remakeCardList();
-						}
-					}
-*/
+
 				}
 				else{
 					alert(res.retMsg);
@@ -1722,58 +1697,15 @@ function auth_confirm(res) {
 	
 	<c:if test="${not empty card_list }">
 					<div class="group membercard">
-						<h3><img src="${pageContext.request.contextPath}/template/image/tit_membercard_1223.gif" alt="추가 카드키" /></h3>
-						<div class="txt_more">선택한 카드로 차량 문 개폐가 가능합니다.</div>
-						<ul class="list_membcard" id="list_membcard">
-							<li class="on" data-regist="0">
-								<dl>
-									<dt>
-										<input type="radio" name="member_card" id="no_member_card" checked="checked" class="inp_radio member_card_radio" value="0" />
-										<label for="no_member_card">선택 안 함</label>
-									</dt>
-									<dd>모바일앱 스마트키로 차량 문 개폐가 가능합니다.</dd>
-								</dl>
-							</li>
+					
 						
-							<li>
-								<dl>
-									<dt>
-										<input type="radio" name="member_card" id="socarcard" class="inp_radio no_regist" />
-										<label for="socarcard">회원카드</label>
-									</dt>
-									<dd>
-										<div class="socar_card">
-											<a href="#" id="socarCardLayer" data-state="0" class="btnS"><span>발급신청</span></a>									
-										</div>
-										<p class="more">카드 발급 신청시 1,500원이 결제됩니다.</p>
-									</dd>
-								</dl>
-							</li>
-						
-						
-						</ul>
-						<ul class="tip mt10">
-							<li>차량 운행 중 카드 변경이 불가능하니, 운행 전 신중하게 변경해주세요.</li>
-							<!-- <li>쏘카카드 선택시, 구매 감사의 의미로 운행 지원 패키지(쿠폰 등)를 같이 제공합니다. <a href="#" class="link">패키지 구경하기</a></li> -->
-						</ul>
-					</div>
+				
 
 	</c:if>
 				
-					<div class="group">
-						<h3><img src="${pageContext.request.contextPath}/template/image/index_txt12.gif" alt="회원탈퇴" /></h3>
-						<div class="gbx">
-							<div style="margin-bottom: 3px;">쏘카를 이용하시는데 불편함이 있으셨나요?</div>
-							<ul>
-								<li>이용 불편 및 문의사항은 고객센터 1:1문의에 남겨주시면 답변드리겠습니다.</li>
-							</ul>
-						</div>
+				
 
-						<p class="centerBtn">
-							<a id="btn_user_drop" href="#" class="">
-								<img src="${pageContext.request.contextPath}/template/image/btn_leave.gif" alt="탈퇴하기" />
-							</a>
-						</p>
+					
 
 					</div>
 				

@@ -39,7 +39,6 @@ public class ReserveDto {
 	
 	private String car_img;
 	
-	private String car_img;
 	
 	//////////////////////////////////////////////////
 	

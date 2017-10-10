@@ -131,8 +131,6 @@ $(function(){
 					<div class="group">
 						<h3><img src="${pageContext.request.contextPath}/template/image/coupon_txt1.gif" alt="내 쿠폰" /> <span>${couponCount}</span> <img src="${pageContext.request.contextPath}/template/image/coupon_txt2.gif" alt="개" /></h3>
 
-						<p class="coupon-add"><a href="#" class="couponAddB"><img src="${pageContext.request.contextPath}/template/image/btn_coupon.gif" alt="쿠폰 등록하기" /></a></p>
-
 						<div class="gbx">
 							<ul>
 							<li>쿠폰은 <em>최초 대여요금에만 적용</em>됩니다. (보험료/주행요금/연장 대여요금에 적용 불가)</li>

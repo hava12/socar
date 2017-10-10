@@ -27,6 +27,7 @@ public class Rq_carDao implements Rq_carService{
 
 		int count = template.insert("Rq_carinsert",dto);
 		return count;
+		
 	}
 
 	

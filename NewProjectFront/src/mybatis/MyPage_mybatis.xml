@@ -68,15 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<select id="selectRent_s_Count" parameterType="java.lang.String" resultType="int">
 		SELECT COUNT(*) FROM RENT_S WHERE RES_CODE=#{res_code}
 	</select>
