@@ -29,7 +29,12 @@ public class NoticeServiceImpl implements NoticeService{
 	public int getTotalCount(Map map) throws Exception {
 		return dao.getTotalCount(map);
 	}
-	
-	
+
+	@Override
+	public int inquiryInsert(InquiryDTO dto) throws Exception {
+		return dao.inquiryInsert(dto);
+	}
+
+
 	
 }

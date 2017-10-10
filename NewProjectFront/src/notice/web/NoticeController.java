@@ -11,12 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import notice.service.FileUtils;
+import notice.service.InquiryDTO;
 import notice.service.Noti_ModelDto;
 import notice.service.NoticeServiceImpl;
 import notice.service.PagingUtil;
+import notice.service.impl.NoticeDao;
 
 
 @Controller
@@ -70,27 +76,37 @@ public class NoticeController {
 			
 			return "/notice/NoticeView";
 		}//////////////////////////////
-	
-	/*
-	   @RequestMapping("/Notice/Notice.do")
-	   public String notice(Model model) throws Exception{
-	      
-	      List<Noti_ModelDto> list = service.selectNoti_ModelList(null);
-	      
-	      model.addAttribute("list", list);
-	      
-	      return "/notice/Notice";
-	   }*/
-	   
-	
+		
 	@RequestMapping("/Notice/Faq.do")
 	public String faq() throws Exception{
 		
 		return "/notice/Faq";
 	}
-	@RequestMapping("/Notice/Inquiry.do")
+	@RequestMapping(value="/Notice/Inquiry.do",method=RequestMethod.GET)
 	public String inquiry() throws Exception{
+		System.out.println("dddd");
 		return "/notice/Inquiry";
+	}
+	@RequestMapping(value="/Notice/Inquiry.do",method=RequestMethod.POST)
+	public String inquirypost(HttpServletRequest req, Model model) throws Exception{
+		System.out.println(req.getServletContext().getRealPath("/UploadInquiry"));
+		//MultipartRequest mr=FileUtils.upload(req,req.getServletContext().getRealPath("/UploadInquiry"));
+		InquiryDTO dto = new InquiryDTO();
+		//NoticeDao dao = new NoticeDao();
+		int sucorfail=0;
+		MultipartRequest mr=FileUtils.upload(req,req.getServletContext().getRealPath("/UploadInquiry"));		
+		if(mr!=null) {
+		dto.setCategory(mr.getParameter("category"));
+		dto.setTitle(mr.getParameter("title"));
+		dto.setContent(mr.getParameter("contents"));
+		dto.setImage(mr.getFilesystemName("userfile"));
+		dto.setSmem_id(mr.getParameter("smem_id"));
+		System.out.println("43");
+		sucorfail=service.inquiryInsert(dto);
+		model.addAttribute("SUC_FAIL",sucorfail);
+		model.addAttribute("WHERE","INQUIRY");
+		}
+		return "/message/Message";
 	}
 	@RequestMapping("/Notice/Voc.do")
 	public String voc() throws Exception{

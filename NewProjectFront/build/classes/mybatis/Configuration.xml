@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="CarWasteDTO" type="reserve.service.Car_WasteDTO"/>
 		<typeAlias alias="CarSearchResultDTO" type="reserve.service.CarSearchResultDTO"/>
 		<typeAlias alias="ReserveDto" type="reserve.service.ReserveDto"/>
-		
+		<typeAlias alias="InquiryDTO" type="notice.service.InquiryDTO"/>		
 	</typeAliases>
 
 	

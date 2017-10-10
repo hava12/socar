@@ -13,5 +13,9 @@ public interface NoticeService {
 		
 		//전체 레코드수
 		int getTotalCount(Map map) throws Exception;
-	
+		
+		//1:1문의
+		int inquiryInsert(InquiryDTO dto) throws Exception;
+		
+		
 }

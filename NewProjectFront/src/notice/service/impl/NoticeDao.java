@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import notice.service.InquiryDTO;
 import notice.service.Noti_ModelDto;
 import notice.service.NoticeService;
 
@@ -33,6 +34,13 @@ public class NoticeDao implements NoticeService {
 	public int getTotalCount(Map map) throws Exception {
 		return template.selectOne("Noticetotal",map); 
 	}
+
+	@Override
+	public int inquiryInsert(InquiryDTO dto) throws Exception {
+		return template.insert("Inquiryinsert",dto);
+	}
+
+
 	
 	
 }

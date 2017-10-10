@@ -23,6 +23,11 @@
 		<c:set var="SUC_MSG"  value=" 본인인증 완료되었습니다."/>
 		<c:set var="FAIL_MSG"  value=" 본인인증에 실패하엿습니다."/>
 	</c:when>
+	<c:when test="${WHERE eq 'INQUIRY' }">
+		<c:set var="SUC_URL"  value="/Notice/Inquiry.do"/>
+		<c:set var="SUC_MSG"  value="문의 접수되었습니다."/>
+		<c:set var="FAIL_MSG"  value="문의 접수 실패하였습니다."/>
+	</c:when>
 	
 </c:choose>
 

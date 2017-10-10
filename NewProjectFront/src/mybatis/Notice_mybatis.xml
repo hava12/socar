@@ -33,17 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		
 	</select> 
-	
-	
+		
 	<select id="Noticetotal" resultType="int">
-		SELECT COUNT(*) FROM (SELECT * FROM NOTICE)
-		
-		<!-- <if test="searchColumn != null">
-			WHERE ${searchColumn} LIKE '%' || #{searchWord} || '%' 
-		</if> -->
-		
-	
+		SELECT COUNT(*) FROM (SELECT * FROM NOTICE)	
 	</select>
 	
+	<insert id="Inquiryinsert" parameterType="InquiryDTO">
+		INSERT INTO INQUIRY VALUES(INQUIRY_SEQ.NEXTVAL,#{smem_id},#{category},#{title},#{content},#{image},SYSDATE)
+	</insert>
 	
 </mapper>
