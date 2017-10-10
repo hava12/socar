@@ -483,7 +483,7 @@ $(function(){
 					<div class="group">
 
 						<h3 class="tit_corp">
-							<img src="${pageContext.request.contextPath}/template/image/reservation_txt1.gif" alt="예약내역" /> <span>0</span> <img src="${pageContext.request.contextPath}/template/image/reservation_txt2.gif" alt="건" />
+							<img src="${pageContext.request.contextPath}/template/image/reservation_txt1.gif" alt="예약내역" /> <span>${reserveCount}</span> <img src="${pageContext.request.contextPath}/template/image/reservation_txt2.gif" alt="건" />
 							<a href="/mypage/export_xls/reserve" target="_blank" class="btn"><img src="${pageContext.request.contextPath}/template/image/btn_reser.gif" alt="이용내역 다운로드" /></a>
 						</h3>
 
