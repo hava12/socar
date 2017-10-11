@@ -43,7 +43,7 @@ public class BbsDao implements BBSService {
 	public List<NoticeDto> selectNoticeList(Map<String, Object> map) throws Exception{
 		/*String sql="SELECT * FROM NOTICE ORDER BY NOT_NO DESC" ;*/
 			String sql = "";
-		
+		if(map!=null) {
 		if (map.get("searchWord") != null) {
 			sql +="SELECT * FROM (";
 		}
@@ -53,12 +53,18 @@ public class BbsDao implements BBSService {
 		if (map.get("searchWord") != null) {
 			sql += ") WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
+		}
+		else {
+			sql="SELECT * FROM NOTICE ORDER BY NOT_NO DESC";
+		}
 		
 		List<NoticeDto> list = new Vector<NoticeDto>();
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
-			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			if(map!=null) {				
+				psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+				psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			}
 			rs = psmt.executeQuery();
 			
 			while(rs.next()){

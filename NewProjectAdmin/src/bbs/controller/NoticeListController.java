@@ -71,6 +71,7 @@ public class NoticeListController extends HttpServlet {
 		try {
 			 dao = new BbsDao(req.getServletContext());
 			list = dao.selectNoticeList(map);
+			dao.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

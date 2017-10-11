@@ -14,6 +14,14 @@
     <url-pattern>/MAIN/Login.do</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>ADMINHOME</servlet-name>
+    <servlet-class>admin.controller.AdminHomeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ADMINHOME</servlet-name>
+    <url-pattern>/ADMIN/Home.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>SIMPLEMEMBERLIST</servlet-name>
     <servlet-class>member.controller.SimpleMemberListController</servlet-class>
   </servlet>

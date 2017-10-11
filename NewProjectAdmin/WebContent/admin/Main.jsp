@@ -51,6 +51,49 @@
          
   
     <div class="container">
+      <h2 id="tables-contextual-classes">
+            	공지사항
+          </h2><br/><br/>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              
+              <thead>
+                <tr>
+                  <th style="text-align: center; width: 10%">번호</th>
+                  <th style="text-align: center; width: 50%">제목</th>
+                  <th style="text-align: center; width: 15%">작성자</th>
+                  <th style="text-align: center; width: 15%">작성일</th> 
+                  <!-- <th>수정</th> --> 
+                  <th style="text-align: center; width: 10%">삭제</th> 
+                                   
+                </tr>
+              </thead>
+              <tbody>
+                
+                <c:choose>
+                	<c:when test="${empty list}">
+                	<tr><td colspan="4" align="center">등록된 글이 없습니다</td></tr>
+                	</c:when>
+                	<c:otherwise>
+                		<c:forEach var="dto" items="${list}">
+                		<tr>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_no}</a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_title}</a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.ad_id}</a></td>
+	                		<td align="center"><a href="<c:url value='/Bbs/NoticeDetail.do' />?not_no=${dto.not_no}">${dto.not_postdate}</a></td>
+	                		<%-- <td style="text-align: center;"><a href="<c:url value='/Bbs/NoticeEdit.do?not_no=${dto.not_no}'/>"><button class="btn btn-info btn-sm">수정하기</button></a></td> --%>
+	                		<td style="text-align: center;"><a href='javascript:isDelete(${dto.not_no})'><button class="btn btn-warning btn-sm">삭제하기</button></a></td>
+                		</tr>
+                		</c:forEach>
+                	</c:otherwise>
+                
+                </c:choose>
+                
+                
+              </tbody>
+            </table>
+          </div>
+         
           <!-- 공지게시글 5 개 보기 -->
 		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

@@ -2,12 +2,15 @@ package member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bbs.service.NoticeDto;
+import bbs.service.impl.BbsDao;
 import member.service.AdDto;
 import member.service.impl.MemberDao;
 
@@ -37,7 +40,9 @@ public class LoginController extends HttpServlet {
 		if(affected == 1){
 			
 			req.getSession().setAttribute("ad_id", ad_id);
-			req.getRequestDispatcher("/admin/Main.jsp").forward(req, resp);
+			System.out.println("11");
+			//req.getRequestDispatcher("/admin/Main.jsp").forward(req, resp);
+			req.getRequestDispatcher("/ADMIN/Home.do").forward(req, resp);
 		}
 		else{
 			PrintWriter out = resp.getWriter();	

@@ -14,7 +14,7 @@
           <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                   <li>
-                      <a href="<c:url value='/admin/Main.jsp' />">HOME</a>
+                      <a href="<c:url value='/ADMIN/Home.do' />">HOME</a>
                   </li>
                  <li class="dropdown">
                       <a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover=
