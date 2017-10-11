@@ -1,18 +1,26 @@
 package main.web;
 
 import java.net.InetAddress;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import main.service.Rq_carDto;
 import main.service.Rq_carServiceImpl;
+import notice.service.Noti_ModelDto;
+import notice.service.NoticeService;
+import notice.service.NoticeServiceImpl;
+import notice.service.impl.NoticeDao;
 
 @Controller
 public class MainController {
@@ -20,10 +28,19 @@ public class MainController {
 	@Resource(name="rq_carService")
 	private Rq_carServiceImpl service;
 	
+	@Resource(name="noticeService")
+	private NoticeServiceImpl not_service;
 	
 	@RequestMapping("/Main/Main.do")
-	public String main(HttpServletRequest req) throws Exception{
-
+	public String main(HttpServletRequest req,Model model) throws Exception{
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("start","1");
+		map.put("end","2");
+		List<Noti_ModelDto> list = not_service.selectNoti_ModelList(map);
+		
+		model.addAttribute("list",list);
+		
+		
 		return "/main/Main";
 	}//////////////////////////////////////////////////
 	

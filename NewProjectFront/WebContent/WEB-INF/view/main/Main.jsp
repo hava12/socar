@@ -367,31 +367,27 @@ $(document).ready(function() {
 			<div class="notice">
 				<ul class="tab">
 				<li class="on"><a href="#" class="tab1">공지사항</a></li>
-				<li><a href="#" class="tab2">자주묻는 질문</a></li>
 				</ul>
 				<!-- 공지사항 -->
 				<div class="notice1">
 					<h2 class="blind">공지사항</h2>
 					<ul>
 						
-							<li>
-								<a href=https://www.socar.kr/notice/869>
-									[이벤트] 금요일 칼퇴 후 떠나는...
-									
-									   <img src='${pageContext.request.contextPath}/template/image/ico_new.png' alt="새글" />
-									
-								</a>
-							</li>
+						<c:if test=" ${empty list}" var="noticeexist">
+							<li>공지사항이 없습니다.</li>
+						</c:if>
+						<c:if test="${not noticeexist}">
 						
-							 <li>
-								<a href=https://www.socar.kr/notice/868>
-									[서비스안내] 쏘카부름 수원,...
-									
-									   <img src='${pageContext.request.contextPath}/template/image/ico_new.png' alt="새글" />
-									
-								</a>
-							</li>
-						
+							<c:forEach items="${list}" var="items">
+								<li>
+									<a href="<c:url value='/Notice/NoticeView.do?not_no=${items.not_no}'/>">
+										${items.not_title}
+
+									</a>
+								</li>
+
+							</c:forEach>
+						</c:if>
 						
 					</ul>
 					<a href="<c:url value='/Notice/Notice.do'/>" class="more"><img src='${pageContext.request.contextPath}/template/image/btn_more.png' alt="더보기" /></a>
