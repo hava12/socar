@@ -68,16 +68,7 @@
           <h2 id="tables-contextual-classes">
             	쿠폰 리스트
           </h2><br/><br/>
-          <div class="input-group-btn">
-               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> -- <span class="fa fa-caret-down"></span></button>
-               <ul class="dropdown-menu">
-                   <li><a href="#">Action</a></li>
-                   <li><a href="#">Another action</a></li>
-                   <li><a href="#">Something else here</a></li>
-                   <li class="divider"></li>
-                   <li><a href="#">Separated link</a></li>
-               </ul>
-           </div><!-- /btn-group -->
+       
 
           <div class="table-responsive">
             <table class="table table-bordered table-striped">
