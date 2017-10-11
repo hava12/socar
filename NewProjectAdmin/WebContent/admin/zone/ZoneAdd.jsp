@@ -112,7 +112,7 @@
    
      		<div class="container">
    				  <div class="bs-example" style="font-size: 1.2em">
-				  <h2>주차장 등록</h2><br/><br/>
+				  <h2>쏘카존 등록</h2><br/><br/>
 				    <form action="<c:url value='/ZONE/Add.do'/>" method="post">
 		   			<div id="map" style="width:100%;height:350px;"></div>
 			    	

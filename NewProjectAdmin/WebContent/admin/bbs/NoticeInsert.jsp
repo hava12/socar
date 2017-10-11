@@ -98,7 +98,7 @@
    
    		<div class="container">
    				  <div class="bs-example" style="font-size: 1.2em">
-				  <h2>쿠폰 입력</h2><br/><br/>
+				  <h2>공지사항 입력</h2><br/><br/>
 				    <form action="<c:url value='/Bbs/InsertNotice.do'/>" method="post">
 				    
 				      	  <table class="table table-bordered table-striped">

@@ -378,10 +378,11 @@ public class MemberDao implements MemberService {
 		String sql = "";
 		
 		// 검색용 쿼리 추가
-		if (map.get("searchWord") != null) {
-			sql += "SELECT * FROM (";
+		if(map!=null) {
+			if (map.get("searchWord") != null) {
+				sql += "SELECT * FROM (";
+			}
 		}
-		
 		sql +="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT * FROM CARD ";
 		
 		if(smem_id!=null){

@@ -184,7 +184,10 @@ $( function() {
 				
 					var left_per = $(this).css("left").replace("px","")/parent_px*100;
 					var width_per = $(this).css("width").replace("px","")/parent_px*100;
-	     			var right_per = left_per+width_per;
+	     			
+				
+					
+					var right_per = left_per+width_per;
 					
 	     			
 				
@@ -1441,7 +1444,10 @@ function goSearchResult(soz_code){
 																					)
 																var left_per = ('${res_item.res_date_start.time}' - start_day.getTime())/maxVal*100;
 															 	var width_per = (('${res_item.res_date_end.time}' - start_day.getTime())/maxVal*100)-left_per;
-																if(left_per + width_per > 0){
+																if(left_per + width_per>100){
+																	width_per = 100-left_per;
+																}
+															 	if(left_per + width_per > 0){
 																	
 														 			$("."+'${loop.count}').append("<a href='#' id='reserved-range' class='cliked' name='reserved-range' style='z-index:1;left:"+left_per+"%; width:"+width_per+"%; height:.8em; margin-left:0; border:1px solid lightgray; position:absolute; background-color: lightgray;'>");
 																}

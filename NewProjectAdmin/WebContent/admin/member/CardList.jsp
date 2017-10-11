@@ -64,7 +64,7 @@
    
    		<div class="container">
           <h2 id="tables-contextual-classes">
-            	멤버십 발급 정보 보기
+            	카드 발급 정보 보기
           </h2><br/><br/>
           <div class="input-group-btn">
                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> -- <span class="fa fa-caret-down"></span></button>

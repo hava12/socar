@@ -61,7 +61,7 @@
    
    		<div class="container">
           <h2 id="tables-contextual-classes">
-            	주차장 관리
+            	쏘카존 관리
           </h2><br/><br/>
           <div class="input-group-btn">
                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> -- <span class="fa fa-caret-down"></span></button>

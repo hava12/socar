@@ -110,7 +110,7 @@
 												<tr>
 													<td>과금</td>
 													<td><fmt:formatDate value="${items.res_date}" pattern="yyyy-MM-dd HH:mm"/></td>
-													<td class="detail">${items.soz_name} (<fmt:formatDate value="${items.res_date_start}" pattern="yyyy-MM-dd HH:mm"/>})</td>
+													<td class="detail">${items.soz_name} (<fmt:formatDate value="${items.res_date_start}" pattern="yyyy-MM-dd HH:mm"/>)</td>
 													<td class="method">신용카드</td>
 													<td class="price">
 														<!-- <a>10,230원</a> -->

@@ -480,7 +480,7 @@ div.aside ul :last-child a{border-bottom:1px solid #BBB;}
 <div class="joinSNS mwCont" style="display: block;">
 
 	<div class="tit"><img src='${pageContext.request.contextPath}/template/image/txt_email_n.gif' alt="이메일 계정으로 가입하기" /></div>
-	<div class="box_email"><input type="text" id="join_input_email" onclick="$(this).css('background','none')" name="join_input_email" class="email input" /><a href="#" class="join" id="email_join"><img src='${pageContext.request.contextPath}/template/image/btn_join.gif' class='socar_join_img' alt="회원가입" /></a></div>
+	<div class="box_email"><input type="text" id="join_input_email" onclick="$(this).css('background','none')" name="join_input_email" class="email input" /><a href="#" class="join" id="email_join"><img src='https://dt0fe0zcu6ite.cloudfront.net/template/asset/images/member/new/btn_join.gif' class='socar_join_img' alt="회원가입" /></a></div>
 </div>
 
 <style>
@@ -563,10 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	</dl>
 	<div class="line"></div>
 	<div class="box_check" style="padding-bottom: 10px;">
-		<label for="is_agree" id="agree_label">
-		<span class="agree_check" id="is_agree" style="position:absolute;"></span>
-
-		</label>
+		
 	</div>
 
 

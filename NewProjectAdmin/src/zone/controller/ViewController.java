@@ -19,6 +19,7 @@ public class ViewController extends HttpServlet{
 			ZoneDAO dao = new ZoneDAO(req.getServletContext());
 			ZoneDTO dto = dao.selectOne(req.getParameter("soz_code"));
 			//하드콛
+			dao = new ZoneDAO(req.getServletContext());
 			List<ZoneDTO> list = dao.selectEveryList();			
 			req.setAttribute("list", list);
 			req.setAttribute("dto", dto);
