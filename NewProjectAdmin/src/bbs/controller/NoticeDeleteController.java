@@ -25,7 +25,7 @@ public class NoticeDeleteController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		dao = new BbsDao(req.getServletContext());
 		dao.delete(no);
 		dao.close();
 		

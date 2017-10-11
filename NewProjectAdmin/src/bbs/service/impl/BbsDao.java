@@ -106,9 +106,10 @@ public class BbsDao implements BBSService {
 		affected = psmt.executeUpdate();
 		
 		if(affected == 1 && srcs != null) {
-				sql = "INSERT INTO NOTICE_IMG VALUES('N_I_'||(NOT_IMG_CODE_SEQ.NEXTVAL),NOT_NO_SEQ,?)";
+				sql = "INSERT INTO NOTICE_IMG VALUES(NOT_IMG_CODE_SEQ.NEXTVAL,NOT_NO_SEQ.CURRVAL,?)";
 				psmt = conn.prepareStatement(sql);
 			for(String src :srcs) {
+				System.out.println(src);
 				psmt.setString(1, src);
 				
 				affected = psmt.executeUpdate();
